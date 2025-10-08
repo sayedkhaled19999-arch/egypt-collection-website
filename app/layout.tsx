@@ -10,8 +10,11 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: 'المصرية للتحصيلات كولكشن',
-    description: 'مرحباً بك في المصرية للتحصيلات كولكشن، اكتشف خدماتنا وفرص العمل المتاحة',
+    title: 'المصرية للتحصيلات كولكشن',
+    description: 'موقع الشركة الرسمي للتحصيلات والاستعلامات الميدانية',
+  icons: {
+    icon: '/favicon.ico', // هنا رابط الفافيكون
+  },
 };
 
 export default function RootLayout({
