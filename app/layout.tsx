@@ -10,7 +10,7 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  title: 'شركتنا - الوظائف والفرص',
+  title: 'المصرية للتحصيلات كولكشن',
   description: 'اكتشف الفرص الوظيفية المتاحة وانضم لفريقنا المتميز',
 };
 
