@@ -11,7 +11,7 @@ const tajawal = Tajawal({
 
 export const metadata: Metadata = {
   title: 'المصرية للتحصيلات كولكشن',
-  description: 'اكتشف الفرص الوظيفية المتاحة وانضم لفريقنا المتميز',
+    description: 'مرحباً بك في المصرية للتحصيلات كولكشن، اكتشف خدماتنا وفرص العمل المتاحة',
 };
 
 export default function RootLayout({

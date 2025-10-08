@@ -1,9 +1,9 @@
 import { Metadata } from "next";
 import JobCard, { JobCardProps } from "@/components/JobCard";
 
-export const metadata: Metadata = {
-  title: "الوظائف المتاحة - شركتنا",
-  description: "استعرض الفرص الوظيفية المتاحة وانضم لفريقنا المتميز",
+export const metadata = {
+  title: 'الوظائف المتاحة - المصرية للتحصيلات',
+  description: 'استعرض الفرص الوظيفية المتاحة وانضم لفريقنا المتميز',
 };
 
 const jobs: JobCardProps[] = [
@@ -12,7 +12,7 @@ const jobs: JobCardProps[] = [
     title: "محصل مكتبي",
     description:
       "متابعة العملاء المتأخرين عن السداد عبر الهاتف وتقديم حلول مناسبة لإنهاء المديونية.",
-    location: "مدينة نصر - القاهرة",
+    location: "الدقي - الجيزة",
     type: "دوام كامل",
   },
   {
@@ -20,7 +20,7 @@ const jobs: JobCardProps[] = [
     title: "محصل ميداني",
     description:
       "زيارة العملاء ميدانياً لمتابعة حالات السداد وجمع المستحقات. يشترط وجود رخصة قيادة.",
-    location: "الإسكندرية",
+    location: "جميع محافظات مصر",
     type: "دوام كامل",
   },
   {
@@ -28,7 +28,7 @@ const jobs: JobCardProps[] = [
     title: "مستعلم ميداني",
     description:
       "إجراء زيارات ميدانية لجمع بيانات دقيقة عن العملاء وتقديم تقارير واضحة للإدارة.",
-    location: "الدقي - الجيزة",
+    location: "الجيزة - القاهرة",
     type: "دوام كامل",
   },
   {
@@ -36,8 +36,8 @@ const jobs: JobCardProps[] = [
     title: "مدخل بيانات",
     description:
       "إدخال بيانات العملاء والمعاملات بدقة وسرعة باستخدام الأنظمة الإلكترونية.",
-    location: "القاهرة",
-    type: "جزئي",
+    location: "الدقي - الجيزة",
+    type: "دوام كامل",
   },
 ];
 
