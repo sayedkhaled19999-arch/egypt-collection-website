@@ -1,8 +1,8 @@
 'use client';
 
-import { MapPin, X } from 'lucide-react';
-import { JobCardProps } from './JobCard';
 import { motion, AnimatePresence } from 'framer-motion';
+import { X } from 'lucide-react';
+import { JobCardProps } from './JobCard';
 
 interface JobDetailsModalProps {
   job: JobCardProps;
@@ -10,66 +10,71 @@ interface JobDetailsModalProps {
   onClose: () => void;
 }
 
-export default function JobDetailsModalAnimated({ job, isOpen, onClose }: JobDetailsModalProps) {
+export default function JobDetailsModal({ job, isOpen, onClose }: JobDetailsModalProps) {
   return (
     <AnimatePresence>
       {isOpen && (
-        <motion.div
-          className="fixed inset-0 z-50 flex items-center justify-center"
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-        >
-          {/* الخلفية المظلمة */}
+        <>
+          {/* Overlay */}
           <motion.div
-            className="absolute inset-0 bg-black bg-opacity-50"
-            onClick={onClose}
+            className="fixed inset-0 bg-black bg-opacity-50 z-40"
             initial={{ opacity: 0 }}
             animate={{ opacity: 0.5 }}
             exit={{ opacity: 0 }}
+            onClick={onClose}
           />
 
-          {/* محتوى الـ Modal */}
+          {/* Modal Container */}
           <motion.div
-            className="relative z-10 w-full max-w-lg mx-4 sm:mx-6 md:mx-0 h-full sm:h-auto max-h-[90vh] overflow-y-auto bg-white rounded-2xl shadow-xl p-6 sm:p-8"
-            initial={{ y: 50, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            exit={{ y: 50, opacity: 0 }}
-            transition={{ duration: 0.3, ease: 'easeInOut' }}
+            className="fixed inset-0 flex items-center justify-center z-50 p-4 sm:p-6"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
           >
-            {/* زر الإغلاق */}
-            <button
-              onClick={onClose}
-              className="absolute top-4 right-4 text-gray-500 hover:text-gray-900 transition-colors"
+            {/* Modal Content */}
+            <motion.div
+              className="bg-white rounded-3xl shadow-2xl max-w-lg w-full p-6 relative overflow-hidden"
+              initial={{ y: 50, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: 50, opacity: 0 }}
+              transition={{ duration: 0.3, ease: 'easeOut' }}
             >
-              <X size={24} />
-            </button>
+              {/* Close button */}
+              <button
+                onClick={onClose}
+                className="absolute top-4 right-4 text-gray-500 hover:text-gray-700 focus:outline-none"
+              >
+                <X className="w-6 h-6" />
+              </button>
 
-            {/* العنوان */}
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">{job.title}</h2>
+              {/* Job Title */}
+              <h2 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-4">{job.title}</h2>
 
-            {/* الوصف */}
-            <p className="text-gray-700 leading-relaxed mb-6">{job.description}</p>
+              {/* Job Description */}
+              <p className="text-gray-700 mb-6 leading-relaxed">{job.description}</p>
 
-            {/* المعلومات الإضافية */}
-            <div className="flex flex-col gap-2 text-gray-600 mb-6">
-              <p>
-                <span className="font-semibold">📍 الموقع: </span>{job.location}
-              </p>
-              <p>
-                <span className="font-semibold">💼 نوع العمل: </span>{job.type}
-              </p>
-            </div>
+              {/* Job Details */}
+              <div className="flex flex-col gap-2 text-gray-600 mb-6">
+                <p>
+                  <span className="font-semibold">📍 الموقع: </span>
+                  {job.location}
+                </p>
+                <p>
+                  <span className="font-semibold">💼 نوع العمل: </span>
+                  {job.type}
+                </p>
+              </div>
 
-            {/* زر التقديم */}
-            <a
-              href={`/apply?job=${encodeURIComponent(job.id)}`}
-              className="block w-full bg-[#D90000] text-white text-center py-3 rounded-xl hover:bg-[#B40000] transition-all font-semibold"
-            >
-              قدّم الآن
-            </a>
+              {/* Apply Button */}
+              <a
+                href={`/apply?job=${encodeURIComponent(job.id)}`}
+                className="block w-full bg-gradient-to-r from-[#D90000] to-[#B40000] text-white text-center py-3 rounded-xl font-semibold hover:scale-[1.02] hover:shadow-lg transition-all duration-300"
+              >
+                قدّم الآن
+              </a>
+            </motion.div>
           </motion.div>
-        </motion.div>
+        </>
       )}
     </AnimatePresence>
   );
