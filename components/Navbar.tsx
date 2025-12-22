@@ -3,15 +3,23 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { usePathname } from 'next/navigation';
 import { Menu, X } from 'lucide-react';
 
 export default function Navbar() {
   const [isOpen, setIsOpen] = useState(false);
+  const [isDesktop, setIsDesktop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
-  const pathname = usePathname();
 
-  // Shadow عند الاسكرول
+  useEffect(() => {
+    const handleResize = () => {
+      setIsDesktop(window.innerWidth >= 768);
+      if (window.innerWidth >= 768) setIsOpen(false);
+    };
+    handleResize();
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   useEffect(() => {
     const handleScroll = () => {
       setScrolled(window.scrollY > 10);
@@ -20,100 +28,75 @@ export default function Navbar() {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  const linkClass = (path: string) =>
-    `relative font-medium transition-all duration-300 ${
-      pathname === path
-        ? 'text-[#D90000] font-bold after:absolute after:-bottom-1 after:right-0 after:w-full after:h-[2px] after:bg-[#D90000]'
-        : 'text-[#353535] hover:text-[#D90000]'
-    }`;
-
   return (
     <nav
-      className={`sticky top-0 z-50 bg-white transition-shadow duration-300 ${
-        scrolled ? 'shadow-lg' : 'shadow-md'
+      className={`bg-white sticky top-0 z-50 transition-all duration-300 ${
+        scrolled ? 'shadow-lg py-2' : 'shadow-md py-3'
       }`}
       dir="rtl"
     >
-      <div className="container mx-auto px-4 py-3 flex items-center justify-between">
-
-        {/* ===== اللوجو فقط ===== */}
-        <Link href="/" className="flex items-center">
-          <div className="relative w-20 h-20 md:w-24 md:h-24">
+      <div className="container mx-auto px-4 flex justify-between items-center">
+        {/* اللوجو */}
+        <Link href="/" className="flex items-center gap-2">
+          <div className="relative w-32 h-16 md:w-40 md:h-20">
             <Image
               src="/logo.png"
-              alt="المصرية للتحصيلات كولكشن"
+              alt="لوجو الشركة"
               fill
-              className="object-contain"
-              priority
+              className="object-contain hover:scale-105 transition-transform duration-500"
             />
           </div>
         </Link>
 
-        {/* ===== روابط الديسكتوب ===== */}
-        <div className="hidden md:flex items-center gap-8">
-          <Link href="/" className={linkClass('/')}>
+        {/* روابط الديسكتوب */}
+        <div className="hidden md:flex gap-8 items-center">
+          <Link href="/" className="hover:text-[#2563EB] font-medium transition-all duration-300">
             الرئيسية
           </Link>
-          <Link href="/about" className={linkClass('/about')}>
+          <Link href="/about" className="hover:text-[#2563EB] font-medium transition-all duration-300">
             من نحن
           </Link>
-          <Link href="/clients" className={linkClass('/clients')}>
+          <Link href="/partners" className="hover:text-[#2563EB] font-medium transition-all duration-300">
             شركاؤنا
           </Link>
-          <Link href="/jobs" className={linkClass('/jobs')}>
+          <Link href="/jobs" className="hover:text-[#2563EB] font-medium transition-all duration-300">
             الوظائف المتاحة
           </Link>
-          <Link href="/contact" className={linkClass('/contact')}>
+          <Link href="/contact" className="hover:text-[#2563EB] font-medium transition-all duration-300">
             تواصل معنا
-          </Link>
-
-          <Link
-            href="/apply"
-            className="bg-[#D90000] text-white px-6 py-2 rounded-lg font-medium hover:bg-[#B40000] transition-all duration-300 shadow-md"
-          >
-            انضم إلينا
           </Link>
         </div>
 
-        {/* ===== زر الموبايل ===== */}
+        {/* زر القائمة للموبايل */}
         <button
-          className="md:hidden text-[#353535] z-50"
+          className="md:hidden text-[#353535] focus:outline-none z-50"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={28} /> : <Menu size={28} />}
         </button>
-      </div>
 
-      {/* ===== قائمة الموبايل ===== */}
-      <div
-        className={`md:hidden fixed top-[96px] right-0 w-full bg-white shadow-lg transition-all duration-300 overflow-hidden ${
-          isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
-        }`}
-      >
-        <div className="flex flex-col gap-4 px-6 py-6 text-right">
-          <Link href="/" className={linkClass('/')} onClick={() => setIsOpen(false)}>
-            الرئيسية
-          </Link>
-          <Link href="/about" className={linkClass('/about')} onClick={() => setIsOpen(false)}>
-            من نحن
-          </Link>
-          <Link href="/clients" className={linkClass('/clients')} onClick={() => setIsOpen(false)}>
-            شركاؤنا
-          </Link>
-          <Link href="/jobs" className={linkClass('/jobs')} onClick={() => setIsOpen(false)}>
-            الوظائف المتاحة
-          </Link>
-          <Link href="/contact" className={linkClass('/contact')} onClick={() => setIsOpen(false)}>
-            تواصل معنا
-          </Link>
-
-          <Link
-            href="/apply"
-            className="mt-4 bg-[#D90000] text-white text-center px-6 py-3 rounded-lg font-medium hover:bg-[#B40000] transition-all duration-300"
+        {/* قائمة الموبايل */}
+        {isOpen && !isDesktop && (
+          <div
             onClick={() => setIsOpen(false)}
-          >
-            انضم إلينا
-          </Link>
+            className="fixed inset-0 bg-black bg-opacity-30 z-40"
+          ></div>
+        )}
+        <div
+          className={`md:hidden bg-white shadow-md px-4 py-3 space-y-3 overflow-hidden fixed top-16 right-0 w-full transition-all duration-300 z-50 ${
+            isOpen ? 'max-h-96 opacity-100' : 'max-h-0 opacity-0'
+          }`}
+        >
+          {['/', '/about', '/partners', '/jobs', '/contact'].map((link, idx) => (
+            <Link
+              key={idx}
+              href={link}
+              className="block text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300"
+              onClick={() => setIsOpen(false)}
+            >
+              {['الرئيسية', 'من نحن', 'شركاؤنا', 'الوظائف المتاحة', 'تواصل معنا'][idx]}
+            </Link>
+          ))}
         </div>
       </div>
     </nav>
