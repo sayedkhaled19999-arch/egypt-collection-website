@@ -2,10 +2,9 @@
 
 import Link from 'next/link';
 import Image from 'next/image';
-import { UserCheck, CheckCircle, ShieldCheck } from 'lucide-react';
+import { UserCheck, CheckCircle, ShieldCheck, ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Slide {
   title: string;
@@ -17,7 +16,7 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections',
+    title: 'أهلاً بيك في المصرية للتحصيلات    ECC Collections',
     description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.',
     bgImage: '/hero/slide1.jpg',
     link: '/about',
@@ -72,15 +71,16 @@ export default function HomeContent() {
                   backgroundPosition: 'center',
                 }}
               >
-                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/30 to-transparent"></div>
+                {/* Gradient overlay */}
+                <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent"></div>
+
                 <motion.div
                   initial={{ opacity: 0, y: 20 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: -20 }}
                   transition={{ duration: 0.8 }}
-                  className="relative z-10 bg-black/30 p-4 rounded-md max-w-xl"
-                >
-                  <h1 className="text-2xl md:text-4xl font-bold text-white mb-2">{slide.title}</h1>
+                 className="relative z-10 bg-black/30 p-4 rounded-md max-w-[90%] md:max-w-xl">
+                  <h1 className="text-2xl md:text-4xl font-bold text-white mb-2 break-words">{slide.title}</h1>
                   <p className="text-md md:text-lg text-white mb-4">{slide.description}</p>
                   <Link
                     href={slide.link}
@@ -111,56 +111,61 @@ export default function HomeContent() {
         </button>
       </div>
 
-      {/* ===== شوية عننا ===== */}
-      <motion.section
-        className="py-16 md:py-20 bg-[#F4F4F4]"
-        initial={{ opacity: 0, y: 20 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        viewport={{ once: true }}
-        transition={{ duration: 0.8 }}
-      >
-        <div className="container mx-auto px-4 grid md:grid-cols-2 gap-12 items-center">
-          <div>
-            <h2 className="text-3xl md:text-4xl font-bold text-[#353535] mb-4">شوية عننا</h2>
-            <p className="text-[#757575] text-lg leading-relaxed mb-4">
-              شركتنا مبنية على الابتكار والالتزام بتقديم أحسن خدمات لعملائنا.
-            </p>
-            <p className="text-[#757575] text-lg leading-relaxed mb-4">
-              عندنا فريق شغوف وملتزم يخلي شركتنا دايمًا رائدة في مجال التحصيل.
-            </p>
-            <div className="flex gap-6 mt-6 justify-center md:justify-start">
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#2563EB] mb-1">10+</div>
-                <div className="text-[#353535]">سنين خبرة</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#2563EB] mb-1">500+</div>
-                <div className="text-[#353535]">موظفين</div>
-              </div>
-              <div className="text-center">
-                <div className="text-4xl font-bold text-[#2563EB] mb-1">1000+</div>
-                <div className="text-[#353535]">عملاء راضيين</div>
-              </div>
-            </div>
-          </div>
+{/* ===== كارت لمحة عن الشركة محسّن مع أيقونات فوق النص وروابط ===== */}
+<motion.section
+  className="py-16 flex justify-center bg-[#F4F4F4]"
+  initial={{ opacity: 0, y: 20 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  viewport={{ once: true }}
+  transition={{ duration: 0.8 }}
+>
+  <div className="bg-white rounded-3xl shadow-2xl p-10 md:p-14 max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+    
+    {/* النص والإحصائيات */}
+    <div>
+      <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-4">
+        لمحة عن الشركة
+      </h2>
+      <p className="text-[#4B4B4B] text-lg md:text-xl leading-relaxed mb-6">
+        شركتنا دايمًا بتسعى للابتكار والتميز في تقديم أفضل خدمات التحصيل والاستعلام لعملائنا بطريقة بسيطة وواضحة.
+      </p>
 
-          <div className="flex flex-col items-center">
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl bg-[#B4B4B4] w-[320px] h-[320px] hover:scale-105 transition-transform duration-300">
-              <Image
-                src="/ceo.png"
-                alt="رئيس الشركة"
-                fill
-                className="object-cover"
-                priority
-              />
-            </div>
-            <div className="mt-4 text-center">
-              <h3 className="text-xl font-bold text-[#353535]">وائل سويلم</h3>
-              <p className="text-[#757575]">رئيس الشركة</p>
-            </div>
-          </div>
-        </div>
-      </motion.section>
+      <div className="flex gap-6 flex-wrap mt-6">
+        {/* كارت شركائنا */}
+        <Link
+          href="/partners"
+          className="flex flex-col items-center gap-2 p-5 bg-[#F4F4F4] shadow-md rounded-xl hover:scale-105 transition-transform duration-300 min-w-[150px]"
+        >
+          <UserCheck className="w-10 h-10 text-[#2563EB]" />
+          <div className="text-2xl font-bold text-[#2563EB]">25</div>
+          <div className="text-[#353535] text-sm">شركاؤنا</div>
+        </Link>
+
+        {/* كارت الفروع */}
+        <Link
+          href="/branches"
+          className="flex flex-col items-center gap-2 p-5 bg-[#F4F4F4] shadow-md rounded-xl hover:scale-105 transition-transform duration-300 min-w-[150px]"
+        >
+          <CheckCircle className="w-10 h-10 text-[#2563EB]" />
+          <div className="text-2xl font-bold text-[#2563EB]">5</div>
+          <div className="text-[#353535] text-sm">فروعنا</div>
+        </Link>
+      </div>
+    </div>
+
+    {/* صورة رئيس الشركة */}
+    <div className="flex flex-col items-center">
+      <div className="relative w-[260px] h-[260px] rounded-2xl overflow-hidden shadow-lg hover:scale-105 transition-transform duration-300">
+        <Image src="/ceo.png" alt="رئيس الشركة" fill className="object-cover" />
+      </div>
+      <div className="mt-4 text-center">
+        <h3 className="text-lg font-bold text-[#353535]">وائل سويلم</h3>
+        <p className="text-[#757575] text-sm">رئيس الشركة</p>
+      </div>
+    </div>
+
+  </div>
+</motion.section>
 
       {/* ===== دعوة للعمل ===== */}
       <motion.section
