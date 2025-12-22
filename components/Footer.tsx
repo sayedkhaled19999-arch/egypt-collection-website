@@ -11,7 +11,7 @@ export default function Footer() {
         {/* عن الشركة */}
         <div className="flex-1">
           <h3 className="text-xl sm:text-2xl font-bold mb-2">
-           شركة المصرية للتحصيلات – ECC Collections
+           الشركة المصرية للتحصيلات – ECC Collections
           </h3>
           <p className="text-[#B4B4B4] leading-relaxed text-sm sm:text-base">           
            متخصصة في تقديم خدمات التحصيل والاستعلام المالي بكفاءة واحترافية.
