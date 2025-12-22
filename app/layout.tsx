@@ -1,8 +1,7 @@
 import './globals.css';
 import type { Metadata } from 'next';
 import { Tajawal } from 'next/font/google';
-import Navbar from '@/components/Navbar';
-import Footer from '@/components/Footer';
+import ClientWrapper from '@/components/ClientWrapper';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -10,26 +9,16 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-    title: 'المصرية للتحصيلات كولكشن',
-    description: 'موقع الشركة الرسمي للتحصيلات والاستعلامات الميدانية',
-  icons: {
-    icon: '/favicon.ico', // هنا رابط الفافيكون
-  },
+  title: 'المصرية للتحصيلات كولكشن',
+  description: 'موقع الشركة الرسمي للتحصيلات والاستعلامات الميدانية',
+  icons: { icon: '/favicon.ico' },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className} flex flex-col min-h-screen`}>
-        <Navbar />
-        <main className="flex-grow">
-          {children}
-        </main>
-        <Footer />
+        <ClientWrapper>{children}</ClientWrapper>
       </body>
     </html>
   );
