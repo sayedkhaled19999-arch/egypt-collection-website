@@ -51,7 +51,7 @@ export default function Navbar() {
         من نحن
       </Link>
       <Link href="#clients" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
-        شركاؤنا
+        شركائنا
       </Link>
       <Link href="/jobs" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
         الوظائف المتاحة
@@ -79,7 +79,7 @@ export default function Navbar() {
         من نحن
       </Link>
       <Link href="#clients" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
-        شركاؤنا
+        شركائنا
       </Link>
       <Link href="/jobs" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
         الوظائف المتاحة
