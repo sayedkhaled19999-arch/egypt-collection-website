@@ -48,7 +48,7 @@ const slides: Slide[] = [
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
 
-  // 🔁 سلايد تلقائي كل 4 ثواني
+  // 🔁 سلايد تلقائي كل 10 ثواني
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
