@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
+import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
-import { ChevronLeft, ChevronRight } from 'lucide-react';
 
 interface Slide {
   title: string;
@@ -47,10 +48,11 @@ const slides: Slide[] = [
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
 
+  // 🔁 سلايد تلقائي كل 4 ثواني
   useEffect(() => {
     const interval = setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
-    }, 4000);
+    }, 10000);
     return () => clearInterval(interval);
   }, []);
 
@@ -73,21 +75,23 @@ export default function HeroCarousel() {
             backgroundPosition: 'center',
           }}
         >
-          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent" />
+          {/* Gradient Overlay */}
+          <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent"></div>
+
           <motion.div
             initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
             exit={{ opacity: 0, y: -25 }}
             transition={{ duration: 0.8 }}
-            className="relative z-10 bg-black/30 p-4 md:p-6 rounded-lg max-w-[90%] md:max-w-xl"
+            className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-[90%] md:max-w-xl backdrop-blur-sm"
           >
-            <h1 className="text-2xl md:text-4xl font-bold text-white mb-2 whitespace-normal">
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-3 whitespace-normal">
               {slides[current].title}
             </h1>
             <p className="text-md md:text-lg text-white mb-4">{slides[current].description}</p>
             <Link
               href={slides[current].link}
-              className="inline-block bg-[#2563EB] text-white px-4 py-2 rounded-lg font-bold hover:bg-[#1e4db7] transition-colors"
+              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-lg font-bold hover:scale-105 transition-transform shadow-lg"
             >
               {slides[current].linkText}
             </Link>
@@ -95,19 +99,20 @@ export default function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
+      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         aria-label="السابق"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow"
+        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
       >
-        <ChevronLeft className="w-5 h-5 text-black" />
+        <ChevronLeft className="w-6 h-6 text-black" />
       </button>
       <button
         onClick={nextSlide}
         aria-label="التالي"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow"
+        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
       >
-        <ChevronRight className="w-5 h-5 text-black" />
+        <ChevronRight className="w-6 h-6 text-black" />
       </button>
     </div>
   );

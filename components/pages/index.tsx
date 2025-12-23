@@ -4,6 +4,7 @@ import HeroCarousel from '@/components/home/HeroCarousel';
 import AboutCard from '@/components/home/AboutCard';
 import CallToAction from '@/components/home/CallToAction';
 import ValuesSection from '@/components/home/ValuesSection';
+import PartnersSection from '@/components/home/PartnersSection';
 import SEO from '@/components/SEO';
 
 export default function Home() {
@@ -23,11 +24,15 @@ export default function Home() {
       {/* ===== About / لمحة عن الشركة ===== */}
       <AboutCard />
 
+      {/* ===== القيم / Values Section ===== */}
+      <ValuesSection />
+
+            {/* ===== القيم / PartnersSection ===== */}
+      <PartnersSection />
+
       {/* ===== Call To Action ===== */}
       <CallToAction />
 
-      {/* ===== القيم / Values Section ===== */}
-      <ValuesSection />
     </>
   );
 }
