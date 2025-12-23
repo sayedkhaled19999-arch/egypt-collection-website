@@ -3,6 +3,7 @@ import AboutCard from '@/components/home/AboutCard';
 import CallToAction from '@/components/home/CallToAction';
 import ValuesSection from '@/components/home/ValuesSection';
 import PartnersSection from '@/components/home/PartnersSection';
+import BranchesSection from '@/components/home/BranchesSection';
 
 
 export default function HomeContent() {
@@ -12,6 +13,7 @@ export default function HomeContent() {
       <AboutCard />
       <ValuesSection />
       <PartnersSection />
+      <BranchesSection />
       <CallToAction />
     </>
   );

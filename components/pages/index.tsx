@@ -5,6 +5,7 @@ import AboutCard from '@/components/home/AboutCard';
 import CallToAction from '@/components/home/CallToAction';
 import ValuesSection from '@/components/home/ValuesSection';
 import PartnersSection from '@/components/home/PartnersSection';
+import BranchesSection from '@/components/home/BranchesSection';
 import SEO from '@/components/SEO';
 
 export default function Home() {
@@ -27,8 +28,11 @@ export default function Home() {
       {/* ===== القيم / Values Section ===== */}
       <ValuesSection />
 
-            {/* ===== القيم / PartnersSection ===== */}
+       {/* ===== القيم / PartnersSection ===== */}
       <PartnersSection />
+
+       {/* ===== القيم / BranchesSection ===== */}
+      <BranchesSection />
 
       {/* ===== Call To Action ===== */}
       <CallToAction />
