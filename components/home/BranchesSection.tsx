@@ -3,7 +3,7 @@
 import { motion } from 'framer-motion';
 import { MapPin } from 'lucide-react';
 
-const branches = [
+export const branches = [
   {
     name: 'المقر الرئيسي',
     address: '30شارع هارون - ميدان المساحه - الدقى - الدور السابع',
@@ -39,6 +39,7 @@ const branches = [
 export default function BranchesSection() {
   return (
     <motion.section
+      id="branches-section" // ← هذا السطر مهم
       className="py-16 md:py-20 bg-[#F4F4F4] dark:bg-[#1f1f1f]"
       initial="hidden"
       whileInView="visible"

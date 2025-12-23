@@ -4,6 +4,7 @@ import Link from 'next/link';
 import Image from 'next/image';
 import { UserCheck, CheckCircle } from 'lucide-react';
 import { motion } from 'framer-motion';
+import { branches } from './BranchesSection'; // عدّل المسار حسب مكان الملف
 
 export default function AboutCard() {
   return (
@@ -37,14 +38,14 @@ export default function AboutCard() {
             </Link>
 
             {/* كارت الفروع */}
-            <Link
-              href="/branches"
-              className="flex flex-col items-center gap-2 p-5 bg-[#F4F4F4] shadow-md rounded-xl hover:scale-105 transition-transform duration-300 min-w-[150px]"
+            <a
+              href="#branches-section"
+              className="flex flex-col items-center gap-2 p-5 bg-[#F4F4F4] shadow-md rounded-xl hover:scale-105 transition-transform duration-300 min-w-[150px] cursor-pointer"
             >
               <CheckCircle className="w-10 h-10 text-[#2563EB]" />
-              <div className="text-2xl font-bold text-[#2563EB]">5</div>
+              <div className="text-2xl font-bold text-[#2563EB]">{branches.length}</div>
               <div className="text-[#353535] text-sm">فروعنا</div>
-            </Link>
+            </a>
           </div>
         </div>
 
