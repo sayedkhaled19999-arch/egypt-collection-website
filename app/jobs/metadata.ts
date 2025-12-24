@@ -1,29 +1,98 @@
-// app/jobs/metadata.ts (Server Component)
+// app/jobs/metadata.ts
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: 'الوظائف المتاحة - المصرية للتحصيلات | ECC Collections',
-  description: 'استعرض جميع الفرص الوظيفية لدينا في المصرية للتحصيلات وانضم لفريقنا المتميز.',
+  metadataBase: new URL('https://www.collection.eg'),
+
+  title: 'وظائف المصرية للتحصيلات | ECC Collections – قدم الآن',
+
+  description:
+    'قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر، وتأمين اجتماعي بعد التثبيت.',
+
   keywords: [
-    'وظائف مصر', 'فرص عمل', 'محصل ميداني', 'مدخل بيانات', 'ECC Collections', 'المصرية للتحصيلات'
+    // نية البحث الأساسية
+    'وظائف',
+    'تقديم وظائف',
+    'فرص عمل',
+    'وظائف مصر',
+
+    // مجال التحصيل
+    'وظائف تحصيل',
+    'شركات تحصيل',
+    'تحصيل ديون',
+    'وظائف شركات تحصيل',
+
+    // المسميات
+    'محصل',
+    'محصل ميداني',
+    'محصل مكتبي',
+    'مدخل بيانات',
+    'وظائف خدمة عملاء',
+
+    // أماكن
+    'وظائف الجيزة',
+    'وظائف القاهرة',
+    'وظائف الدقي',
+    'وظائف جميع المحافظات',
+
+    // الثقة
+    'وظائف بدون رسوم',
+    'تدريب مدفوع الأجر',
+    'تأمين اجتماعي',
+
+    // البراند
+    'ECC Collections',
+    'المصرية للتحصيلات'
   ],
+
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-image-preview': 'large',
+      'max-snippet': -1,
+      'max-video-preview': -1
+    }
+  },
+
+  alternates: {
+    canonical: '/jobs'
+  },
+
   openGraph: {
-    title: 'الوظائف المتاحة - المصرية للتحصيلات',
-    description: 'انضم لفريقنا المتنامي في المصرية للتحصيلات. اكتشف فرص العمل المتاحة الآن!',
+    title: 'وظائف المصرية للتحصيلات | ECC Collections',
+    description:
+      'فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت. قدّم الآن.',
     url: 'https://www.collection.eg/jobs',
     siteName: 'ECC Collections',
-    images: [
-      { url: '/og-jobs.png', width: 1200, height: 630, alt: 'وظائف المصرية للتحصيلات' }
-    ],
     locale: 'ar_EG',
-    type: 'website'
+    type: 'website',
+    images: [
+      {
+        url: '/og-jobs.png',
+        width: 1200,
+        height: 630,
+        alt: 'وظائف المصرية للتحصيلات ECC Collections'
+      }
+    ]
   },
+
   twitter: {
     card: 'summary_large_image',
-    title: 'الوظائف المتاحة - المصرية للتحصيلات',
-    description: 'انضم لفريقنا المتميز في المصرية للتحصيلات. اكتشف الفرص المتاحة!',
+    title: 'وظائف المصرية للتحصيلات | ECC Collections',
+    description:
+      'قدّم على وظائف ECC Collections: محصلين، مدخل بيانات، بدون رسوم + تدريب مدفوع + تأمين اجتماعي.',
     images: ['/og-jobs.png'],
     creator: '@ECCCollections'
   },
-  icons: { icon: '/favicon.ico' }
+
+  icons: {
+    icon: '/favicon.ico',
+    shortcut: '/favicon.ico',
+    apple: '/apple-touch-icon.png'
+  },
+
+  category: 'jobs'
 };
