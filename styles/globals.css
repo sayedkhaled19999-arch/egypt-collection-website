@@ -8,8 +8,9 @@
   box-sizing: border-box;
 }
 
+/* الخلفية العامة للصفحة */
 body {
-  background: white;
+  background: #F4F4F4; /* نفس لون السيكشن */
   color: #1a1a1a;
 }
 
