@@ -18,28 +18,28 @@ const jobs: JobCardProps[] = [
   {
     id: "office-collector",
     title: "محصل مكتبي",
-    description: "متابعة العملاء المتأخرين عن السداد عبر الهاتف وتقديم حلول مناسبة لإنهاء المديونية.",
+    description: "متابعة العملاء من خلال التليفون ومساعدتهم للخروج من مرحلة التعثر والانتظام في السداد بشكل سلس وسريع.",
     location: "الدقي - الجيزة",
     type: "دوام كامل",
   },
   {
     id: "field-collector",
     title: "محصل ميداني",
-    description: "زيارة العملاء ميدانياً لمتابعة حالات السداد وجمع المستحقات. يشترط وجود رخصة قيادة.",
+    description: "زيارة العملاء الغير منتظمين في السداد وتشجيعهم على سداد المديونية المتأخرة عليهم، مع متابعة الحالات الميدانية بدقة.",
     location: "جميع محافظات مصر",
     type: "دوام كامل",
   },
   {
     id: "field-investigator",
     title: "مستعلم ميداني",
-    description: "إجراء زيارات ميدانية لجمع بيانات دقيقة عن العملاء وتقديم تقارير واضحة للإدارة.",
-    location: "الجيزة - القاهرة",
+    description: "إجراء زيارات ميدانية لجمع بيانات دقيقة عن العملاء، مع تقديم تقارير واضحة للإدارة لضمان جودة المعلومات.",
+    location: "الجيزة و القاهرة",
     type: "دوام كامل",
   },
   {
     id: "data-entry",
     title: "مدخل بيانات",
-    description: "إدخال بيانات العملاء والمعاملات بدقة وسرعة باستخدام الأنظمة الإلكترونية.",
+    description: "إدخال بيانات العملاء والمعاملات بدقة وسرعة باستخدام برامج الأوفيس، لضمان تنظيم المعلومات وسهولة الوصول إليها.",
     location: "الدقي - الجيزة",
     type: "دوام كامل",
   },
@@ -91,6 +91,7 @@ export default function JobsPage() {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50"></div>
 
+            {/* الكارت الرئيسي */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
@@ -109,11 +110,11 @@ export default function JobsPage() {
         </AnimatePresence>
       </div>
 
-      {/* Jobs Grid - داخل كارت بارز */}
+      {/* Jobs Grid */}
       <section id="jobs-grid" className="container mx-auto px-4 py-16 -mt-16 relative z-10">
-        <div className="text-center text-gray-700 text-lg md:text-xl font-semibold mt-16 mb-12">
-            يوجد <span className="font-bold text-blue-600">{jobs.length}</span> وظائف متاحة حالياً
-          </div>
+        <div className="text-center text-gray-700 text-lg md:text-xl font-semibold mt-16 mb-16">
+          يوجد <span className="font-bold text-blue-600">{jobs.length}</span> وظائف متاحة حالياً
+        </div>
         <motion.div
           className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 grid md:grid-cols-2 gap-6"
           initial={{ opacity: 0, y: 20 }}
