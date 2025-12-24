@@ -3,7 +3,7 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Home, MapPin, Laptop, Briefcase, CheckCircle, X, FileText, User, Phone } from 'lucide-react';
+import { Home, MapPin, Laptop, Briefcase, CheckCircle, X, FileText, User, Phone , } from 'lucide-react';
 
 interface Job {
   id: string;
@@ -11,21 +11,25 @@ interface Job {
   description: string;
   location: string;
   type: string;
-  salary?: string;
-  workHours?: string;
+  salary: string;
+  workHours: string;
+  vacation: string; // ✅ الإجازة الأسبوعية
   fullDetails: string;
-  extraDetails?: string[];
+  extraDetails: string[];
 }
+
 
 const jobs: Job[] = [
   {
     id: "office-collector",
     title: "محصل مكتبي",
-    description: "هتتابع العملاء على التليفون وتساعدهم يخرجوا من التأخر في السداد ويرجعوا منتظمين.",
+    description:
+      "هتتابع العملاء على التليفون وتساعدهم يخرجوا من التأخر في السداد ويرجعوا منتظمين.",
     location: "الدقي - الجيزة",
     type: "دوام كامل",
     salary: "راتب ثابت + عمولات وحوافز مجزية",
     workHours: "من 8:30 صباحًا لـ 6:30 مساءً",
+    vacation: "إجازة أسبوعية يوم الجمعة من كل أسبوع",
     fullDetails: `
 - متابعة العملاء المتأخرين عن السداد بطريقة ودية واحترافية.
 - تقديم حلول عملية علشان يرجعوا منتظمين في السداد.
@@ -46,14 +50,17 @@ const jobs: Job[] = [
       "تأمين اجتماعي بعد التثبيت"
     ]
   },
+
   {
     id: "field-collector",
     title: "محصل ميداني",
-    description: "هتزور العملاء اللي متأخرين في السداد وتساعدهم يسددوا المديونية المتأخرة.",
+    description:
+      "هتزور العملاء اللي متأخرين في السداد وتساعدهم يسددوا المديونية المتأخرة.",
     location: "جميع محافظات مصر",
     type: "دوام كامل",
-    salary: "راتب ثابت + عمولات وحوافز مجزية ",
+    salary: "راتب ثابت + عمولات وحوافز مجزية",
     workHours: "من 8:30 صباحًا لـ 5:00 مساءً مع زيارات ميدانية حسب الجدول",
+    vacation: "إجازة أسبوعية يوم الجمعة من كل أسبوع",
     fullDetails: `
 - القيام بزيارات ميدانية للعملاء لتسوية المديونيات.
 - تقييم حالة العميل واقتراح حلول مناسبة لسداد الديون.
@@ -73,14 +80,17 @@ const jobs: Job[] = [
       "تأمين اجتماعي بعد التثبيت"
     ]
   },
+
   {
     id: "field-investigator",
     title: "مستعلم ميداني",
-    description: "هتزور مواقع العملاء وتجمع بيانات دقيقة وتقدم تقارير واضحة للإدارة.",
+    description:
+      "هتزور مواقع العملاء وتجمع بيانات دقيقة وتقدم تقارير واضحة للإدارة.",
     location: "الجيزة - القاهرة",
     type: "دوام كامل",
     salary: "راتب ثابت + حوافز حسب الأداء",
     workHours: "من 7:30 صباحًا لـ 4 مساءً مع الزيارات الميدانية حسب الجدول",
+    vacation: "إجازة أسبوعية يومي الجمعة والسبت من كل أسبوع",
     fullDetails: `
 - زيارة مواقع العملاء والتحقق من بياناتهم.
 - جمع معلومات دقيقة وموثوقة عن الحالات المختلفة.
@@ -100,14 +110,17 @@ const jobs: Job[] = [
       "تأمين اجتماعي بعد التثبيت"
     ]
   },
+
   {
     id: "data-entry",
     title: "مدخل بيانات",
-    description: "هتدخل بيانات العملاء والمعاملات بدقة وسرعة باستخدام برامج الاوفيس.",
+    description:
+      "هتدخل بيانات العملاء والمعاملات بدقة وسرعة باستخدام برامج الاوفيس.",
     location: "الدقي - الجيزة",
     type: "دوام كامل",
     salary: "مرتبات تصل الي 7000 جنيه شهريًا حسب الكفاءة",
     workHours: "من 8:30 صباحًا لـ 6:30 مساءً",
+    vacation: "إجازة أسبوعية يوم الجمعة من كل أسبوع",
     fullDetails: `
 - إدخال كل بيانات العملاء والمعاملات بدقة.
 - تحديث قاعدة البيانات باستمرار والتأكد من صحة المعلومات.
@@ -125,9 +138,8 @@ const jobs: Job[] = [
       "المقابلات بدون أي رسوم",
       "تأمين اجتماعي بعد التثبيت"
     ]
-  },
+  }
 ];
-
 export default function JobPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -207,13 +219,30 @@ export default function JobPage() {
               </div>
             ))}
           </div>
-
           {/* Basic Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 bg-gray-50 p-4 rounded-xl shadow-inner border-l-4 border-red-500">
-            {job.salary && <p className="flex items-center gap-2 font-bold text-gray-800">💰 <span className="text-blue-600">الراتب:</span> {job.salary}</p>}
-            {job.workHours && <p className="flex items-center gap-2 font-bold text-gray-800">🕘 <span className="text-blue-600">مواعيد العمل:</span> {job.workHours}</p>}
-            <p className="flex items-center gap-2 font-bold text-gray-800">📍 <span className="text-blue-600">الموقع:</span> {job.location}</p>
-            <p className="flex items-center gap-2 font-bold text-gray-800">📝 <span className="text-blue-600">نوع الوظيفة:</span> {job.type}</p>
+            {job.salary && (
+              <p className="flex items-center gap-2 font-bold text-gray-800">
+                💰 <span className="text-blue-600">الراتب:</span> {job.salary}
+              </p>
+            )}
+
+            {job.workHours && (
+              <p className="flex items-center gap-2 font-bold text-gray-800">
+                🕘 <span className="text-blue-600">مواعيد العمل:</span> {job.workHours}
+              </p>
+            )}
+
+            {/* ✅ ضيف السطر ده */}
+            {job.vacation && (
+              <p className="flex items-center gap-2 font-bold text-gray-800">
+                🛌 <span className="text-blue-600">الإجازة:</span> {job.vacation}
+              </p>
+            )}
+
+            <p className="flex items-center gap-2 font-bold text-gray-800">
+              📍 <span className="text-blue-600">الموقع:</span> {job.location}
+            </p>
           </div>
 
           {/* Buttons */}
