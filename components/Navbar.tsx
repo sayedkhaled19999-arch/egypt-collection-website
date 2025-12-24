@@ -50,7 +50,7 @@ export default function Navbar() {
       <Link href="#about" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
         من نحن
       </Link>
-      <Link href="/partners" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
+      <Link href="/partners" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
         شركائنا
       </Link>
       <Link href="/jobs" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
