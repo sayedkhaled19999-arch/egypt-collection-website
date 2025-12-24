@@ -1,4 +1,7 @@
+// app/layout.tsx
 import '@/styles/globals.css';
+import 'slick-carousel/slick/slick.css';
+import 'slick-carousel/slick/slick-theme.css';
 import type { Metadata } from 'next';
 import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
@@ -11,7 +14,7 @@ const tajawal = Tajawal({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.collection.eg'), // دومين الموقع الفعلي
+  metadataBase: new URL('https://www.collection.eg'),
   title: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني والتحقق من البيانات في مصر',
   description: 'المصرية للتحصيلات – ECC Collections تقدم أفضل خدمات التحصيل الميداني والاستعلام والتحقق من البيانات للعملاء في مصر منذ 2002. خدمات احترافية، سريعة وموثوقة.',
   keywords: [
@@ -33,7 +36,7 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections',
     images: [
       {
-        url: '/og-image.png', // الصورة موجودة في مجلد public
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'المصرية للتحصيلات – ECC Collections'

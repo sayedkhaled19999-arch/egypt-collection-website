@@ -1,104 +1,136 @@
 'use client';
 
-import { motion } from 'framer-motion';
 import Image from 'next/image';
-import { useEffect, useRef } from 'react';
+import Slider from "react-slick";
+import { motion } from 'framer-motion';
 
-const banks = [
-  { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
+interface Bank {
+  name: string;
+  src: string;
+}
+
+const banks: Bank[] = [
+  { name: 'البنك الأهلي المصري', src: '/banks/ahly.svg' },
   { name: 'بنك مصر', src: '/banks/banquemisr.svg' },
   { name: 'بنك القاهرة', src: '/banks/cairobank.svg' },
   { name: 'بنك التعمير والاسكان', src: '/banks/housingbank.svg' },
   { name: 'بنك الامارات دبي الوطني', src: '/banks/NBDEmirate.svg' },
   { name: 'مصرف ابو ظبي الاسلامي', src: '/banks/Adib.svg' },
+  { name: 'بنك الكويتي الوطني', src: '/banks/NationalBankofKuwait.svg' },
+  { name: 'بنك المصري الخليجي', src: '/banks/EGBANK.svg' },
+  { name: 'بنك العربي الأفريقي', src: '/banks/ArabAfricanBank.svg' },
+  { name: 'بنك الأهلي الكويتي', src: '/banks/AlAhliBankofKuwait.svg' },
+  { name: 'بنك قناة السويس', src: '/banks/SuezCanalBank.svg' },
+  { name: 'بنك المشرق', src: '/banks/Mashreq.svg' },
+  { name: 'بنك نكست', src: '/banks/BankNXT.svg' },
 ];
 
 export default function PartnersPage() {
-  const scrollRef = useRef<HTMLDivElement>(null);
 
-  useEffect(() => {
-    const scrollContainer = scrollRef.current;
-    if (!scrollContainer) return;
+  const sliderSettings = {
+    infinite: true,
+    slidesToShow: 6,
+    slidesToScroll: 1,
+    speed: 5000,
+    autoplay: true,
+    autoplaySpeed: 100,
+    cssEase: "linear",
+    arrows: false,
+    pauseOnHover: false,
+    swipe: false,
+    draggable: false,
+    rtl: true,
+    responsive: [
+      { breakpoint: 1024, settings: { slidesToShow: 4 } },
+      { breakpoint: 768, settings: { slidesToShow: 3 } },
+      { breakpoint: 480, settings: { slidesToShow: 2 } },
+    ],
+  };
 
-    let scrollLeft = 0;
-    const totalScrollWidth = scrollContainer.scrollWidth / 2; // لعمل loop
-
-    const animate = () => {
-      scrollLeft += 0.5; // سرعة السليدر (خفيفة وبطيئة)
-      if (scrollLeft >= totalScrollWidth) scrollLeft = 0;
-      scrollContainer.scrollTo({ left: scrollLeft, behavior: 'auto' });
-      requestAnimationFrame(animate);
-    };
-
-    animate();
-  }, []);
+  // Variants ثابتة لتجنب أخطاء TypeScript
+  const cardVariants = {
+    hidden: { opacity: 0, y: 40 },
+    visible: { opacity: 1, y: 0 }
+  };
 
   return (
     <div className="bg-[#F4F4F4] min-h-screen">
 
-      {/* Hero Section */}
-      <section className="py-20 text-center">
+      {/* Section Header */}
+      <section className="py-20 text-center relative">
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#2563EB] mb-4">
-          شركاؤنا المتميزون
+          شركائنا المتميزون
         </h1>
-        <p className="text-lg md:text-xl text-[#4B4B4B] max-w-3xl mx-auto mb-12">
-          إحنا شغالين مع أفضل البنوك لضمان أعلى جودة في خدماتنا.
-        </p>
 
-        {/* Slider للبنوك */}
-        <div 
-          ref={scrollRef} 
-          className="flex gap-8 overflow-hidden px-4 md:px-20 py-4"
-        >
-          {banks.concat(banks).map((bank, i) => (
-            <div
-              key={i}
-              className="flex-none w-36 h-36 bg-white rounded-xl shadow-lg flex items-center justify-center cursor-pointer relative overflow-hidden group"
-            >
-              {/* Ripple effect عند الضغط */}
-              <span className="absolute inset-0 rounded-xl bg-white opacity-0 group-active:opacity-20 transition-opacity" />
-              <Image 
-                src={bank.src} 
-                alt={bank.name} 
-                width={80} 
-                height={80} 
-                className="object-contain"
-              />
-            </div>
-          ))}
+        {/* نصين منسقين */}
+        <div className="text-[#4B4B4B] max-w-3xl mx-auto mb-12 space-y-3">
+          <p className="text-lg md:text-xl">
+            شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية.
+          </p>
+          <p className="text-lg md:text-xl">
+            بنفخر بشراكاتنا اللتي تثبت التزامنا بالجودة والابتكار.
+          </p>
+        </div>
+
+        {/* Banner-like Slider */}
+        <div className="max-w-6xl mx-auto px-4 overflow-hidden">
+          <Slider {...sliderSettings}>
+            {banks.map((bank, i) => (
+              <div key={i} className="flex justify-center items-center">
+                <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 relative 
+                                mx-4 sm:mx-6 md:mx-8 lg:mx-10 flex items-center justify-center">
+                  <Image
+                    src={bank.src}
+                    alt={bank.name}
+                    fill
+                    className="object-contain"
+                  />
+                </div>
+              </div>
+            ))}
+          </Slider>
         </div>
       </section>
 
-      {/* Grid الكروت */}
-      <section className="max-w-6xl mx-auto px-4 py-16">
-        <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-8 text-center">
+      {/* Grid Section */}
+      <section className="max-w-7xl mx-auto px-4 py-16 -mt-16 relative z-10">
+        <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-2 text-center">
           البنوك اللي بنتعامل معاها
         </h2>
-        <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+
+        {/* جملة محفزة للموظف */}
+        <p className="text-center text-[#2563EB] mb-8 text-lg md:text-xl font-medium">
+          فخورين بشركائنا اللي بيخلونا نتميز ونكبر كل يوم
+        </p>
+
+        <div className="flex flex-wrap justify-center gap-8">
           {banks.map((bank, i) => (
             <motion.div
               key={i}
-              className="bg-white rounded-2xl shadow-lg p-6 flex flex-col items-center text-center cursor-pointer overflow-hidden group"
-              initial={{ opacity: 0, y: 40 }}
-              whileInView={{ opacity: 1, y: 0 }}
+              initial="hidden"
+              whileInView="visible"
               viewport={{ once: true }}
-              transition={{ delay: i * 0.1, duration: 0.5 }}
+              variants={cardVariants}
+              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }} // التأخير لكل كرت
             >
-              <div className="w-24 h-24 mb-4 relative">
-                <Image 
-                  src={bank.src} 
-                  alt={bank.name} 
-                  fill 
-                  className="object-contain" 
-                />
-              </div>
-              <h3 className="text-xl font-bold text-[#353535] transition-all duration-300 group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-blue-600">
-                {bank.name}
-              </h3>
+              <BankCard bank={bank} />
             </motion.div>
           ))}
         </div>
       </section>
+
+    </div>
+  );
+}
+
+function BankCard({ bank }: { bank: Bank }) {
+  return (
+    <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-lg p-6 w-full sm:w-64 md:w-72 lg:w-80 h-48 
+                    hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300">
+      <div className="w-28 h-28 sm:w-32 sm:h-32 relative mb-3 flex items-center justify-center">
+        <Image src={bank.src} alt={bank.name} fill className="object-contain" />
+      </div>
+      <h3 className="text-base font-bold text-center">{bank.name}</h3>
     </div>
   );
 }
