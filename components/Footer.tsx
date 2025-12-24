@@ -54,11 +54,11 @@ export default function Footer() {
           {/* بيانات الاتصال */}
           <div className="flex flex-col gap-4 text-sm sm:text-base">
             <a
-              href="mailto:Employment@collection.eg"
+              href="mailto:info@collection.eg"
               className="flex items-center gap-3 hover:text-white transition-all hover:translate-x-1"
             >
               <Mail className="w-5 h-5 text-[#2563EB]" />
-              Employment@collection.eg
+              Info@collection.eg
             </a>
 
             <a

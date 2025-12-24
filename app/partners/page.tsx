@@ -1,7 +1,7 @@
 'use client';
 
 import Image from 'next/image';
-import Slider from "react-slick";
+import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 
 interface Bank {
@@ -31,59 +31,70 @@ export default function PartnersPage() {
     infinite: true,
     slidesToShow: 6,
     slidesToScroll: 1,
-    speed: 5000,
+
+    speed: 4000,
     autoplay: true,
-    autoplaySpeed: 100,
-    cssEase: "linear",
+    autoplaySpeed: 0,
+    cssEase: 'linear',
+
     arrows: false,
     pauseOnHover: false,
-    swipe: false,
-    draggable: false,
+
+    swipe: true,
+    draggable: true,
     rtl: true,
+
     responsive: [
+      { breakpoint: 1280, settings: { slidesToShow: 5 } },
       { breakpoint: 1024, settings: { slidesToShow: 4 } },
       { breakpoint: 768, settings: { slidesToShow: 3 } },
       { breakpoint: 480, settings: { slidesToShow: 2 } },
     ],
   };
 
-  // Variants ثابتة لتجنب أخطاء TypeScript
   const cardVariants = {
     hidden: { opacity: 0, y: 40 },
-    visible: { opacity: 1, y: 0 }
+    visible: { opacity: 1, y: 0 },
   };
 
   return (
     <div className="bg-[#F4F4F4] min-h-screen">
 
-      {/* Section Header */}
-      <section className="py-20 text-center relative">
+      {/* Header */}
+      <section className="py-20 text-center">
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#2563EB] mb-4">
           شركائنا المتميزون
         </h1>
 
-        {/* نصين منسقين */}
         <div className="text-[#4B4B4B] max-w-3xl mx-auto mb-12 space-y-3">
           <p className="text-lg md:text-xl">
             شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية.
           </p>
           <p className="text-lg md:text-xl">
-            بنفخر بشراكاتنا اللتي تثبت التزامنا بالجودة والابتكار.
+            بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والابتكار.
           </p>
         </div>
 
-        {/* Banner-like Slider */}
-        <div className="max-w-6xl mx-auto px-4 overflow-hidden">
+        {/* Slider */}
+        <div className="max-w-6xl mx-auto px-4 overflow-hidden h-[120px] sm:h-[160px] lg:h-[200px]">
           <Slider {...sliderSettings}>
             {banks.map((bank, i) => (
-              <div key={i} className="flex justify-center items-center">
-                <div className="w-32 h-32 sm:w-40 sm:h-40 lg:w-48 lg:h-48 relative 
-                                mx-4 sm:mx-6 md:mx-8 lg:mx-10 flex items-center justify-center">
+              <div key={i} className="flex items-center justify-center">
+                <div
+                  className="
+                    w-24 h-24
+                    sm:w-32 sm:h-32
+                    lg:w-48 lg:h-48
+                    mx-2 sm:mx-4 md:mx-6 lg:mx-8
+                    relative flex items-center justify-center
+                  "
+                >
                   <Image
                     src={bank.src}
                     alt={bank.name}
                     fill
                     className="object-contain"
+                    priority={i < 4}
                   />
                 </div>
               </div>
@@ -92,14 +103,13 @@ export default function PartnersPage() {
         </div>
       </section>
 
-      {/* Grid Section */}
-      <section className="max-w-7xl mx-auto px-4 py-16 -mt-16 relative z-10">
+      {/* Grid */}
+      <section className="max-w-7xl mx-auto px-4 py-16 -mt-10 relative z-10">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-2 text-center">
           البنوك اللي بنتعامل معاها
         </h2>
 
-        {/* جملة محفزة للموظف */}
-        <p className="text-center text-[#2563EB] mb-8 text-lg md:text-xl font-medium">
+        <p className="text-center text-[#2563EB] mb-10 text-lg md:text-xl font-medium">
           فخورين بشركائنا اللي بيخلونا نتميز ونكبر كل يوم
         </p>
 
@@ -111,26 +121,35 @@ export default function PartnersPage() {
               whileInView="visible"
               viewport={{ once: true }}
               variants={cardVariants}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }} // التأخير لكل كرت
+              transition={{ delay: i * 0.08, duration: 0.6, ease: 'easeOut' }}
             >
               <BankCard bank={bank} />
             </motion.div>
           ))}
         </div>
       </section>
-
     </div>
   );
 }
 
 function BankCard({ bank }: { bank: Bank }) {
   return (
-    <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-lg p-6 w-full sm:w-64 md:w-72 lg:w-80 h-48 
-                    hover:scale-105 hover:shadow-[0_0_20px_rgba(37,99,235,0.4)] transition-all duration-300">
-      <div className="w-28 h-28 sm:w-32 sm:h-32 relative mb-3 flex items-center justify-center">
+    <div
+      className="
+        flex flex-col items-center justify-center
+        bg-white rounded-2xl shadow-lg
+        p-6 w-72 h-48
+        hover:scale-105
+        hover:shadow-[0_0_20px_rgba(37,99,235,0.35)]
+        transition-all duration-300
+      "
+    >
+      <div className="w-28 h-28 relative mb-3">
         <Image src={bank.src} alt={bank.name} fill className="object-contain" />
       </div>
-      <h3 className="text-base font-bold text-center">{bank.name}</h3>
+      <h3 className="text-base font-bold text-center text-gray-800">
+        {bank.name}
+      </h3>
     </div>
   );
 }
