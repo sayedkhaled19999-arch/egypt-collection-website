@@ -5,6 +5,7 @@ import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect } from 'react';
+import { useSwipeable } from 'react-swipeable'; // ✅ لازم تنزل: npm i react-swipeable
 
 interface Slide {
   title: string;
@@ -59,8 +60,18 @@ export default function HeroCarousel() {
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
+  // Swipe handlers
+  const handlers = useSwipeable({
+    onSwipedLeft: () => nextSlide(),
+    onSwipedRight: () => prevSlide(),
+    trackMouse: false,
+  });
+
   return (
-    <div className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
+    <div 
+      {...handlers} 
+      className="relative w-full h-[400px] md:h-[500px] overflow-hidden"
+    >
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
@@ -99,18 +110,18 @@ export default function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows */}
+      {/* Navigation Arrows - تظهر فقط على md وما فوق */}
       <button
         onClick={prevSlide}
         aria-label="السابق"
-        className="absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
       >
         <ChevronLeft className="w-6 h-6 text-black" />
       </button>
       <button
         onClick={nextSlide}
         aria-label="التالي"
-        className="absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
       >
         <ChevronRight className="w-6 h-6 text-black" />
       </button>
