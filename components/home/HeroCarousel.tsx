@@ -1,11 +1,10 @@
 'use client';
 
 import Link from 'next/link';
-import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect } from 'react';
-import { useSwipeable } from 'react-swipeable'; // ✅ لازم تنزل: npm i react-swipeable
+import { useState, useEffect, useRef } from 'react';
+import { useSwipeable } from 'react-swipeable'; // npm i react-swipeable
 
 interface Slide {
   title: string;
@@ -48,19 +47,23 @@ const slides: Slide[] = [
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
+  const autoSlideRef = useRef<number | null>(null);
 
   // 🔁 سلايد تلقائي كل 10 ثواني
   useEffect(() => {
-    const interval = setInterval(() => {
+    autoSlideRef.current = window.setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 10000);
-    return () => clearInterval(interval);
+
+    return () => {
+      if (autoSlideRef.current) clearInterval(autoSlideRef.current);
+    };
   }, []);
 
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
-  // Swipe handlers
+  // Swipe handlers للموبايل
   const handlers = useSwipeable({
     onSwipedLeft: () => nextSlide(),
     onSwipedRight: () => prevSlide(),
@@ -68,10 +71,7 @@ export default function HeroCarousel() {
   });
 
   return (
-    <div 
-      {...handlers} 
-      className="relative w-full h-[400px] md:h-[500px] overflow-hidden"
-    >
+    <div {...handlers} className="relative w-full h-[400px] md:h-[500px] overflow-hidden">
       <AnimatePresence mode="wait">
         <motion.div
           key={current}
