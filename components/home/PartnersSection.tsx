@@ -8,9 +8,9 @@ import { useEffect } from 'react';
 const banks = [
   { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
   { name: 'بنك مصر', src: '/banks/banquemisr.svg' },
+  { name: 'بنك القاهرة', src: '/banks/cairobank.svg' },
   { name: 'بنك التعمير والاسكان', src: '/banks/housingbank.svg' },
   { name: 'بنك الامارات دبي الوطني', src: '/banks/NBDEmirate.svg' },
-  { name: 'بنك القاهرة', src: '/banks/cairobank.svg' },
   { name: 'مصرف ابو ظبي الاسلامي', src: '/banks/Adib.svg' },
 ];
 
