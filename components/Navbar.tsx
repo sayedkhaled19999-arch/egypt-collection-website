@@ -75,7 +75,7 @@ export default function Navbar() {
       <Link href="/" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
         الرئيسية
       </Link>
-      <Link href="#about" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
+      <Link href="/about" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
         من نحن
       </Link>
       <Link href="/partners" className="block text-[#353535] hover:text-[#2563EB]" onClick={() => setIsOpen(false)}>
