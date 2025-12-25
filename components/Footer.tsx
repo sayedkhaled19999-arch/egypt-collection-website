@@ -62,11 +62,11 @@ export default function Footer() {
             </a>
 
             <a
-              href="tel:01098025745"
+              href="tel:01110600280"
               className="flex items-center gap-3 hover:text-white transition-all hover:translate-x-1"
             >
               <Phone className="w-5 h-5 text-[#2563EB]" />
-              01098025745
+              01110600280
             </a>
 
             <a
