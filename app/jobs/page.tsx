@@ -74,28 +74,16 @@ export default function JobsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* ===== SEO Meta Tags ===== */}
       <Head>
         <title>وظائف المصرية للتحصيلات | ECC Collections – قدم الآن</title>
-        <meta name="description" content="قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر، وتأمين اجتماعي بعد التثبيت." />
-        <meta name="keywords" content="وظائف, تقديم وظائف, فرص عمل, وظائف مصر, وظائف تحصيل, شركات تحصيل, تحصيل ديون, وظائف شركات تحصيل, محصل, محصل ميداني, محصل مكتبي, مدخل بيانات, وظائف خدمة عملاء, وظائف الجيزة, وظائف القاهرة, وظائف الدقي, وظائف جميع المحافظات, وظائف بدون رسوم, تدريب مدفوع الأجر, تأمين اجتماعي, ECC Collections, المصرية للتحصيلات" />
+        <meta
+          name="description"
+          content="قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر، وتأمين اجتماعي بعد التثبيت."
+        />
         <link rel="canonical" href="https://www.collection.eg/jobs" />
-
-        {/* Open Graph */}
-        <meta property="og:title" content="وظائف المصرية للتحصيلات | ECC Collections" />
-        <meta property="og:description" content="فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت. قدّم الآن." />
-        <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://www.collection.eg/jobs" />
-        <meta property="og:image" content="https://www.collection.eg/og-jobs.png" />
-
-        {/* Twitter Card */}
-        <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="وظائف المصرية للتحصيلات | ECC Collections" />
-        <meta name="twitter:description" content="قدّم على وظائف ECC Collections: محصلين، مدخل بيانات، بدون رسوم + تدريب مدفوع + تأمين اجتماعي." />
-        <meta name="twitter:image" content="https://www.collection.eg/og-jobs.png" />
       </Head>
 
-      {/* Hero Header */}
+      {/* Hero Section */}
       <div {...handlers} className="relative w-full h-[350px] md:h-[400px] lg:h-[450px] overflow-hidden">
         <AnimatePresence mode="wait">
           <motion.div
@@ -111,8 +99,7 @@ export default function JobsPage() {
               backgroundPosition: 'center',
             }}
           >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50"></div>
-
+            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/50"></div>
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}
@@ -160,7 +147,6 @@ export default function JobsPage() {
   );
 }
 
-// Job Card Component
 function JobCard({ job }: { job: JobCardProps }) {
   const getIcon = () => {
     switch (job.id) {
@@ -179,7 +165,7 @@ function JobCard({ job }: { job: JobCardProps }) {
   return (
     <div className="flex flex-col justify-between bg-gray-100 rounded-2xl shadow-lg p-6 h-full hover:scale-105 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] transition-all duration-300">
       <div>
-        <div className="flex items-center gap-3 mb-3">
+        <div className="flex items-center gap-3 mb-3 justify-center">
           {getIcon()}
           <h3 className="text-lg font-bold text-center">{job.title}</h3>
         </div>

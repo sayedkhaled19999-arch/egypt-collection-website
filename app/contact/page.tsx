@@ -24,20 +24,19 @@ export default function ContactPage() {
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
 
-    // هنا ممكن تضيف API لو عايز ترسل الرسالة فعلياً
+    // إرسال البيانات ممكن تضيف API هنا
 
     toast.success(
       'شكرًا لتواصلك معنا! إحنا استلمنا رسالتك وهنرد عليك في أقرب وقت.',
       { duration: 5000 }
     );
 
-    // امسح الحقول بعد الإرسال لو حابب
+    // مسح الحقول بعد الإرسال
     (e.target as HTMLFormElement).reset();
   };
 
   return (
     <>
-      {/* ================= Meta Tags ================= */}
       <Head>
         <title>المصرية للتحصيلات – تواصل معنا | ECC Collections</title>
         <meta
@@ -49,10 +48,7 @@ export default function ContactPage() {
 
         {/* Open Graph */}
         <meta property="og:title" content="المصرية للتحصيلات – تواصل معنا | ECC Collections" />
-        <meta
-          property="og:description"
-          content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر."
-        />
+        <meta property="og:description" content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر." />
         <meta property="og:type" content="website" />
         <meta property="og:url" content="https://www.collection.eg/contact" />
         <meta property="og:image" content="https://www.collection.eg/hero/hero-banner.png" />
@@ -60,11 +56,40 @@ export default function ContactPage() {
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="المصرية للتحصيلات – تواصل معنا | ECC Collections" />
-        <meta
-          name="twitter:description"
-          content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر."
-        />
+        <meta name="twitter:description" content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر." />
         <meta name="twitter:image" content="https://www.collection.eg/hero/hero-banner.png" />
+
+        {/* Structured Data */}
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "ContactPage",
+              "mainEntity": {
+                "@type": "Organization",
+                "name": "المصرية للتحصيلات – ECC Collections",
+                "url": "https://www.collection.eg",
+                "logo": "https://www.collection.eg/favicon.ico",
+                "contactPoint": [
+                  {
+                    "@type": "ContactPoint",
+                    "telephone": "+201110600280",
+                    "contactType": "customer service",
+                    "email": "Info@collection.eg",
+                    "areaServed": "EG"
+                  }
+                ],
+                "address": {
+                  "@type": "PostalAddress",
+                  "addressLocality": "الدقي",
+                  "addressRegion": "الجيزة",
+                  "addressCountry": "EG"
+                }
+              }
+            })
+          }}
+        />
       </Head>
 
       <main className="bg-[#F4F4F4] min-h-screen pb-20">
@@ -105,7 +130,7 @@ export default function ContactPage() {
             className="bg-white rounded-3xl p-8 shadow-lg text-center hover:scale-105 transition cursor-pointer"
           >
             <Phone className="mx-auto text-[#2563EB] mb-4" size={32} />
-            <h3 className="font-extrabold text-xl mb-2">التليفون</h3>
+            <h2 className="font-extrabold text-xl mb-2">التليفون</h2>
             <p className="text-[#4B4B4B]">01110600280</p>
           </motion.a>
 
@@ -119,7 +144,7 @@ export default function ContactPage() {
             className="bg-white rounded-3xl p-8 shadow-lg text-center hover:scale-105 transition cursor-pointer"
           >
             <Mail className="mx-auto text-[#2563EB] mb-4" size={32} />
-            <h3 className="font-extrabold text-xl mb-2">الإيميل</h3>
+            <h2 className="font-extrabold text-xl mb-2">الإيميل</h2>
             <p className="text-[#4B4B4B]">Info@collection.eg</p>
           </motion.div>
 
@@ -135,7 +160,7 @@ export default function ContactPage() {
             className="bg-white rounded-3xl p-8 shadow-lg text-center hover:scale-105 transition cursor-pointer"
           >
             <MapPin className="mx-auto text-[#2563EB] mb-4" size={32} />
-            <h3 className="font-extrabold text-xl mb-2">الموقع</h3>
+            <h2 className="font-extrabold text-xl mb-2">الموقع</h2>
             <p className="text-[#4B4B4B]">الدقي، الجيزة</p>
           </motion.a>
         </section>
@@ -151,10 +176,10 @@ export default function ContactPage() {
             className="bg-white rounded-3xl p-8 shadow-lg space-y-6"
           >
             <h2 className="text-2xl md:text-3xl font-extrabold text-[#2563EB] mb-6 text-center">
-              تواصل معنا
+              املأ النموذج للتواصل معنا
             </h2>
             <p className="text-center text-[#4B4B4B] mb-6">
-              املأ النموذج أو اكتب رسالتك مباشرة، إحنا هنا للرد عليك بسرعة
+              إحنا هنا للرد عليك بسرعة
             </p>
 
             <form onSubmit={handleSubmit} className="space-y-4">
