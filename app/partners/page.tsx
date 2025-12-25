@@ -10,7 +10,7 @@ interface Bank {
 }
 
 const banks: Bank[] = [
-  { name: 'البنك الأهلي المصري', src: '/banks/ahly.svg' },
+  { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
   { name: 'بنك مصر', src: '/banks/banquemisr.svg' },
   { name: 'بنك القاهرة', src: '/banks/cairobank.svg' },
   { name: 'بنك التعمير والاسكان', src: '/banks/housingbank.svg' },

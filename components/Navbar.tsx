@@ -47,7 +47,7 @@ export default function Navbar() {
       <Link href="/" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
         الرئيسية
       </Link>
-      <Link href="#about" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
+      <Link href="/about" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
         من نحن
       </Link>
       <Link href="/partners" className="text-[#353535] hover:text-[#2563EB] font-medium transition-all duration-300">
