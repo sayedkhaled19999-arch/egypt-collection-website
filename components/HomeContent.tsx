@@ -20,7 +20,7 @@ export default function HomeContent() {
       <SEO
         title="الرئيسية | المصرية للتحصيلات – ECC Collections"
         description="اكتشف خدمات المصرية للتحصيلات – ECC Collections في التحصيل الميداني والاستعلام والتحقق من البيانات في مصر بسرعة واحترافية."
-        image="/hero/slide1.AVIF" // استخدم WebP مضغوطة
+        image="/hero/slide1.avif" // استخدم WebP مضغوطة
         url="https://ecc-collections.com"
       />
 
