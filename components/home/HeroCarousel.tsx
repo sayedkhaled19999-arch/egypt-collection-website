@@ -50,7 +50,7 @@ export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
   const intervalRef = useRef<number | null>(null);
 
-  // 🔁 Auto slide (بعد تحميل الصفحة)
+  // 🔁 Auto slide
   useEffect(() => {
     intervalRef.current = window.setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -77,22 +77,22 @@ export default function HeroCarousel() {
       {...handlers}
       className="relative w-full h-[400px] md:h-[520px] overflow-hidden"
     >
-      {/* ✅ LCP IMAGE (ثابتة – بدون أنيميشن) */}
+      {/* ✅ LCP IMAGE أول سلايد */}
       <Image
-        src={slides[current].bgImage}
-        alt={slides[current].title}
+        src={slides[0].bgImage}
+        alt={slides[0].title}
         fill
         sizes="100vw"
         quality={70}
-        priority={current === 0}
-        fetchPriority={current === 0 ? 'high' : 'auto'}
+        priority
+        fetchPriority="high"
         className="object-cover"
       />
 
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent" />
 
-      {/* 🟢 النص – أول سلايد بدون أنيميشن */}
+      {/* نصوص أول سلايد ثابتة لتقليل LCP */}
       {current === 0 ? (
         <div className="absolute inset-0 flex items-center justify-center px-4">
           <div className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-xl text-center">
