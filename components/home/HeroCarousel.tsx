@@ -18,7 +18,7 @@ const slides: Slide[] = [
   {
     title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections',
     description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.',
-    bgImage: '/hero/Slide1.avif',
+    bgImage: '/hero/slide1.avif',
     link: '/about',
     linkText: 'اعرف أكثر عننا',
   },
