@@ -3,7 +3,8 @@
 import { useState } from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
-import { Home, MapPin, Laptop, Briefcase, CheckCircle, X, FileText, User, Phone , } from 'lucide-react';
+import { Home, MapPin, Laptop, Briefcase, CheckCircle, X, FileText, User, Phone } from 'lucide-react';
+import Head from 'next/head';
 
 interface Job {
   id: string;
@@ -13,18 +14,16 @@ interface Job {
   type: string;
   salary: string;
   workHours: string;
-  vacation: string; // ✅ الإجازة الأسبوعية
+  vacation: string;
   fullDetails: string;
   extraDetails: string[];
 }
-
 
 const jobs: Job[] = [
   {
     id: "office-collector",
     title: "محصل مكتبي",
-    description:
-      "هتتابع العملاء على التليفون وتساعدهم يخرجوا من التأخر في السداد ويرجعوا منتظمين.",
+    description: "هتتابع العملاء على التليفون وتساعدهم يخرجوا من التأخر في السداد ويرجعوا منتظمين.",
     location: "الدقي - الجيزة",
     type: "دوام كامل",
     salary: "راتب ثابت + عمولات وحوافز مجزية",
@@ -50,12 +49,10 @@ const jobs: Job[] = [
       "تأمين اجتماعي بعد التثبيت"
     ]
   },
-
   {
     id: "field-collector",
     title: "محصل ميداني",
-    description:
-      "هتزور العملاء اللي متأخرين في السداد وتساعدهم يسددوا المديونية المتأخرة.",
+    description: "هتزور العملاء اللي متأخرين في السداد وتساعدهم يسددوا المديونية المتأخرة.",
     location: "جميع محافظات مصر",
     type: "دوام كامل",
     salary: "راتب ثابت + عمولات وحوافز مجزية",
@@ -80,12 +77,10 @@ const jobs: Job[] = [
       "تأمين اجتماعي بعد التثبيت"
     ]
   },
-
   {
     id: "field-investigator",
     title: "مستعلم ميداني",
-    description:
-      "هتزور مواقع العملاء وتجمع بيانات دقيقة وتقدم تقارير واضحة للإدارة.",
+    description: "هتزور مواقع العملاء وتجمع بيانات دقيقة وتقدم تقارير واضحة للإدارة.",
     location: "الجيزة - القاهرة",
     type: "دوام كامل",
     salary: "راتب ثابت + حوافز حسب الأداء",
@@ -110,12 +105,10 @@ const jobs: Job[] = [
       "تأمين اجتماعي بعد التثبيت"
     ]
   },
-
   {
     id: "data-entry",
     title: "مدخل بيانات",
-    description:
-      "هتدخل بيانات العملاء والمعاملات بدقة وسرعة باستخدام برامج الاوفيس.",
+    description: "هتدخل بيانات العملاء والمعاملات بدقة وسرعة باستخدام برامج الاوفيس.",
     location: "الدقي - الجيزة",
     type: "دوام كامل",
     salary: "مرتبات تصل الي 7000 جنيه شهريًا حسب الكفاءة",
@@ -140,6 +133,7 @@ const jobs: Job[] = [
     ]
   }
 ];
+
 export default function JobPage() {
   const { id } = useParams();
   const router = useRouter();
@@ -155,6 +149,7 @@ export default function JobPage() {
   });
 
   const job = jobs.find(j => j.id === id);
+
   if (!job) return <div className="min-h-screen flex items-center justify-center text-gray-600 text-xl">الوظيفة غير موجودة</div>;
 
   const getIcon = () => {
@@ -174,24 +169,42 @@ export default function JobPage() {
     setModalOpen(false);
   };
 
+  const jsonLd = {
+    "@context": "https://schema.org/",
+    "@type": "JobPosting",
+    "title": job.title,
+    "description": job.description,
+    "identifier": { "@type": "PropertyValue", "name": "ECC Collections", "value": job.id },
+    "hiringOrganization": { "@type": "Organization", "name": "المصرية للتحصيلات – ECC Collections", "sameAs": "https://www.collection.eg", "logo": "https://www.collection.eg/favicon.ico" },
+    "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "streetAddress": job.location, "addressLocality": job.location, "addressCountry": "EG" } },
+    "employmentType": job.type === "دوام كامل" ? "FULL_TIME" : "PART_TIME",
+    "datePosted": new Date().toISOString(),
+    "validThrough": new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString()
+  };
+
   return (
     <div className="min-h-screen bg-gray-100" dir="rtl">
+      <Head>
+        <title>{job.title} – المصرية للتحصيلات</title>
+        <meta name="description" content={job.description} />
+        <meta property="og:title" content={job.title} />
+        <meta property="og:description" content={job.description} />
+        <meta property="og:type" content="website" />
+        <meta property="og:url" content={`https://www.collection.eg/jobs/${job.id}`} />
+        <meta property="og:image" content="https://www.collection.eg/favicon.ico" />
+      </Head>
+
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+
       {/* Header */}
       <div className="bg-gray-100 py-12 text-center">
         <h1 className="text-3xl md:text-5xl font-bold text-gray-900 mb-4">{job.title}</h1>
-        <p className="text-blue-500 text-lg md:text-2xl font-bold">
-          فرصتك تلمع وتكبر معانا 💼
-        </p>
+        <p className="text-blue-500 text-lg md:text-2xl font-bold">فرصتك تلمع وتكبر معانا 💼</p>
       </div>
 
       {/* Job Card */}
       <section className="container mx-auto px-4 py-8">
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 space-y-6 hover:scale-105 transition-transform duration-300"
-        >
+        <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 space-y-6 hover:scale-105 transition-transform duration-300">
           {/* Title */}
           <div className="flex items-center gap-3 mb-6 border-l-4 border-blue-500 pl-4">
             {getIcon()}
@@ -219,46 +232,19 @@ export default function JobPage() {
               </div>
             ))}
           </div>
+
           {/* Basic Info */}
           <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-4 bg-gray-50 p-4 rounded-xl shadow-inner border-l-4 border-red-500">
-            {job.salary && (
-              <p className="flex items-center gap-2 font-bold text-gray-800">
-                💰 <span className="text-blue-600">الراتب:</span> {job.salary}
-              </p>
-            )}
-
-            {job.workHours && (
-              <p className="flex items-center gap-2 font-bold text-gray-800">
-                🕘 <span className="text-blue-600">مواعيد العمل:</span> {job.workHours}
-              </p>
-            )}
-
-            {/* ✅ ضيف السطر ده */}
-            {job.vacation && (
-              <p className="flex items-center gap-2 font-bold text-gray-800">
-                🛌 <span className="text-blue-600">الإجازة:</span> {job.vacation}
-              </p>
-            )}
-
-            <p className="flex items-center gap-2 font-bold text-gray-800">
-              📍 <span className="text-blue-600">الموقع:</span> {job.location}
-            </p>
+            {job.salary && <p className="flex items-center gap-2 font-bold text-gray-800">💰 <span className="text-blue-600">الراتب:</span> {job.salary}</p>}
+            {job.workHours && <p className="flex items-center gap-2 font-bold text-gray-800">🕘 <span className="text-blue-600">مواعيد العمل:</span> {job.workHours}</p>}
+            {job.vacation && <p className="flex items-center gap-2 font-bold text-gray-800">🛌 <span className="text-blue-600">الإجازة:</span> {job.vacation}</p>}
+            <p className="flex items-center gap-2 font-bold text-gray-800">📍 <span className="text-blue-600">الموقع:</span> {job.location}</p>
           </div>
 
           {/* Buttons */}
           <div className="flex flex-col md:flex-row gap-4 mt-6">
-            <button
-              className="flex-1 text-center px-4 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300 shadow-lg"
-              onClick={() => setModalOpen(true)}
-            >
-              قدم الآن
-            </button>
-            <button
-              onClick={() => router.push('/jobs')}
-              className="flex-1 text-center px-4 py-3 bg-gray-300 text-gray-700 rounded-xl font-bold hover:bg-gray-400 transition-colors duration-300 shadow-lg"
-            >
-              ارجع للوظائف
-            </button>
+            <button className="flex-1 text-center px-4 py-3 bg-blue-600 text-white rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300 shadow-lg" onClick={() => setModalOpen(true)}>قدم الآن</button>
+            <button onClick={() => router.push('/jobs')} className="flex-1 text-center px-4 py-3 bg-gray-300 text-gray-700 rounded-xl font-bold hover:bg-gray-400 transition-colors duration-300 shadow-lg">ارجع للوظائف</button>
           </div>
         </motion.div>
       </section>
@@ -266,55 +252,21 @@ export default function JobPage() {
       {/* Modal Form */}
       {modalOpen && (
         <div className="fixed inset-0 bg-black/50 flex items-center justify-center z-50 p-4">
-          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.3 }}
-            className="bg-white rounded-3xl p-8 w-full max-w-lg relative"
-          >
+          <motion.div initial={{ scale: 0 }} animate={{ scale: 1 }} transition={{ duration: 0.3 }} className="bg-white rounded-3xl p-8 w-full max-w-lg relative">
             <X className="w-6 h-6 absolute top-4 left-4 cursor-pointer" onClick={() => setModalOpen(false)} />
             <h2 className="text-2xl font-bold mb-4 text-center">قدم على {job.title}</h2>
             <form onSubmit={handleSubmit} className="space-y-4">
-              <div className="flex items-center gap-2">
-                <User className="w-5 h-5 text-gray-500"/>
-                <input type="text" placeholder="الاسم الثلاثي" required
-                  className="w-full p-3 border rounded-xl"
-                  value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} />
-              </div>
-              <div className="flex items-center gap-2">
-                <Phone className="w-5 h-5 text-gray-500"/>
-                <input type="tel" placeholder="رقم الموبايل" required
-                  className="w-full p-3 border rounded-xl"
-                  value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} />
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-5 h-5 text-gray-500"/>
-                <input type="text" placeholder="العنوان" required
-                  className="w-full p-3 border rounded-xl"
-                  value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} />
-              </div>
-              <div className="flex items-center gap-2">
-                <Briefcase className="w-5 h-5 text-gray-500"/>
-                <input type="text" value={job.title} readOnly className="w-full p-3 border rounded-xl bg-gray-100" />
-              </div>
-              
+              <div className="flex items-center gap-2"><User className="w-5 h-5 text-gray-500"/> <input type="text" placeholder="الاسم الثلاثي" required className="w-full p-3 border rounded-xl" value={formData.fullName} onChange={e => setFormData({...formData, fullName: e.target.value})} /></div>
+              <div className="flex items-center gap-2"><Phone className="w-5 h-5 text-gray-500"/> <input type="tel" placeholder="رقم الموبايل" required className="w-full p-3 border rounded-xl" value={formData.phone} onChange={e => setFormData({...formData, phone: e.target.value})} /></div>
+              <div className="flex items-center gap-2"><MapPin className="w-5 h-5 text-gray-500"/> <input type="text" placeholder="العنوان" required className="w-full p-3 border rounded-xl" value={formData.address} onChange={e => setFormData({...formData, address: e.target.value})} /></div>
+              <div className="flex items-center gap-2"><Briefcase className="w-5 h-5 text-gray-500"/> <input type="text" value={job.title} readOnly className="w-full p-3 border rounded-xl bg-gray-100" /></div>
               <div className="flex items-center gap-4">
                 <label className="flex items-center gap-2"><input type="radio" name="experience" value="yes" checked={formData.experience==='yes'} onChange={e=>setFormData({...formData, experience: e.target.value})}/> عندي خبرة سابقة</label>
                 <label className="flex items-center gap-2"><input type="radio" name="experience" value="no" checked={formData.experience==='no'} onChange={e=>setFormData({...formData, experience: e.target.value})}/> معنديش خبرة</label>
               </div>
-
-              {formData.experience==='yes' && (
-                <input type="text" placeholder="الشركات اللي اشتغلت فيها قبل كدا (اختياري)"
-                  className="w-full p-3 border rounded-xl"
-                  value={formData.previousCompanies} onChange={e=>setFormData({...formData, previousCompanies: e.target.value})} />
-              )}
-
-              <div className="flex items-center gap-2">
-                <FileText className="w-5 h-5 text-gray-500"/>
-                <input type="file" accept=".pdf,.doc,.docx" onChange={e=>setFormData({...formData, cv: e.target.files?.[0] || null})} className="w-full"/>
-                <span className="text-gray-500 text-sm">ارسال السيرة الذاتية إن وجدت</span>
-              </div>
-
-              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300">
-                إرسال
-              </button>
+              {formData.experience==='yes' && <input type="text" placeholder="الشركات اللي اشتغلت فيها قبل كدا (اختياري)" className="w-full p-3 border rounded-xl" value={formData.previousCompanies} onChange={e=>setFormData({...formData, previousCompanies: e.target.value})} />}
+              <div className="flex items-center gap-2"><FileText className="w-5 h-5 text-gray-500"/> <input type="file" accept=".pdf,.doc,.docx" onChange={e=>setFormData({...formData, cv: e.target.files?.[0] || null})} className="w-full"/> <span className="text-gray-500 text-sm">ارسال السيرة الذاتية إن وجدت</span></div>
+              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300">إرسال</button>
             </form>
           </motion.div>
         </div>

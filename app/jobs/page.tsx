@@ -1,3 +1,4 @@
+// app/jobs/page.tsx
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -5,6 +6,7 @@ import { useState, useEffect, useRef } from 'react';
 import { useSwipeable } from 'react-swipeable';
 import { Briefcase, Home, MapPin, Laptop, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
+import Head from 'next/head';
 
 interface JobCardProps {
   id: string;
@@ -49,9 +51,10 @@ export default function JobsPage() {
   const [current, setCurrent] = useState(0);
   const autoSlideRef = useRef<number | null>(null);
 
+  // سلايدر تلقائي
   useEffect(() => {
     autoSlideRef.current = window.setInterval(() => {
-      setCurrent((prev) => (prev + 1) % 1);
+      setCurrent((prev) => (prev + 1) % jobs.length);
     }, 10000);
 
     return () => {
@@ -60,9 +63,9 @@ export default function JobsPage() {
   }, []);
 
   const handlers = useSwipeable({
-    onSwipedLeft: () => {},
-    onSwipedRight: () => {},
-    trackMouse: false,
+    onSwipedLeft: () => setCurrent((prev) => (prev + 1) % jobs.length),
+    onSwipedRight: () => setCurrent((prev) => (prev - 1 + jobs.length) % jobs.length),
+    trackMouse: true,
   });
 
   const cardVariants = {
@@ -72,6 +75,21 @@ export default function JobsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
+      {/* ===== Meta Tags for SEO ===== */}
+      <Head>
+        <title>وظائف المصرية للتحصيلات | ECC Collections – قدم الآن</title>
+        <meta name="description" content="قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر، وتأمين اجتماعي بعد التثبيت." />
+        <meta name="keywords" content="وظائف, تقديم وظائف, فرص عمل, وظائف مصر, وظائف تحصيل, شركات تحصيل, تحصيل ديون, وظائف شركات تحصيل, محصل, محصل ميداني, محصل مكتبي, مدخل بيانات, وظائف خدمة عملاء, وظائف الجيزة, وظائف القاهرة, وظائف الدقي, وظائف جميع المحافظات, وظائف بدون رسوم, تدريب مدفوع الأجر, تأمين اجتماعي, ECC Collections, المصرية للتحصيلات" />
+        <meta property="og:title" content="وظائف المصرية للتحصيلات | ECC Collections" />
+        <meta property="og:description" content="فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت. قدّم الآن." />
+        <meta property="og:url" content="https://www.collection.eg/jobs" />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="https://www.collection.eg/og-jobs.png" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="وظائف المصرية للتحصيلات | ECC Collections" />
+        <meta name="twitter:description" content="قدّم على وظائف ECC Collections: محصلين، مدخل بيانات، بدون رسوم + تدريب مدفوع + تأمين اجتماعي." />
+        <meta name="twitter:image" content="https://www.collection.eg/og-jobs.png" />
+      </Head>
 
       {/* Hero Header */}
       <div {...handlers} className="relative w-full h-[350px] md:h-[400px] lg:h-[450px] overflow-hidden">
@@ -91,7 +109,6 @@ export default function JobsPage() {
           >
             <div className="absolute inset-0 bg-gradient-to-b from-black/80 via-black/70 to-black/50"></div>
 
-            {/* الكارت الرئيسي */}
             <motion.div
               initial={{ opacity: 0, y: 25 }}
               animate={{ opacity: 1, y: 0 }}

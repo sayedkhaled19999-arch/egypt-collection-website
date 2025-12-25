@@ -3,6 +3,7 @@
 import Image from 'next/image';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
+import Head from 'next/head'; // ✅ إضافة Head للـMeta Tags
 
 interface Bank {
   name: string;
@@ -33,18 +34,15 @@ export default function PartnersPage() {
     infinite: true,
     slidesToShow: 6,
     slidesToScroll: 1,
-
     speed: 6000,
     autoplay: true,
     autoplaySpeed: 0,
     cssEase: 'linear',
-
     arrows: false,
     pauseOnHover: false,
     swipe: false,
     draggable: false,
     rtl: true,
-
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 5 } },
       { breakpoint: 1024, settings: { slidesToShow: 4 } },
@@ -60,6 +58,25 @@ export default function PartnersPage() {
 
   return (
     <div className="bg-[#F4F4F4] min-h-screen">
+      
+      {/* ===== Meta Tags ===== */}
+      <Head>
+        <title>المصرية للتحصيلات – ECC Collections | شركائنا</title>
+        <meta name="description" content="شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية. بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والاحتراف." />
+        
+        {/* Open Graph */}
+        <meta property="og:title" content="المصرية للتحصيلات – ECC Collections | شركائنا" />
+        <meta property="og:description" content="شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية. بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والاحتراف." />
+        <meta property="og:type" content="website" />
+        <meta property="og:image" content="/hero/hero.jpg" />
+        <meta property="og:url" content="https://ecc-collections.com/partners" />
+
+        {/* Twitter Card */}
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:title" content="المصرية للتحصيلات – ECC Collections | شركائنا" />
+        <meta name="twitter:description" content="شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية. بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والاحتراف." />
+        <meta name="twitter:image" content="/hero/hero.jpg" />
+      </Head>
 
       {/* ===== HEADER ===== */}
       <section className="py-20 text-center">

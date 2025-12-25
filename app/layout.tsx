@@ -1,4 +1,4 @@
-// app/layout.tsx
+
 import '@/styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
@@ -7,6 +7,7 @@ import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
+import Head from 'next/head';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -50,7 +51,7 @@ export const metadata: Metadata = {
     title: 'المصرية للتحصيلات – ECC Collections',
     description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2002. خدمات احترافية، موثوقة وسريعة.',
     images: ['/og-image.png'],
-    creator: '@YourTwitterHandle'
+    creator: '@ECC_Collections' // عدلت الـTwitter handle
   },
   icons: {
     icon: '/favicon.ico'
@@ -61,6 +62,12 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className} flex flex-col min-h-screen`}>
+        {/* ===== Canonical + Theme Color ===== */}
+        <Head>
+          <link rel="canonical" href="https://www.collection.eg" />
+          <meta name="theme-color" content="#2563EB" />
+        </Head>
+
         <Navbar />
         <ClientWrapper>
           <main className="flex-grow">{children}</main>
