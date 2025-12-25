@@ -17,3 +17,22 @@ body {
 html {
   scroll-behavior: smooth;
 }
+
+/* FIX react-slick mobile stacking issue */
+.slick-track {
+  display: flex !important;
+}
+
+.slick-slide {
+  height: auto !important;
+  display: flex !important;
+  justify-content: center;
+  align-items: center;
+}
+
+.slick-slide > div {
+  width: 100%;
+}
+.slick-list {
+  overflow: hidden;
+}
