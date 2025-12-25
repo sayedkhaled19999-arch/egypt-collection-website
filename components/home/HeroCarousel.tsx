@@ -81,6 +81,7 @@ export default function HeroCarousel() {
       <Image
         key={slides[current].bgImage}
         src={slides[current].bgImage}
+        quality={70}
         alt={slides[current].title}
         fill
         className="object-cover"

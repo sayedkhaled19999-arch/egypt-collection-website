@@ -36,7 +36,7 @@ export default function Preloader({ onFinish }: PreloaderProps) {
       {/* شعار الشركة */}
       <div className="relative w-40 h-40 md:w-56 md:h-56 mb-8 animate-pulse">
         <Image
-          src="/logo.png"
+          src="/logo.webp"
           alt="الشركة المصرية للتحصيلات – ECC Collections"
           fill
           className="object-contain"

@@ -36,7 +36,7 @@ export default function Navbar() {
   <div className="container mx-auto px-4 flex justify-between items-center">
     <Link href="/" className="relative w-36 h-14 md:w-44 md:h-16">
       <Image
-        src="/logo.png"
+        src="/logo.webp"
         alt="لوجو الشركة"
         fill
         className="object-contain hover:scale-105 transition-transform duration-300"
