@@ -25,30 +25,35 @@ export default function AboutPage() {
     <>
       {/* ================= Meta Tags ================= */}
       <Head>
-        <title>المصرية للتحصيلات – من نحن</title>
+        <title>المصرية للتحصيلات – من نحن | ECC Collections</title>
         <meta
           name="description"
           content="المصرية للتحصيلات تقدم خدمات التحصيل والاستعلام الائتماني للبنوك داخل مصر. خبرة احترافية وفرق عمل مدربة."
         />
+        <meta
+          name="keywords"
+          content="المصرية للتحصيلات, ECC Collections, من نحن, تحصيل, استعلام ائتماني, خدمات البنوك, فرق عمل محترفة"
+        />
+        <link rel="canonical" href="https://www.collection.eg/about" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="المصرية للتحصيلات – من نحن" />
+        <meta property="og:title" content="المصرية للتحصيلات – من نحن | ECC Collections" />
         <meta
           property="og:description"
           content="المصرية للتحصيلات تقدم خدمات التحصيل والاستعلام الائتماني للبنوك داخل مصر. خبرة احترافية وفرق عمل مدربة."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecccollections.com/about" />
-        <meta property="og:image" content="https://ecccollections.com/hero/hero-banner.png" />
+        <meta property="og:url" content="https://www.collection.eg/about" />
+        <meta property="og:image" content="https://www.collection.eg/hero/hero-banner.png" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="المصرية للتحصيلات – من نحن" />
+        <meta name="twitter:title" content="المصرية للتحصيلات – من نحن | ECC Collections" />
         <meta
           name="twitter:description"
           content="المصرية للتحصيلات تقدم خدمات التحصيل والاستعلام الائتماني للبنوك داخل مصر. خبرة احترافية وفرق عمل مدربة."
         />
-        <meta name="twitter:image" content="https://ecccollections.com/hero/hero-banner.png" />
+        <meta name="twitter:image" content="https://www.collection.eg/hero/hero-banner.png" />
       </Head>
 
       <main className="bg-[#F4F4F4] overflow-hidden">

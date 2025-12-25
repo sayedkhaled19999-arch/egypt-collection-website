@@ -3,7 +3,7 @@
 import Image from 'next/image';
 import Slider from 'react-slick';
 import { motion } from 'framer-motion';
-import Head from 'next/head'; // ✅ إضافة Head للـMeta Tags
+import Head from 'next/head';
 
 interface Bank {
   name: string;
@@ -26,7 +26,7 @@ const banks: Bank[] = [
   { name: 'بنك نكست', src: '/banks/BankNXT.svg' },
 ];
 
-// 👇 تكرار البنوك = seamless loop حقيقي
+// تكرار البنوك = seamless loop حقيقي
 const infiniteBanks = [...banks, ...banks];
 
 export default function PartnersPage() {
@@ -46,8 +46,8 @@ export default function PartnersPage() {
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 5 } },
       { breakpoint: 1024, settings: { slidesToShow: 4 } },
-      { breakpoint: 768, settings: { slidesToShow: 3 } },
-      { breakpoint: 480, settings: { slidesToShow: 2 } },
+      { breakpoint: 768, settings: { slidesToShow: 3, autoplaySpeed: 2000 } },
+      { breakpoint: 480, settings: { slidesToShow: 2, autoplaySpeed: 2000 } },
     ],
   };
 
@@ -58,12 +58,12 @@ export default function PartnersPage() {
 
   return (
     <div className="bg-[#F4F4F4] min-h-screen">
-      
       {/* ===== Meta Tags ===== */}
       <Head>
         <title>المصرية للتحصيلات – ECC Collections | شركائنا</title>
         <meta name="description" content="شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية. بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والاحتراف." />
-        
+        <link rel="canonical" href="https://ecc-collections.com/partners" />
+
         {/* Open Graph */}
         <meta property="og:title" content="المصرية للتحصيلات – ECC Collections | شركائنا" />
         <meta property="og:description" content="شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية. بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والاحتراف." />
@@ -101,7 +101,7 @@ export default function PartnersPage() {
                 <div className="flex items-center justify-center h-[90px] sm:h-[120px] md:h-[140px]">
                   <div className="relative w-[80px] h-[60px] sm:w-[110px] sm:h-[80px] md:w-[130px] md:h-[90px]">
                     <Image
-                      src={bank.src}
+                      src={bank.src || '/banks/default.svg'}
                       alt={bank.name}
                       fill
                       className="object-contain"
@@ -155,7 +155,12 @@ function BankCard({ bank }: { bank: Bank }) {
   return (
     <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-lg p-4 h-40 hover:scale-105 transition">
       <div className="relative w-24 h-20 mb-2">
-        <Image src={bank.src} alt={bank.name} fill className="object-contain" />
+        <Image
+          src={bank.src || '/banks/default.svg'}
+          alt={bank.name}
+          fill
+          className="object-contain"
+        />
       </div>
       <h3 className="text-sm font-bold text-center">{bank.name}</h3>
     </div>

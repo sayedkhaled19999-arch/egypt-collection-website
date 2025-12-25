@@ -39,30 +39,32 @@ export default function ContactPage() {
     <>
       {/* ================= Meta Tags ================= */}
       <Head>
-        <title>المصرية للتحصيلات – تواصل معنا</title>
+        <title>المصرية للتحصيلات – تواصل معنا | ECC Collections</title>
         <meta
           name="description"
-          content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر."
+          content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر. املأ النموذج أو استخدم طرق التواصل المباشرة."
         />
+        <meta name="keywords" content="تواصل, اتصل بنا, المصرية للتحصيلات, ECC Collections, استفسارات, تحصيل, استعلام, خدمات ميدانية" />
+        <link rel="canonical" href="https://www.collection.eg/contact" />
 
         {/* Open Graph */}
-        <meta property="og:title" content="المصرية للتحصيلات – تواصل معنا" />
+        <meta property="og:title" content="المصرية للتحصيلات – تواصل معنا | ECC Collections" />
         <meta
           property="og:description"
           content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر."
         />
         <meta property="og:type" content="website" />
-        <meta property="og:url" content="https://ecccollections.com/contact" />
-        <meta property="og:image" content="https://ecccollections.com/hero/hero-banner.png" />
+        <meta property="og:url" content="https://www.collection.eg/contact" />
+        <meta property="og:image" content="https://www.collection.eg/hero/hero-banner.png" />
 
         {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
-        <meta name="twitter:title" content="المصرية للتحصيلات – تواصل معنا" />
+        <meta name="twitter:title" content="المصرية للتحصيلات – تواصل معنا | ECC Collections" />
         <meta
           name="twitter:description"
           content="تواصل مع المصرية للتحصيلات لأي استفسارات حول خدمات التحصيل والاستعلام الائتماني داخل مصر."
         />
-        <meta name="twitter:image" content="https://ecccollections.com/hero/hero-banner.png" />
+        <meta name="twitter:image" content="https://www.collection.eg/hero/hero-banner.png" />
       </Head>
 
       <main className="bg-[#F4F4F4] min-h-screen pb-20">
@@ -104,7 +106,7 @@ export default function ContactPage() {
           >
             <Phone className="mx-auto text-[#2563EB] mb-4" size={32} />
             <h3 className="font-extrabold text-xl mb-2">التليفون</h3>
-            <p className="text-[#4B4B4B]">0280 060 0111</p>
+            <p className="text-[#4B4B4B]">01110600280</p>
           </motion.a>
 
           <motion.div
@@ -124,6 +126,7 @@ export default function ContactPage() {
           <motion.a
             href="https://maps.app.goo.gl/CcmDDN7XqEvbE5Rj6"
             target="_blank"
+            rel="noopener noreferrer"
             initial="hidden"
             whileInView="visible"
             viewport={{ once: true }}

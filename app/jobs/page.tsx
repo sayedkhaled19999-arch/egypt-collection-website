@@ -1,4 +1,3 @@
-// app/jobs/page.tsx
 'use client';
 
 import { motion, AnimatePresence } from 'framer-motion';
@@ -75,16 +74,21 @@ export default function JobsPage() {
 
   return (
     <div className="min-h-screen bg-gray-50" dir="rtl">
-      {/* ===== Meta Tags for SEO ===== */}
+      {/* ===== SEO Meta Tags ===== */}
       <Head>
         <title>وظائف المصرية للتحصيلات | ECC Collections – قدم الآن</title>
         <meta name="description" content="قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر، وتأمين اجتماعي بعد التثبيت." />
         <meta name="keywords" content="وظائف, تقديم وظائف, فرص عمل, وظائف مصر, وظائف تحصيل, شركات تحصيل, تحصيل ديون, وظائف شركات تحصيل, محصل, محصل ميداني, محصل مكتبي, مدخل بيانات, وظائف خدمة عملاء, وظائف الجيزة, وظائف القاهرة, وظائف الدقي, وظائف جميع المحافظات, وظائف بدون رسوم, تدريب مدفوع الأجر, تأمين اجتماعي, ECC Collections, المصرية للتحصيلات" />
+        <link rel="canonical" href="https://www.collection.eg/jobs" />
+
+        {/* Open Graph */}
         <meta property="og:title" content="وظائف المصرية للتحصيلات | ECC Collections" />
         <meta property="og:description" content="فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت. قدّم الآن." />
-        <meta property="og:url" content="https://www.collection.eg/jobs" />
         <meta property="og:type" content="website" />
+        <meta property="og:url" content="https://www.collection.eg/jobs" />
         <meta property="og:image" content="https://www.collection.eg/og-jobs.png" />
+
+        {/* Twitter Card */}
         <meta name="twitter:card" content="summary_large_image" />
         <meta name="twitter:title" content="وظائف المصرية للتحصيلات | ECC Collections" />
         <meta name="twitter:description" content="قدّم على وظائف ECC Collections: محصلين، مدخل بيانات، بدون رسوم + تدريب مدفوع + تأمين اجتماعي." />
