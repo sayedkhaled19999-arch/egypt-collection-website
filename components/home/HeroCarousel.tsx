@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { ChevronLeft, ChevronRight } from 'lucide-react';
 import { motion, AnimatePresence } from 'framer-motion';
 import { useState, useEffect, useRef } from 'react';
@@ -63,7 +64,6 @@ export default function HeroCarousel() {
   const nextSlide = () => setCurrent((prev) => (prev + 1) % slides.length);
   const prevSlide = () => setCurrent((prev) => (prev - 1 + slides.length) % slides.length);
 
-  // Swipe handlers للموبايل
   const handlers = useSwipeable({
     onSwipedLeft: () => nextSlide(),
     onSwipedRight: () => prevSlide(),
@@ -80,12 +80,18 @@ export default function HeroCarousel() {
           exit={{ opacity: 0 }}
           transition={{ duration: 0.8 }}
           className="absolute inset-0 flex items-center justify-center text-center px-4"
-          style={{
-            backgroundImage: `url(${slides[current].bgImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
         >
+          {/* Background Image using next/image */}
+          <Image
+            src={slides[current].bgImage}
+            alt={slides[current].title}
+            fill
+            className="object-cover"
+            priority={current === 0} // preload أول صورة
+            placeholder="blur"
+            blurDataURL="/hero/slide1-blur.jpg" // ضع نسخة صغيرة للـplaceholder
+          />
+
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent"></div>
 
@@ -110,7 +116,7 @@ export default function HeroCarousel() {
         </motion.div>
       </AnimatePresence>
 
-      {/* Navigation Arrows - تظهر فقط على md وما فوق */}
+      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         aria-label="السابق"
