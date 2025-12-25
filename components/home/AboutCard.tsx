@@ -4,6 +4,7 @@ import Image from 'next/image';
 import { UserCheck, CheckCircle, Info } from 'lucide-react';
 import { useRouter } from 'next/navigation';
 import { branches } from './BranchesSection';
+import { banks } from '../data/banks';
 import CountUp from 'react-countup';
 import { motion, Variants, useAnimation } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
@@ -17,7 +18,7 @@ export default function AboutCard() {
   const cards = [
     {
       icon: <UserCheck className="w-10 h-10 text-[#2563EB]" />,
-      number: 25,
+      number: banks.length, // هنا العدد يتحدث تلقائيًا
       label: 'شركائنا',
       href: '/partners',
     },
