@@ -81,17 +81,6 @@ export default function HeroCarousel() {
           transition={{ duration: 0.8 }}
           className="absolute inset-0 flex items-center justify-center text-center px-4"
         >
-          {/* Background Image using next/image */}
-          <Image
-            src={slides[current].bgImage}
-            alt={slides[current].title}
-            fill
-            className="object-cover"
-            priority={current === 0} // preload أول صورة
-            placeholder="blur"
-            blurDataURL="/hero/slide1-blur.jpg" // ضع نسخة صغيرة للـplaceholder
-          />
-
           {/* Gradient Overlay */}
           <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent"></div>
 
