@@ -19,7 +19,7 @@ const slides: Slide[] = [
   {
     title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections',
     description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.',
-    bgImage: '/hero/Slide1.avif',
+    bgImage: '/hero/Slide1.avif', // ✅ LCP IMAGE
     link: '/about',
     linkText: 'اعرف أكثر عننا',
   },
@@ -48,16 +48,16 @@ const slides: Slide[] = [
 
 export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
-  const autoSlideRef = useRef<number | null>(null);
+  const intervalRef = useRef<number | null>(null);
 
-  // 🔁 سلايد تلقائي
+  // 🔁 Auto slide (بعد تحميل الصفحة)
   useEffect(() => {
-    autoSlideRef.current = window.setInterval(() => {
+    intervalRef.current = window.setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
     }, 10000);
 
     return () => {
-      if (autoSlideRef.current) clearInterval(autoSlideRef.current);
+      if (intervalRef.current) clearInterval(intervalRef.current);
     };
   }, []);
 
@@ -73,63 +73,82 @@ export default function HeroCarousel() {
   });
 
   return (
-    <div
+    <section
       {...handlers}
-      className="relative w-full h-[400px] md:h-[500px] overflow-hidden"
+      className="relative w-full h-[400px] md:h-[520px] overflow-hidden"
     >
-      {/* ✅ صورة الخلفية – بدون blur */}
+      {/* ✅ LCP IMAGE (ثابتة – بدون أنيميشن) */}
       <Image
-        key={slides[current].bgImage}
         src={slides[current].bgImage}
-        quality={70}
         alt={slides[current].title}
         fill
-        className="object-cover"
+        sizes="100vw"
+        quality={70}
         priority={current === 0}
         fetchPriority={current === 0 ? 'high' : 'auto'}
-        sizes="100vw"
+        className="object-cover"
       />
 
-      {/* Gradient Overlay */}
+      {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent" />
 
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={current}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          transition={{ duration: 0.6 }}
-          className="absolute inset-0 flex items-center justify-center text-center px-4"
-        >
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -25 }}
-            transition={{ duration: 0.6 }}
-            className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-[90%] md:max-w-xl backdrop-blur-sm"
-          >
+      {/* 🟢 النص – أول سلايد بدون أنيميشن */}
+      {current === 0 ? (
+        <div className="absolute inset-0 flex items-center justify-center px-4">
+          <div className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-xl text-center">
             <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
-              {slides[current].title}
+              {slides[0].title}
             </h1>
             <p className="text-md md:text-lg text-white mb-4">
-              {slides[current].description}
+              {slides[0].description}
             </p>
             <Link
-              href={slides[current].link}
-              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-lg font-bold hover:scale-105 transition-transform shadow-lg"
+              href={slides[0].link}
+              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-lg font-bold shadow-lg"
             >
-              {slides[current].linkText}
+              {slides[0].linkText}
             </Link>
+          </div>
+        </div>
+      ) : (
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={current}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 0.5 }}
+            className="absolute inset-0 flex items-center justify-center px-4"
+          >
+            <motion.div
+              initial={{ y: 25, opacity: 0 }}
+              animate={{ y: 0, opacity: 1 }}
+              exit={{ y: -25, opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-xl text-center"
+            >
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">
+                {slides[current].title}
+              </h2>
+              <p className="text-md md:text-lg text-white mb-4">
+                {slides[current].description}
+              </p>
+              <Link
+                href={slides[current].link}
+                className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-lg font-bold shadow-lg hover:scale-105 transition-transform"
+              >
+                {slides[current].linkText}
+              </Link>
+            </motion.div>
           </motion.div>
-        </motion.div>
-      </AnimatePresence>
+        </AnimatePresence>
+      )}
 
-      {/* Navigation Arrows */}
+      {/* Arrows */}
       <button
         onClick={prevSlide}
         aria-label="السابق"
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg"
       >
         <ChevronLeft className="w-6 h-6 text-black" />
       </button>
@@ -137,10 +156,10 @@ export default function HeroCarousel() {
       <button
         onClick={nextSlide}
         aria-label="التالي"
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/50 hover:bg-white/80 rounded-full p-3 shadow-lg"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg"
       >
         <ChevronRight className="w-6 h-6 text-black" />
       </button>
-    </div>
+    </section>
   );
 }
