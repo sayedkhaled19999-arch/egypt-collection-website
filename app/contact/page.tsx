@@ -59,7 +59,7 @@ export default function ContactPage() {
         >
           <Mail className="mx-auto text-[#2563EB] mb-4" size={32} />
           <h3 className="font-extrabold text-xl mb-2">الإيميل</h3>
-          <p className="text-[#4B4B4B]">info@company.com</p>
+          <p className="text-[#4B4B4B]">Info@collection.eg</p>
         </motion.div>
 
         <motion.div
@@ -72,7 +72,7 @@ export default function ContactPage() {
         >
           <MapPin className="mx-auto text-[#2563EB] mb-4" size={32} />
           <h3 className="font-extrabold text-xl mb-2">الموقع</h3>
-          <p className="text-[#4B4B4B]">القاهرة، مصر</p>
+          <p className="text-[#4B4B4B]">الدقي، الجيزة</p>
         </motion.div>
       </section>
 
