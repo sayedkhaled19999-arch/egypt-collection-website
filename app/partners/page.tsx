@@ -14,10 +14,20 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'شركائنا - ECC Collections',
     description: 'قائمة شركاء النجاح من البنوك والمؤسسات المالية.',
-    url: 'https://www.collection.eg/partners',
+    // 👇 الرابط المؤقت (Vercel) عشان يشتغل معاك دلوقتي
+    url: 'https://egypt-collection-website.vercel.app/partners',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
+    // 👇 إضافة الصورة الموحدة
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'شركاء النجاح - المصرية للتحصيلات',
+      },
+    ],
   },
 };
 

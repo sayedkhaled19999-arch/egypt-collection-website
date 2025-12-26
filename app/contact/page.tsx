@@ -14,10 +14,20 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'تواصل معنا | ECC Collections',
     description: 'نحن هنا لمساعدتك. تواصل معنا الآن.',
-    url: 'https://www.collection.eg/contact',
+    // 👇 الرابط المؤقت عشان يشتغل معاك دلوقتي
+    url: 'https://egypt-collection-website.vercel.app/contact',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
+    // 👇 إضافة الصورة الموحدة
+    images: [
+      {
+        url: '/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'تواصل معنا - المصرية للتحصيلات',
+      },
+    ],
   },
 };
 
@@ -28,8 +38,8 @@ export default function Page() {
     "mainEntity": {
       "@type": "Organization",
       "name": "المصرية للتحصيلات – ECC Collections",
-      "url": "https://www.collection.eg",
-      "logo": "https://www.collection.eg/favicon.ico",
+      "url": "https://www.collection.eg", // سيب ده دومين الشركة الأصلي عشان جوجل يفهم إن ده الكيان الرسمي
+      "logo": "https://egypt-collection-website.vercel.app/og-image.png", // ممكن تحدث ده لرابط الصورة الجديد
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+201110600280",

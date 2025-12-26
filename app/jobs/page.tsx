@@ -1,8 +1,10 @@
 import { Metadata } from "next";
-import JobsClient from "./JobsClient"; // استدعينا الملف اللي عملناه فوق
+import JobsClient from "./JobsClient";
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.collection.eg'),
+  // 👇 الرابط المؤقت عشان الصور تظهر دلوقتي
+  metadataBase: new URL('https://egypt-collection-website.vercel.app'),
+  
   title: 'وظائف المصرية للتحصيلات | ECC Collections – قدم الآن',
   description: 'قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر.',
   keywords: [
@@ -17,12 +19,14 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'وظائف المصرية للتحصيلات | ECC Collections',
     description: 'فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت.',
-    url: 'https://www.collection.eg/jobs',
+    // 👇 الرابط المؤقت
+    url: 'https://egypt-collection-website.vercel.app/jobs',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
     images: [{
-        url: '/og-jobs.png',
+        // 👇 وحدنا الصورة لنفس صورة اللوجو
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'وظائف المصرية للتحصيلات ECC Collections'
@@ -32,7 +36,8 @@ export const metadata: Metadata = {
     card: 'summary_large_image',
     title: 'وظائف المصرية للتحصيلات | ECC Collections',
     description: 'قدّم على وظائف ECC Collections: محصلين، مدخل بيانات، بدون رسوم + تدريب مدفوع.',
-    images: ['/og-jobs.png'],
+    // 👇 نفس الصورة هنا كمان
+    images: ['/og-image.png'],
     creator: '@ECCCollections'
   },
 };

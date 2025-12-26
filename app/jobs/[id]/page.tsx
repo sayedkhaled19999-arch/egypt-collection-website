@@ -22,7 +22,9 @@ export const generateMetadata = ({ params }: { params: { id: string } }): Metada
   if (!job) return { title: "وظيفة غير موجودة | المصرية للتحصيلات" };
 
   return {
-    metadataBase: new URL('https://www.collection.eg'),
+    // 👇 الرابط الأساسي (مؤقت لفيرسل)
+    metadataBase: new URL('https://egypt-collection-website.vercel.app'),
+    
     title: `${job.title} | المصرية للتحصيلات – ECC Collections`,
     description: job.description,
     keywords: [
@@ -31,12 +33,19 @@ export const generateMetadata = ({ params }: { params: { id: string } }): Metada
     openGraph: {
       title: job.title,
       description: job.description,
-      url: `https://www.collection.eg/jobs/${job.id}`,
+      // 👇 تعديل الرابط هنا كمان عشان يفتح صح
+      url: `https://egypt-collection-website.vercel.app/jobs/${job.id}`,
       siteName: "ECC Collections",
       locale: "ar_EG",
       type: "website",
       images: [
-        { url: '/og-jobs.png', width: 1200, height: 630, alt: job.title }
+        { 
+            // 👇 هنا وحدنا الصورة لنفس صورة اللوجو
+            url: '/og-image.png', 
+            width: 1200, 
+            height: 630, 
+            alt: job.title 
+        }
       ]
     },
     alternates: { canonical: `/jobs/${job.id}` },

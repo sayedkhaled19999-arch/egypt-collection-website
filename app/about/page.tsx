@@ -15,13 +15,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'من نحن - المصرية للتحصيلات ECC',
     description: 'شركاء نجاح كبرى البنوك المصرية. تعرف على فريق عمل ECC.',
-    url: 'https://www.collection.eg/about',
+    // 👇 عدلنا الرابط هنا لفيرسل مؤقتاً
+    url: 'https://egypt-collection-website.vercel.app/about',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
     images: [
       {
-        url: '/hero/hero-banner.png', // تأكد إن الصورة دي موجودة
+        // 👇 هنا وحدنا الصورة لنفس صورة اللوجو اللي في public
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'المصرية للتحصيلات – من نحن',
@@ -31,7 +33,7 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  // كود Schema عشان نقول لجوجل مين هو "المدير" بتاع الشركة
+  // كود Schema ممتاز جداً، سيبه زي ما هو
   const jsonLd = {
     '@context': 'https://schema.org',
     '@type': 'AboutPage',
