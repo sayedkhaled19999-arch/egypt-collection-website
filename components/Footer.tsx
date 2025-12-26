@@ -30,6 +30,7 @@ export default function Footer() {
               href="https://facebook.com/your-page"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="صفحتنا على فيسبوك" // 👈 ضيف السطر ده
               className="w-11 h-11 flex items-center justify-center rounded-full
                          bg-[#2563EB]/20 text-[#2563EB]
                          hover:bg-[#2563EB] hover:text-white
@@ -42,6 +43,7 @@ export default function Footer() {
               href="https://linkedin.com/company/your-company"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="صفحتنا على لينكد إن" // 👈 ضيف السطر ده
               className="w-11 h-11 flex items-center justify-center rounded-full
                          bg-[#0A66C2]/20 text-[#0A66C2]
                          hover:bg-[#0A66C2] hover:text-white

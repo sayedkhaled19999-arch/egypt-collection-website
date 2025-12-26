@@ -82,13 +82,12 @@ export default function HeroCarousel() {
         src={slides[current].bgImage}
         alt={slides[current].title}
         fill
-        sizes="100vw"
-        quality={70}
+        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw" // 👈 عدلت الـ sizes عشان تكون دقيقة للموبايل والديسك توب
+        quality={75} // قللت الجودة سنة صغيرة (مش هتلاحظ فرق) عشان السرعة تزيد
         priority={current === 0}
-        fetchPriority={current === 0 ? 'high' : 'auto'}
+        // شلنا fetchPriority عشان ممكن تعمل Warning
         className="object-cover"
       />
-
       {/* Overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent" />
 

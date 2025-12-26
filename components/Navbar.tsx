@@ -60,11 +60,13 @@ export default function Navbar() {
         تواصل معنا
       </Link>
     </div>
-
-    <button className="md:hidden text-[#353535]" onClick={() => setIsOpen(!isOpen)}>
+    <button 
+      className="md:hidden text-[#353535]" 
+      onClick={() => setIsOpen(!isOpen)}
+      aria-label="فتح القائمة" // 👈 ضيف السطر ده
+    >
       {isOpen ? <X size={28} /> : <Menu size={28} />}
     </button>
-
     {isOpen && !isDesktop && <div onClick={() => setIsOpen(false)} className="fixed inset-0 bg-black/30 z-40"></div>}
 
     <div
