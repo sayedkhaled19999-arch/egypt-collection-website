@@ -18,9 +18,11 @@ export const viewport = {
 }
 
 export const metadata: Metadata = {
-  metadataBase: new URL('https://www.collection.eg'),
-  
-  // نظام القالب للعنوان
+  // 👇 ده التعديل الوحيد: خليه رابط فيرسل مؤقتاً لحد ما الدومين يشتغل
+  metadataBase: new URL('https://egypt-collection-website.vercel.app'), 
+  // metadataBase: new URL('https://www.collection.eg'), // 👈 (ده خليه كومنت لحد ما الدومين يربط)
+
+  // باقي الكود بتاعك زي ما هو بالظبط ممتاز..
   title: {
     default: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني',
     template: '%s | المصرية للتحصيلات – ECC Collections' 
@@ -39,7 +41,7 @@ export const metadata: Metadata = {
   ],
   
   authors: [
-    { name: 'Sayed Khaled', url: 'https://www.collection.eg' }
+    { name: 'Sayed Khaled', url: 'https://www.collection.eg' } // دي عادي سيبها مش هتأثر
   ],
 
   alternates: {
@@ -49,11 +51,12 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections',
     description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2002. خدمات احترافية، موثوقة وسريعة.',
-    url: 'https://www.collection.eg',
+    // 👇 خلي دي تشاور على نفس الدومين اللي فوق أو شيل السطر ده وهو هياخده تلقائي
+    url: 'https://egypt-collection-website.vercel.app', 
     siteName: 'ECC Collections',
     images: [
       {
-        url: '/og-image.png',
+        url: '/og-image.png', // كدة هيقرا الصورة من رابط فيرسل وتشتغل فوراً
         width: 1200,
         height: 630,
         alt: 'المصرية للتحصيلات – ECC Collections'
@@ -75,7 +78,6 @@ export const metadata: Metadata = {
     icon: '/favicon.ico'
   }
 };
-
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
