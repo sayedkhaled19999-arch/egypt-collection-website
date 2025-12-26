@@ -1,186 +1,42 @@
-'use client';
+import { Metadata } from "next";
+import JobsClient from "./JobsClient"; // استدعينا الملف اللي عملناه فوق
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { useState, useEffect, useRef } from 'react';
-import { useSwipeable } from 'react-swipeable';
-import { Briefcase, Home, MapPin, Laptop, ArrowRight } from 'lucide-react';
-import Link from 'next/link';
-import Head from 'next/head';
-
-interface JobCardProps {
-  id: string;
-  title: string;
-  description: string;
-  location: string;
-  type: string;
-}
-
-const jobs: JobCardProps[] = [
-  {
-    id: "office-collector",
-    title: "محصل مكتبي",
-    description: "متابعة العملاء من خلال التليفون ومساعدتهم للخروج من مرحلة التعثر والانتظام في السداد بشكل سلس وسريع.",
-    location: "الدقي - الجيزة",
-    type: "دوام كامل",
+export const metadata: Metadata = {
+  metadataBase: new URL('https://www.collection.eg'),
+  title: 'وظائف المصرية للتحصيلات | ECC Collections – قدم الآن',
+  description: 'قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر.',
+  keywords: [
+    'وظائف', 'تقديم وظائف', 'فرص عمل', 'وظائف مصر',
+    'وظائف تحصيل', 'شركات تحصيل', 'تحصيل ديون', 
+    'محصل', 'محصل ميداني', 'محصل مكتبي', 'مدخل بيانات',
+    'وظائف الجيزة', 'ECC Collections', 'المصرية للتحصيلات'
+  ],
+  alternates: {
+    canonical: '/jobs'
   },
-  {
-    id: "field-collector",
-    title: "محصل ميداني",
-    description: "زيارة العملاء الغير منتظمين في السداد وتشجيعهم على سداد المديونية المتأخرة عليهم، مع متابعة الحالات الميدانية بدقة.",
-    location: "جميع محافظات مصر",
-    type: "دوام كامل",
+  openGraph: {
+    title: 'وظائف المصرية للتحصيلات | ECC Collections',
+    description: 'فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت.',
+    url: 'https://www.collection.eg/jobs',
+    siteName: 'ECC Collections',
+    locale: 'ar_EG',
+    type: 'website',
+    images: [{
+        url: '/og-jobs.png',
+        width: 1200,
+        height: 630,
+        alt: 'وظائف المصرية للتحصيلات ECC Collections'
+    }]
   },
-  {
-    id: "field-investigator",
-    title: "مستعلم ميداني",
-    description: "إجراء زيارات ميدانية لجمع بيانات دقيقة عن العملاء، مع تقديم تقارير واضحة للإدارة لضمان جودة المعلومات.",
-    location: "الجيزة و القاهرة",
-    type: "دوام كامل",
+  twitter: {
+    card: 'summary_large_image',
+    title: 'وظائف المصرية للتحصيلات | ECC Collections',
+    description: 'قدّم على وظائف ECC Collections: محصلين، مدخل بيانات، بدون رسوم + تدريب مدفوع.',
+    images: ['/og-jobs.png'],
+    creator: '@ECCCollections'
   },
-  {
-    id: "data-entry",
-    title: "مدخل بيانات",
-    description: "إدخال بيانات العملاء والمعاملات بدقة وسرعة باستخدام برامج الأوفيس، لضمان تنظيم المعلومات وسهولة الوصول إليها.",
-    location: "الدقي - الجيزة",
-    type: "دوام كامل",
-  },
-];
+};
 
-export default function JobsPage() {
-  const [current, setCurrent] = useState(0);
-  const autoSlideRef = useRef<number | null>(null);
-
-  // سلايدر تلقائي
-  useEffect(() => {
-    autoSlideRef.current = window.setInterval(() => {
-      setCurrent((prev) => (prev + 1) % jobs.length);
-    }, 10000);
-
-    return () => {
-      if (autoSlideRef.current) clearInterval(autoSlideRef.current);
-    };
-  }, []);
-
-  const handlers = useSwipeable({
-    onSwipedLeft: () => setCurrent((prev) => (prev + 1) % jobs.length),
-    onSwipedRight: () => setCurrent((prev) => (prev - 1 + jobs.length) % jobs.length),
-    trackMouse: true,
-  });
-
-  const cardVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0 },
-  };
-
-  return (
-    <div className="min-h-screen bg-gray-50" dir="rtl">
-      <Head>
-        <title>وظائف المصرية للتحصيلات | ECC Collections – قدم الآن</title>
-        <meta
-          name="description"
-          content="قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر، وتأمين اجتماعي بعد التثبيت."
-        />
-        <link rel="canonical" href="https://www.collection.eg/jobs" />
-      </Head>
-
-      {/* Hero Section */}
-      <div {...handlers} className="relative w-full h-[350px] md:h-[400px] lg:h-[450px] overflow-hidden">
-        <AnimatePresence mode="wait">
-          <motion.div
-            key={current}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.8 }}
-            className="absolute inset-0 flex items-center justify-center text-center px-4"
-            style={{
-              backgroundImage: `url('/jobs/job.jpg')`,
-              backgroundSize: 'cover',
-              backgroundPosition: 'center',
-            }}
-          >
-            <div className="absolute inset-0 bg-gradient-to-b from-black/70 via-black/60 to-black/50"></div>
-            <motion.div
-              initial={{ opacity: 0, y: 25 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -25 }}
-              transition={{ duration: 0.8 }}
-              className="relative z-10 bg-black/40 p-6 md:p-8 rounded-xl max-w-[90%] md:max-w-xl backdrop-blur-sm"
-            >
-              <h1 className="text-2xl md:text-4xl font-bold text-white mb-3 whitespace-normal">
-                الوظائف المتاحة
-              </h1>
-              <p className="text-md md:text-lg text-white mb-4">
-                لو حابب تبقى جزء من فريقنا، هنا فرصتك تلمع وتكبر معانا
-              </p>
-            </motion.div>
-          </motion.div>
-        </AnimatePresence>
-      </div>
-
-      {/* Jobs Grid */}
-      <section id="jobs-grid" className="container mx-auto px-4 py-16 -mt-16 relative z-10">
-        <div className="text-center text-gray-700 text-lg md:text-xl font-semibold mt-16 mb-16">
-          يوجد <span className="font-bold text-blue-600">{jobs.length}</span> وظائف متاحة حالياً
-        </div>
-        <motion.div
-          className="bg-white rounded-3xl shadow-2xl p-6 md:p-10 grid md:grid-cols-2 gap-6"
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-        >
-          {jobs.map((job, i) => (
-            <motion.div
-              key={job.id}
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={cardVariants}
-              transition={{ delay: i * 0.1, duration: 0.6, ease: "easeOut" }}
-            >
-              <JobCard job={job} />
-            </motion.div>
-          ))}
-        </motion.div>
-      </section>
-    </div>
-  );
-}
-
-function JobCard({ job }: { job: JobCardProps }) {
-  const getIcon = () => {
-    switch (job.id) {
-      case "office-collector":
-        return <Home className="w-6 h-6 text-blue-500" />;
-      case "field-collector":
-      case "field-investigator":
-        return <MapPin className="w-6 h-6 text-blue-500" />;
-      case "data-entry":
-        return <Laptop className="w-6 h-6 text-blue-500" />;
-      default:
-        return <Briefcase className="w-6 h-6 text-blue-500" />;
-    }
-  };
-
-  return (
-    <div className="flex flex-col justify-between bg-gray-100 rounded-2xl shadow-lg p-6 h-full hover:scale-105 hover:shadow-[0_0_25px_rgba(37,99,235,0.4)] transition-all duration-300">
-      <div>
-        <div className="flex items-center gap-3 mb-3 justify-center">
-          {getIcon()}
-          <h3 className="text-lg font-bold text-center">{job.title}</h3>
-        </div>
-        <p className="text-gray-700 mb-3 text-center">{job.description}</p>
-        <p className="text-sm text-gray-500 text-center">{job.location} | {job.type}</p>
-      </div>
-      <div className="flex justify-center mt-4">
-        <Link
-          href={`/jobs/${job.id}`}
-          className="inline-flex items-center justify-center gap-2 px-3 py-2 bg-blue-600 text-white rounded-xl font-medium hover:bg-blue-700 transition-colors duration-300 text-center text-sm"
-        >
-          اعرف أكثر
-          <ArrowRight className="w-4 h-4" />
-        </Link>
-      </div>
-    </div>
-  );
+export default function Page() {
+  return <JobsClient />;
 }
