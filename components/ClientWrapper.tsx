@@ -7,20 +7,23 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // Preloader يظهر 1.5 إلى 2.5 ثانية بشكل عشوائي
-    const timer = setTimeout(() => setLoading(false), 1500 + Math.random() * 1000);
+    // قللنا الوقت شوية عشان اليوزر ميزهقش، وخليناه ثابت عشان الأداء
+    const timer = setTimeout(() => setLoading(false), 2000); 
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {/* Preloader يظهر فوق المحتوى */}
-      {loading && <Preloader />}
+      {/* Preloader يظهر فوق المحتوى بـ z-index عالي */}
+      {loading && (
+        <div className="fixed inset-0 z-[9999]"> {/* ضمنا إنه فوق كل حاجة */}
+             <Preloader />
+        </div>
+      )}
 
-      {/* المحتوى موجود دائمًا في DOM مع تأثير fade-in */}
-      <div
-        className={`transition-opacity duration-700 ${loading ? 'opacity-0' : 'opacity-100'}`}
-      >
+      {/* 🔥 التعديل هنا: شلنا كلاسات الإخفاء (opacity-0) */}
+      {/* المحتوى موجود دايماً في الـ DOM، فجوجل هيشوف صورة الـ Hero فوراً حتى واللوادر شغال */}
+      <div className="relative z-0"> 
         {children}
       </div>
     </>

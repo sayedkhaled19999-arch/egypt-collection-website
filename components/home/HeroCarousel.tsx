@@ -19,7 +19,7 @@ const slides: Slide[] = [
   {
     title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections',
     description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.',
-    bgImage: '/hero/Slide1.avif', // ✅ LCP IMAGE
+    bgImage: '/hero/Slide1.avif',
     link: '/about',
     linkText: 'اعرف أكثر عننا',
   },
@@ -50,7 +50,7 @@ export default function HeroCarousel() {
   const [current, setCurrent] = useState(0);
   const intervalRef = useRef<number | null>(null);
 
-  // 🔁 Auto slide (بعد تحميل الصفحة)
+  // 🔁 Auto slide
   useEffect(() => {
     intervalRef.current = window.setInterval(() => {
       setCurrent((prev) => (prev + 1) % slides.length);
@@ -77,24 +77,29 @@ export default function HeroCarousel() {
       {...handlers}
       className="relative w-full h-[400px] md:h-[520px] overflow-hidden"
     >
-      {/* ✅ LCP IMAGE (ثابتة – بدون أنيميشن) */}
+      {/* ✅ LCP IMAGE OPTIMIZATION */}
       <Image
         src={slides[current].bgImage}
         alt={slides[current].title}
         fill
-        sizes="(max-width: 768px) 100vw, (max-width: 1200px) 100vw, 100vw" // 👈 عدلت الـ sizes عشان تكون دقيقة للموبايل والديسك توب
-        quality={75} // قللت الجودة سنة صغيرة (مش هتلاحظ فرق) عشان السرعة تزيد
-        priority={current === 0}
-        // شلنا fetchPriority عشان ممكن تعمل Warning
+        // 👇 أهم سطر لجوجل: بيحدد حجم الصورة بدقة لكل شاشة
+        sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
+        priority={current === 0} // تحميل فوري لأول صورة
+        quality={80} // جودة ممتازة مع حجم خفيف
         className="object-cover"
+        // 👇 بيجبر المتصفح يحمل الصورة دي قبل أي حاجة تانية
+        fetchPriority={current === 0 ? "high" : "auto"}
       />
-      {/* Overlay */}
+      
+      {/* Overlay Layer */}
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent" />
 
-      {/* 🟢 النص – أول سلايد بدون أنيميشن */}
+      {/* 🟢 Content Logic */}
+      {/* أول سلايد بيظهر HTML عادي عشان جوجل يقرأه بسرعة بدون أنيميشن في البداية */}
       {current === 0 ? (
         <div className="absolute inset-0 flex items-center justify-center px-4">
           <div className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-xl text-center">
+            {/* H1 مهم جداً للـ SEO في الصفحة الرئيسية */}
             <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
               {slides[0].title}
             </h1>
@@ -103,13 +108,14 @@ export default function HeroCarousel() {
             </p>
             <Link
               href={slides[0].link}
-              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-lg font-bold shadow-lg"
+              className="inline-block bg-gradient-to-r from-blue-500 to-blue-700 text-white px-5 py-2 rounded-lg font-bold shadow-lg hover:scale-105 transition-transform"
             >
               {slides[0].linkText}
             </Link>
           </div>
         </div>
       ) : (
+        // باقي السلايدات بتظهر بـ Animation عادي
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -143,11 +149,11 @@ export default function HeroCarousel() {
         </AnimatePresence>
       )}
 
-      {/* Arrows */}
+      {/* Navigation Arrows */}
       <button
         onClick={prevSlide}
         aria-label="السابق"
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg transition-colors"
       >
         <ChevronLeft className="w-6 h-6 text-black" />
       </button>
@@ -155,7 +161,7 @@ export default function HeroCarousel() {
       <button
         onClick={nextSlide}
         aria-label="التالي"
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg transition-colors"
       >
         <ChevronRight className="w-6 h-6 text-black" />
       </button>
