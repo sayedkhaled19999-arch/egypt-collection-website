@@ -6,14 +6,18 @@ export async function POST(request: Request) {
     const formData = await request.formData();
     const type = formData.get('type'); // بنشوف نوع الرسالة إيه
 
-    // إعداد "الناقل" (Transporter) - ثابت في الحالتين
+    // إعداد "الناقل"
     const transporter = nodemailer.createTransport({
-      service: 'gmail', // غيرها لاسم الهوست لما تشتري الدومين الرسمي
+      service: 'gmail', 
       auth: {
         user: process.env.SMTP_EMAIL,
         pass: process.env.SMTP_PASSWORD,
       },
     });
+
+    // 👇 هنا التركة: بنعرف متغير للاسم اللي هيظهر
+    // ده معناه: الاسم ECC Collections بس المرسل الفعلي هو إيميلك
+    const senderIdentity = `"ECC Collections" <${process.env.SMTP_EMAIL}>`;
 
     let mailOptions: any = {};
 
@@ -23,13 +27,14 @@ export async function POST(request: Request) {
     if (type === 'contact') {
       const fullName = formData.get('fullName');
       const phone = formData.get('phone');
-      const email = formData.get('email');
+      const email = formData.get('email') as string; // إيميل العميل
       const address = formData.get('address');
       const message = formData.get('message');
 
       mailOptions = {
-        from: process.env.SMTP_EMAIL,
+        from: senderIdentity, // 👈 استخدمنا الاسم الجديد هنا
         to: process.env.RECEIVER_EMAIL,
+        replyTo: email, // 👈 دي إضافة حلوة: لما تدوس Reply يرد على العميل مش عليك
         subject: `📩 رسالة تواصل جديدة من: ${fullName}`,
         html: `
           <div style="direction: rtl; font-family: Arial, sans-serif; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
@@ -60,7 +65,7 @@ export async function POST(request: Request) {
       const cvFile: File | null = formData.get('cv') as unknown as File;
 
       mailOptions = {
-        from: process.env.SMTP_EMAIL,
+        from: senderIdentity, // 👈 وهنا كمان
         to: process.env.RECEIVER_EMAIL,
         subject: `🚀 تقديم جديد: ${jobTitle} - ${fullName}`,
         html: `
@@ -79,7 +84,6 @@ export async function POST(request: Request) {
         attachments: []
       };
 
-      // إرفاق ملف الـ CV لو موجود
       if (cvFile && cvFile.size > 0) {
         const buffer = Buffer.from(await cvFile.arrayBuffer());
         mailOptions.attachments.push({
@@ -89,9 +93,6 @@ export async function POST(request: Request) {
       }
     }
 
-    // ==========================================
-    // إرسال الإيميل النهائي
-    // ==========================================
     await transporter.sendMail(mailOptions);
 
     return NextResponse.json({ success: true, message: 'Email sent successfully' });
