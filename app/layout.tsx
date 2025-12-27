@@ -7,6 +7,10 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
 
+// 👇 1. دي إضافات Vercel الجديدة (Analytics & Speed Insights)
+import { Analytics } from "@vercel/analytics/react";
+import { SpeedInsights } from "@vercel/speed-insights/next";
+
 const tajawal = Tajawal({
   subsets: ['arabic'],
   weight: ['400', '500', '700'],
@@ -78,6 +82,7 @@ export const metadata: Metadata = {
     icon: '/favicon.ico'
   }
 };
+
 export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="ar" dir="rtl">
@@ -87,6 +92,11 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-grow">{children}</main>
         </ClientWrapper>
         <Footer />
+        
+        {/* 👇 2. هنا ضفنا تشغيل أدوات Vercel عشان يراقبوا الموقع */}
+        <Analytics />
+        <SpeedInsights />
+        
       </body>
     </html>
   );
