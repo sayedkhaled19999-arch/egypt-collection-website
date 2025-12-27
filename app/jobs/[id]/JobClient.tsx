@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Home, MapPin, Laptop, Briefcase, CheckCircle, X, FileText, User, Phone } from 'lucide-react';
 
-// هنعرف البيانات هنا تاني عشان الكود يشتغل زي ما هو
+// تعريف البيانات (زي ما هي ماتقلقش)
 interface Job {
   id: string;
   title: string;
@@ -134,10 +134,11 @@ const jobs: Job[] = [
   }
 ];
 
-// استقبلنا الـ id هنا كـ props بدل useParams عشان نتأكد من التوافق
 export default function JobClient({ id }: { id: string }) {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false); // حالة التحميل الجديدة
+  
   const [formData, setFormData] = useState({
     fullName: '',
     phone: '',
@@ -162,14 +163,53 @@ export default function JobClient({ id }: { id: string }) {
     }
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  // دالة الإرسال الجديدة المربوطة بالسيرفر
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log('Form Data:', formData);
-    alert('تم إرسال البيانات! هنتواصل معاك قريبًا 😉');
-    setModalOpen(false);
+    setIsSubmitting(true); // بدء التحميل
+
+    try {
+      const data = new FormData();
+      data.append('fullName', formData.fullName);
+      data.append('phone', formData.phone);
+      data.append('address', formData.address);
+      data.append('jobTitle', job?.title || '');
+      data.append('experience', formData.experience);
+      data.append('previousCompanies', formData.previousCompanies);
+      
+      if (formData.cv) {
+        data.append('cv', formData.cv);
+      }
+
+      // الاتصال بالـ API اللي عملناه
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        alert('تم إرسال بياناتك بنجاح! بالتوفيق يا بطل 🚀');
+        setModalOpen(false);
+        // إعادة تعيين الفورم
+        setFormData({
+          fullName: '', phone: '', address: '', job: '', 
+          experience: 'no', previousCompanies: '', cv: null
+        });
+      } else {
+        alert('حصل مشكلة أثناء الإرسال، حاول تاني أو كلمنا واتساب.');
+      }
+
+    } catch (error) {
+      console.error('Error:', error);
+      alert('حدث خطأ غير متوقع، تأكد من اتصال الإنترنت.');
+    } finally {
+      setIsSubmitting(false); // انتهاء التحميل
+    }
   };
 
-  // Structured Data (JSON-LD) for Jobs
+  // Structured Data (JSON-LD)
   const jsonLd = {
     "@context": "https://schema.org/",
     "@type": "JobPosting",
@@ -258,7 +298,15 @@ export default function JobClient({ id }: { id: string }) {
               </div>
               {formData.experience==='yes' && <input type="text" placeholder="الشركات اللي اشتغلت فيها قبل كدا (اختياري)" className="w-full p-3 border rounded-xl" value={formData.previousCompanies} onChange={e=>setFormData({...formData, previousCompanies: e.target.value})} />}
               <div className="flex items-center gap-2"><FileText className="w-5 h-5 text-gray-500"/> <input type="file" accept=".pdf,.doc,.docx" onChange={e=>setFormData({...formData, cv: e.target.files?.[0] || null})} className="w-full"/> <span className="text-gray-500 text-sm">ارسال السيرة الذاتية إن وجدت</span></div>
-              <button type="submit" className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300">إرسال</button>
+              
+              {/* زر الإرسال المحدث */}
+              <button 
+                type="submit" 
+                disabled={isSubmitting} // تعطيل الزر أثناء الإرسال
+                className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
+              >
+                {isSubmitting ? 'جاري الإرسال...' : 'إرسال'}
+              </button>
             </form>
           </motion.div>
         </div>

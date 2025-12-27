@@ -12,6 +12,16 @@ const fadeUp = {
 
 export default function ContactClient() {
   const [emailCopied, setEmailCopied] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  // حالة لتخزين بيانات الفورم
+  const [formData, setFormData] = useState({
+    name: '',
+    phone: '',
+    email: '',
+    address: '',
+    message: ''
+  });
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('Info@collection.eg');
@@ -20,14 +30,42 @@ export default function ContactClient() {
     setTimeout(() => setEmailCopied(false), 2000);
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // هنا ممكن تضيف API Call حقيقية
-    toast.success(
-      'شكرًا لتواصلك معنا! إحنا استلمنا رسالتك وهنرد عليك في أقرب وقت.',
-      { duration: 5000 }
-    );
-    (e.target as HTMLFormElement).reset();
+    setIsSubmitting(true);
+    const loadingToast = toast.loading('جاري إرسال رسالتك...');
+
+    try {
+      // تجهيز البيانات
+      const data = new FormData();
+      data.append('type', 'contact'); // علامة مميزة عشان الـ API يعرف إن دي رسالة تواصل
+      data.append('fullName', formData.name);
+      data.append('phone', formData.phone);
+      data.append('email', formData.email); // الإيميل الشخصي للمرسل
+      data.append('address', formData.address);
+      data.append('message', formData.message);
+      
+      // إرسال للـ API (نفس الـ API اللي عملناه للوظائف هنستخدمه هنا بذكاء)
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        body: data,
+      });
+
+      const result = await response.json();
+
+      if (result.success) {
+        toast.success('شكرًا لتواصلك معنا! استلمنا رسالتك وهنرد عليك قريبًا.', { id: loadingToast, duration: 5000 });
+        setFormData({ name: '', phone: '', email: '', address: '', message: '' }); // تصفير الفورم
+      } else {
+        toast.error('حصلت مشكلة في الإرسال، حاول تاني.', { id: loadingToast });
+      }
+
+    } catch (error) {
+      console.error(error);
+      toast.error('خطأ في الاتصال، تأكد من الإنترنت.', { id: loadingToast });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -130,6 +168,8 @@ export default function ContactClient() {
                   placeholder="الاسم"
                   className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                   required
+                  value={formData.name}
+                  onChange={(e) => setFormData({...formData, name: e.target.value})}
                 />
               </div>
               <div className="relative">
@@ -139,6 +179,8 @@ export default function ContactClient() {
                   placeholder="رقم الموبايل"
                   className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                   required
+                  value={formData.phone}
+                  onChange={(e) => setFormData({...formData, phone: e.target.value})}
                 />
               </div>
             </div>
@@ -149,6 +191,8 @@ export default function ContactClient() {
                 type="email"
                 placeholder="البريد الإلكتروني (اختياري)"
                 className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                value={formData.email}
+                onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
             </div>
 
@@ -158,6 +202,8 @@ export default function ContactClient() {
                 type="text"
                 placeholder="العنوان (اختياري)"
                 className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                value={formData.address}
+                onChange={(e) => setFormData({...formData, address: e.target.value})}
               />
             </div>
 
@@ -167,14 +213,17 @@ export default function ContactClient() {
                 placeholder="رسالتك"
                 className="border border-gray-300 rounded-xl p-4 pl-12 w-full h-40 resize-none focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
                 required
+                value={formData.message}
+                onChange={(e) => setFormData({...formData, message: e.target.value})}
               ></textarea>
             </div>
 
             <button
               type="submit"
-              className="bg-[#2563EB] text-white font-bold py-4 px-6 rounded-xl w-full hover:bg-[#1e4bb8] transition transform hover:scale-105"
+              disabled={isSubmitting}
+              className="bg-[#2563EB] text-white font-bold py-4 px-6 rounded-xl w-full hover:bg-[#1e4bb8] transition transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              إرسال الرسالة
+              {isSubmitting ? 'جاري الإرسال...' : 'إرسال الرسالة'}
             </button>
           </form>
         </motion.div>
