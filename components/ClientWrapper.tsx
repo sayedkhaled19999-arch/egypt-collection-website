@@ -7,23 +7,23 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // قللنا الوقت شوية عشان اليوزر ميزهقش، وخليناه ثابت عشان الأداء
-    const timer = setTimeout(() => setLoading(false), 2000); 
+    // 👇 التعديل هنا: قللنا الوقت من 2000 لـ 800 مللي ثانية بس
+    // ده وقت كافي لظهور اللوجو، وفي نفس الوقت مبيقتلش الـ LCP Score
+    const timer = setTimeout(() => setLoading(false), 800);
     return () => clearTimeout(timer);
   }, []);
 
   return (
     <>
-      {/* Preloader يظهر فوق المحتوى بـ z-index عالي */}
+      {/* Preloader overlay */}
       {loading && (
-        <div className="fixed inset-0 z-[9999]"> {/* ضمنا إنه فوق كل حاجة */}
+        <div className="fixed inset-0 z-[9999]">
              <Preloader />
         </div>
       )}
 
-      {/* 🔥 التعديل هنا: شلنا كلاسات الإخفاء (opacity-0) */}
-      {/* المحتوى موجود دايماً في الـ DOM، فجوجل هيشوف صورة الـ Hero فوراً حتى واللوادر شغال */}
-      <div className="relative z-0"> 
+      {/* المحتوى موجود والـ Opacity كاملة عشان جوجل يشوفه ورا اللوادر */}
+      <div className="relative z-0">
         {children}
       </div>
     </>
