@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'من نحن - المصرية للتحصيلات ECC',
     description: 'شركاء نجاح كبرى البنوك المصرية. تعرف على فريق عمل ECC.',
     // 👇 عدلنا الرابط هنا لفيرسل مؤقتاً
-    url: 'https://egyptcollections.com/about',
+    url: 'https://www.egyptcollections.com/about',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',

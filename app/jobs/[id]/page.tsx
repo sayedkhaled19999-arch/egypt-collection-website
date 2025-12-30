@@ -23,7 +23,7 @@ export const generateMetadata = ({ params }: { params: { id: string } }): Metada
 
   return {
     // 👇 الرابط الأساسي (مؤقت لفيرسل)
-    metadataBase: new URL('https://egyptcollections.com'),
+    metadataBase: new URL('https://www.egyptcollections.com'),
     
     title: `${job.title} | المصرية للتحصيلات – ECC Collections`,
     description: job.description,
@@ -34,7 +34,7 @@ export const generateMetadata = ({ params }: { params: { id: string } }): Metada
       title: job.title,
       description: job.description,
       // 👇 تعديل الرابط هنا كمان عشان يفتح صح
-      url: `https://egyptcollections.com/jobs/${job.id}`,
+      url: `https://www.egyptcollections.com/jobs/${job.id}`,
       siteName: "ECC Collections",
       locale: "ar_EG",
       type: "website",

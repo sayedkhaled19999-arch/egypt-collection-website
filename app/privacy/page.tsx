@@ -15,7 +15,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'سياسة الخصوصية - المصرية للتحصيلات ECC',
     description: 'التزامنا نحو حماية بياناتك وسرية التعاملات البنكية.',
-    url: 'https://egyptcollections.com/privacy',
+    url: 'https://www.egyptcollections.com/privacy',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -42,7 +42,7 @@ export default function Page() {
       name: 'ECC Collections',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://egyptcollections.com/logo.png' // لو عندك رابط للوجو
+        url: 'https://www.egyptcollections.com/logo.png' // لو عندك رابط للوجو
       }
     },
     inLanguage: 'ar-EG'

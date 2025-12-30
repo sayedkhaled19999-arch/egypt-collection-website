@@ -22,7 +22,7 @@ export const viewport = {
 
 export const metadata: Metadata = {
   // الرابط الأساسي (ظبطه لما الدومين يشتغل 100%)
-  metadataBase: new URL('https://egyptcollections.com'), 
+  metadataBase: new URL('https://www.egyptcollections.com'), 
 
   title: {
     default: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني',
@@ -58,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections',
     description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2001. خدمات احترافية، موثوقة وسريعة.',
-    url: 'https://egyptcollections.com', 
+    url: 'https://www.egyptcollections.com', 
     siteName: 'ECC Collections',
     images: [
       {

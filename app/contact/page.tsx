@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'تواصل معنا | ECC Collections',
     description: 'نحن هنا لمساعدتك. تواصل معنا الآن.',
     // 👇 الرابط المؤقت عشان يشتغل معاك دلوقتي
-    url: 'https://egyptcollections.com/contact',
+    url: 'https://www.egyptcollections.com/contact',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -39,7 +39,7 @@ export default function Page() {
       "@type": "Organization",
       "name": "المصرية للتحصيلات – ECC Collections",
       "url": "https://www.egyptcollections.com", // سيب ده دومين الشركة الأصلي عشان جوجل يفهم إن ده الكيان الرسمي
-      "logo": "https://egyptcollections.com/og-image.png", // ممكن تحدث ده لرابط الصورة الجديد
+      "logo": "https://www.egyptcollections.com/og-image.png", // ممكن تحدث ده لرابط الصورة الجديد
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+201110600280",
