@@ -24,7 +24,7 @@ export const viewport = {
 export const metadata: Metadata = {
   // 👇 ده التعديل الوحيد: خليه رابط فيرسل مؤقتاً لحد ما الدومين يشتغل
   metadataBase: new URL('https://egyptcollections.com'), 
-  // metadataBase: new URL('https://www.collection.eg'), // 👈 (ده خليه كومنت لحد ما الدومين يربط)
+  // metadataBase: new URL('https://www.egyptcollections.com'), // 👈 (ده خليه كومنت لحد ما الدومين يربط)
 
   // باقي الكود بتاعك زي ما هو بالظبط ممتاز..
   title: {
@@ -45,7 +45,7 @@ export const metadata: Metadata = {
   ],
   
   authors: [
-    { name: 'Sayed Khaled', url: 'https://www.collection.eg' } // دي عادي سيبها مش هتأثر
+    { name: 'Sayed Khaled', url: 'https://www.egyptcollections.com' } // دي عادي سيبها مش هتأثر
   ],
 
   alternates: {

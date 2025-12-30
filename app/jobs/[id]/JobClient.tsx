@@ -216,7 +216,7 @@ export default function JobClient({ id }: { id: string }) {
     "title": job.title,
     "description": job.description,
     "identifier": { "@type": "PropertyValue", "name": "ECC Collections", "value": job.id },
-    "hiringOrganization": { "@type": "Organization", "name": "المصرية للتحصيلات – ECC Collections", "sameAs": "https://www.collection.eg", "logo": "https://www.collection.eg/favicon.ico" },
+    "hiringOrganization": { "@type": "Organization", "name": "المصرية للتحصيلات – ECC Collections", "sameAs": "https://www.egyptcollections.com", "logo": "https://www.egyptcollections.com/favicon.ico" },
     "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "streetAddress": job.location, "addressLocality": job.location, "addressCountry": "EG" } },
     "employmentType": job.type === "دوام كامل" ? "FULL_TIME" : "PART_TIME",
     "datePosted": new Date().toISOString(),

@@ -1,7 +1,7 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.collection.eg';
+  const baseUrl = 'https://www.egyptcollections.com';
 
   // 1. تعريف الصفحات الثابتة
   const routes = [

@@ -24,7 +24,7 @@ export default function ContactClient() {
   });
 
   const handleCopyEmail = () => {
-    navigator.clipboard.writeText('Info@collection.eg');
+    navigator.clipboard.writeText('Info@egyptcollections.com');
     toast.success('تم نسخ الإيميل!');
     setEmailCopied(true);
     setTimeout(() => setEmailCopied(false), 2000);
@@ -122,7 +122,7 @@ export default function ContactClient() {
         >
           <Mail className="mx-auto text-[#2563EB] mb-4" size={32} />
           <h2 className="font-extrabold text-xl mb-2">الإيميل</h2>
-          <p className="text-[#4B4B4B] font-bold">Info@collection.eg</p>
+          <p className="text-[#4B4B4B] font-bold">Info@egyptcollections.com</p>
         </motion.div>
 
         <motion.a

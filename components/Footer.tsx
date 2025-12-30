@@ -27,7 +27,7 @@ export default function Footer() {
           {/* أيقونات السوشيال */}
           <div className="flex sm:flex-col gap-4 justify-start">
             <a
-              href="https://facebook.com/your-page"
+              href="https://www.facebook.com/EgyptCollectionsCo"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="صفحتنا على فيسبوك" // 👈 ضيف السطر ده
@@ -56,11 +56,11 @@ export default function Footer() {
           {/* بيانات الاتصال */}
           <div className="flex flex-col gap-4 text-sm sm:text-base">
             <a
-              href="mailto:info@collection.eg"
+              href="mailto:Info@egyptcollections.com"
               className="flex items-center gap-3 hover:text-white transition-all hover:translate-x-1"
             >
               <Mail className="w-5 h-5 text-[#2563EB]" />
-              Info@collection.eg
+              Info@egyptcollections.com
             </a>
 
             <a

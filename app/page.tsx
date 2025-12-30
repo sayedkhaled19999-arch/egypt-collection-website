@@ -14,12 +14,12 @@ export const metadata: Metadata = {
     'خدمات احترافية', 'تحصيل في مصر', 'بنوك مصر'
   ],
   alternates: {
-    canonical: 'https://www.collection.eg',
+    canonical: 'https://www.egyptcollections.com',
   },
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections',
     description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2001.',
-    url: 'https://www.collection.eg',
+    url: 'https://www.egyptcollections.com',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -46,15 +46,15 @@ export default function Home() {
     '@context': 'https://schema.org',
     '@type': 'Organization',
     name: 'Egyptian Collections Co. - ECC',
-    url: 'https://www.collection.eg',
-    logo: 'https://www.collection.eg/logo.webp', // تأكد من مسار اللوجو بتاعك
+    url: 'https://www.egyptcollections.com',
+    logo: 'https://www.egyptcollections.com/logo.webp', // تأكد من مسار اللوجو بتاعك
     sameAs: [
-      'https://www.facebook.com/ECCCollections', // لو عندك صفحة فيسبوك حط اللينك الصح
+      'https://www.facebook.com/EgyptCollectionsCo', // لو عندك صفحة فيسبوك حط اللينك الصح
       'https://www.linkedin.com/company/ecc-collections' // لو عندك لينكد إن
     ],
     contactPoint: {
       '@type': 'ContactPoint',
-      telephone: '+201000000000', // حط رقم الشركة الحقيقي هنا
+      telephone: '+201110600280', // حط رقم الشركة الحقيقي هنا
       contactType: 'customer service',
       areaServed: 'EG',
       availableLanguage: ['Arabic', 'English']
