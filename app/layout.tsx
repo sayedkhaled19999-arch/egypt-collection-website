@@ -1,13 +1,13 @@
 import '@/styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import type { Metadata } from 'next'; // شلنا Viewport من هنا
+import type { Metadata } from 'next'; 
 import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
 
-// 👇 1. دي إضافات Vercel الجديدة (Analytics & Speed Insights)
+// إضافات Vercel
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -16,17 +16,14 @@ const tajawal = Tajawal({
   weight: ['400', '500', '700'],
 });
 
-// شلنا : Viewport عشان الخطأ يروح، الكود هيشتغل تمام بدونه
 export const viewport = {
   themeColor: '#2563EB',
 }
 
 export const metadata: Metadata = {
-  // 👇 ده التعديل الوحيد: خليه رابط فيرسل مؤقتاً لحد ما الدومين يشتغل
+  // الرابط الأساسي (ظبطه لما الدومين يشتغل 100%)
   metadataBase: new URL('https://egyptcollections.com'), 
-  // metadataBase: new URL('https://www.egyptcollections.com'), // 👈 (ده خليه كومنت لحد ما الدومين يربط)
 
-  // باقي الكود بتاعك زي ما هو بالظبط ممتاز..
   title: {
     default: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني',
     template: '%s | المصرية للتحصيلات – ECC Collections' 
@@ -34,6 +31,12 @@ export const metadata: Metadata = {
   
   description: 'المصرية للتحصيلات – ECC Collections تقدم أفضل خدمات التحصيل الميداني والاستعلام والتحقق من البيانات للعملاء في مصر منذ 2001. خدمات احترافية، سريعة وموثوقة.',
   
+  // 👇👇👇 هنا ضفنا كود التفعيل لجوجل 👇👇👇
+  verification: {
+    google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
+  },
+  // 👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆👆
+
   keywords: [
     'تحصيل ميداني',
     'خدمات التحصيل',
@@ -45,7 +48,7 @@ export const metadata: Metadata = {
   ],
   
   authors: [
-    { name: 'Sayed Khaled', url: 'https://www.egyptcollections.com' } // دي عادي سيبها مش هتأثر
+    { name: 'Sayed Khaled', url: 'https://www.egyptcollections.com' }
   ],
 
   alternates: {
@@ -55,12 +58,11 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections',
     description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2001. خدمات احترافية، موثوقة وسريعة.',
-    // 👇 خلي دي تشاور على نفس الدومين اللي فوق أو شيل السطر ده وهو هياخده تلقائي
     url: 'https://egyptcollections.com', 
     siteName: 'ECC Collections',
     images: [
       {
-        url: '/og-image.png', // كدة هيقرا الصورة من رابط فيرسل وتشتغل فوراً
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'المصرية للتحصيلات – ECC Collections'
@@ -93,7 +95,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ClientWrapper>
         <Footer />
         
-        {/* 👇 2. هنا ضفنا تشغيل أدوات Vercel عشان يراقبوا الموقع */}
         <Analytics />
         <SpeedInsights />
         
