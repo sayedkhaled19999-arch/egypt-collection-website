@@ -16,7 +16,7 @@ export const metadata: Metadata = {
     title: 'من نحن - المصرية للتحصيلات ECC',
     description: 'شركاء نجاح كبرى البنوك المصرية. تعرف على فريق عمل ECC.',
     // 👇 عدلنا الرابط هنا لفيرسل مؤقتاً
-    url: 'https://egypt-collection-website.vercel.app/about',
+    url: 'https://egyptcollections.com/about',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -45,7 +45,7 @@ export default function Page() {
         name: 'Wael Swelim',
         jobTitle: 'CEO'
       },
-      foundingDate: '2002',
+      foundingDate: '2001',
       areaServed: 'Egypt'
     }
   };

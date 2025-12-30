@@ -3,7 +3,7 @@ import JobsClient from "./JobsClient";
 
 export const metadata: Metadata = {
   // 👇 الرابط المؤقت عشان الصور تظهر دلوقتي
-  metadataBase: new URL('https://egypt-collection-website.vercel.app'),
+  metadataBase: new URL('https://egyptcollections.com'),
   
   title: 'وظائف المصرية للتحصيلات | ECC Collections – قدم الآن',
   description: 'قدّم الآن على وظائف المصرية للتحصيلات ECC Collections. محصلين ميداني ومكتبي، مدخل بيانات، فرص عمل حقيقية بدون أي رسوم، تدريب مدفوع الأجر.',
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     title: 'وظائف المصرية للتحصيلات | ECC Collections',
     description: 'فرص عمل حقيقية في المصرية للتحصيلات ECC Collections. بدون رسوم، تدريب مدفوع، وتأمين اجتماعي بعد التثبيت.',
     // 👇 الرابط المؤقت
-    url: 'https://egypt-collection-website.vercel.app/jobs',
+    url: 'https://egyptcollections.com/jobs',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',

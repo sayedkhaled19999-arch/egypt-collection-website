@@ -15,7 +15,7 @@ export const metadata: Metadata = {
     title: 'شركائنا - ECC Collections',
     description: 'قائمة شركاء النجاح من البنوك والمؤسسات المالية.',
     // 👇 الرابط المؤقت (Vercel) عشان يشتغل معاك دلوقتي
-    url: 'https://egypt-collection-website.vercel.app/partners',
+    url: 'https://egyptcollections.com/partners',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',

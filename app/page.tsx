@@ -7,7 +7,7 @@ export const metadata: Metadata = {
   title: {
     absolute: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني والتحقق من البيانات في مصر'
   },
-  description: 'المصرية للتحصيلات – ECC Collections تقدم أفضل خدمات التحصيل الميداني والاستعلام والتحقق من البيانات للعملاء في مصر منذ 2002. خدمات احترافية، سريعة وموثوقة.',
+  description: 'المصرية للتحصيلات – ECC Collections تقدم أفضل خدمات التحصيل الميداني والاستعلام والتحقق من البيانات للعملاء في مصر منذ 2001. خدمات احترافية، سريعة وموثوقة.',
   keywords: [
     'تحصيل ميداني', 'خدمات التحصيل', 'ECC Collections', 
     'استعلام ميداني', 'الشركة المصرية للتحصيلات', 
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   },
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections',
-    description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2002.',
+    description: 'أفضل خدمات التحصيل الميداني والتحقق من البيانات للعملاء في مصر منذ 2001.',
     url: 'https://www.collection.eg',
     siteName: 'ECC Collections',
     locale: 'ar_EG',

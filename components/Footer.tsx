@@ -17,7 +17,7 @@ export default function Footer() {
            متخصصة في تقديم خدمات التحصيل والاستعلام المالي بكفاءة واحترافية.
           </p>
            <p className="text-[#B4B4B4] leading-relaxed text-sm sm:text-base">           
-          تأسست الشركة عام 2002، وتهدف إلى دعم العملاء في إدارة وتحصيل مستحقاتهم المالية بشكل آمن وموثوق.
+          تأسست الشركة عام 2001، وتهدف إلى دعم العملاء في إدارة وتحصيل مستحقاتهم المالية بشكل آمن وموثوق.
           </p>
         </div>
 
@@ -89,7 +89,7 @@ export default function Footer() {
         <div className="container mx-auto flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center text-xs sm:text-sm text-[#B4B4B4]">
 
           <div dir="ltr">
-            © Egyptian Collection Co 2002 - {new Date().getFullYear()}. All rights reserved.
+            © Egyptian Collection Co 2001 - {new Date().getFullYear()}. All rights reserved.
           </div>
 
           <div dir="ltr">
