@@ -1,20 +1,17 @@
 import { Metadata } from 'next';
 import HomeContent from '@/components/HomeContent';
 
-// 1. إعدادات الـ SEO الخاصة بالصفحة الرئيسية (الأقوى)
+// 1. إعدادات الـ SEO الخاصة بالصفحة الرئيسية
 export const metadata: Metadata = {
   title: {
     absolute: 'المصرية للتحصيلات (ECC) | خدمات التحصيل الميداني والاستعلام الائتماني في مصر'
   },
   description: 'المصرية للتحصيلات – ECC Collections الخيار الأول للبنوك والشركات في مصر لخدمات التحصيل الميداني، الاستعلام الائتماني، وتحديث البيانات. دقة، سرعة، والتزام بالقانون.',
   keywords: [
-    // كلمات أساسية
     'تحصيل ميداني', 'شركة تحصيل ديون', 'ECC Collections', 
     'الشركة المصرية للتحصيلات', 'استعلام بنكي', 'استعلام ميداني',
-    // كلمات باللهجة المصرية وسوق العمل
     'استرداد مديونيات', 'تحصيل محافظ بنكية', 'مناديب تحصيل', 
     'تحديث بيانات العملاء', 'شركات الاوت سورس في مصر',
-    // أماكن الخدمة
     'تحصيل في القاهرة', 'خدمات بنكية مصر', 'الجيزة', 'الاسكندرية'
   ],
   alternates: {
@@ -29,7 +26,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png', // الصورة هتلقط الدومين من layout.tsx
+        url: '/og-image.png',
         width: 1200,
         height: 630,
         alt: 'المصرية للتحصيلات – ECC Collections',
@@ -45,48 +42,46 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // 2. كود Schema.org المطور (LocalBusiness + ProfessionalService)
-  // ده بيخلي جوجل يعرف مكانك وخدماتك بالتفصيل
+  // 2. كود Schema.org المطور
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ProfessionalService', // أدق من Organization للخدمات
-    name: 'الشركة المصرية للتحصيلات - ECC Collections',
+    '@type': 'ProfessionalService',
+    name: 'Egyptian Collections Co. (ECC)', // الاسم بالانجليزي والعربي
+    alternateName: 'الشركة المصرية للتحصيلات',
     url: 'https://www.egyptcollections.com',
-    logo: 'https://www.egyptcollections.com/logo.webp', // تأكد إن الصورة دي موجودة
+    logo: 'https://www.egyptcollections.com/og-image.png',
     image: 'https://www.egyptcollections.com/og-image.png',
     description: 'شركة رائدة في مجال التحصيل الميداني والاستعلام الائتماني في جمهورية مصر العربية.',
+    
+    // 👇 عدلت العنوان هنا عشان يبقى زي الفوتر بالظبط (مهم جداً للـ Maps)
     address: {
       '@type': 'PostalAddress',
-      addressLocality: 'Giza', // عدل المحافظة لو مختلف
-      addressCountry: 'EG',
-      streetAddress: '6 October City' // يفضل تكتب العنوان بالتفصيل هنا
+      streetAddress: '30 شارع هارون، ميدان المساحة',
+      addressLocality: 'Dokki',
+      addressRegion: 'Giza',
+      postalCode: '12611',
+      addressCountry: 'EG'
     },
+    // 👇 الإحداثيات دي تقريباً للدقي (ميدان المساحة)
     geo: {
       '@type': 'GeoCoordinates',
-      latitude: '30.0444', // دي إحداثيات عامة للقاهرة/الجيزة، يفضل تحط إحداثيات مكتبك بدقة
-      longitude: '31.2357'
+      latitude: '30.0385', 
+      longitude: '31.2185'
     },
     telephone: '+201110600280',
-    priceRange: '$$', // مؤشر للسعر (متوسط)
+    priceRange: '$$', 
     openingHoursSpecification: [
       {
         '@type': 'OpeningHoursSpecification',
-        dayOfWeek: [
-          'Sunday',
-          'Monday',
-          'Tuesday',
-          'Wednesday',
-          'Thursday'
-        ],
+        dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
         opens: '09:00',
         closes: '17:00'
       }
     ],
     sameAs: [
       'https://www.facebook.com/EgyptCollectionsCo',
-      'https://www.linkedin.com/company/ecc-collections'
+      // 'https://www.linkedin.com/company/ecc-collections' // لو اللينك مش شغال دلوقتي، خليه كومنت عشان جوجل ميزعلش
     ],
-    // تعريف الخدمات بشكل صريح لجوجل
     hasOfferCatalog: {
       '@type': 'OfferCatalog',
       name: 'خدمات التحصيل والاستعلام',
@@ -118,13 +113,10 @@ export default function Home() {
 
   return (
     <>
-      {/* حقن كود الـ Schema JSON-LD */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      
-      {/* محتوى الصفحة الرئيسي */}
       <HomeContent />
     </>
   );
