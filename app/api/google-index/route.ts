@@ -5,9 +5,21 @@ export async function POST(req: Request) {
   try {
     const { url } = await req.json();
 
+    const clientEmail = process.env.GOOGLE_CLIENT_EMAIL;
+    // معالجة المفتاح لضمان قراءة السطور الجديدة (\n) بشكل صحيح
+    const privateKey = process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n');
+
+    if (!clientEmail || !privateKey) {
+      return NextResponse.json({ 
+        success: false, 
+        error: 'المفاتيح السرية غير موجودة في ملف الـ .env' 
+      }, { status: 500 });
+    }
+
+    // ✅ التعديل هنا: نرسل كائن واحد فقط (Object) للـ JWT
     const auth = new google.auth.JWT({
-      email: process.env.GOOGLE_CLIENT_EMAIL,
-      key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
+      email: clientEmail,
+      key: privateKey,
       scopes: ['https://www.googleapis.com/auth/indexing'],
     });
 
@@ -22,7 +34,6 @@ export async function POST(req: Request) {
 
     return NextResponse.json({ success: true, data: result.data });
   } catch (error: any) {
-    // هنا بنرجع الخطأ الحقيقي اللي جاي من جوجل
     const errorMessage = error.response?.data?.error?.message || error.message;
     console.error('Google Indexing Error:', errorMessage);
     return NextResponse.json({ success: false, error: errorMessage }, { status: 500 });
