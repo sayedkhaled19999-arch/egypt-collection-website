@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import HomeContent from '@/components/HomeContent';
 
-// 1. إعدادات الـ SEO الخاصة بالصفحة الرئيسية
+// 1. تظبيطات الـ SEO للصفحة الرئيسية
 export const metadata: Metadata = {
   title: {
     absolute: 'المصرية للتحصيلات (ECC) | خدمات التحصيل الميداني والاستعلام الائتماني في مصر'
@@ -15,12 +15,13 @@ export const metadata: Metadata = {
     'تحصيل في القاهرة', 'خدمات بنكية مصر', 'الجيزة', 'الاسكندرية'
   ],
   alternates: {
-    canonical: 'https://www.egyptcollections.com',
+    // ⚠️ مهم جداً: شيلنا www من هنا عشان جوجل يعرف إن ده الرابط الأصلي
+    canonical: 'https://egyptcollections.com',
   },
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections | حلول التحصيل المتكاملة',
     description: 'شريكك الاستراتيجي في التحصيل الميداني والاستعلام. نغطي كافة محافظات مصر بخبرة تتجاوز 20 عاماً.',
-    url: 'https://www.egyptcollections.com',
+    url: 'https://egyptcollections.com', // شيلنا www
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -42,36 +43,36 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // 2. كود Schema.org المطور
+  // 2. كود السكيما (Schema) عشان جوجل يفهم الموقع صح
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      // الجزء الأول: تعريف الموقع
+      // الجزء الأول: بنعرف جوجل إن ده "موقع ويب" واسمه كذا
       {
         '@type': 'WebSite',
-        '@id': 'https://www.egyptcollections.com/#website',
-        'url': 'https://www.egyptcollections.com',
+        '@id': 'https://egyptcollections.com/#website', // شيلنا www
+        'url': 'https://egyptcollections.com', // شيلنا www
         'name': 'ECC Collections', 
         'alternateName': 'المصرية للتحصيلات',
         'description': 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني في مصر',
         'potentialAction': {
           '@type': 'SearchAction',
-          'target': 'https://www.egyptcollections.com/?s={search_term_string}',
+          'target': 'https://egyptcollections.com/?s={search_term_string}', // شيلنا www
           'query-input': 'required name=search_term_string'
         }
       },
-      // الجزء الثاني: تعريف الشركة
+      // الجزء الثاني: بنعرف جوجل إن دي "شركة" وليها مقر ولوجو
       {
         '@type': 'ProfessionalService',
-        '@id': 'https://www.egyptcollections.com/#organization',
+        '@id': 'https://egyptcollections.com/#organization', // شيلنا www
         'name': 'Egyptian Collections Co. (ECC)', 
         'alternateName': 'الشركة المصرية للتحصيلات',
-        'url': 'https://www.egyptcollections.com',
+        'url': 'https://egyptcollections.com', // شيلنا www
         
-        // 👇 التعديل هنا: استخدمنا icon.png عشان تبقى أدق كـ لوجو
-        'logo': 'https://www.egyptcollections.com/icon.png',
+        // 👇 هنا استخدمنا icon.png عشان تبقى أحسن كـ لوجو مربع
+        'logo': 'https://egyptcollections.com/icon.png', // شيلنا www
         
-        'image': 'https://www.egyptcollections.com/og-image.png', // الصورة التعريفية سيبها og-image عادي
+        'image': 'https://egyptcollections.com/og-image.png', // شيلنا www
         'description': 'شركة رائدة في مجال التحصيل الميداني والاستعلام الائتماني في جمهورية مصر العربية.',
         
         'address': {

@@ -26,8 +26,8 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  // الرابط الأساسي عشان الصور تشتغل صح
-  metadataBase: new URL('https://www.egyptcollections.com'), 
+  // شيلنا www من هنا عشان يبقى الرابط الأساسي نظيف
+  metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
     default: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني والاستعلام',
@@ -36,12 +36,13 @@ export const metadata: Metadata = {
   
   description: 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني، الاستعلام الائتماني، والتحقق من البيانات للبنوك والشركات في مصر منذ 2001. تغطية شاملة لجميع المحافظات.',
   
-  // 👇 التظبيطة الصح هنا
-  publisher: 'Egyptian Collections Co. (ECC)', // ده صاحب الحقوق (الشركة)
-  creator: 'Sayed Khaled', // ده المبدع (أنت)
+  // بيانات الناشر والمؤلف
+  publisher: 'Egyptian Collections Co. (ECC)', // ده صاحب الشركة
+  creator: 'Sayed Khaled', // ده الباشمهندس (أنت)
   authors: [
-    { name: 'Egyptian Collections Co.', url: 'https://www.egyptcollections.com' },
-    { name: 'Sayed Khaled' } // اسمك هنا برضه عشان تحفظ حقك
+    // شيلنا www من هنا كمان
+    { name: 'Egyptian Collections Co.', url: 'https://egyptcollections.com' },
+    { name: 'Sayed Khaled' } 
   ],
 
   robots: {
@@ -75,7 +76,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections | ريادة في التحصيل الميداني',
     description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً.',
-    url: 'https://www.egyptcollections.com', 
+    // شيلنا www من هنا عشان السوشيال ميديا
+    url: 'https://egyptcollections.com', 
     siteName: 'ECC Collections',
     images: [
       {
@@ -94,7 +96,7 @@ export const metadata: Metadata = {
     title: 'المصرية للتحصيلات – ECC Collections',
     description: 'خدمات تحصيل ميداني واستعلام ائتماني احترافية تغطي كافة أنحاء مصر.',
     images: ['/og-image.png'],
-    creator: '@ECC_Collections' // لو الشركة ليها حساب تويتر، لو ملهاش شيل السطر ده
+    creator: '@ECC_Collections'
   },
   
   icons: {
@@ -119,7 +121,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <SpeedInsights />
 
-        {/* 👇👇 إضافة Google Analytics الجديدة 👇👇 */}
+        {/* كود جوجل أناليتكس اللي ضفناه سوا */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-20VCCYNW0K"
           strategy="afterInteractive"
@@ -133,7 +135,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-20VCCYNW0K');
           `}
         </Script>
-        {/* 👆👆 نهاية الإضافة 👆👆 */}
 
       </body>
     </html>
