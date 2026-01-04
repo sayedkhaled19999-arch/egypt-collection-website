@@ -6,7 +6,7 @@ import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
-import Script from 'next/script'; // 👈 ده المهم
+import Script from 'next/script';
 
 // إضافات Vercel
 import { Analytics } from "@vercel/analytics/react";
@@ -54,6 +54,7 @@ export const metadata: Metadata = {
     },
   },
 
+  // 👇 اتأكد إن الكود ده هو نفس الكود اللي نسخته من خانة HTML Tag في جوجل كونسول
   verification: {
     google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
   },
@@ -104,9 +105,23 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
+  // رقم الـ GTM بتاعك الجديد
+  const GTM_ID = 'GTM-WQLQH658';
+
   return (
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className} ${tajawal.variable} flex flex-col min-h-screen bg-gray-50`}>
+        
+        {/* 👇 1. الجزء بتاع الـ (NoScript) - ده لازم يكون أول حاجة جوه البودي */}
+        <noscript>
+          <iframe
+            src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
+            height="0"
+            width="0"
+            style={{ display: 'none', visibility: 'hidden' }}
+          />
+        </noscript>
+
         <Navbar />
         <ClientWrapper>
           <main className="flex-grow">{children}</main>
@@ -116,7 +131,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <SpeedInsights />
 
-        {/* 👇 الكود ده صح 100% ومتغيرش فيه حاجة 👇 */}
+        {/* 👇 كود Google Analytics (القديم بتاعنا شغال زي الفل) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NXPPCK0R5E"
           strategy="afterInteractive"
@@ -130,6 +145,18 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-NXPPCK0R5E');
           `}
         </Script>
+
+        {/* 👇 2. كود GTM (الجزء الخاص بالسكريبت) - ده اللي بيشغل الدنيا */}
+        <Script id="google-tag-manager" strategy="afterInteractive">
+          {`
+            (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
+            new Date().getTime(),event:'gtm.js'});var f=d.getElementsByTagName(s)[0],
+            j=d.createElement(s),dl=l!='dataLayer'?'&l='+l:'';j.async=true;j.src=
+            'https://www.googletagmanager.com/gtm.js?id='+i+dl;f.parentNode.insertBefore(j,f);
+            })(window,document,'script','dataLayer','${GTM_ID}');
+          `}
+        </Script>
+
       </body>
     </html>
   );
