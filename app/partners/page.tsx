@@ -23,14 +23,14 @@ export const metadata: Metadata = {
   
   // 👇 بنقول لجوجل دي الصفحة الأصلية
   alternates: {
-    canonical: 'https://www.egyptcollections.com/partners',
+    canonical: 'https://egyptcollections.com/partners',
   },
   
   // 👇 عشان لما تشير اللينك على فيسبوك أو لينكد إن يظهر بشكل احترافي
   openGraph: {
     title: 'شركاء وعملاء ECC - سابقة أعمال نفخر بها',
     description: 'قائمة شركاء النجاح من أكبر البنوك والمؤسسات المالية التي تثق في المصرية للتحصيلات.',
-    url: 'https://www.egyptcollections.com/partners',
+    url: 'https://egyptcollections.com/partners',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',

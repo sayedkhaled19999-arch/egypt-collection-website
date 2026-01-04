@@ -19,7 +19,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'فرصة شغل في المصرية للتحصيلات | ECC Collections',
     description: 'مطلوب رجالة تسد في الشغل! مرتبات ثابتة وعمولات وتأمين اجتماعي. التعيين فوري وبدون أي مصاريف إدارية. قدم دلوقتي.',
-    url: 'https://www.egyptcollections.com/jobs',
+    url: 'https://egyptcollections.com/jobs',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -46,11 +46,11 @@ export default function Page() {
     '@type': 'CollectionPage', // صفحة تجميع وظائف
     name: 'وظائف شركة ECC للتحصيلات',
     description: 'قائمة الوظائف المتاحة في الشركة المصرية للتحصيلات. نوفر بيئة عمل احترافية، تدريب، وتدرج وظيفي.',
-    url: 'https://www.egyptcollections.com/jobs',
+    url: 'https://egyptcollections.com/jobs',
     provider: {
       '@type': 'Organization',
       name: 'ECC Collections',
-      logo: 'https://www.egyptcollections.com/og-image.png',
+      logo: 'https://egyptcollections.com/og-image.png',
       sameAs: [
         "https://www.facebook.com/EgyptCollectionsCo",
         "https://www.linkedin.com/company/ecc-collections"

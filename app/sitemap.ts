@@ -1,25 +1,26 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = 'https://www.egyptcollections.com';
+  // 👇 التعديل المهم هنا: شيلنا www عشان يبقى متوافق مع باقي الموقع
+  const baseUrl = 'https://egyptcollections.com';
 
-  // 1. تعريف الصفحات الثابتة (ضفنا privacy هنا)
+  // 1. هنا بنرص الصفحات الثابتة اللي في موقعك
   const routes = [
     '',
     '/about',
     '/contact',
     '/jobs',
     '/partners',
-    '/privacy', // 👇 ضفناها هنا عشان تتأرشف
+    '/privacy', 
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    // الوظائف بتتحدث أسبوعياً، الباقي شهرياً، والخصوصية سنوياً أو شهرياً (مش هتفرق خليها شهري)
+    // الوظائف بتتحدث كل أسبوع، الباقي كل شهر (كدا زي الفل)
     changeFrequency: route === '/jobs' ? 'weekly' : 'monthly' as 'weekly' | 'monthly',
-    priority: route === '' ? 1 : 0.8,
+    priority: route === '' ? 1 : 0.8, // الصفحة الرئيسية أهم حاجة (1)، الباقي أقل سنة (0.8)
   }));
 
-  // 2. تعريف صفحات الوظائف الديناميكية
+  // 2. هنا بنعمل روابط صفحات الوظائف بشكل أوتوماتيك
   const jobIds = [
     'office-collector',
     'field-collector',
@@ -31,9 +32,9 @@ export default function sitemap(): MetadataRoute.Sitemap {
     url: `${baseUrl}/jobs/${id}`,
     lastModified: new Date(),
     changeFrequency: 'weekly' as const,
-    priority: 0.9, 
+    priority: 0.9, // الوظائف مهمة جداً فنديلها أولوية عالية
   }));
 
-  // 3. دمج الكل
+  // 3. بنلم كله على بعضه ونرجعه لجوجل
   return [...routes, ...jobRoutes];
 }

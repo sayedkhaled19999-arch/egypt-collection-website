@@ -16,12 +16,12 @@ export const metadata: Metadata = {
     'تغطية جغرافية شاملة'
   ],
   alternates: {
-    canonical: 'https://www.egyptcollections.com/about',
+    canonical: 'https://egyptcollections.com/about',
   },
   openGraph: {
     title: 'تاريخ من الخبرة | المصرية للتحصيلات - ECC',
     description: 'أكثر من 20 عاماً من التميز في مجال التحصيل والاستعلام الميداني في السوق المصري.',
-    url: 'https://www.egyptcollections.com/about',
+    url: 'https://egyptcollections.com/about',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',

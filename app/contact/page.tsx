@@ -11,12 +11,12 @@ export const metadata: Metadata = {
     'هوت لاين التحصيل', 'خريطة العنوان'
   ],
   alternates: {
-    canonical: 'https://www.egyptcollections.com/contact',
+    canonical: 'https://egyptcollections.com/contact',
   },
   openGraph: {
     title: 'تواصل مع المصرية للتحصيلات | ECC Collections',
     description: 'كلمنا دلوقتي لبدء شراكة ناجحة. نحن في انتظارك.',
-    url: 'https://www.egyptcollections.com/contact',
+    url: 'https://egyptcollections.com/contact',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -38,8 +38,8 @@ export default function Page() {
     "mainEntity": {
       "@type": "Organization",
       "name": "المصرية للتحصيلات – ECC Collections",
-      "url": "https://www.egyptcollections.com",
-      "logo": "https://www.egyptcollections.com/og-image.png",
+      "url": "https://egyptcollections.com",
+      "logo": "https://egyptcollections.com/og-image.png",
       "contactPoint": {
         "@type": "ContactPoint",
         "telephone": "+201110600280",

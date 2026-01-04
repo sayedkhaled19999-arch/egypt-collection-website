@@ -7,6 +7,6 @@ export default function robots(): MetadataRoute.Robots {
       allow: '/',     // السماح بدخول الموقع بالكامل
       disallow: '/private/', // (اختياري) لو عملت مجلد خاص مستقبلاً
     },
-    sitemap: 'https://www.egyptcollections.com/sitemap.xml', // رابط الخريطة اللي عملناها فوق
+    sitemap: 'https://egyptcollections.com/sitemap.xml', // رابط الخريطة اللي عملناها فوق
   };
 }

@@ -53,7 +53,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
     openGraph: {
       title: `فرصة عمل: ${job.title}`,
       description: job.description,
-      url: `https://www.egyptcollections.com/jobs/${job.id}`,
+      url: `https://egyptcollections.com/jobs/${job.id}`,
       siteName: "ECC Collections",
       locale: "ar_EG",
       type: "website",
@@ -67,7 +67,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
       ]
     },
     alternates: { 
-      canonical: `https://www.egyptcollections.com/jobs/${job.id}` 
+      canonical: `https://egyptcollections.com/jobs/${job.id}` 
     },
   };
 };
@@ -107,8 +107,8 @@ export default function Page({ params }: Props) {
     "hiringOrganization": {
       "@type": "Organization",
       "name": "Egyptian Collections Co. (ECC)",
-      "sameAs": "https://www.egyptcollections.com",
-      "logo": "https://www.egyptcollections.com/og-image.png"
+      "sameAs": "https://egyptcollections.com",
+      "logo": "https://egyptcollections.com/og-image.png"
     },
     "jobLocation": {
       "@type": "Place",

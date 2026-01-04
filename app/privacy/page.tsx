@@ -23,13 +23,13 @@ export const metadata: Metadata = {
   
   alternates: {
     // 👇 الرابط الكامل أفضل دايماً
-    canonical: 'https://www.egyptcollections.com/privacy',
+    canonical: 'https://egyptcollections.com/privacy',
   },
   
   openGraph: {
     title: 'التزامنا بحماية خصوصيتك - ECC Collections',
     description: 'نطبق أعلى معايير الأمان الرقمي والسرية البنكية لضمان سلامة بياناتك.',
-    url: 'https://www.egyptcollections.com/privacy',
+    url: 'https://egyptcollections.com/privacy',
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -67,7 +67,7 @@ export default function Page() {
       name: 'Egyptian Collections Co. (ECC)',
       logo: {
         '@type': 'ImageObject',
-        url: 'https://www.egyptcollections.com/og-image.png' // وحدنا الصورة
+        url: 'https://egyptcollections.com/og-image.png' // وحدنا الصورة
       }
     },
     inLanguage: 'ar-EG',
