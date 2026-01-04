@@ -29,17 +29,17 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
-    // تم تعديل العنوان الافتراضي ليكون متوافقاً مع الطول المطلوب
-    default: 'المصرية للتحصيلات (ECC) | خدمات التحصيل والاستعلام الميداني',
+    // تم وضع البراند أولاً للفصل التام عن المنافسين وتعزيز قوة الاسم
+    default: 'ECC Collections | المصرية للتحصيلات - خدمات التحصيل والاستعلام الميداني',
     template: '%s | ECC Collections' 
   },
   
   description: 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني، الاستعلام الائتماني، والتحقق من البيانات للبنوك والشركات في مصر منذ 2001. تغطية شاملة لجميع المحافظات.',
   
-  publisher: 'Egyptian Collections Co. (ECC)', 
+  publisher: 'ECC Collections - Egyptian Collections Co.', 
   creator: 'Sayed Khaled', 
   authors: [
-    { name: 'Egyptian Collections Co.', url: 'https://egyptcollections.com' },
+    { name: 'ECC Collections', url: 'https://egyptcollections.com' },
     { name: 'Sayed Khaled' } 
   ],
 
@@ -60,29 +60,27 @@ export const metadata: Metadata = {
   },
 
   keywords: [
-    'تحصيل ميداني', 'شركة تحصيل', 'ECC Collections', 'المصرية للتحصيلات',
-    'استعلام ميداني', 'التحقق من بيانات العملاء', 'Field Investigation', 'Debt Collection Egypt',
-    'شركات تحصيل ديون في مصر', 'خدمات التعهيد', 'Outsourcing Collection', 
-    'تحصيل محافظ بنكية', 'الاستعلام الائتماني', 'التحقق من محل الإقامة والعمل',
-    'تحصيل في القاهرة', 'خدمات تحصيل في الجيزة', 'تحصيل ديون الإسكندرية', 'تغطية جميع محافظات مصر'
+    'ECC Collections', 'المصرية للتحصيلات', 'تحصيل ميداني', 'شركة تحصيل', 'استعلام ميداني',
+    'التحقق من بيانات العملاء', 'Debt Collection Egypt', 'شركات تحصيل ديون في مصر',
+    'خدمات التعهيد', 'Outsourcing Collection', 'تحصيل محافظ بنكية', 'الاستعلام الائتماني',
+    'تحصيل في القاهرة', 'خدمات تحصيل في الجيزة', 'تغطية جميع محافظات مصر'
   ],
   
   alternates: {
-    // تم تعديل الرابط ليكون الرابط الكامل بدلاً من "/" لضمان أفضل توافق
     canonical: 'https://egyptcollections.com',
   },
 
   openGraph: {
-    title: 'المصرية للتحصيلات – ECC Collections | ريادة في التحصيل الميداني',
-    description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً.',
+    title: 'ECC Collections | المصرية للتحصيلات - ريادة في التحصيل الميداني',
+    description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً منذ 2001.',
     url: 'https://egyptcollections.com', 
-    siteName: 'ECC Collections',
+    siteName: 'ECC Collections - المصرية للتحصيلات', // السطر الأهم لتغيير اسم الموقع في جوجل
     images: [
       {
         url: '/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'المصرية للتحصيلات – ECC Collections - خدمات التحصيل'
+        alt: 'ECC Collections - المصرية للتحصيلات'
       }
     ],
     locale: 'ar_EG',
@@ -91,7 +89,7 @@ export const metadata: Metadata = {
   
   twitter: {
     card: 'summary_large_image',
-    title: 'المصرية للتحصيلات – ECC Collections',
+    title: 'ECC Collections | المصرية للتحصيلات',
     description: 'خدمات تحصيل ميداني واستعلام ائتماني احترافية تغطي كافة أنحاء مصر.',
     images: ['/og-image.png'],
     creator: '@ECC_Collections'
@@ -139,7 +137,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-
             gtag('config', 'G-NXPPCK0R5E');
           `}
         </Script>

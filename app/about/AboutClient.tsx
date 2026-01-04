@@ -42,9 +42,9 @@ export default function AboutClient() {
           transition={{ delay: 0.2, duration: 0.9 }}
           className="max-w-5xl mx-auto text-lg md:text-xl leading-relaxed text-[#4B4B4B] mb-10"
         >
-          إحنا شركة مصرية متخصصة في <strong>إدارة المديونيات والتحصيل والاستعلام الائتماني</strong>.  
-          خبرتنا ممتدة عبر <strong>سنوات طويلة</strong> في التعامل مع كبرى البنوك والمؤسسات المالية داخل جمهورية مصر العربية،  
-          ونقدّم خدمات دقيقة وموثوقة لكل عملائنا.
+          إحنا <strong>المصرية للتحصيلات (ECC Collections)</strong>، شركة مصرية رائدة متخصصة في إدارة المديونيات والتحصيل والاستعلام الائتماني.  
+          خبرتنا بدأت من <strong>سنة 2001</strong>، وطول السنين دي بنتعامل مع كبرى البنوك والمؤسسات المالية في مصر،  
+          وبنقدم حلول دقيقة وموثوقة بتضمن حقوق شركائنا.
         </motion.p>
 
         <div className="max-w-4xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-4">
@@ -58,20 +58,20 @@ export default function AboutClient() {
       {/* ================= About Content ================= */}
       <section className="max-w-6xl mx-auto px-4 space-y-14 pb-28">
         <Paragraph>
-          من أول يوم، كان عندنا قناعة إن التحصيل والاستعلام مش أرقام وبس،  
-          لكنه منظومة متكاملة بتقوم على التنظيم ودراسة الحالة واحترام جميع الأطراف.
+          في <strong>ECC Collections</strong>، ومن أول يوم لينا في السوق المصري، كان عندنا قناعة إن التحصيل والاستعلام مش مجرد أرقام،  
+          لكنه منظومة متكاملة بتقوم على الاحترافية، ودراسة كل حالة بعناية، واحترام جميع الأطراف.
         </Paragraph>
 
         <Paragraph>
-          خبرتنا الطويلة في السوق المصري علمتنا إزاي نوازن بين تحقيق أفضل نتائج للبنوك،  
-          والحفاظ على صورة العميل والالتزام الكامل بالقوانين.
+          خبرتنا اللي بتمتد لأكتر من 20 سنة خلتنا بنعرف إزاي نطلع أفضل نتائج للبنوك،  
+          وفي نفس الوقت بنحافظ على سمعة المؤسسة والالتزام الكامل بالقوانين والمعايير المهنية.
         </Paragraph>
 
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-2">
           <Highlight icon={<Eye size={28} />} text="تحليل دقيق لكل حالة" />
           <Highlight icon={<Target size={28} />} text="حلول ذكية لتقليل المخاطر" />
           <Highlight icon={<Award size={28} />} text="نتائج مستمرة وموثوقة" />
-          <Highlight icon={<Users size={28} />} text="فرق عمل محترفة ومدربة" />
+          <Highlight icon={<Users size={28} />} text="أكبر فريق عمل ميداني" />
         </div>
       </section>
 
@@ -81,17 +81,17 @@ export default function AboutClient() {
           <InfoCard
             icon={<Eye size={34} />}
             title="رؤيتنا"
-            text="نكون الشريك المهني الأكثر ثقة للبنوك في مجالات التحصيل والاستعلام الائتماني داخل السوق المصري."
+            text="نكون الشريك المهني الأول والأكثر ثقة للبنوك في مجالات التحصيل والاستعلام الائتماني داخل السوق المصري."
           />
           <InfoCard
             icon={<Target size={34} />}
             title="رسالتنا"
-            text="تقديم حلول مدروسة تساعد البنوك على تقليل المخاطر وتعظيم العائد من خلال نظم عمل واضحة واحترافية."
+            text="تقديم حلول ميدانية مبتكرة تساعد المؤسسات المالية على تقليل المخاطر وتعظيم العوائد بنظم عمل احترافية."
           />
           <InfoCard
             icon={<ShieldCheck size={34} />}
             title="قيمنا"
-            text="الالتزام – الاحتراف – الشفافية – احترام العميل – حماية البيانات."
+            text="الالتزام بالقانون – السرية التامة – الشفافية – احترام العميل – حماية البيانات."
           />
         </div>
       </section>
@@ -107,14 +107,14 @@ export default function AboutClient() {
             transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl font-extrabold text-center text-[#2563EB] mb-16"
           >
-            ليه كبرى البنوك بتختارنا؟
+            ليه كبرى البنوك بتختار ECC Collections؟
           </motion.h2>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <Feature icon={<Building2 />} text="تعاون مستمر مع كبرى البنوك" />
-            <Feature icon={<SearchCheck />} text="خبرة متراكمة في الاستعلام الميداني والائتماني" />
-            <Feature icon={<Users />} text="فرق عمل مدربة على أعلى مستوى" />
-            <Feature icon={<Award />} text="التزام كامل بالحوكمة والسرية" />
+            <Feature icon={<Building2 />} text="شراكات ناجحة مع كبرى البنوك" />
+            <Feature icon={<SearchCheck />} text="ريادة في الاستعلام الميداني منذ 2001" />
+            <Feature icon={<Users />} text="أكفأ فرق عمل ميدانية في مصر" />
+            <Feature icon={<Award />} text="التزام صارم بالسرية والحوكمة" />
           </div>
         </div>
       </section>
@@ -134,7 +134,7 @@ export default function AboutClient() {
           >
             <Image
               src="/ceo/wael-swelim.png"
-              alt="المستشار وائل سويلم"
+              alt="المستشار وائل سويلم - رئيس مجلس إدارة المصرية للتحصيلات ECC Collections"
               fill
               className="object-cover"
               priority
@@ -155,12 +155,12 @@ export default function AboutClient() {
             </h3>
 
             <p className="text-lg leading-loose text-[#4B4B4B] mb-6">
-              الشركة اتبنت على مبدأ واضح: إن الشغل المنظم والالتزام هو أساس أي ثقة حقيقية.  
-              ومن هنا اشتغلنا على بناء كيان مهني يخدم البنوك بأسلوب يحفظ الحقوق، ويحقق نتائج مستدامة.
+              <strong>ECC Collections</strong> اتبنت على مبدأ واضح: إن التنظيم والالتزام هما أساس الثقة الحقيقية.  
+              من سنة 2001 وإحنا شغالين على بناء كيان مهني مستقل يخدم القطاع المصرفي بأسلوب يحفظ الحقوق ويحقق نتائج ملموسة.
             </p>
 
             <p className="text-lg leading-loose text-[#4B4B4B] mb-10">
-              نجاحنا الحقيقي هو استمرار ثقة شركائنا، وده اللي بنعتبره أكبر إنجاز لينا.
+              نجاحنا الحقيقي مش بس في الأرقام، لكن في استمرار ثقة شركائنا فينا على مدار أكتر من 20 سنة، وده اللي بنفتخر بيه.
             </p>
 
             {/* Signature in the middle */}
