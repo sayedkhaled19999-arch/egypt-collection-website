@@ -25,7 +25,6 @@ const banks: Bank[] = [
   { name: 'بنك نكست', src: '/banks/BankNXT.svg' },
 ];
 
-// تكرار البنوك = seamless loop حقيقي
 const infiniteBanks = [...banks, ...banks];
 
 export default function PartnersClient() {
@@ -59,16 +58,17 @@ export default function PartnersClient() {
     <div className="bg-[#F4F4F4] min-h-screen" dir="rtl">
       {/* ===== HEADER ===== */}
       <section className="py-20 text-center">
+        {/* تم إضافة اسم البراند في الـ H1 لتقوية الأرشفة */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#2563EB] mb-4">
-          شركائنا المتميزون
+          شركاء النجاح في ECC Collections
         </h1>
 
-        <div className="text-[#4B4B4B] max-w-3xl mx-auto mb-12 space-y-3">
+        <div className="text-[#4B4B4B] max-w-3xl mx-auto mb-12 space-y-3 px-4">
           <p className="text-lg md:text-xl">
-            شوف شغلنا مع أهم البنوك والمؤسسات المالية في الجمهورية.
+            شوف سابقة أعمالنا مع أهم البنوك والمؤسسات المالية في مصر.
           </p>
           <p className="text-lg md:text-xl">
-            بنفخر بشراكاتنا اللي بتأكد التزامنا بالجودة والاحتراف.
+            ثقة شركائنا هي اللي بتأكد إن إحنا دايمًا عند حسن الظن في الجودة والالتزام.
           </p>
         </div>
 
@@ -96,11 +96,11 @@ export default function PartnersClient() {
       {/* ===== GRID ===== */}
       <section className="max-w-7xl mx-auto px-4 py-16 -mt-16">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-2 text-center">
-          البنوك اللي بنتعامل معاها
+          البنوك اللي بتثق في المصرية للتحصيلات (ECC)
         </h2>
 
-        <p className="text-center text-[#2563EB] mb-8 text-lg md:text-xl font-medium">
-          فخورين بشركائنا اللي بيخلونا نكبر كل يوم
+        <p className="text-center text-[#2563EB] mb-8 text-lg md:text-xl font-medium px-4">
+          فخورين بتقديم خدماتنا الميدانية لأكبر الكيانات المصرفية في مصر
         </p>
 
         <div
@@ -132,7 +132,7 @@ export default function PartnersClient() {
 
 function BankCard({ bank }: { bank: Bank }) {
   return (
-    <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-lg p-4 h-40 hover:scale-105 transition">
+    <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-lg p-4 h-40 hover:scale-105 transition border border-transparent hover:border-[#2563EB]/20">
       <div className="relative w-24 h-20 mb-2">
         <Image
           src={bank.src || '/banks/default.svg'}
@@ -141,7 +141,7 @@ function BankCard({ bank }: { bank: Bank }) {
           className="object-contain"
         />
       </div>
-      <h3 className="text-sm font-bold text-center">{bank.name}</h3>
+      <h3 className="text-sm font-bold text-center text-[#353535]">{bank.name}</h3>
     </div>
   );
 }
