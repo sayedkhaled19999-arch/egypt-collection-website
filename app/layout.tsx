@@ -6,7 +6,7 @@ import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
-import Script from 'next/script';
+import Script from 'next/script'; // 👈 ده المهم
 
 // إضافات Vercel
 import { Analytics } from "@vercel/analytics/react";
@@ -26,7 +26,6 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  // شيلنا www من هنا عشان يبقى الرابط الأساسي نظيف
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
@@ -36,11 +35,9 @@ export const metadata: Metadata = {
   
   description: 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني، الاستعلام الائتماني، والتحقق من البيانات للبنوك والشركات في مصر منذ 2001. تغطية شاملة لجميع المحافظات.',
   
-  // بيانات الناشر والمؤلف
-  publisher: 'Egyptian Collections Co. (ECC)', // ده صاحب الشركة
-  creator: 'Sayed Khaled', // ده الباشمهندس (أنت)
+  publisher: 'Egyptian Collections Co. (ECC)', 
+  creator: 'Sayed Khaled', 
   authors: [
-    // شيلنا www من هنا كمان
     { name: 'Egyptian Collections Co.', url: 'https://egyptcollections.com' },
     { name: 'Sayed Khaled' } 
   ],
@@ -76,7 +73,6 @@ export const metadata: Metadata = {
   openGraph: {
     title: 'المصرية للتحصيلات – ECC Collections | ريادة في التحصيل الميداني',
     description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً.',
-    // شيلنا www من هنا عشان السوشيال ميديا
     url: 'https://egyptcollections.com', 
     siteName: 'ECC Collections',
     images: [
@@ -117,11 +113,10 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         </ClientWrapper>
         <Footer />
         
-        {/* إضافات Vercel */}
         <Analytics />
         <SpeedInsights />
 
-        {/* كود جوجل أناليتكس اللي ضفناه سوا */}
+        {/* 👇 الكود ده صح 100% ومتغيرش فيه حاجة 👇 */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NXPPCK0R5E"
           strategy="afterInteractive"
@@ -135,7 +130,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             gtag('config', 'G-NXPPCK0R5E');
           `}
         </Script>
-
       </body>
     </html>
   );
