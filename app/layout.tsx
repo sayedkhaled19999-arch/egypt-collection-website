@@ -123,7 +123,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
 
         {/* كود جوجل أناليتكس اللي ضفناه سوا */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-20VCCYNW0K"
+          src="https://www.googletagmanager.com/gtag/js?id=G-NXPPCK0R5E"
           strategy="afterInteractive"
         />
         <Script id="google-analytics" strategy="afterInteractive">
@@ -132,7 +132,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
 
-            gtag('config', 'G-20VCCYNW0K');
+            gtag('config', 'G-NXPPCK0R5E');
           `}
         </Script>
 
