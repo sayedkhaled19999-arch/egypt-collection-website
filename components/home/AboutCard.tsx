@@ -62,9 +62,11 @@ export default function AboutCard() {
   };
 
   return (
-    <div className="relative bg-[#F4F4F4]">
-      <section ref={ref} className="py-16 mt-20 mb-20 flex justify-center">
-        <div className="bg-white rounded-3xl shadow-2xl p-10 md:p-14 max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
+    <div className="relative bg-[#F4F4F4] w-full">
+      {/* تم إزالة mt-20 و mb-20 وتقليل الـ py */}
+      <section ref={ref} className="py-8 md:py-12 flex justify-center px-4">
+        {/* تم تقليل الـ p داخل الكارد ليصبح متناسقاً */}
+        <div className="bg-white rounded-3xl shadow-xl p-8 md:p-12 max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center">
           
           {/* النص والكروت مع animation */}
           <motion.div initial="hidden" animate={controls} variants={innerVariants} className="flex flex-col items-start w-full">
