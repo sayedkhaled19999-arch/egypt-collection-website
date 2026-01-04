@@ -5,7 +5,6 @@ export async function POST(req: Request) {
   try {
     const { url } = await req.json();
 
-    // التعديل هنا: بنبعت البيانات جوه { } كـ Object واحد عشان الـ TypeScript ميزعلش
     const auth = new google.auth.JWT({
       email: process.env.GOOGLE_CLIENT_EMAIL,
       key: process.env.GOOGLE_PRIVATE_KEY?.replace(/\\n/g, '\n'),
@@ -21,9 +20,11 @@ export async function POST(req: Request) {
       },
     });
 
-    return NextResponse.json({ success: true, message: 'تم إرسال الرابط بنجاح!', data: result.data });
+    return NextResponse.json({ success: true, data: result.data });
   } catch (error: any) {
-    console.error('Indexing Error:', error);
-    return NextResponse.json({ success: false, error: error.message }, { status: 500 });
+    // هنا بنرجع الخطأ الحقيقي اللي جاي من جوجل
+    const errorMessage = error.response?.data?.error?.message || error.message;
+    console.error('Google Indexing Error:', errorMessage);
+    return NextResponse.json({ success: false, error: errorMessage }, { status: 500 });
   }
 }

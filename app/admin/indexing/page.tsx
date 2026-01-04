@@ -21,7 +21,7 @@ export default function IndexingPage() {
           body: JSON.stringify({ url: link }),
         });
         const data = await res.json();
-        setStatus(prev => [...prev, `${link}: ${data.success ? '✅ نجح' : '❌ فشل'}`]);
+        setStatus(prev => [...prev, `${link}: ${data.success ? '✅ نجح' : '❌ فشل: ' + data.error}`]);
       } catch (e) {
         setStatus(prev => [...prev, `${link}: ❌ خطأ اتصال`]);
       }
