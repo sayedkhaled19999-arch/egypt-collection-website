@@ -6,6 +6,7 @@ import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
+import Script from 'next/script';
 
 // إضافات Vercel
 import { Analytics } from "@vercel/analytics/react";
@@ -113,8 +114,27 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           <main className="flex-grow">{children}</main>
         </ClientWrapper>
         <Footer />
+        
+        {/* إضافات Vercel */}
         <Analytics />
         <SpeedInsights />
+
+        {/* 👇👇 إضافة Google Analytics الجديدة 👇👇 */}
+        <Script
+          src="https://www.googletagmanager.com/gtag/js?id=G-20VCCYNW0K"
+          strategy="afterInteractive"
+        />
+        <Script id="google-analytics" strategy="afterInteractive">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+
+            gtag('config', 'G-20VCCYNW0K');
+          `}
+        </Script>
+        {/* 👆👆 نهاية الإضافة 👆👆 */}
+
       </body>
     </html>
   );
