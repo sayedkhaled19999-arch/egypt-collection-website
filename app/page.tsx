@@ -45,70 +45,90 @@ export default function Home() {
   // 2. كود Schema.org المطور
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'ProfessionalService',
-    name: 'Egyptian Collections Co. (ECC)', // الاسم بالانجليزي والعربي
-    alternateName: 'الشركة المصرية للتحصيلات',
-    url: 'https://www.egyptcollections.com',
-    logo: 'https://www.egyptcollections.com/og-image.png',
-    image: 'https://www.egyptcollections.com/og-image.png',
-    description: 'شركة رائدة في مجال التحصيل الميداني والاستعلام الائتماني في جمهورية مصر العربية.',
-    
-    // 👇 عدلت العنوان هنا عشان يبقى زي الفوتر بالظبط (مهم جداً للـ Maps)
-    address: {
-      '@type': 'PostalAddress',
-      streetAddress: '30 شارع هارون، ميدان المساحة',
-      addressLocality: 'Dokki',
-      addressRegion: 'Giza',
-      postalCode: '12611',
-      addressCountry: 'EG'
-    },
-    // 👇 الإحداثيات دي تقريباً للدقي (ميدان المساحة)
-    geo: {
-      '@type': 'GeoCoordinates',
-      latitude: '30.0385', 
-      longitude: '31.2185'
-    },
-    telephone: '+201110600280',
-    priceRange: '$$', 
-    openingHoursSpecification: [
+    '@graph': [
+      // الجزء الأول: تعريف الموقع
       {
-        '@type': 'OpeningHoursSpecification',
-        dayOfWeek: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
-        opens: '09:00',
-        closes: '17:00'
-      }
-    ],
-    sameAs: [
-      'https://www.facebook.com/EgyptCollectionsCo',
-      // 'https://www.linkedin.com/company/ecc-collections' // لو اللينك مش شغال دلوقتي، خليه كومنت عشان جوجل ميزعلش
-    ],
-    hasOfferCatalog: {
-      '@type': 'OfferCatalog',
-      name: 'خدمات التحصيل والاستعلام',
-      itemListElement: [
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'التحصيل الميداني (Field Collection)'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'الاستعلام الائتماني (Credit Investigation)'
-          }
-        },
-        {
-          '@type': 'Offer',
-          itemOffered: {
-            '@type': 'Service',
-            name: 'التحقق من البيانات (Data Verification)'
-          }
+        '@type': 'WebSite',
+        '@id': 'https://www.egyptcollections.com/#website',
+        'url': 'https://www.egyptcollections.com',
+        'name': 'ECC Collections', 
+        'alternateName': 'المصرية للتحصيلات',
+        'description': 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني في مصر',
+        'potentialAction': {
+          '@type': 'SearchAction',
+          'target': 'https://www.egyptcollections.com/?s={search_term_string}',
+          'query-input': 'required name=search_term_string'
         }
-      ]
-    }
+      },
+      // الجزء الثاني: تعريف الشركة
+      {
+        '@type': 'ProfessionalService',
+        '@id': 'https://www.egyptcollections.com/#organization',
+        'name': 'Egyptian Collections Co. (ECC)', 
+        'alternateName': 'الشركة المصرية للتحصيلات',
+        'url': 'https://www.egyptcollections.com',
+        
+        // 👇 التعديل هنا: استخدمنا icon.png عشان تبقى أدق كـ لوجو
+        'logo': 'https://www.egyptcollections.com/icon.png',
+        
+        'image': 'https://www.egyptcollections.com/og-image.png', // الصورة التعريفية سيبها og-image عادي
+        'description': 'شركة رائدة في مجال التحصيل الميداني والاستعلام الائتماني في جمهورية مصر العربية.',
+        
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '30 شارع هارون، ميدان المساحة',
+          'addressLocality': 'Dokki',
+          'addressRegion': 'Giza',
+          'postalCode': '12611',
+          'addressCountry': 'EG'
+        },
+        'geo': {
+          '@type': 'GeoCoordinates',
+          'latitude': '30.0385', 
+          'longitude': '31.2185'
+        },
+        'telephone': '+201110600280',
+        'priceRange': '$$', 
+        'openingHoursSpecification': [
+          {
+            '@type': 'OpeningHoursSpecification',
+            'dayOfWeek': ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday'],
+            'opens': '09:00',
+            'closes': '17:00'
+          }
+        ],
+        'sameAs': [
+          'https://www.facebook.com/EgyptCollectionsCo',
+        ],
+        'hasOfferCatalog': {
+          '@type': 'OfferCatalog',
+          'name': 'خدمات التحصيل والاستعلام',
+          'itemListElement': [
+            {
+              '@type': 'Offer',
+              'itemOffered': {
+                '@type': 'Service',
+                'name': 'التحصيل الميداني (Field Collection)'
+              }
+            },
+            {
+              '@type': 'Offer',
+              'itemOffered': {
+                '@type': 'Service',
+                'name': 'الاستعلام الائتماني (Credit Investigation)'
+              }
+            },
+            {
+              '@type': 'Offer',
+              'itemOffered': {
+                '@type': 'Service',
+                'name': 'التحقق من البيانات (Data Verification)'
+              }
+            }
+          ]
+        }
+      }
+    ]
   };
 
   return (
