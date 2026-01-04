@@ -17,29 +17,30 @@ interface Slide {
 
 const slides: Slide[] = [
   {
-    title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections',
-    description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.',
+    // ✅ تحسين العنوان ليكون H1 قوي غني بالكلمات المفتاحية
+    title: 'المصرية للتحصيلات (ECC) | ريادة خدمات التحصيل الميداني والاستعلام',
+    description: 'شريكك الاستراتيجي في مصر لخدمات التحصيل، الاستعلام الائتماني، وتحديث البيانات بدقة واحترافية.',
     bgImage: '/hero/Slide1.avif',
     link: '/about',
     linkText: 'اعرف أكثر عننا',
   },
   {
-    title: 'شركائنا',
-    description: 'نتعاون مع شركاء موثوقين لضمان أعلى جودة في خدماتنا.',
+    title: 'شركاء النجاح في ECC Collections',
+    description: 'نتعاون مع أكبر البنوك والشركات لضمان أعلى جودة في تنفيذ الخدمات الميدانية.',
     bgImage: '/hero/Slide2.avif',
     link: '/partners',
     linkText: 'اعرف أكثر عن شركائنا',
   },
   {
-    title: 'الوظائف المتاحة',
-    description: 'لو عايز تنضم لفريقنا، شوف الفرص المتاحة وابدأ مشوارك معانا.',
+    title: 'انضم لفريق العمل بالشركة المصرية للتحصيلات',
+    description: 'نبحث عن المبدعين دائمًا. اطلع على الوظائف المتاحة وابدأ مشوارك المهني معنا.',
     bgImage: '/hero/Slide3.avif',
     link: '/jobs',
     linkText: 'شوف الوظائف المتاحة',
   },
   {
-    title: 'تواصل معنا',
-    description: 'لو عندك أي استفسار أو ملاحظات، احنا دايمًا في خدمتك.',
+    title: 'تواصل مباشرة مع خدمة عملاء ECC',
+    description: 'فريقنا متاح للرد على استفساراتكم وتقديم الحلول المتكاملة لخدمات التحصيل.',
     bgImage: '/hero/Slide4.avif',
     link: '/contact',
     linkText: 'تواصل معنا',
@@ -82,12 +83,11 @@ export default function HeroCarousel() {
         src={slides[current].bgImage}
         alt={slides[current].title}
         fill
-        // 👇 أهم سطر لجوجل: بيحدد حجم الصورة بدقة لكل شاشة
         sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 100vw"
-        priority={current === 0} // تحميل فوري لأول صورة
-        quality={80} // جودة ممتازة مع حجم خفيف
+        priority={current === 0} 
+        quality={80} 
         className="object-cover"
-        // 👇 بيجبر المتصفح يحمل الصورة دي قبل أي حاجة تانية
+        // إجبار المتصفح على تحميل أول صورة بأولوية قصوى
         fetchPriority={current === 0 ? "high" : "auto"}
       />
       
@@ -95,12 +95,15 @@ export default function HeroCarousel() {
       <div className="absolute inset-0 bg-gradient-to-b from-black/60 via-black/50 to-transparent" />
 
       {/* 🟢 Content Logic */}
-      {/* أول سلايد بيظهر HTML عادي عشان جوجل يقرأه بسرعة بدون أنيميشن في البداية */}
+      {/* 
+          هنا الـ SEO الحقيقي: 
+          أول سلايد بيظهر H1 في الـ Source Code فوراً عشان جوجل يشفشف الموقع صح.
+      */}
       {current === 0 ? (
         <div className="absolute inset-0 flex items-center justify-center px-4">
           <div className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-xl text-center">
-            {/* H1 مهم جداً للـ SEO في الصفحة الرئيسية */}
-            <h1 className="text-2xl md:text-4xl font-bold text-white mb-3">
+            {/* 👑 الـ H1 الوحيد في الصفحة موجود هنا الآن */}
+            <h1 className="text-2xl md:text-4xl font-bold text-white mb-3 leading-tight">
               {slides[0].title}
             </h1>
             <p className="text-md md:text-lg text-white mb-4">
@@ -115,7 +118,6 @@ export default function HeroCarousel() {
           </div>
         </div>
       ) : (
-        // باقي السلايدات بتظهر بـ Animation عادي
         <AnimatePresence mode="wait">
           <motion.div
             key={current}
@@ -132,7 +134,8 @@ export default function HeroCarousel() {
               transition={{ duration: 0.5 }}
               className="relative z-10 bg-black/30 p-6 md:p-8 rounded-xl max-w-xl text-center"
             >
-              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3">
+              {/* السلايدات التالية تستخدم h2 لعدم تكرار الـ H1 */}
+              <h2 className="text-2xl md:text-4xl font-bold text-white mb-3 leading-tight">
                 {slides[current].title}
               </h2>
               <p className="text-md md:text-lg text-white mb-4">
@@ -153,7 +156,7 @@ export default function HeroCarousel() {
       <button
         onClick={prevSlide}
         aria-label="السابق"
-        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg transition-colors"
+        className="hidden md:flex absolute left-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg transition-colors z-20"
       >
         <ChevronLeft className="w-6 h-6 text-black" />
       </button>
@@ -161,7 +164,7 @@ export default function HeroCarousel() {
       <button
         onClick={nextSlide}
         aria-label="التالي"
-        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg transition-colors"
+        className="hidden md:flex absolute right-4 top-1/2 -translate-y-1/2 bg-white/60 hover:bg-white rounded-full p-3 shadow-lg transition-colors z-20"
       >
         <ChevronRight className="w-6 h-6 text-black" />
       </button>

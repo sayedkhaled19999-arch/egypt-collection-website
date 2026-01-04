@@ -29,8 +29,9 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
-    default: 'المصرية للتحصيلات – ECC Collections | خدمات التحصيل الميداني والاستعلام',
-    template: '%s | ECC Collections - المصرية للتحصيلات' 
+    // تم تعديل العنوان الافتراضي ليكون متوافقاً مع الطول المطلوب
+    default: 'المصرية للتحصيلات (ECC) | خدمات التحصيل والاستعلام الميداني',
+    template: '%s | ECC Collections' 
   },
   
   description: 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني، الاستعلام الائتماني، والتحقق من البيانات للبنوك والشركات في مصر منذ 2001. تغطية شاملة لجميع المحافظات.',
@@ -54,7 +55,6 @@ export const metadata: Metadata = {
     },
   },
 
-  // 👇 اتأكد إن الكود ده هو نفس الكود اللي نسخته من خانة HTML Tag في جوجل كونسول
   verification: {
     google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
   },
@@ -68,7 +68,8 @@ export const metadata: Metadata = {
   ],
   
   alternates: {
-    canonical: '/',
+    // تم تعديل الرابط ليكون الرابط الكامل بدلاً من "/" لضمان أفضل توافق
+    canonical: 'https://egyptcollections.com',
   },
 
   openGraph: {
@@ -105,14 +106,12 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({ children }: { children: React.ReactNode }) {
-  // رقم الـ GTM بتاعك الجديد
   const GTM_ID = 'GTM-WQLQH658';
 
   return (
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className} ${tajawal.variable} flex flex-col min-h-screen bg-gray-50`}>
         
-        {/* 👇 1. الجزء بتاع الـ (NoScript) - ده لازم يكون أول حاجة جوه البودي */}
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -131,7 +130,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
         <Analytics />
         <SpeedInsights />
 
-        {/* 👇 كود Google Analytics (القديم بتاعنا شغال زي الفل) */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NXPPCK0R5E"
           strategy="afterInteractive"
@@ -146,7 +144,6 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           `}
         </Script>
 
-        {/* 👇 2. كود GTM (الجزء الخاص بالسكريبت) - ده اللي بيشغل الدنيا */}
         <Script id="google-tag-manager" strategy="afterInteractive">
           {`
             (function(w,d,s,l,i){w[l]=w[l]||[];w[l].push({'gtm.start':
