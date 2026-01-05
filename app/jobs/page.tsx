@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     locale: 'ar_EG',
     type: 'website',
     images: [{
-        url: '/og-image.png', // الصورة هتظهر مظبوطة عشان الدومين في الـ Layout
+        url: 'https://egyptcollections.com/og-image.png', // الصورة هتظهر مظبوطة عشان الدومين في الـ Layout
         width: 1200,
         height: 630,
         alt: 'وظائف المصرية للتحصيلات - انضم لفريقنا'

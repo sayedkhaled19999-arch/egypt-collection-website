@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     type: 'website',
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://egyptcollections.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ECC Collections - المصرية للتحصيلات',

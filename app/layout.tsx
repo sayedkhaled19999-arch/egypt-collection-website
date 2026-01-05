@@ -77,7 +77,7 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections - المصرية للتحصيلات', // السطر الأهم لتغيير اسم الموقع في جوجل
     images: [
       {
-        url: '/og-image.png',
+        url: 'https://egyptcollections.com/og-image.png',
         width: 1200,
         height: 630,
         alt: 'ECC Collections - المصرية للتحصيلات'
