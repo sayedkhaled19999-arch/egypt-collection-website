@@ -32,21 +32,12 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections - المصرية للتحصيلات', // موحد مع الصفحة الرئيسية
     locale: 'ar_EG',
     type: 'website',
-    images: [
-      {
-        url: 'https://egyptcollections.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'شركاء النجاح - ECC Collections',
-      },
-    ],
   },
   
   twitter: {
     card: 'summary_large_image',
     title: 'شركاء النجاح | ECC Collections - المصرية للتحصيلات',
     description: 'تعرف على البنوك والمؤسسات التي تثق في خدماتنا الميدانية في مصر.',
-    images: ['/og-image.png'],
   },
   
   robots: {

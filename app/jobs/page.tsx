@@ -2,12 +2,11 @@ import { Metadata } from "next";
 import JobsClient from "./JobsClient";
 
 export const metadata: Metadata = {
-  // مش محتاجين metadataBase هنا لأننا حطيناه خلاص في layout.tsx (الرئيسي)
+  // MetadataBase موجود في layout.tsx
   
   title: 'وظائف خالية | انضم لفريق المصرية للتحصيلات (ECC) - مرتبات وعمولات',
   description: 'عايز شغل بجد ومستقبل مضمون؟ المصرية للتحصيلات ECC تفتح باب التعيين. مطلوب محصلين (ميداني/مكتبي) ومدخلين بيانات. مرتبات مجزية + عمولات يومية + تأمينات. بدون أي رسوم للتقديم.',
   keywords: [
-    // كلمات الشباب بيبحثوا بيها
     'وظائف خالية', 'شغل في الجيزة', 'فرص عمل للشباب', 'وظائف مصر',
     'مطلوب محصلين', 'مندوب تحصيل ميداني', 'شغل كول سنتر', 'مدخل بيانات',
     'وظائف بدون رسوم', 'شغل بمرتب ثابت', 'عمولات مجزية',
@@ -23,40 +22,33 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
-    images: [{
-        url: 'https://egyptcollections.com/og-image.png', // الصورة هتظهر مظبوطة عشان الدومين في الـ Layout
-        width: 1200,
-        height: 630,
-        alt: 'وظائف المصرية للتحصيلات - انضم لفريقنا'
-    }]
+    // ❌ تم حذف الصور من هنا عشان Next.js يستخدم opengraph-image.png أوتوماتيك
   },
   twitter: {
     card: 'summary_large_image',
     title: 'وظائف المصرية للتحصيلات | انضم لفريق المحترفين',
     description: 'فرص عمل حقيقية: محصلين، مدخل بيانات. بدون رسوم + تدريب مدفوع الأجر.',
-    images: ['/og-image.png'],
-    creator: '@ECCCollections' // لو مفيش تويتر ممكن تشيل السطر ده
+    creator: '@ECCCollections'
   },
 };
 
 export default function Page() {
-  // كود Schema عشان جوجل يفهم إن دي صفحة "توظيف"
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage', // صفحة تجميع وظائف
+    '@type': 'CollectionPage',
     name: 'وظائف شركة ECC للتحصيلات',
     description: 'قائمة الوظائف المتاحة في الشركة المصرية للتحصيلات. نوفر بيئة عمل احترافية، تدريب، وتدرج وظيفي.',
     url: 'https://egyptcollections.com/jobs',
     provider: {
       '@type': 'Organization',
       name: 'ECC Collections',
-      logo: 'https://egyptcollections.com/og-image.png',
+      // 👇 تم التعديل: اللوجو هو الأيقونة
+      logo: 'https://egyptcollections.com/icon.png',
       sameAs: [
         "https://www.facebook.com/EgyptCollectionsCo",
         "https://www.linkedin.com/company/ecc-collections"
       ]
     },
-    // بنوضح لجوجل أهم المميزات اللي بتجذب الموظف
     about: {
       '@type': 'Thing',
       name: 'مميزات العمل',
@@ -66,7 +58,6 @@ export default function Page() {
 
   return (
     <>
-      {/* حقن كود الـ Schema */}
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

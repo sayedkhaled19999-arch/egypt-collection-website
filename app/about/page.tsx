@@ -22,14 +22,6 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections - المصرية للتحصيلات', // موحد مع الصفحة الرئيسية
     locale: 'ar_EG',
     type: 'website',
-    images: [
-      {
-        url: 'https://egyptcollections.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'ECC Collections - المصرية للتحصيلات',
-      },
-    ],
   },
 };
 

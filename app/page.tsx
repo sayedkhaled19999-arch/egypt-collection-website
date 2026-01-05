@@ -23,20 +23,12 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections - المصرية للتحصيلات',
     locale: 'ar_EG',
     type: 'website',
-    images: [
-      {
-        url: 'https://egyptcollections.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'ECC Collections - المصرية للتحصيلات',
-      },
-    ],
+
   },
   twitter: {
     card: 'summary_large_image',
     title: 'ECC Collections | المصرية للتحصيلات',
     description: 'خدمات التحصيل الميداني والتحقق من البيانات بأعلى معايير الجودة في مصر منذ 2001.',
-    images: ['/og-image.png'],
   },
 };
 

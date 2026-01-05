@@ -60,15 +60,6 @@ export const generateMetadata = ({ params }: Props): Metadata => {
       siteName: "ECC Collections",
       locale: "ar_EG",
       type: "website",
-      images: [
-        { 
-            // تأكد إن الصورة دي موجودة في فولدر public
-            url: 'https://egyptcollections.com/og-image.png', 
-            width: 1200, 
-            height: 630, 
-            alt: job.title 
-        }
-      ]
     },
     // الرابط الأصلي لجوجل
     alternates: { 
