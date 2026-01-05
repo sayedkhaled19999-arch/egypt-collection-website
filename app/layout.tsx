@@ -7,6 +7,8 @@ import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
 import ClientWrapper from '@/components/ClientWrapper';
 import Script from 'next/script';
+
+// إضافات Vercel
 import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -24,10 +26,10 @@ export const viewport = {
 };
 
 export const metadata: Metadata = {
-  // ده مهم جداً عشان Next.js يعرف يركب رابط الصورة الأوتوماتيك صح
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
+    // تم وضع البراند أولاً للفصل التام عن المنافسين وتعزيز قوة الاسم
     default: 'ECC Collections | المصرية للتحصيلات - خدمات التحصيل والاستعلام الميداني',
     template: '%s | ECC Collections' 
   },
@@ -72,18 +74,25 @@ export const metadata: Metadata = {
     title: 'ECC Collections | المصرية للتحصيلات - ريادة في التحصيل الميداني',
     description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً منذ 2001.',
     url: 'https://egyptcollections.com', 
-    siteName: 'ECC Collections - المصرية للتحصيلات', 
+    siteName: 'ECC Collections - المصرية للتحصيلات', // السطر الأهم لتغيير اسم الموقع في جوجل
+    images: [
+      {
+        url: 'https://egyptcollections.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'ECC Collections - المصرية للتحصيلات'
+      }
+    ],
     locale: 'ar_EG',
     type: 'website'
-    // ⚠️ تم حذف الصور من هنا عشان الملف السحري يشتغل
   },
   
   twitter: {
     card: 'summary_large_image',
     title: 'ECC Collections | المصرية للتحصيلات',
     description: 'خدمات تحصيل ميداني واستعلام ائتماني احترافية تغطي كافة أنحاء مصر.',
+    images: ['/og-image.png'],
     creator: '@ECC_Collections'
-    // ⚠️ تم حذف الصور من هنا برضه
   },
   
   icons: {
@@ -100,6 +109,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
   return (
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className} ${tajawal.variable} flex flex-col min-h-screen bg-gray-50`}>
+        
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -140,6 +150,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             })(window,document,'script','dataLayer','${GTM_ID}');
           `}
         </Script>
+
       </body>
     </html>
   );

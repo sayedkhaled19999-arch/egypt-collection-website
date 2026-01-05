@@ -33,6 +33,14 @@ export const metadata: Metadata = {
     siteName: 'ECC Collections',
     locale: 'ar_EG',
     type: 'website',
+    images: [
+      {
+        url: 'https://egyptcollections.com/og-image.png',
+        width: 1200,
+        height: 630,
+        alt: 'سياسة الخصوصية - المصرية للتحصيلات',
+      },
+    ],
   },
   // 👇 دي مهمة عشان نمنع جوجل يأرشف نسخ غلط من الصفحة
   robots: {
