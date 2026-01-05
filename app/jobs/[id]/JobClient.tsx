@@ -5,7 +5,7 @@ import { useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { Home, MapPin, Laptop, Briefcase, CheckCircle, X, FileText, User, Phone } from 'lucide-react';
 
-// تعريف البيانات (زي ما هي ماتقلقش)
+// تعريف البيانات الكاملة (للعرض داخل الصفحة)
 interface Job {
   id: string;
   title: string;
@@ -137,7 +137,7 @@ const jobs: Job[] = [
 export default function JobClient({ id }: { id: string }) {
   const router = useRouter();
   const [modalOpen, setModalOpen] = useState(false);
-  const [isSubmitting, setIsSubmitting] = useState(false); // حالة التحميل الجديدة
+  const [isSubmitting, setIsSubmitting] = useState(false);
   
   const [formData, setFormData] = useState({
     fullName: '',
@@ -163,10 +163,9 @@ export default function JobClient({ id }: { id: string }) {
     }
   };
 
-  // دالة الإرسال الجديدة المربوطة بالسيرفر
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setIsSubmitting(true); // بدء التحميل
+    setIsSubmitting(true);
 
     try {
       const data = new FormData();
@@ -181,7 +180,6 @@ export default function JobClient({ id }: { id: string }) {
         data.append('cv', formData.cv);
       }
 
-      // الاتصال بالـ API اللي عملناه
       const response = await fetch('/api/send-email', {
         method: 'POST',
         body: data,
@@ -192,7 +190,6 @@ export default function JobClient({ id }: { id: string }) {
       if (result.success) {
         alert('تم إرسال بياناتك بنجاح! بالتوفيق يا بطل 🚀');
         setModalOpen(false);
-        // إعادة تعيين الفورم
         setFormData({
           fullName: '', phone: '', address: '', job: '', 
           experience: 'no', previousCompanies: '', cv: null
@@ -205,28 +202,13 @@ export default function JobClient({ id }: { id: string }) {
       console.error('Error:', error);
       alert('حدث خطأ غير متوقع، تأكد من اتصال الإنترنت.');
     } finally {
-      setIsSubmitting(false); // انتهاء التحميل
+      setIsSubmitting(false);
     }
-  };
-
-  // Structured Data (JSON-LD)
-  const jsonLd = {
-    "@context": "https://schema.org/",
-    "@type": "JobPosting",
-    "title": job.title,
-    "description": job.description,
-    "identifier": { "@type": "PropertyValue", "name": "ECC Collections", "value": job.id },
-    "hiringOrganization": { "@type": "Organization", "name": "المصرية للتحصيلات – ECC Collections", "sameAs": "https://egyptcollections.com", "logo": "https://egyptcollections.com/favicon.ico" },
-    "jobLocation": { "@type": "Place", "address": { "@type": "PostalAddress", "streetAddress": job.location, "addressLocality": job.location, "addressCountry": "EG" } },
-    "employmentType": job.type === "دوام كامل" ? "FULL_TIME" : "PART_TIME",
-    "datePosted": new Date().toISOString(),
-    "validThrough": new Date(new Date().setMonth(new Date().getMonth() + 1)).toISOString()
   };
 
   return (
     <div className="min-h-screen bg-gray-100" dir="rtl">
-      {/* JSON-LD Script */}
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      {/* تم إزالة سكربت JSON-LD من هنا لأنه موجود في صفحة السيرفر */}
 
       {/* Header */}
       <div className="bg-gray-100 py-12 text-center">
@@ -237,6 +219,7 @@ export default function JobClient({ id }: { id: string }) {
       {/* Job Card */}
       <section className="container mx-auto px-4 py-8">
         <motion.div initial={{ opacity: 0, y: 20 }} animate={{ opacity: 1, y: 0 }} transition={{ duration: 0.6 }} className="bg-white rounded-3xl shadow-2xl p-8 md:p-10 space-y-6 hover:scale-105 transition-transform duration-300">
+          
           {/* Title */}
           <div className="flex items-center gap-3 mb-6 border-l-4 border-blue-500 pl-4">
             {getIcon()}
@@ -299,10 +282,9 @@ export default function JobClient({ id }: { id: string }) {
               {formData.experience==='yes' && <input type="text" placeholder="الشركات اللي اشتغلت فيها قبل كدا (اختياري)" className="w-full p-3 border rounded-xl" value={formData.previousCompanies} onChange={e=>setFormData({...formData, previousCompanies: e.target.value})} />}
               <div className="flex items-center gap-2"><FileText className="w-5 h-5 text-gray-500"/> <input type="file" accept=".pdf,.doc,.docx" onChange={e=>setFormData({...formData, cv: e.target.files?.[0] || null})} className="w-full"/> <span className="text-gray-500 text-sm">ارسال السيرة الذاتية إن وجدت</span></div>
               
-              {/* زر الإرسال المحدث */}
               <button 
                 type="submit" 
-                disabled={isSubmitting} // تعطيل الزر أثناء الإرسال
+                disabled={isSubmitting} 
                 className="w-full bg-blue-600 text-white py-3 rounded-xl font-bold hover:bg-blue-700 transition-colors duration-300 disabled:bg-gray-400 disabled:cursor-not-allowed"
               >
                 {isSubmitting ? 'جاري الإرسال...' : 'إرسال'}
