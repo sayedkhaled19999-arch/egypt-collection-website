@@ -32,45 +32,42 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
+  // 👇 الكود المصحح بالكامل عشان يشيل الأخطاء
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "ProfessionalService", // 👈 غيرتها لـ ProfessionalService عشان تظهر أسرع في الخدمات المحلية
-    "mainEntity": {
-      "@type": "Organization",
-      "name": "المصرية للتحصيلات – ECC Collections",
-      "url": "https://egyptcollections.com",
-      "logo": "https://egyptcollections.com/og-image.png",
-      "contactPoint": {
-        "@type": "ContactPoint",
-        "telephone": "+201110600280",
-        "contactType": "customer service",
-        "email": "Info@egyptcollections.com",
-        "areaServed": "EG",
-        "availableLanguage": ["Arabic", "English"]
-      },
-      "address": {
-        "@type": "PostalAddress",
-        "streetAddress": "30 شارع هارون، ميدان المساحة، الدقي",
-        "addressLocality": "Dokki",
-        "addressRegion": "Giza",
-        "postalCode": "12611", // ده الرمز البريدي للدقي (أدق)
-        "addressCountry": "EG"
-      },
-      // 👇 دي إحداثيات ميدان المساحة/شارع هارون بالظبط
-      "geo": {
-        "@type": "GeoCoordinates",
-        "latitude": "30.0358", 
-        "longitude": "31.2166" 
-      },
-      "openingHoursSpecification": [
-        {
-          "@type": "OpeningHoursSpecification",
-          "dayOfWeek": ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
-          "opens": "08:30",
-          "closes": "18:30" // 👈 كده بقت 6:30 مساءً صح
-        }
-      ],
-      "hasMap": "https://maps.app.goo.gl/CcmDDN7XqEvbE5Rj6"
+    "@type": "FinancialService", // النوع الأنسب لنشاط التحصيل
+    "@id": "https://egyptcollections.com", // ربط بالدومين عشان منع التكرار
+    "name": "المصرية للتحصيلات – ECC Collections",
+    "image": "https://egyptcollections.com/og-image.png", // ✅ ضروري جداً لحل الخطأ
+    "url": "https://egyptcollections.com/contact",
+    "telephone": "+201110600280",
+    "priceRange": "$$", // ✅ ضروري جداً (شرط إجباري من جوجل للأماكن)
+    "email": "Info@egyptcollections.com",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "30 شارع هارون، ميدان المساحة",
+      "addressLocality": "Dokki",
+      "addressRegion": "Giza",
+      "postalCode": "12611",
+      "addressCountry": "EG"
+    },
+    "geo": {
+      "@type": "GeoCoordinates",
+      "latitude": 30.0358,
+      "longitude": 31.2166
+    },
+    "openingHoursSpecification": [
+      {
+        "@type": "OpeningHoursSpecification",
+        "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+        "opens": "08:30",
+        "closes": "18:30"
+      }
+    ],
+    "hasMap": "https://maps.app.goo.gl/CcmDDN7XqEvbE5Rj6",
+    "areaServed": {
+        "@type": "Country",
+        "name": "Egypt"
     }
   };
 

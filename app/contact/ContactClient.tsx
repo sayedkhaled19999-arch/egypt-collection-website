@@ -45,7 +45,7 @@ export default function ContactClient() {
       data.append('address', formData.address);
       data.append('message', formData.message);
       
-      // إرسال للـ API (نفس الـ API اللي عملناه للوظائف هنستخدمه هنا بذكاء)
+      // إرسال للـ API
       const response = await fetch('/api/send-email', {
         method: 'POST',
         body: data,
