@@ -6,7 +6,11 @@ const LINKS = [
   'https://egyptcollections.com/about',
   'https://egyptcollections.com/partners',
   'https://egyptcollections.com/contact',
-  'https://egyptcollections.com/jobs'
+  'https://egyptcollections.com/jobs',
+  'https://egyptcollections.com/jobs/office-collector',
+  'https://egyptcollections.com/jobs/field-collector',
+  'https://egyptcollections.com/jobs/field-investigator',
+  'https://egyptcollections.com/jobs/data-entry'
 ];
 
 export default function IndexingPage() {
@@ -35,7 +39,7 @@ export default function IndexingPage() {
         onClick={startIndexing}
         className="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700"
       >
-        أرشفة أهم 5 صفحات الآن 🚀
+        أرشفة 9 صفحات الآن 🚀
       </button>
       <div className="mt-10 space-y-2">
         {status.map((s, i) => <p key={i} className="text-sm border-b pb-1">{s}</p>)}
