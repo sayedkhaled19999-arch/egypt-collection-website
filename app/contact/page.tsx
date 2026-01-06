@@ -29,20 +29,36 @@ export const metadata: Metadata = {
       },
     ],
   },
+  twitter: {
+    card: 'summary_large_image',
+    title: 'تواصل معنا | ECC Collections',
+    description: 'كلمنا فوراً أو زور مقرنا بالدقي. فريق خدمة العملاء جاهز للرد.',
+    images: ['https://egyptcollections.com/og-image.png'],
+  },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  }
 };
 
 export default function Page() {
-  // 👇 الكود المصحح بالكامل عشان يشيل الأخطاء
   const jsonLd = {
     "@context": "https://schema.org",
-    "@type": "FinancialService", // النوع الأنسب لنشاط التحصيل
-    "@id": "https://egyptcollections.com", // ربط بالدومين عشان منع التكرار
+    "@type": "FinancialService",
+    "@id": "https://egyptcollections.com",
     "name": "المصرية للتحصيلات – ECC Collections",
-    "image": "https://egyptcollections.com/og-image.png", // ✅ ضروري جداً لحل الخطأ
+    "image": "https://egyptcollections.com/og-image.png",
     "url": "https://egyptcollections.com/contact",
     "telephone": "+201110600280",
-    "priceRange": "$$", // ✅ ضروري جداً (شرط إجباري من جوجل للأماكن)
     "email": "Info@egyptcollections.com",
+    "priceRange": "$$",
     "address": {
       "@type": "PostalAddress",
       "streetAddress": "30 شارع هارون، ميدان المساحة",
@@ -59,24 +75,21 @@ export default function Page() {
     "openingHoursSpecification": [
       {
         "@type": "OpeningHoursSpecification",
-        "dayOfWeek": ["Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"],
+        "dayOfWeek": ["Saturday","Sunday","Monday","Tuesday","Wednesday","Thursday"],
         "opens": "08:30",
         "closes": "18:30"
       }
     ],
     "hasMap": "https://maps.app.goo.gl/CcmDDN7XqEvbE5Rj6",
     "areaServed": {
-        "@type": "Country",
-        "name": "Egypt"
+      "@type": "Country",
+      "name": "Egypt"
     }
   };
 
   return (
     <>
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
-      />
+      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
       <ContactClient />
     </>
   );

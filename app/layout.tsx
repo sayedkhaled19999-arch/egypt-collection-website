@@ -66,10 +66,6 @@ export const metadata: Metadata = {
     'تحصيل في القاهرة', 'خدمات تحصيل في الجيزة', 'تغطية جميع محافظات مصر'
   ],
   
-  alternates: {
-    canonical: 'https://egyptcollections.com',
-  },
-
   openGraph: {
     title: 'ECC Collections | المصرية للتحصيلات - ريادة في التحصيل الميداني',
     description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً منذ 2001.',
