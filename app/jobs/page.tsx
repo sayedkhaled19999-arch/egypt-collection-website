@@ -2,7 +2,10 @@ import { Metadata } from "next";
 import JobsClient from "./JobsClient";
 
 export const metadata: Metadata = {
-  title: 'وظائف خالية | انضم لفريق المصرية للتحصيلات (ECC) - مرتبات وعمولات',
+  title: {
+    // الترتيب الموحد: اسم الصفحة | البراند
+    absolute: 'وظائف خالية | المصرية للتحصيلات - ECC Collections',
+  },
   description: 'عايز شغل بجد ومستقبل مضمون؟ المصرية للتحصيلات ECC تفتح باب التعيين. مطلوب محصلين (ميداني/مكتبي) ومدخلين بيانات. مرتبات مجزية + عمولات يومية + تأمينات. بدون أي رسوم للتقديم.',
   keywords: [
     'وظائف خالية', 'شغل في الجيزة', 'فرص عمل للشباب', 'وظائف مصر',
@@ -10,12 +13,16 @@ export const metadata: Metadata = {
     'وظائف بدون رسوم', 'شغل بمرتب ثابت', 'عمولات مجزية',
     'ECC Collections', 'المصرية للتحصيلات', 'التوظيف'
   ],
-  alternates: { canonical: '/jobs' },
+  alternates: { 
+    // تصحيح الرابط ليكون كاملاً
+    canonical: 'https://egyptcollections.com/jobs' 
+  },
   openGraph: {
     title: 'فرصة شغل في المصرية للتحصيلات | ECC Collections',
     description: 'مطلوب رجالة تسد في الشغل! مرتبات ثابتة وعمولات وتأمين اجتماعي. التعيين فوري وبدون أي مصاريف إدارية. قدم دلوقتي.',
     url: 'https://egyptcollections.com/jobs',
-    siteName: 'ECC Collections',
+    // الاسم الموحد بالعربي الأول
+    siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
     images: [{
@@ -30,31 +37,119 @@ export const metadata: Metadata = {
     title: 'وظائف المصرية للتحصيلات | انضم لفريق المحترفين',
     description: 'فرص عمل حقيقية: محصلين، مدخل بيانات. بدون رسوم + تدريب مدفوع الأجر.',
     images: ['https://egyptcollections.com/og-image.png'],
-    creator: '@ECCCollections'
+    creator: '@ECCCollections' // تأكد إن ده حساب تويتر الفعلي
   },
+  robots: {
+    index: true,
+    follow: true,
+    googleBot: {
+      index: true,
+      follow: true,
+      'max-video-preview': -1,
+      'max-image-preview': 'large',
+      'max-snippet': -1
+    }
+  }
 };
 
 export default function Page() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'CollectionPage',
-    name: 'وظائف شركة ECC للتحصيلات',
-    description: 'قائمة الوظائف المتاحة في الشركة المصرية للتحصيلات. نوفر بيئة عمل احترافية، تدريب، وتدرج وظيفي.',
-    url: 'https://egyptcollections.com/jobs',
-    provider: {
-      '@type': 'Organization',
-      name: 'ECC Collections',
-      logo: 'https://egyptcollections.com/og-image.png',
-      sameAs: [
-        "https://www.facebook.com/EgyptCollectionsCo",
-        "https://www.linkedin.com/company/ecc-collections"
-      ]
-    },
-    about: {
-      '@type': 'Thing',
-      name: 'مميزات العمل',
-      description: 'رواتب مجزية، عمولات شهرية، تأمينات اجتماعية، تدريب مدفوع الأجر، فرص ترقية.'
-    }
+    '@graph': [
+      // 1. تعريف الصفحة (CollectionPage - عشان دي قائمة وظائف)
+      {
+        '@type': 'CollectionPage',
+        '@id': 'https://egyptcollections.com/jobs/#webpage',
+        'url': 'https://egyptcollections.com/jobs',
+        'name': 'وظائف خالية | المصرية للتحصيلات - ECC Collections',
+        'description': 'فرص عمل متاحة في مجال التحصيل والاستعلام. انضم لفريق ECC.',
+        'isPartOf': {
+          '@id': 'https://egyptcollections.com/#website'
+        },
+        'about': {
+          '@id': 'https://egyptcollections.com/#organization'
+        },
+        'breadcrumb': {
+          '@id': 'https://egyptcollections.com/jobs/#breadcrumb'
+        }
+      },
+      // 2. فتات الخبز (Breadcrumbs)
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://egyptcollections.com/jobs/#breadcrumb',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'الرئيسية',
+            'item': 'https://egyptcollections.com/'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'وظائف خالية',
+            'item': 'https://egyptcollections.com/jobs'
+          }
+        ]
+      },
+      // 3. بيانات الشركة الموحدة (FinancialService)
+      // عشان الباحث عن عمل يعرف مكان الشركة وتليفونها من البحث مباشرة
+      {
+        '@type': 'FinancialService',
+        '@id': 'https://egyptcollections.com/#organization',
+        'name': 'المصرية للتحصيلات ECC',
+        'url': 'https://egyptcollections.com/',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://egyptcollections.com/icon.png',
+          'width': 512,
+          'height': 512
+        },
+        'image': 'https://egyptcollections.com/og-image.png',
+        'foundingDate': '2001',
+        'priceRange': '$$',
+        'telephone': '+201110600280',
+        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني وتوفر فرص عمل متميزة للشباب.',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '30 شارع هارون، ميدان المساحة',
+          'addressLocality': 'الدقي',
+          'addressRegion': 'الجيزة',
+          'postalCode': '12611',
+          'addressCountry': 'EG'
+        },
+        'openingHoursSpecification': [
+          {
+            '@type': 'OpeningHoursSpecification',
+            'dayOfWeek': [
+              "Saturday",
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday"
+            ],
+            'opens': '08:30',
+            'closes': '18:30'
+          }
+        ],
+        'contactPoint': {
+          '@type': 'ContactPoint',
+          'telephone': '+201110600280',
+          'contactType': 'customer service',
+          'areaServed': 'EG',
+          'availableLanguage': ['Arabic', 'English']
+        },
+        'geo': {
+          '@type': 'GeoCoordinates',
+          'latitude': 30.0385,
+          'longitude': 31.2185
+        },
+        'sameAs': [
+          'https://www.facebook.com/EgyptCollectionsCo'
+        ]
+      }
+    ]
   };
 
   return (

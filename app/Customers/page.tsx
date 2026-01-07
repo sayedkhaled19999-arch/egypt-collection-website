@@ -28,7 +28,7 @@ export const metadata: Metadata = {
     description: 'قائمة شركاء النجاح من أكبر البنوك والمؤسسات المالية التي تثق في خدماتنا الميدانية منذ 2001.',
     url: 'https://egyptcollections.com/Customers',
     // 3. اسم الموقع الموحد
-    siteName: 'المصرية للتحصيلات - ECC Collections',
+    siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
     images: [

@@ -2,7 +2,10 @@ import { Metadata } from 'next';
 import PrivacyClient from './PrivacyClient';
 
 export const metadata: Metadata = {
-  title: 'سياسة الخصوصية وحماية بيانات العملاء | ECC Collections',
+  title: {
+    // الترتيب الموحد: اسم الصفحة | البراند
+    absolute: 'سياسة الخصوصية | المصرية للتحصيلات - ECC Collections',
+  },
   description: 'تعرف على سياسة الخصوصية في الشركة المصرية للتحصيلات. نلتزم تماماً بقوانين البنك المركزي المصري ومعايير السرية المصرفية لحماية بيانات عملائنا.',
   keywords: [
     'سياسة الخصوصية', 
@@ -15,12 +18,16 @@ export const metadata: Metadata = {
     'شروط الاستخدام',
     'التوظيف والسرية'
   ],
-  alternates: { canonical: '/privacy' },
+  alternates: { 
+    // تصحيح الرابط ليكون كاملاً
+    canonical: 'https://egyptcollections.com/privacy' 
+  },
   openGraph: {
-    title: 'التزامنا بحماية خصوصيتك - ECC Collections',
+    title: 'التزامنا بحماية خصوصيتك | المصرية للتحصيلات - ECC Collections',
     description: 'نطبق أعلى معايير الأمان الرقمي والسرية البنكية لضمان سلامة بياناتك.',
     url: 'https://egyptcollections.com/privacy',
-    siteName: 'ECC Collections',
+    // الاسم الموحد
+    siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
     images: [
@@ -39,25 +46,78 @@ export const metadata: Metadata = {
 };
 
 export default function Page() {
-  const lastUpdated = "2025-12-31";
+  // تاريخ آخر تحديث (مهم جداً لصفحات السياسة)
+  const lastUpdated = new Date().toISOString().split('T')[0];
 
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'WebPage',
-    name: 'سياسة الخصوصية',
-    description: 'سياسة حماية البيانات والخصوصية لشركة المصرية للتحصيلات',
-    datePublished: "2024-01-01",
-    dateModified: lastUpdated,
-    publisher: {
-      '@type': 'Organization',
-      name: 'Egyptian Collections Co. (ECC)',
-      logo: {
-        '@type': 'ImageObject',
-        url: 'https://egyptcollections.com/og-image.png'
+    '@graph': [
+      // 1. تعريف الصفحة (WebPage)
+      {
+        '@type': 'WebPage',
+        '@id': 'https://egyptcollections.com/privacy/#webpage',
+        'url': 'https://egyptcollections.com/privacy',
+        'name': 'سياسة الخصوصية | المصرية للتحصيلات - ECC Collections',
+        'description': 'سياسة حماية البيانات والخصوصية لشركة المصرية للتحصيلات',
+        'datePublished': "2024-01-01",
+        'dateModified': lastUpdated,
+        'isPartOf': {
+          '@id': 'https://egyptcollections.com/#website'
+        },
+        'publisher': {
+          '@id': 'https://egyptcollections.com/#organization'
+        },
+        'breadcrumb': {
+          '@id': 'https://egyptcollections.com/privacy/#breadcrumb'
+        },
+        'inLanguage': 'ar-EG'
+      },
+      // 2. فتات الخبز (Breadcrumbs)
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://egyptcollections.com/privacy/#breadcrumb',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'الرئيسية',
+            'item': 'https://egyptcollections.com/'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'سياسة الخصوصية',
+            'item': 'https://egyptcollections.com/privacy'
+          }
+        ]
+      },
+      // 3. بيانات الشركة (عشان نضمن الثقة في الصفحة دي بالذات)
+      {
+        '@type': 'FinancialService',
+        '@id': 'https://egyptcollections.com/#organization',
+        'name': 'المصرية للتحصيلات ECC',
+        'url': 'https://egyptcollections.com/',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://egyptcollections.com/icon.png',
+          'width': 512,
+          'height': 512
+        },
+        'image': 'https://egyptcollections.com/og-image.png',
+        'telephone': '+201110600280',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '30 شارع هارون، ميدان المساحة',
+          'addressLocality': 'الدقي',
+          'addressRegion': 'الجيزة',
+          'postalCode': '12611',
+          'addressCountry': 'EG'
+        },
+        'sameAs': [
+          'https://www.facebook.com/EgyptCollectionsCo'
+        ]
       }
-    },
-    inLanguage: 'ar-EG',
-    specialty: 'Data Protection & Banking Secrecy'
+    ]
   };
 
   return (

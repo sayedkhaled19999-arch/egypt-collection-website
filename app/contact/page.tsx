@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     description: 'كلمنا دلوقتي لبدء شراكة ناجحة. نحن في انتظارك.',
     url: 'https://egyptcollections.com/contact',
     // الاسم الموحد
-    siteName: 'المصرية للتحصيلات - ECC Collections',
+    siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
     images: [

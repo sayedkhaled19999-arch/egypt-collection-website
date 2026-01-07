@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     title: 'تاريخ من الخبرة منذ 2001 | المصرية للتحصيلات - ECC Collections',
     description: 'أكثر من 20 عاماً من التميز في مجال التحصيل والاستعلام الميداني في السوق المصري.',
     url: 'https://egyptcollections.com/about',
-    siteName: 'المصرية للتحصيلات - ECC Collections',
+    siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
     images: [
