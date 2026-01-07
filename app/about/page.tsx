@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import AboutClient from './AboutClient';
 
 export const metadata: Metadata = {
-  title: 'عن الشركة | ECC Collections - المصرية للتحصيلات - خبرة وتاريخ منذ 2001',
+  title: 'عن الشركة | ECC Collections - المصرية للتحصيلات - خبرة منذ 2001',
   description: 'تعرف على ECC Collections (المصرية للتحصيلات)، الشريك الأول لكبرى البنوك في مصر منذ 2001. فريق عمل محترف بقيادة المستشار وائل سويلم وتغطية شاملة لجميع المحافظات.',
   keywords: [
     'ECC Collections', 'المصرية للتحصيلات', 'من نحن', 'تاريخ المصرية للتحصيلات', 
@@ -51,32 +51,99 @@ export const metadata: Metadata = {
 export default function Page() {
   const jsonLd = {
     '@context': 'https://schema.org',
-    '@type': 'AboutPage',
-    'mainEntity': {
-      '@type': 'Organization',
-      'name': 'ECC Collections - المصرية للتحصيلات',
-      'foundingDate': '2001',
-      'description': 'ECC Collections هي الشركة الرائدة والمستقلة في تقديم حلول التحصيل الميداني والاستعلام للبنوك والشركات في مصر منذ 2001.',
-      'url': 'https://egyptcollections.com/',
-      'areaServed': 'Egypt',
-      'founder': {
-        '@type': 'Person',
-        'name': 'Wael Swellam',
-        'jobTitle': 'CEO & Founder',
-        'description': 'المستشار القانوني وخبير التحصيل الائتماني بمصر.'
+    '@graph': [
+      // 1. تعريف الصفحة نفسها مع ربطها بالموقع
+      {
+        '@type': 'AboutPage',
+        '@id': 'https://egyptcollections.com/about/#webpage',
+        'url': 'https://egyptcollections.com/about',
+        'name': 'عن الشركة | ECC Collections',
+        'isPartOf': {
+          '@id': 'https://egyptcollections.com/#website'
+        },
+        'about': {
+          '@id': 'https://egyptcollections.com/#organization' // الرابط السحري بالشركة
+        },
+        'breadcrumb': {
+          '@id': 'https://egyptcollections.com/about/#breadcrumb'
+        }
       },
-      'knowsAbout': [
-        'Debt Collection',
-        'Credit Investigation',
-        'Field Verification',
-        'Risk Management'
-      ]
-    }
+      // 2. فتات الخبز (Breadcrumbs) - عشان يظهر في البحث بشكل شيك
+      {
+        '@type': 'BreadcrumbList',
+        '@id': 'https://egyptcollections.com/about/#breadcrumb',
+        'itemListElement': [
+          {
+            '@type': 'ListItem',
+            'position': 1,
+            'name': 'الرئيسية',
+            'item': 'https://egyptcollections.com/'
+          },
+          {
+            '@type': 'ListItem',
+            'position': 2,
+            'name': 'عن الشركة',
+            'item': 'https://egyptcollections.com/about'
+          }
+        ]
+      },
+      // 3. بيانات الشركة (Local Business) موحدة مع الصفحة الرئيسية
+      {
+        '@type': 'FinancialService',
+        '@id': 'https://egyptcollections.com/#organization',
+        'name': 'ECC Collections - المصرية للتحصيلات',
+        'url': 'https://egyptcollections.com/',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://egyptcollections.com/icon.png',
+          'width': 512,
+          'height': 512
+        },
+        'foundingDate': '2001',
+        // هنا ضفنا المؤسس بشكل احترافي
+        'founder': {
+          '@type': 'Person',
+          'name': 'المستشار/ وائل سويلم',
+          'jobTitle': 'CEO & Founder',
+          'description': 'خبير الائتمان والتحصيل المصرفي والمستشار القانوني للمجموعة.',
+          // لو في صورة للمؤسس حط اللينك هنا، لو مفيش شيل السطر ده
+          // 'image': 'https://egyptcollections.com/founder-wael.jpg' 
+        },
+        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001.',
+        'telephone': '+201110600280',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '30 شارع هارون، ميدان المساحة',
+          'addressLocality': 'الدقي',
+          'addressRegion': 'الجيزة',
+          'postalCode': '12611',
+          'addressCountry': 'EG'
+        },
+        'contactPoint': {
+          '@type': 'ContactPoint',
+          'telephone': '+201110600280',
+          'contactType': 'customer service',
+          'areaServed': 'EG',
+          'availableLanguage': ['Arabic', 'English']
+        },
+        'geo': {
+          '@type': 'GeoCoordinates',
+          'latitude': '30.0385',
+          'longitude': '31.2185'
+        },
+        'sameAs': [
+          'https://www.facebook.com/EgyptCollectionsCo'
+        ]
+      }
+    ]
   };
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <AboutClient />
     </>
   );
