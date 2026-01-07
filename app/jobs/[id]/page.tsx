@@ -2,7 +2,6 @@ import { Metadata } from "next";
 import JobClient from "./JobClient";
 
 // ===== بيانات الوظائف =====
-// نصيحة: لو تقدر في المستقبل تجيب البيانات دي من داتابيز يكون أفضل، بس حالياً كده تمام
 const jobs = [
   { 
     id: "office-collector", 
@@ -58,7 +57,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
 
   if (!job) {
     return {
-      title: "الوظيفة غير متاحة | المصرية للتحصيلات - ECC Collections",
+      title: "الوظيفة غير متاحة | المصرية للتحصيلات ECC",
       description: "الوظيفة المطلوبة غير متاحة حالياً.",
       metadataBase: new URL(SITE_URL),
       alternates: { canonical: `${SITE_URL}/jobs` }
@@ -69,8 +68,8 @@ export const generateMetadata = ({ params }: Props): Metadata => {
 
   return {
     metadataBase: new URL(SITE_URL),
-    // الترتيب الموحد: اسم الوظيفة | البراند
-    title: `مطلوب للتعيين: ${job.title} | المصرية للتحصيلات - ECC Collections`,
+    // العنوان: اسم الوظيفة | البراند الموحد
+    title: `مطلوب للتعيين: ${job.title} | المصرية للتحصيلات ECC`,
     description: job.description,
     keywords: [
       "وظائف خالية", "وظائف اليوم", "وظائف شركات",
@@ -82,7 +81,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
       title: `فرصة عمل: ${job.title}`,
       description: job.description,
       url: canonicalUrl,
-      // الاسم الموحد
+      // الاسم الموحد زي ما طلبت بالظبط
       siteName: 'المصرية للتحصيلات ECC',
       locale: "ar_EG",
       type: "website",
@@ -103,9 +102,8 @@ export default function Page({ params }: Props) {
   const job = jobs.find((j) => j.id === params.id);
   if (!job) return null;
 
-  // تواريخ النشر (مهمة لجوجل)
-  const datePosted = new Date().toISOString().split('T')[0]; // تاريخ اليوم
-  const validThrough = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0]; // سارية لمدة سنة
+  const datePosted = new Date().toISOString().split('T')[0];
+  const validThrough = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0];
 
   const jsonLd = {
     "@context": "https://schema.org",
@@ -125,12 +123,11 @@ export default function Page({ params }: Props) {
         "employmentType": "FULL_TIME",
         "hiringOrganization": { 
           "@type": "Organization", 
-          // وحدنا الاسم هنا كمان
-          "name": "المصرية للتحصيلات - ECC Collections", 
+          // وحدنا اسم الشركة هنا كمان عشان جوجل يربطها بالبراند بتاعك
+          "name": "المصرية للتحصيلات ECC", 
           "sameAs": SITE_URL, 
           "logo": OG_IMAGE 
         },
-        // حددنا المكان بدقة عشان جوجل يثق في الوظيفة
         "jobLocation": { 
           "@type": "Place", 
           "address": { 
@@ -142,10 +139,10 @@ export default function Page({ params }: Props) {
             "addressCountry": "EG" 
           } 
         }
-        // ملحوظة: شلت baseSalary عشان منعملش Error في جوجل
-        // طالما مفيش رقم محدد، الأفضل نسيبه فاضي ونكتبه في الوصف
+        // تم إزالة baseSalary عمداً عشان نمنع الخطأ الأحمر، 
+        // والتحذير الأصفر (Optional) مقبول جداً ومش هيأثر على ظهور الوظيفة
       },
-      // 2. فتات الخبز (Breadcrumbs) - عشان يظهر المسار للزائر
+      // 2. فتات الخبز (Breadcrumbs)
       {
         "@type": "BreadcrumbList",
         "@id": `${SITE_URL}/jobs/${job.id}/#breadcrumb`,
