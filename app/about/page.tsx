@@ -2,8 +2,11 @@ import { Metadata } from 'next';
 import AboutClient from './AboutClient';
 
 export const metadata: Metadata = {
-  // الترتيب هنا بقا "برنس": الخدمة (عن الشركة) | البراند (عربي - إنجليزي)
-  title: 'عن الشركة | المصرية للتحصيلات - ECC Collections',
+  title: {
+    // التعديل السحري: absolute
+    // ده هيمنع التكرار ويخلي العنوان يظهر نظيف ومترتب: (اسم الصفحة | اسم الشركة)
+    absolute: 'عن الشركة | المصرية للتحصيلات - ECC Collections'
+  },
   description: 'تعرف على ECC Collections (المصرية للتحصيلات)، الشريك الأول لكبرى البنوك في مصر منذ 2001. فريق عمل محترف بقيادة المستشار وائل سويلم وتغطية شاملة لجميع المحافظات.',
   keywords: [
     'ECC Collections', 'المصرية للتحصيلات', 'من نحن', 'تاريخ المصرية للتحصيلات', 
@@ -15,11 +18,9 @@ export const metadata: Metadata = {
     canonical: 'https://egyptcollections.com/about',
   },
   openGraph: {
-    // وحدنا الترتيب هنا كمان عشان السوشيال ميديا
     title: 'تاريخ من الخبرة منذ 2001 | المصرية للتحصيلات - ECC Collections',
     description: 'أكثر من 20 عاماً من التميز في مجال التحصيل والاستعلام الميداني في السوق المصري.',
     url: 'https://egyptcollections.com/about',
-    // التعديل المهم: الاسم العربي الأول
     siteName: 'المصرية للتحصيلات - ECC Collections',
     locale: 'ar_EG',
     type: 'website',
@@ -55,7 +56,6 @@ export default function Page() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      // 1. تعريف الصفحة (AboutPage)
       {
         '@type': 'AboutPage',
         '@id': 'https://egyptcollections.com/about/#webpage',
@@ -71,7 +71,6 @@ export default function Page() {
           '@id': 'https://egyptcollections.com/about/#breadcrumb'
         }
       },
-      // 2. فتات الخبز (Breadcrumbs)
       {
         '@type': 'BreadcrumbList',
         '@id': 'https://egyptcollections.com/about/#breadcrumb',
@@ -90,15 +89,10 @@ export default function Page() {
           }
         ]
       },
-      // 3. بيانات الشركة (FinancialService)
-      // دي النسخة الكاملة اللي مش بتطلع أي تحذيرات صفراء
       {
         '@type': 'FinancialService',
         '@id': 'https://egyptcollections.com/#organization',
-        
-        // الاسم الموحد زي الصفحة الرئيسية
         'name': 'المصرية للتحصيلات ECC',
-        
         'url': 'https://egyptcollections.com/',
         'logo': {
           '@type': 'ImageObject',
@@ -106,15 +100,13 @@ export default function Page() {
           'width': 512,
           'height': 512
         },
+        // التعديل هنا: ضفنا الصورة دي عشان التحذير يختفي ويبقى أخضر صريح
+        'image': 'https://egyptcollections.com/og-image.png',
+        
         'foundingDate': '2001',
-        'priceRange': '$$', // ضفناها عشان التحذيرات
-        
-        // ده السطر اللي كان بيعمل مشكلة التحذير الأصفر، ضفناه هنا عشان يختفي
+        'priceRange': '$$',
         'telephone': '+201110600280',
-        
-        // الوصف القوي الشامل
         'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة وتحديث البيانات.',
-        
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 شارع هارون، ميدان المساحة',
@@ -123,8 +115,6 @@ export default function Page() {
           'postalCode': '12611',
           'addressCountry': 'EG'
         },
-        
-        // ضفنا مواعيد العمل عشان تبقى متطابقة مع الرئيسية
         'openingHoursSpecification': [
           {
             '@type': 'OpeningHoursSpecification',
@@ -140,15 +130,12 @@ export default function Page() {
             'closes': '18:30'
           }
         ],
-
-        // بيانات المؤسس (E-E-A-T Power)
         'founder': {
           '@type': 'Person',
           'name': 'المستشار/ وائل سويلم',
           'jobTitle': 'CEO & Founder',
           'description': 'خبير الائتمان والتحصيل المصرفي والمستشار القانوني للمجموعة.'
         },
-        
         'contactPoint': {
           '@type': 'ContactPoint',
           'telephone': '+201110600280',
