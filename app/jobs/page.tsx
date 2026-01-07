@@ -32,13 +32,6 @@ export const metadata: Metadata = {
       alt: 'وظائف المصرية للتحصيلات - انضم لفريقنا'
     }]
   },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'وظائف المصرية للتحصيلات | انضم لفريق المحترفين',
-    description: 'فرص عمل حقيقية: محصلين، مدخل بيانات. بدون رسوم + تدريب مدفوع الأجر.',
-    images: ['https://egyptcollections.com/og-image.png'],
-    creator: '@ECCCollections' // تأكد إن ده حساب تويتر الفعلي
-  },
   robots: {
     index: true,
     follow: true,
