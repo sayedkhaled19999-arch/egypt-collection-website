@@ -3,14 +3,12 @@ import HomeContent from '@/components/HomeContent';
 
 export const metadata: Metadata = {
   title: {
-    // ده العنوان اللي بيظهر في التاب وفي بحث جوجل للصفحة الرئيسية
-    absolute: 'المصرية للتحصيلات - ECC Collections | الحل الأول للتحصيل والاستعلام'
+    absolute: 'ECC Collections - المصرية للتحصيلات'
   },
   description: 'المصرية للتحصيلات (ECC) اختيارك الأول من 2001. بنغطي مصر كلها بفريق محترف في التحصيل الميداني والاستعلام البنكي. رجع فلوسك وأنت مطمن.',
   alternates: {
     canonical: 'https://egyptcollections.com/'
   },
-  // الكلمات المفتاحية هنا بتكمل اللي في الـ layout
   keywords: [
     'المصرية للتحصيلات', 'ECC Collections', 'تحصيل الديون في مصر', 
     'Debt Collection Agency Egypt', 'Credit Reporting', 'Data Verification Egypt'
@@ -18,7 +16,6 @@ export const metadata: Metadata = {
 };
 
 export default function Home() {
-  // الكود ده هو السحر اللي بيكلم جوجل عشان يفهم محتوى موقعك
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -26,24 +23,16 @@ export default function Home() {
         '@type': 'WebSite',
         '@id': 'https://egyptcollections.com/#website',
         'url': 'https://egyptcollections.com/',
-        'name': 'المصرية للتحصيلات - ECC Collections',
-        'alternateName': ['ECC Collections', 'المصرية للتحصيلات', 'Egyptian Collections Co.'],
-        'description': 'الشركة الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر',
-        'publisher': {
-          '@id': 'https://egyptcollections.com/#organization'
-        },
-        'potentialAction': {
-          '@type': 'SearchAction',
-          'target': 'https://egyptcollections.com/?s={search_term_string}',
-          'query-input': 'required name=search_term_string'
-        }
+        'name': 'ECC Collections - المصرية للتحصيلات',
+        'language': 'ar-EG' // إضافة مهمة
       },
       {
-        '@type': 'Organization', // غيرتها لـ Organization عشان تبقى أعم وأقوى للبراند
+        // التغيير الجوهري هنا: حولناها من Organization لـ FinancialService
+        // ده هيخليك تظهر في نتايج الموبايل والخرائط بقوة
+        '@type': 'FinancialService', 
         '@id': 'https://egyptcollections.com/#organization',
-        'name': 'المصرية للتحصيلات - ECC Collections',
+        'name': 'ECC Collections - المصرية للتحصيلات',
         'url': 'https://egyptcollections.com/',
-        // اللوجو هنا لازم يكون رابط صورة شغال ومربع وعالي الجودة
         'logo': {
           '@type': 'ImageObject',
           'url': 'https://egyptcollections.com/icon.png',
@@ -51,7 +40,7 @@ export default function Home() {
           'height': 512
         },
         'image': 'https://egyptcollections.com/og-image.png',
-        'foundingDate': '2001',
+        'priceRange': '$$', // مهمة جداً عشان جوجل يعرف إنك خدمة تجارية
         'description': 'إحنا في المصرية للتحصيلات (ECC) بنقدم حلول متكاملة للبنوك والشركات لاسترداد المديونيات والاستعلام الميداني بخبرة أكثر من 20 سنة.',
         'address': {
           '@type': 'PostalAddress',
@@ -61,6 +50,22 @@ export default function Home() {
           'postalCode': '12611',
           'addressCountry': 'EG'
         },
+        // إضافة مواعيد العمل (جوجل موبايل بيعشق دي عشان يكتب "Open Now")
+        'openingHoursSpecification': [
+          {
+            '@type': 'OpeningHoursSpecification',
+            'dayOfWeek': [
+              "Saturday",
+              "Sunday",
+              "Monday",
+              "Tuesday",
+              "Wednesday",
+              "Thursday"
+            ],
+            'opens': '08:30',
+            'closes': '18:30'
+          }
+        ],
         'contactPoint': {
           '@type': 'ContactPoint',
           'telephone': '+201110600280',
@@ -73,20 +78,13 @@ export default function Home() {
           'latitude': '30.0385',
           'longitude': '31.2185'
         },
-        // هنا حط لينكات السوشيال ميديا بتاعتكم عشان جوجل يربط كله ببعضه
         'sameAs': [
           'https://www.facebook.com/EgyptCollectionsCo',
-          'https://www.linkedin.com/company/egypt-collections', // لو عندك لينكدان ضيفه
-          'https://twitter.com/ECC_Collections' // لو عندك تويتر ضيفه
+          // اتأكد إن اللينكات دي شغالة وشيل أي لينك مش موجود عشان جوجل ميعاقبش الصفحة
         ],
-        'hasOfferCatalog': {
-          '@type': 'OfferCatalog',
-          'name': 'خدمات التحصيل',
-          'itemListElement': [
-            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'التحصيل الميداني' } },
-            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'الاستعلام الائتماني' } },
-            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Data Verification' } }
-          ]
+        'areaServed': {
+            '@type': 'Country',
+            'name': 'Egypt'
         }
       }
     ]
@@ -94,7 +92,10 @@ export default function Home() {
 
   return (
     <>
-      <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
+      />
       <HomeContent />
     </>
   );

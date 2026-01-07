@@ -16,7 +16,7 @@ interface Slide {
 
 const slides: Slide[] = [
   { title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections', description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.', bgImage: '/hero/Slide1.avif', link: '/about', linkText: 'اعرف أكثر عننا' },
-  { title: 'شركائنا', description: 'نتعاون مع شركاء موثوقين لضمان أعلى جودة في خدماتنا.', bgImage: '/hero/Slide2.avif', link: '/partners', linkText: 'اعرف أكثر عن شركائنا' },
+  { title: 'شركائنا', description: 'نتعاون مع شركاء موثوقين لضمان أعلى جودة في خدماتنا.', bgImage: '/hero/Slide2.avif', link: '/Customers', linkText: 'اعرف أكثر عن شركائنا' },
   { title: 'الوظائف المتاحة', description: 'لو عايز تنضم لفريقنا، شوف الفرص المتاحة وابدأ مشوارك معانا.', bgImage: '/hero/Slide3.avif', link: '/jobs', linkText: 'شوف الوظائف المتاحة' },
   { title: 'تواصل معنا', description: 'لو عندك أي استفسار أو ملاحظات، احنا دايمًا في خدمتك.', bgImage: '/hero/Slide4.avif', link: '/contact', linkText: 'تواصل معنا' },
 ];

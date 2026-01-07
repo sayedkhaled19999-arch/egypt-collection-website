@@ -37,7 +37,7 @@ const cardVariants: Variants = {
   })
 };
 
-export default function PartnersSection() {
+export default function CustomersSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
@@ -91,7 +91,7 @@ export default function PartnersSection() {
             {/* زر الانتقال */}
             <motion.div variants={textVariants} className="mt-8 text-center">
               <Link
-                href="/partners"
+                href="/Customers"
                 className="inline-block bg-[#2563EB] text-white px-6 md:px-8 py-2 md:py-3 rounded-lg font-bold text-sm md:text-lg hover:bg-[#1e4db7] transition-colors shadow-lg"
               >
                 اعرف أكثر عن شركائنا

@@ -4,7 +4,7 @@ import dynamic from 'next/dynamic';
 import HeroCarousel from '@/components/home/HeroCarousel';
 
 // المكونات التي يتم تحميلها بشكل ديناميكي لتحسين السرعة
-const PartnersSection = dynamic(() => import('@/components/home/PartnersSection'), { ssr: false });
+const CustomersSection = dynamic(() => import('@/components/home/CustomersSection'), { ssr: false });
 const BranchesSection = dynamic(() => import('@/components/home/BranchesSection'), { ssr: false });
 import AboutCard from '@/components/home/AboutCard';
 import ValuesSection from '@/components/home/ValuesSection';
@@ -23,7 +23,7 @@ export default function HomeContent() {
       <HeroCarousel />
       <AboutCard />
       <ValuesSection />
-      <PartnersSection />
+      <CustomersSection />
       <BranchesSection />
       <CallToAction />
     </>

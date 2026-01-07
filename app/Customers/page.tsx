@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import PartnersClient from './PartnersClient';
+import CustomersClient from './CustomersClient';
 
 export const metadata: Metadata = {
   title: 'شركاء النجاح وعملاء ECC Collections | المصرية للتحصيلات',
@@ -14,13 +14,13 @@ export const metadata: Metadata = {
     'بنك القاهرة',
     'شركات تحصيل ديون معتمدة',
     'سابقة أعمال ECC',
-    'Debt Collection Partners Egypt'
+    'Debt Collection Customers Egypt'
   ],
-  alternates: { canonical: '/partners' },
+  alternates: { canonical: '/Customers' },
   openGraph: {
     title: 'شركاء وعملاء ECC Collections - سابقة أعمال نفخر بها',
     description: 'قائمة شركاء النجاح من أكبر البنوك والمؤسسات المالية التي تثق في خدماتنا الميدانية منذ 2001.',
-    url: 'https://egyptcollections.com/partners',
+    url: 'https://egyptcollections.com/Customers',
     siteName: 'ECC Collections - المصرية للتحصيلات',
     locale: 'ar_EG',
     type: 'website',
@@ -86,7 +86,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <PartnersClient />
+      <CustomersClient />
     </>
   );
 }

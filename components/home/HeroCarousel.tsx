@@ -28,7 +28,7 @@ const slides: Slide[] = [
     title: 'شركاء النجاح مع المصرية للتحصيلات (ECC)',
     description: 'بنتعاون مع أكبر البنوك والشركات في مصر عشان نضمن لك أعلى مستوى من الجودة في تنفيذ كل الخدمات الميدانية.',
     bgImage: '/hero/Slide2.avif',
-    link: '/partners',
+    link: '/Customers',
     linkText: 'شوف شركاء النجاح',
   },
   {

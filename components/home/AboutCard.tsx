@@ -20,7 +20,7 @@ export default function AboutCard() {
       icon: <UserCheck className="w-10 h-10 text-[#2563EB]" />,
       number: banks.length, // هنا العدد يتحدث تلقائيًا
       label: 'شركائنا',
-      href: '/partners',
+      href: '/Customers',
     },
     {
       icon: <CheckCircle className="w-10 h-10 text-[#2563EB]" />,

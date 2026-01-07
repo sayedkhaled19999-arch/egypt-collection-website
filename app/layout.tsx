@@ -31,8 +31,8 @@ export const metadata: Metadata = {
 
   title: {
     // الترتيب الجديد: العربي الأول عشان يظهر كعنوان رئيسي قوي
-    default: 'المصرية للتحصيلات - ECC Collections | خدمات التحصيل الميداني',
-    template: '%s | المصرية للتحصيلات - ECC Collections' 
+    default: 'ECC Collections - المصرية للتحصيلات',
+    template: '%s | ECC Collections - المصرية للتحصيلات' 
   },
   
   // وصف مصري قوي وشامل
@@ -75,16 +75,16 @@ export const metadata: Metadata = {
   ],
   
   openGraph: {
-    title: 'المصرية للتحصيلات - ECC Collections | ريادة وخبرة من 2001',
+    title: 'ECC Collections - المصرية للتحصيلات | ريادة وخبرة من 2001',
     description: 'عايز شركة تخلصك من وجع الدماغ وتحصل فلوسك؟ المصرية للتحصيلات (ECC) بخبرة 20 سنة وتغطية لكل محافظات مصر هي الحل.',
     url: 'https://egyptcollections.com', 
-    siteName: 'المصرية للتحصيلات - ECC Collections', // ده مهم جداً عشان الاسم يظهر صح في جوجل
+    siteName: 'ECC Collections - المصرية للتحصيلات', // ده مهم جداً عشان الاسم يظهر صح في جوجل
     images: [
       {
         url: 'https://egyptcollections.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'المصرية للتحصيلات - ECC Collections'
+        alt: 'ECC Collections - المصرية للتحصيلات'
       }
     ],
     locale: 'ar_EG',
@@ -93,7 +93,7 @@ export const metadata: Metadata = {
   
   twitter: {
     card: 'summary_large_image',
-    title: 'المصرية للتحصيلات - ECC Collections',
+    title: 'ECC Collections - المصرية للتحصيلات',
     description: 'أقوى خدمات التحصيل الميداني والاستعلام في مصر.',
     images: ['/og-image.png'],
     creator: '@ECC_Collections'
