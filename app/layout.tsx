@@ -30,12 +30,11 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
-    // الترتيب الجديد: العربي الأول عشان يظهر كعنوان رئيسي قوي
-    default: 'ECC Collections - المصرية للتحصيلات',
-    template: '%s | ECC Collections - المصرية للتحصيلات' 
+    // الترتيب الجديد: العربي الأول (ممتاز)
+    default: 'المصرية للتحصيلات - ECC Collections',
+    template: '%s | المصرية للتحصيلات - ECC Collections' 
   },
   
-  // وصف مصري قوي وشامل
   description: 'المصرية للتحصيلات (ECC) هي دراعك اليمين في التحصيل الميداني والاستعلام. بنخدم البنوك والشركات في مصر من 2001. سيب ديونك علينا وركز في شغلك.',
   
   publisher: 'ECC Collections - Egyptian Collections Co.', 
@@ -61,30 +60,28 @@ export const metadata: Metadata = {
     google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
   },
 
-  // هنا حطيتلك الإنجليزي والعربي عشان تمسك البحث من الناحيتين
-  // الكلمات دي مش بتظهر للي فاتح الموقع، دي لجوجل بس
   keywords: [
-    // عربي
     'المصرية للتحصيلات', 'ECC Collections', 'تحصيل ديون', 'شركة تحصيل', 
     'مناديب تحصيل', 'تحصيل ميداني', 'استعلام ائتماني', 'تحصيل محافظ بنكية',
     'شركات التعهيد في مصر', 'تحديث بيانات', 'استرداد مديونيات',
-    // English (Hidden for SEO)
     'Debt Collection Egypt', 'Field Collection Services', 'Credit Investigation Egypt',
     'Debt Recovery Agency', 'Outsourcing Collection Services', 'Bad Debt Recovery',
     'Door to Door Collection', 'ECC Collections Egypt'
   ],
   
   openGraph: {
-    title: 'ECC Collections - المصرية للتحصيلات | ريادة وخبرة من 2001',
+    // التعديل تم هنا: خليتها عربي الأول عشان تبقى زي العنوان الرئيسي
+    title: 'المصرية للتحصيلات - ECC Collections | ريادة وخبرة من 2001',
     description: 'عايز شركة تخلصك من وجع الدماغ وتحصل فلوسك؟ المصرية للتحصيلات (ECC) بخبرة 20 سنة وتغطية لكل محافظات مصر هي الحل.',
     url: 'https://egyptcollections.com', 
-    siteName: 'ECC Collections - المصرية للتحصيلات', // ده مهم جداً عشان الاسم يظهر صح في جوجل
+    // وهنا كمان وحدنا الاسم
+    siteName: 'المصرية للتحصيلات ECC', 
     images: [
       {
         url: 'https://egyptcollections.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ECC Collections - المصرية للتحصيلات'
+        alt: 'المصرية للتحصيلات - ECC Collections'
       }
     ],
     locale: 'ar_EG',
@@ -93,18 +90,18 @@ export const metadata: Metadata = {
   
   twitter: {
     card: 'summary_large_image',
-    title: 'ECC Collections - المصرية للتحصيلات',
+    // دي كانت مظبوطة عندك، زي الفل
+    title: 'المصرية للتحصيلات - ECC Collections',
     description: 'أقوى خدمات التحصيل الميداني والاستعلام في مصر.',
     images: ['/og-image.png'],
     creator: '@ECC_Collections'
   },
   
-  // الجزء ده هو المسئول عن ظهور اللوجو الصغير جنب نتيجة البحث
   icons: {
     icon: [
       { url: '/favicon.ico' },
       { url: '/icon.png', type: 'image/png', sizes: '32x32' },
-      { url: '/icon.png', type: 'image/png', sizes: '192x192' }, // جوجل بيحب المقاسات الكبيرة عشان يعرضها
+      { url: '/icon.png', type: 'image/png', sizes: '192x192' },
       { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' },
     ],
     apple: [
