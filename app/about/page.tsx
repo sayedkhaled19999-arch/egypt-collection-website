@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import AboutClient from './AboutClient';
 
 export const metadata: Metadata = {
-  title: 'عن الشركة | ECC Collections - المصرية للتحصيلات - خبرة منذ 2001',
+  title: 'عن الشركة | المصرية للتحصيلات - ECC Collections',
   description: 'تعرف على ECC Collections (المصرية للتحصيلات)، الشريك الأول لكبرى البنوك في مصر منذ 2001. فريق عمل محترف بقيادة المستشار وائل سويلم وتغطية شاملة لجميع المحافظات.',
   keywords: [
     'ECC Collections', 'المصرية للتحصيلات', 'من نحن', 'تاريخ المصرية للتحصيلات', 
