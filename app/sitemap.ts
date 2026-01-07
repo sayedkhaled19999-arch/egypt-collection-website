@@ -1,26 +1,26 @@
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  // 👇 التعديل المهم هنا: شيلنا www عشان يبقى متوافق مع باقي الموقع
   const baseUrl = 'https://egyptcollections.com';
 
-  // 1. هنا بنرص الصفحات الثابتة اللي في موقعك
+  // 1. الصفحات الأساسية
   const routes = [
     '',
     '/about',
     '/contact',
     '/jobs',
-    '/Customers',
-    '/privacy', 
+    '/Customers', // تأكد إن ده يطابق اسم الفولدر بالظبط
+    '/privacy',
   ].map((route) => ({
     url: `${baseUrl}${route}`,
     lastModified: new Date(),
-    // الوظائف بتتحدث كل أسبوع، الباقي كل شهر (كدا زي الفل)
-    changeFrequency: route === '/jobs' ? 'weekly' : 'monthly' as 'weekly' | 'monthly',
-    priority: route === '' ? 1 : 0.8, // الصفحة الرئيسية أهم حاجة (1)، الباقي أقل سنة (0.8)
-  }));
+    // الوظائف تتحدث أسبوعياً، الباقي شهرياً
+    changeFrequency: route === '/jobs' ? 'weekly' : 'monthly',
+    // الرئيسية (1)، الباقي (0.8)
+    priority: route === '' ? 1 : 0.8,
+  })) as MetadataRoute.Sitemap;
 
-  // 2. هنا بنعمل روابط صفحات الوظائف بشكل أوتوماتيك
+  // 2. صفحات الوظائف (ديناميكية)
   const jobIds = [
     'office-collector',
     'field-collector',
@@ -31,10 +31,10 @@ export default function sitemap(): MetadataRoute.Sitemap {
   const jobRoutes = jobIds.map((id) => ({
     url: `${baseUrl}/jobs/${id}`,
     lastModified: new Date(),
-    changeFrequency: 'weekly' as const,
-    priority: 0.9, // الوظائف مهمة جداً فنديلها أولوية عالية
-  }));
+    changeFrequency: 'weekly',
+    priority: 0.9, // الوظائف أهم من صفحات "من نحن" وغيرها
+  })) as MetadataRoute.Sitemap;
 
-  // 3. بنلم كله على بعضه ونرجعه لجوجل
+  // 3. تجميع الكل
   return [...routes, ...jobRoutes];
 }
