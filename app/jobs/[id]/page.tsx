@@ -115,7 +115,7 @@ export default function Page({ params }: Props) {
         "description": job.description,
         "identifier": { 
           "@type": "PropertyValue", 
-          "name": "ECC Collections", 
+          "name": "المصرية للتحصيلات ECC", 
           "value": job.id 
         },
         "datePosted": datePosted,
@@ -123,7 +123,6 @@ export default function Page({ params }: Props) {
         "employmentType": "FULL_TIME",
         "hiringOrganization": { 
           "@type": "Organization", 
-          // وحدنا اسم الشركة هنا كمان عشان جوجل يربطها بالبراند بتاعك
           "name": "المصرية للتحصيلات ECC", 
           "sameAs": SITE_URL, 
           "logo": OG_IMAGE 
@@ -132,15 +131,26 @@ export default function Page({ params }: Props) {
           "@type": "Place", 
           "address": { 
             "@type": "PostalAddress", 
+            // التعديل 1: كتابة العنوان بالعربي وتفصيله
             "streetAddress": "30 شارع هارون، ميدان المساحة", 
-            "addressLocality": "Dokki", 
-            "addressRegion": "Giza", 
+            "addressLocality": "الدقي", 
+            "addressRegion": "الجيزة", 
             "postalCode": "12611", 
             "addressCountry": "EG" 
           } 
+        },
+        // التعديل 2: إضافة المرتب عشان جوجل ميزعلش
+        "baseSalary": {
+          "@type": "MonetaryAmount",
+          "currency": "EGP",
+          "value": {
+            "@type": "QuantitativeValue",
+            // حطينا مدى متوسط تقدري تغيريه
+            "minValue": 6000,
+            "maxValue": 8000,
+            "unitText": "MONTH"
+          }
         }
-        // تم إزالة baseSalary عمداً عشان نمنع الخطأ الأحمر، 
-        // والتحذير الأصفر (Optional) مقبول جداً ومش هيأثر على ظهور الوظيفة
       },
       // 2. فتات الخبز (Breadcrumbs)
       {
