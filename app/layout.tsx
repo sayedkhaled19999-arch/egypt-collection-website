@@ -1,7 +1,7 @@
 import '@/styles/globals.css';
 import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
-import type { Metadata } from 'next';
+import type { Metadata } from 'next'; 
 import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
 import Footer from '@/components/Footer';
@@ -18,6 +18,7 @@ const tajawal = Tajawal({
   variable: '--font-tajawal',
 });
 
+// Moved viewport to a separate export as per Next.js 14+ standards
 export const viewport = {
   themeColor: '#2563EB',
   width: 'device-width',
@@ -29,12 +30,13 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
-    // تم وضع البراند أولاً للفصل التام عن المنافسين وتعزيز قوة الاسم
-    default: 'ECC Collections | المصرية للتحصيلات - خدمات التحصيل والاستعلام الميداني',
-    template: '%s | ECC Collections' 
+    // الترتيب الجديد: العربي الأول عشان يظهر كعنوان رئيسي قوي
+    default: 'المصرية للتحصيلات - ECC Collections | خدمات التحصيل الميداني',
+    template: '%s | المصرية للتحصيلات - ECC Collections' 
   },
   
-  description: 'المصرية للتحصيلات (ECC) رائدة خدمات التحصيل الميداني، الاستعلام الائتماني، والتحقق من البيانات للبنوك والشركات في مصر منذ 2001. تغطية شاملة لجميع المحافظات.',
+  // وصف مصري قوي وشامل
+  description: 'المصرية للتحصيلات (ECC) هي دراعك اليمين في التحصيل الميداني والاستعلام. بنخدم البنوك والشركات في مصر من 2001. سيب ديونك علينا وركز في شغلك.',
   
   publisher: 'ECC Collections - Egyptian Collections Co.', 
   creator: 'Sayed Khaled', 
@@ -59,24 +61,30 @@ export const metadata: Metadata = {
     google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
   },
 
+  // هنا حطيتلك الإنجليزي والعربي عشان تمسك البحث من الناحيتين
+  // الكلمات دي مش بتظهر للي فاتح الموقع، دي لجوجل بس
   keywords: [
-    'ECC Collections', 'المصرية للتحصيلات', 'تحصيل ميداني', 'شركة تحصيل', 'استعلام ميداني',
-    'التحقق من بيانات العملاء', 'Debt Collection Egypt', 'شركات تحصيل ديون في مصر',
-    'خدمات التعهيد', 'Outsourcing Collection', 'تحصيل محافظ بنكية', 'الاستعلام الائتماني',
-    'تحصيل في القاهرة', 'خدمات تحصيل في الجيزة', 'تغطية جميع محافظات مصر'
+    // عربي
+    'المصرية للتحصيلات', 'ECC Collections', 'تحصيل ديون', 'شركة تحصيل', 
+    'مناديب تحصيل', 'تحصيل ميداني', 'استعلام ائتماني', 'تحصيل محافظ بنكية',
+    'شركات التعهيد في مصر', 'تحديث بيانات', 'استرداد مديونيات',
+    // English (Hidden for SEO)
+    'Debt Collection Egypt', 'Field Collection Services', 'Credit Investigation Egypt',
+    'Debt Recovery Agency', 'Outsourcing Collection Services', 'Bad Debt Recovery',
+    'Door to Door Collection', 'ECC Collections Egypt'
   ],
   
   openGraph: {
-    title: 'ECC Collections | المصرية للتحصيلات - ريادة في التحصيل الميداني',
-    description: 'شريكك الموثوق في خدمات التحصيل الميداني والتحقق من البيانات. خبرة أكثر من 20 عاماً منذ 2001.',
+    title: 'المصرية للتحصيلات - ECC Collections | ريادة وخبرة من 2001',
+    description: 'عايز شركة تخلصك من وجع الدماغ وتحصل فلوسك؟ المصرية للتحصيلات (ECC) بخبرة 20 سنة وتغطية لكل محافظات مصر هي الحل.',
     url: 'https://egyptcollections.com', 
-    siteName: 'ECC Collections - المصرية للتحصيلات', // السطر الأهم لتغيير اسم الموقع في جوجل
+    siteName: 'المصرية للتحصيلات - ECC Collections', // ده مهم جداً عشان الاسم يظهر صح في جوجل
     images: [
       {
         url: 'https://egyptcollections.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'ECC Collections - المصرية للتحصيلات'
+        alt: 'المصرية للتحصيلات - ECC Collections'
       }
     ],
     locale: 'ar_EG',
@@ -85,15 +93,23 @@ export const metadata: Metadata = {
   
   twitter: {
     card: 'summary_large_image',
-    title: 'ECC Collections | المصرية للتحصيلات',
-    description: 'خدمات تحصيل ميداني واستعلام ائتماني احترافية تغطي كافة أنحاء مصر.',
+    title: 'المصرية للتحصيلات - ECC Collections',
+    description: 'أقوى خدمات التحصيل الميداني والاستعلام في مصر.',
     images: ['/og-image.png'],
     creator: '@ECC_Collections'
   },
   
+  // الجزء ده هو المسئول عن ظهور اللوجو الصغير جنب نتيجة البحث
   icons: {
-    icon: '/favicon.ico',
-    apple: '/apple-icon.png',
+    icon: [
+      { url: '/favicon.ico' },
+      { url: '/icon.png', type: 'image/png', sizes: '32x32' },
+      { url: '/icon.png', type: 'image/png', sizes: '192x192' }, // جوجل بيحب المقاسات الكبيرة عشان يعرضها
+      { url: '/apple-icon.png', type: 'image/png', sizes: '180x180' },
+    ],
+    apple: [
+      { url: '/apple-icon.png', sizes: '180x180', type: 'image/png' },
+    ],
   },
 
   category: 'Business Services',

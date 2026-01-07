@@ -3,53 +3,22 @@ import HomeContent from '@/components/HomeContent';
 
 export const metadata: Metadata = {
   title: {
-    absolute: 'ECC Collections | المصرية للتحصيلات - خدمات التحصيل والاستعلام'
+    // ده العنوان اللي بيظهر في التاب وفي بحث جوجل للصفحة الرئيسية
+    absolute: 'المصرية للتحصيلات - ECC Collections | الحل الأول للتحصيل والاستعلام'
   },
-  description: 'ECC Collections (المصرية للتحصيلات) الخيار الأول للبنوك والشركات في مصر منذ 2001 لخدمات التحصيل الميداني، الاستعلام الائتماني، وتحديث البيانات.',
-  keywords: [
-    'ECC Collections', 'المصرية للتحصيلات', 'تحصيل ميداني', 'شركة تحصيل ديون', 
-    'الشركة المصرية للتحصيلات', 'استعلام بنكي', 'استعلام ميداني', 'استرداد مديونيات', 
-    'تحصيل محافظ بنكية', 'مناديب تحصيل', 'تحديث بيانات العملاء', 'شركات الاوت سورس في مصر'
-  ],
+  description: 'المصرية للتحصيلات (ECC) اختيارك الأول من 2001. بنغطي مصر كلها بفريق محترف في التحصيل الميداني والاستعلام البنكي. رجع فلوسك وأنت مطمن.',
   alternates: {
     canonical: 'https://egyptcollections.com/'
   },
-  openGraph: {
-    title: 'ECC Collections | المصرية للتحصيلات - حلول التحصيل المتكاملة',
-    description: 'شريكك الاستراتيجي منذ 2001 في التحصيل الميداني والاستعلام. نغطي كافة محافظات مصر بخبرة تتجاوز 20 عاماً.',
-    url: 'https://egyptcollections.com/',
-    siteName: 'ECC Collections - المصرية للتحصيلات',
-    locale: 'ar_EG',
-    type: 'website',
-    images: [
-      {
-        url: 'https://egyptcollections.com/og-image.png',
-        width: 1200,
-        height: 630,
-        alt: 'ECC Collections - المصرية للتحصيلات',
-      },
-    ],
-  },
-  twitter: {
-    card: 'summary_large_image',
-    title: 'ECC Collections | المصرية للتحصيلات',
-    description: 'خدمات التحصيل الميداني والتحقق من البيانات بأعلى معايير الجودة في مصر منذ 2001.',
-    images: ['https://egyptcollections.com/og-image.png'],
-  },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  }
+  // الكلمات المفتاحية هنا بتكمل اللي في الـ layout
+  keywords: [
+    'المصرية للتحصيلات', 'ECC Collections', 'تحصيل الديون في مصر', 
+    'Debt Collection Agency Egypt', 'Credit Reporting', 'Data Verification Egypt'
+  ]
 };
 
 export default function Home() {
+  // الكود ده هو السحر اللي بيكلم جوجل عشان يفهم محتوى موقعك
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
@@ -57,9 +26,12 @@ export default function Home() {
         '@type': 'WebSite',
         '@id': 'https://egyptcollections.com/#website',
         'url': 'https://egyptcollections.com/',
-        'name': 'ECC Collections - المصرية للتحصيلات',
-        'alternateName': ['ECC Collections', 'المصرية للتحصيلات'],
-        'description': 'ECC Collections (المصرية للتحصيلات) رائدة خدمات التحصيل الميداني في مصر منذ 2001',
+        'name': 'المصرية للتحصيلات - ECC Collections',
+        'alternateName': ['ECC Collections', 'المصرية للتحصيلات', 'Egyptian Collections Co.'],
+        'description': 'الشركة الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر',
+        'publisher': {
+          '@id': 'https://egyptcollections.com/#organization'
+        },
         'potentialAction': {
           '@type': 'SearchAction',
           'target': 'https://egyptcollections.com/?s={search_term_string}',
@@ -67,48 +39,53 @@ export default function Home() {
         }
       },
       {
-        '@type': 'ProfessionalService',
+        '@type': 'Organization', // غيرتها لـ Organization عشان تبقى أعم وأقوى للبراند
         '@id': 'https://egyptcollections.com/#organization',
-        'name': 'ECC Collections - المصرية للتحصيلات',
-        'alternateName': 'Egyptian Collections Co.',
+        'name': 'المصرية للتحصيلات - ECC Collections',
         'url': 'https://egyptcollections.com/',
-        'logo': 'https://egyptcollections.com/icon.png',
+        // اللوجو هنا لازم يكون رابط صورة شغال ومربع وعالي الجودة
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://egyptcollections.com/icon.png',
+          'width': 512,
+          'height': 512
+        },
         'image': 'https://egyptcollections.com/og-image.png',
         'foundingDate': '2001',
-        'description': 'شركة رائدة ومستقلة في مجال التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001.',
+        'description': 'إحنا في المصرية للتحصيلات (ECC) بنقدم حلول متكاملة للبنوك والشركات لاسترداد المديونيات والاستعلام الميداني بخبرة أكثر من 20 سنة.',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 شارع هارون، ميدان المساحة',
-          'addressLocality': 'Dokki',
-          'addressRegion': 'Giza',
+          'addressLocality': 'الدقي',
+          'addressRegion': 'الجيزة',
           'postalCode': '12611',
           'addressCountry': 'EG'
+        },
+        'contactPoint': {
+          '@type': 'ContactPoint',
+          'telephone': '+201110600280',
+          'contactType': 'customer service',
+          'areaServed': 'EG',
+          'availableLanguage': ['Arabic', 'English']
         },
         'geo': {
           '@type': 'GeoCoordinates',
           'latitude': '30.0385',
           'longitude': '31.2185'
         },
-        'telephone': '+201110600280',
-        'priceRange': '$$',
-        'openingHoursSpecification': [
-          {
-            '@type': 'OpeningHoursSpecification',
-            'dayOfWeek': ['Sunday','Monday','Tuesday','Wednesday','Thursday'],
-            'opens': '09:00',
-            'closes': '17:00'
-          }
-        ],
+        // هنا حط لينكات السوشيال ميديا بتاعتكم عشان جوجل يربط كله ببعضه
         'sameAs': [
-          'https://www.facebook.com/EgyptCollectionsCo'
+          'https://www.facebook.com/EgyptCollectionsCo',
+          'https://www.linkedin.com/company/egypt-collections', // لو عندك لينكدان ضيفه
+          'https://twitter.com/ECC_Collections' // لو عندك تويتر ضيفه
         ],
         'hasOfferCatalog': {
           '@type': 'OfferCatalog',
-          'name': 'خدمات التحصيل والاستعلام',
+          'name': 'خدمات التحصيل',
           'itemListElement': [
-            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'التحصيل الميداني (Field Collection)' } },
-            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'الاستعلام الائتماني (Credit Investigation)' } },
-            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'التحقق من البيانات (Data Verification)' } }
+            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'التحصيل الميداني' } },
+            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'الاستعلام الائتماني' } },
+            { '@type': 'Offer', 'itemOffered': { '@type': 'Service', 'name': 'Data Verification' } }
           ]
         }
       }
