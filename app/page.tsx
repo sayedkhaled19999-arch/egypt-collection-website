@@ -3,6 +3,7 @@ import HomeContent from '@/components/HomeContent';
 
 export const metadata: Metadata = {
   title: {
+    // العنوان في التاب خليه زي ما هو عشان يبقى ملفت
     absolute: 'ECC Collections - المصرية للتحصيلات'
   },
   description: 'المصرية للتحصيلات (ECC) اختيارك الأول من 2001. بنغطي مصر كلها بفريق محترف في التحصيل الميداني والاستعلام البنكي. رجع فلوسك وأنت مطمن.',
@@ -23,15 +24,26 @@ export default function Home() {
         '@type': 'WebSite',
         '@id': 'https://egyptcollections.com/#website',
         'url': 'https://egyptcollections.com/',
-        'name': 'ECC Collections - المصرية للتحصيلات',
-        'language': 'ar-EG' // إضافة مهمة
+        
+        // التعديل هنا: الاسم العربي الصريح بدون فواصل (-) عشان يظهر كبير زي المنافس
+        'name': 'المصرية للتحصيلات ECC',
+        
+        // حطينا هنا كل احتمالات البحث عشان تمسك السوق كله
+        'alternateName': [
+          'ECC Collections', 
+          'الشركة المصرية للتحصيلات', 
+          'Egyptian Collections Co.'
+        ],
+        
+        'language': 'ar-EG'
       },
       {
-        // التغيير الجوهري هنا: حولناها من Organization لـ FinancialService
-        // ده هيخليك تظهر في نتايج الموبايل والخرائط بقوة
         '@type': 'FinancialService', 
         '@id': 'https://egyptcollections.com/#organization',
-        'name': 'ECC Collections - المصرية للتحصيلات',
+        
+        // وحدنا الاسم هنا كمان عشان جوجل يثق في البراند
+        'name': 'المصرية للتحصيلات ECC',
+        
         'url': 'https://egyptcollections.com/',
         'logo': {
           '@type': 'ImageObject',
@@ -40,8 +52,11 @@ export default function Home() {
           'height': 512
         },
         'image': 'https://egyptcollections.com/og-image.png',
-        'priceRange': '$$', // مهمة جداً عشان جوجل يعرف إنك خدمة تجارية
+        'priceRange': '$$',
+        
+        // الوصف القوي اللي اتفقنا عليه
         'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة (Retail & Corporate)، تحديث البيانات، والتقصي الميداني. نغطي جميع محافظات الجمهورية بفريق محترف يضمن أعلى معدلات التحصيل مع الحفاظ على سمعة عملائنا.',
+        
         'telephone': '+201110600280',
         'address': {
           '@type': 'PostalAddress',
@@ -51,7 +66,6 @@ export default function Home() {
           'postalCode': '12611',
           'addressCountry': 'EG'
         },
-        // إضافة مواعيد العمل (جوجل موبايل بيعشق دي عشان يكتب "Open Now")
         'openingHoursSpecification': [
           {
             '@type': 'OpeningHoursSpecification',
@@ -81,7 +95,6 @@ export default function Home() {
         },
         'sameAs': [
           'https://www.facebook.com/EgyptCollectionsCo',
-          // اتأكد إن اللينكات دي شغالة وشيل أي لينك مش موجود عشان جوجل ميعاقبش الصفحة
         ],
         'areaServed': {
             '@type': 'Country',
