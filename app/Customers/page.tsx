@@ -2,7 +2,7 @@ import { Metadata } from 'next';
 import CustomersClient from './CustomersClient';
 
 export const metadata: Metadata = {
-  title: 'شركاء النجاح وعملاء ECC Collections | المصرية للتحصيلات',
+  title: 'ECC Collections - عملاء المصرية للتحصيلات',
   description: 'تفتخر ECC Collections بسابقة أعمال قوية مع كبرى البنوك في مصر منذ 2001. نحن الوكيل المعتمد للبنك الأهلي، بنك مصر، وبنك القاهرة. ثقة تبنيها سنوات من الاحترافية.',
   keywords: [
     'ECC Collections', 
