@@ -4,7 +4,7 @@ import HomeContent from '@/components/HomeContent';
 export const metadata: Metadata = {
   title: {
     // العنوان في التاب خليه زي ما هو عشان يبقى ملفت
-    absolute: 'المصرية للتحصيلات - ECC Collections'
+    absolute: 'الشركة المصرية للتحصيلات ECC'
   },
   description: 'المصرية للتحصيلات (ECC) اختيارك الأول من 2001. بنغطي مصر كلها بفريق محترف في التحصيل الميداني والاستعلام البنكي. رجع فلوسك وأنت مطمن.',
   alternates: {

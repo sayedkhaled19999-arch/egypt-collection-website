@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 
   title: {
     // الترتيب الجديد: العربي الأول (ممتاز)
-    default: 'المصرية للتحصيلات - ECC Collections',
+    default: 'الشركة المصرية للتحصيلات ECC',
     template: '%s | المصرية للتحصيلات - ECC Collections' 
   },
   
@@ -81,7 +81,7 @@ export const metadata: Metadata = {
         url: 'https://egyptcollections.com/og-image.png',
         width: 1200,
         height: 630,
-        alt: 'المصرية للتحصيلات - ECC Collections'
+        alt: 'الشركة المصرية للتحصيلات ECC'
       }
     ],
     locale: 'ar_EG',
@@ -91,7 +91,7 @@ export const metadata: Metadata = {
   twitter: {
     card: 'summary_large_image',
     // دي كانت مظبوطة عندك، زي الفل
-    title: 'المصرية للتحصيلات - ECC Collections',
+    title: 'الشركة المصرية للتحصيلات ECC',
     description: 'أقوى خدمات التحصيل الميداني والاستعلام في مصر.',
     images: ['/og-image.png'],
     creator: '@ECC_Collections'
