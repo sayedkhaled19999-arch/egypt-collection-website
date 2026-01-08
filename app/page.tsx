@@ -29,10 +29,8 @@ export default function Home() {
         '@id': 'https://egyptcollections.com/#website',
         'url': 'https://egyptcollections.com/',
 
-        // ✅ توحيد الاسم الرسمي
         'name': 'الشركة المصرية للتحصيلات ECC',
 
-        // ✅ alternateName = أسماء بحث مختلفة فقط
         'alternateName': [
           'ECC',
           'ECC Collections',
@@ -45,7 +43,6 @@ export default function Home() {
         '@type': 'FinancialService',
         '@id': 'https://egyptcollections.com/#organization',
 
-        // ✅ نفس الاسم بالظبط
         'name': 'الشركة المصرية للتحصيلات ECC',
 
         'url': 'https://egyptcollections.com/',
@@ -58,7 +55,6 @@ export default function Home() {
         'image': 'https://egyptcollections.com/og-image.png',
         'priceRange': '$$',
 
-        // ✅ تصليح التكرار
         'description':
           'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة (Retail & Corporate)، تحديث البيانات، والتقصي الميداني. نغطي جميع محافظات الجمهورية بفريق محترف يضمن أعلى معدلات التحصيل مع الحفاظ على سمعة عملائنا.',
 
@@ -102,6 +98,20 @@ export default function Home() {
         'areaServed': {
           '@type': 'Country',
           'name': 'Egypt'
+        }
+      },
+
+      // ✅ الإضافة الجديدة (Organization Logo Structured Data)
+      {
+        '@type': 'Organization',
+        '@id': 'https://egyptcollections.com/#logo',
+        'name': 'الشركة المصرية للتحصيلات ECC',
+        'url': 'https://egyptcollections.com/',
+        'logo': {
+          '@type': 'ImageObject',
+          'url': 'https://egyptcollections.com/icon.png',
+          'width': 512,
+          'height': 512
         }
       }
     ]
