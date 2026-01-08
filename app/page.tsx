@@ -3,16 +3,20 @@ import HomeContent from '@/components/HomeContent';
 
 export const metadata: Metadata = {
   title: {
-    // العنوان في التاب خليه زي ما هو عشان يبقى ملفت
     absolute: 'الشركة المصرية للتحصيلات ECC'
   },
-  description: 'الشركة المصرية للتحصيلات (ECC) اختيارك الأول من 2001. بنغطي مصر كلها بفريق محترف في التحصيل الميداني والاستعلام البنكي. رجع فلوسك وأنت مطمن.',
+  description:
+    'الشركة المصرية للتحصيلات (ECC) اختيارك الأول من 2001. بنغطي مصر كلها بفريق محترف في التحصيل الميداني والاستعلام البنكي. رجع فلوسك وأنت مطمن.',
   alternates: {
     canonical: 'https://egyptcollections.com/'
   },
   keywords: [
-    'المصرية للتحصيلات', 'ECC', 'تحصيل الديون في مصر', 
-    'Debt Collection Agency Egypt', 'Credit Reporting', 'Data Verification Egypt'
+    'المصرية للتحصيلات',
+    'ECC',
+    'تحصيل الديون في مصر',
+    'Debt Collection Agency Egypt',
+    'Credit Reporting',
+    'Data Verification Egypt'
   ]
 };
 
@@ -24,26 +28,26 @@ export default function Home() {
         '@type': 'WebSite',
         '@id': 'https://egyptcollections.com/#website',
         'url': 'https://egyptcollections.com/',
-        
-        // التعديل هنا: الاسم العربي الصريح بدون فواصل (-) عشان يظهر كبير زي المنافس
-        'name': 'المصرية للتحصيلات ECC',
-        
-        // حطينا هنا كل احتمالات البحث عشان تمسك السوق كله
+
+        // ✅ توحيد الاسم الرسمي
+        'name': 'الشركة المصرية للتحصيلات ECC',
+
+        // ✅ alternateName = أسماء بحث مختلفة فقط
         'alternateName': [
-          'ECC', 
-          'الشركة المصرية للتحصيلات', 
-          'Egyptian Collections Co.'
+          'ECC',
+          'ECC Collections',
+          'Egyptian Collections Company'
         ],
-        
+
         'language': 'ar-EG'
       },
       {
-        '@type': 'FinancialService', 
+        '@type': 'FinancialService',
         '@id': 'https://egyptcollections.com/#organization',
-        
-        // وحدنا الاسم هنا كمان عشان جوجل يثق في البراند
-        'name': 'المصرية للتحصيلات ECC',
-        
+
+        // ✅ نفس الاسم بالظبط
+        'name': 'الشركة المصرية للتحصيلات ECC',
+
         'url': 'https://egyptcollections.com/',
         'logo': {
           '@type': 'ImageObject',
@@ -53,10 +57,11 @@ export default function Home() {
         },
         'image': 'https://egyptcollections.com/og-image.png',
         'priceRange': '$$',
-        
-        // الوصف القوي اللي اتفقنا عليه
-        'description': 'الشركة الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة (Retail & Corporate)، تحديث البيانات، والتقصي الميداني. نغطي جميع محافظات الجمهورية بفريق محترف يضمن أعلى معدلات التحصيل مع الحفاظ على سمعة عملائنا.',
-        
+
+        // ✅ تصليح التكرار
+        'description':
+          'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة (Retail & Corporate)، تحديث البيانات، والتقصي الميداني. نغطي جميع محافظات الجمهورية بفريق محترف يضمن أعلى معدلات التحصيل مع الحفاظ على سمعة عملائنا.',
+
         'telephone': '+201110600280',
         'address': {
           '@type': 'PostalAddress',
@@ -70,12 +75,12 @@ export default function Home() {
           {
             '@type': 'OpeningHoursSpecification',
             'dayOfWeek': [
-              "Saturday",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday"
+              'Saturday',
+              'Sunday',
+              'Monday',
+              'Tuesday',
+              'Wednesday',
+              'Thursday'
             ],
             'opens': '08:30',
             'closes': '18:30'
@@ -93,12 +98,10 @@ export default function Home() {
           'latitude': '30.0385',
           'longitude': '31.2185'
         },
-        'sameAs': [
-          'https://www.facebook.com/EgyptCollectionsCo',
-        ],
+        'sameAs': ['https://www.facebook.com/EgyptCollectionsCo'],
         'areaServed': {
-            '@type': 'Country',
-            'name': 'Egypt'
+          '@type': 'Country',
+          'name': 'Egypt'
         }
       }
     ]

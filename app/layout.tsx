@@ -70,12 +70,14 @@ export const metadata: Metadata = {
   ],
   
   openGraph: {
-    // التعديل تم هنا: خليتها عربي الأول عشان تبقى زي العنوان الرئيسي
     title: 'الشركة المصرية للتحصيلات ECC | ريادة وخبرة من 2001',
-    description: 'عايز شركة تخلصك من وجع الدماغ وتحصل فلوسك؟ الشركة المصرية للتحصيلات (ECC) بخبرة 20 سنة وتغطية لكل محافظات مصر هي الحل.',
-    url: 'https://egyptcollections.com', 
-    // وهنا كمان وحدنا الاسم
-    siteName: 'المصرية للتحصيلات ECC', 
+    description:
+      'عايز شركة تخلصك من وجع الدماغ وتحصل فلوسك؟ الشركة المصرية للتحصيلات (ECC) بخبرة 20 سنة وتغطية لكل محافظات مصر هي الحل.',
+    url: 'https://egyptcollections.com',
+
+    // ✅ توحيد الاسم مع كل الموقع
+    siteName: 'الشركة المصرية للتحصيلات ECC',
+
     images: [
       {
         url: 'https://egyptcollections.com/og-image.png',
@@ -87,7 +89,7 @@ export const metadata: Metadata = {
     locale: 'ar_EG',
     type: 'website'
   },
-  
+
   twitter: {
     card: 'summary_large_image',
     // دي كانت مظبوطة عندك، زي الفل
