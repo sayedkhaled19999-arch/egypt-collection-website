@@ -1,7 +1,7 @@
 import { Metadata } from "next";
 import JobClient from "./JobClient";
 
-// ===== بيانات الوظائف =====
+// ===== بيانات الوظائف (زي ما هي) =====
 const jobs = [
   { 
     id: "office-collector", 
@@ -49,7 +49,8 @@ const jobs = [
 type Props = { params: { id: string } };
 
 const SITE_URL = "https://egyptcollections.com";
-const OG_IMAGE = `${SITE_URL}/og-image.png`;
+// استخدمنا المسار المختصر للصورة لأن metadataBase موجود في الـ layout
+const OG_IMAGE = "/og-image.png";
 
 // ===== 1. ميتا تاجز =====
 export const generateMetadata = ({ params }: Props): Metadata => {
@@ -57,19 +58,20 @@ export const generateMetadata = ({ params }: Props): Metadata => {
 
   if (!job) {
     return {
-      title: "الوظيفة غير متاحة | المصرية للتحصيلات ECC",
+      title: "الوظيفة غير متاحة",
       description: "الوظيفة المطلوبة غير متاحة حالياً.",
-      metadataBase: new URL(SITE_URL),
-      alternates: { canonical: `${SITE_URL}/jobs` }
+      // مش محتاجين metadataBase هنا خلاص
+      alternates: { canonical: '/jobs' }
     };
   }
 
-  const canonicalUrl = `${SITE_URL}/jobs/${job.id}`;
+  const canonicalUrl = `/jobs/${job.id}`;
 
   return {
-    metadataBase: new URL(SITE_URL),
-    // العنوان: اسم الوظيفة | البراند الموحد
-    title: `مطلوب للتعيين: ${job.title} | المصرية للتحصيلات ECC`,
+    // استخدمنا absolute عشان نتحكم في العنوان بالكامل ومتظهرش (ECC | ECC)
+    title: {
+      absolute: `مطلوب للتعيين: ${job.title} | المصرية للتحصيلات ECC`
+    },
     description: job.description,
     keywords: [
       "وظائف خالية", "وظائف اليوم", "وظائف شركات",
@@ -77,23 +79,28 @@ export const generateMetadata = ({ params }: Props): Metadata => {
       ...job.keywords
     ],
     alternates: { canonical: canonicalUrl },
+    
     openGraph: {
+      // بنعدل بس الحاجات المتغيرة، والباقي بيورث من layout
       title: `فرصة عمل: ${job.title}`,
       description: job.description,
       url: canonicalUrl,
-      // الاسم الموحد زي ما طلبت بالظبط
-      siteName: 'المصرية للتحصيلات ECC',
-      locale: "ar_EG",
-      type: "website",
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `وظيفة ${job.title} - ECC` }]
+      images: [{ 
+        url: OG_IMAGE, 
+        width: 1200, 
+        height: 630, 
+        alt: `وظيفة ${job.title} - ECC` 
+      }]
     },
+    
     twitter: {
-      card: "summary_large_image",
+      // مش محتاجين card type خلاص
       title: `فرصة عمل: ${job.title}`,
       description: job.description,
       images: [OG_IMAGE]
     },
-    robots: { index: true, follow: true }
+    
+    // ❌ تم حذف robots لأنها موجودة في layout.tsx
   };
 };
 
@@ -103,6 +110,7 @@ export default function Page({ params }: Props) {
   if (!job) return null;
 
   const datePosted = new Date().toISOString().split('T')[0];
+  // الوظيفة متاحة لمدة سنة (تعديل ذكي منك)
   const validThrough = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0];
 
   const jsonLd = {
@@ -125,13 +133,12 @@ export default function Page({ params }: Props) {
           "@type": "Organization", 
           "name": "المصرية للتحصيلات ECC", 
           "sameAs": SITE_URL, 
-          "logo": OG_IMAGE 
+          "logo": `${SITE_URL}/icon.png` // يفضل استخدام اللوجو المربع هنا
         },
         "jobLocation": { 
           "@type": "Place", 
           "address": { 
             "@type": "PostalAddress", 
-            // التعديل 1: كتابة العنوان بالعربي وتفصيله
             "streetAddress": "30 شارع هارون، ميدان المساحة", 
             "addressLocality": "الدقي", 
             "addressRegion": "الجيزة", 
@@ -139,13 +146,13 @@ export default function Page({ params }: Props) {
             "addressCountry": "EG" 
           } 
         },
-        // التعديل 2: إضافة المرتب عشان جوجل ميزعلش
+        // إضافة ممتازة (Google for Jobs بيحب جداً تحديد المرتب)
         "baseSalary": {
           "@type": "MonetaryAmount",
           "currency": "EGP",
           "value": {
             "@type": "QuantitativeValue",
-            // حطينا مدى متوسط تقدري تغيريه
+            // دي قيم تقديرية، ممكن تعدلها حسب كل وظيفة لو حبيت
             "minValue": 6000,
             "maxValue": 8000,
             "unitText": "MONTH"

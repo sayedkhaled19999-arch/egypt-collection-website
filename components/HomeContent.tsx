@@ -2,29 +2,39 @@
 
 import dynamic from 'next/dynamic';
 import HeroCarousel from '@/components/home/HeroCarousel';
-
-// المكونات التي يتم تحميلها بشكل ديناميكي لتحسين السرعة
-const CustomersSection = dynamic(() => import('@/components/home/CustomersSection'), { ssr: false });
-const BranchesSection = dynamic(() => import('@/components/home/BranchesSection'), { ssr: false });
 import AboutCard from '@/components/home/AboutCard';
 import ValuesSection from '@/components/home/ValuesSection';
 import CallToAction from '@/components/home/JoinUsSection';
+
+// ✅ التعديل: شيلنا { ssr: false } عشان جوجل يقرأ أسماء البنوك والمحافظات
+// وأضفنا loading component عشان الشكل يبقى حلو وهو بيحمل
+const CustomersSection = dynamic(() => import('@/components/home/CustomersSection'), { 
+  loading: () => <div className="h-40 bg-gray-50 animate-pulse rounded-lg my-8" />
+});
+
+const BranchesSection = dynamic(() => import('@/components/home/BranchesSection'), { 
+  loading: () => <div className="h-60 bg-gray-50 animate-pulse rounded-lg my-8" />
+});
 
 export default function HomeContent() {
   return (
     <>
       {/* 
-         ✅ تم تحديث هذا الجزء:
-         بما أن المكون <HeroCarousel /> يحتوي بالداخل على وسم <h1> للعنوان الرئيسي،
-         قمنا بإلغاء الـ <h1> المخفي هنا لمنع تكرار الوسم، 
-         وهذا هو الحل لمشكلة (More than one h1 tag) في Bing و Google.
+         ممتاز جداً إنك انتبهت لنقطة الـ h1
+         كده الصفحة ليها عنوان رئيسي واحد موجود جوه HeroCarousel
+         وده صح 100% للـ SEO
       */}
-
       <HeroCarousel />
+      
       <AboutCard />
+      
       <ValuesSection />
+      
+      {/* جوجل دلوقتي هيقدر يقرأ محتوى السكاشن دي بمجرد ما الصفحة تفتح */}
       <CustomersSection />
+      
       <BranchesSection />
+      
       <CallToAction />
     </>
   );

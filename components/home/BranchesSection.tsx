@@ -87,25 +87,28 @@ export default function BranchesSection() {
                 href={branch.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="relative block p-6 rounded-2xl shadow-lg bg-white cursor-pointer overflow-hidden group"
+                // التعديل هنا: غيرنا bg-white لـ bg-[#F4F4F4] (الرمادي الفاتح بتاع شركائنا)
+                className="relative block p-6 rounded-2xl shadow-md bg-[#F4F4F4] cursor-pointer overflow-hidden group"
                 custom={i}
                 variants={cardVariants}
                 initial="hidden"
                 animate={controls}
-                whileHover={{ scale: 1.05, boxShadow: '0 15px 30px rgba(0,123,255,0.3)' }}
+                whileHover={{ scale: 1.05, boxShadow: '0 15px 30px rgba(0,123,255,0.2)' }}
                 whileTap={{ scale: 0.97 }}
               >
                 <span className="absolute inset-0 rounded-2xl bg-white opacity-0 group-active:opacity-20 transition-opacity" />
 
                 <div className="mt-0 text-center">
                   <h3
-                    className="text-xl font-bold text-[#353535] truncate transition-all duration-300 group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-blue-600 inline-flex items-center justify-center gap-2"
+                    className="text-xl font-bold text-[#353535] transition-all duration-300 group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-blue-600 inline-flex items-center justify-center gap-2"
                     title={branch.name}
                   >
                     <MapPin className="w-5 h-5 text-blue-500" />
                     {branch.name}
                   </h3>
-                  <p className="text-[#757575] mt-1 truncate" title={branch.address}>
+                  
+                  {/* التعديل هنا: شلنا truncate وضفنا text-sm leading-relaxed عشان العنوان يبان كامل ومقروء */}
+                  <p className="text-[#666] mt-2 text-sm leading-relaxed">
                     {branch.address}
                   </p>
                 </div>

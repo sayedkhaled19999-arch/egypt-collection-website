@@ -1,108 +1,104 @@
 import { Metadata } from "next";
 import JobsClient from "./JobsClient";
 
+const SITE_URL = 'https://egyptcollections.com';
+
 export const metadata: Metadata = {
-  title: {
-    // الترتيب الموحد: اسم الصفحة | البراند
-    absolute: 'وظائف خالية | الشركة المصرية للتحصيلات ECC',
-  },
+  // ✅ التعديل هنا: "وظائف خالية" بس
+  // النتيجة هتظهر: "وظائف خالية | الشركة المصرية للتحصيلات ECC"
+  title: 'وظائف خالية',
+  
   description: 'عايز شغل بجد ومستقبل مضمون؟ المصرية للتحصيلات ECC تفتح باب التعيين. مطلوب محصلين (ميداني/مكتبي) ومدخلين بيانات. مرتبات مجزية + عمولات يومية + تأمينات. بدون أي رسوم للتقديم.',
+  
   keywords: [
     'وظائف خالية', 'شغل في الجيزة', 'فرص عمل للشباب', 'وظائف مصر',
     'مطلوب محصلين', 'مندوب تحصيل ميداني', 'شغل كول سنتر', 'مدخل بيانات',
     'وظائف بدون رسوم', 'شغل بمرتب ثابت', 'عمولات مجزية',
     'ECC', 'المصرية للتحصيلات', 'التوظيف'
   ],
+  
   alternates: { 
-    // تصحيح الرابط ليكون كاملاً
-    canonical: 'https://egyptcollections.com/jobs' 
+    canonical: '/jobs' // ✅ اختصار
   },
+  
   openGraph: {
     title: 'فرصة شغل في المصرية للتحصيلات | ECC',
-    description: 'مطلوب رجالة تسد في الشغل! مرتبات ثابتة وعمولات وتأمين اجتماعي. التعيين فوري وبدون أي مصاريف إدارية. قدم دلوقتي.',
-    url: 'https://egyptcollections.com/jobs',
-    // الاسم الموحد بالعربي الأول
+    description: 'مطلوب رجالة تسد في الشغل! مرتبات ثابتة وعمولات وتأمين اجتماعي. التعيين فوري وبدون أي مصاريف إدارية.',
+    url: '/jobs', // ✅ اختصار
     siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
     images: [{
-      url: 'https://egyptcollections.com/og-image.png',
+      url: '/og-image.png', // ✅ اختصار
       width: 1200,
       height: 630,
       alt: 'وظائف المصرية للتحصيلات - انضم لفريقنا'
     }]
   },
-  robots: {
-    index: true,
-    follow: true,
-    googleBot: {
-      index: true,
-      follow: true,
-      'max-video-preview': -1,
-      'max-image-preview': 'large',
-      'max-snippet': -1
-    }
-  }
+  
+  // ❌ تم حذف robots لأنها موجودة في layout.tsx
 };
 
 export default function Page() {
   const jsonLd = {
     '@context': 'https://schema.org',
     '@graph': [
-      // 1. تعريف الصفحة (CollectionPage - عشان دي قائمة وظائف)
+      // 1. تعريف الصفحة (CollectionPage مناسبة جداً لصفحة فيها كذا وظيفة)
       {
         '@type': 'CollectionPage',
-        '@id': 'https://egyptcollections.com/jobs/#webpage',
-        'url': 'https://egyptcollections.com/jobs',
+        '@id': `${SITE_URL}/jobs/#webpage`,
+        'url': `${SITE_URL}/jobs`,
         'name': 'وظائف خالية | الشركة المصرية للتحصيلات ECC',
         'description': 'فرص عمل متاحة في مجال التحصيل والاستعلام. انضم لفريق ECC.',
         'isPartOf': {
-          '@id': 'https://egyptcollections.com/#website'
+          '@id': `${SITE_URL}/#website`
         },
         'about': {
-          '@id': 'https://egyptcollections.com/#organization'
+          '@id': `${SITE_URL}/#organization`
         },
         'breadcrumb': {
-          '@id': 'https://egyptcollections.com/jobs/#breadcrumb'
+          '@id': `${SITE_URL}/jobs/#breadcrumb`
         }
       },
-      // 2. فتات الخبز (Breadcrumbs)
+      // 2. فتات الخبز
       {
         '@type': 'BreadcrumbList',
-        '@id': 'https://egyptcollections.com/jobs/#breadcrumb',
+        '@id': `${SITE_URL}/jobs/#breadcrumb`,
         'itemListElement': [
           {
             '@type': 'ListItem',
             'position': 1,
             'name': 'الرئيسية',
-            'item': 'https://egyptcollections.com/'
+            'item': `${SITE_URL}/`
           },
           {
             '@type': 'ListItem',
             'position': 2,
             'name': 'وظائف خالية',
-            'item': 'https://egyptcollections.com/jobs'
+            'item': `${SITE_URL}/jobs`
           }
         ]
       },
-      // 3. بيانات الشركة الموحدة (FinancialService)
-      // عشان الباحث عن عمل يعرف مكان الشركة وتليفونها من البحث مباشرة
+      // 3. بيانات الشركة (عشان الباحث عن عمل يوصلكم بسرعة)
       {
         '@type': 'FinancialService',
-        '@id': 'https://egyptcollections.com/#organization',
-        'name': 'المصرية للتحصيلات ECC',
-        'url': 'https://egyptcollections.com/',
+        '@id': `${SITE_URL}/#organization`,
+        'name': 'الشركة المصرية للتحصيلات ECC',
+        'url': `${SITE_URL}/`,
         'logo': {
           '@type': 'ImageObject',
-          'url': 'https://egyptcollections.com/icon.png',
+          'url': `${SITE_URL}/icon.png`,
           'width': 512,
           'height': 512
         },
-        'image': 'https://egyptcollections.com/og-image.png',
+        'image': `${SITE_URL}/og-image.png`,
         'foundingDate': '2001',
         'priceRange': '$$',
         'telephone': '+201110600280',
-        'description': 'الشركة الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني وتوفر فرص عمل متميزة للشباب.',
+        
+        // ✅ تم إصلاح الخطأ المطبعي (الشركة الشركة)
+        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني وتوفر فرص عمل متميزة للشباب.',
+        
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 شارع هارون، ميدان المساحة',
@@ -115,12 +111,7 @@ export default function Page() {
           {
             '@type': 'OpeningHoursSpecification',
             'dayOfWeek': [
-              "Saturday",
-              "Sunday",
-              "Monday",
-              "Tuesday",
-              "Wednesday",
-              "Thursday"
+              "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"
             ],
             'opens': '08:30',
             'closes': '18:30'
@@ -135,8 +126,8 @@ export default function Page() {
         },
         'geo': {
           '@type': 'GeoCoordinates',
-          'latitude': 30.0385,
-          'longitude': 31.2185
+          'latitude': '30.0385',
+          'longitude': '31.2185'
         },
         'sameAs': [
           'https://www.facebook.com/EgyptCollectionsCo'

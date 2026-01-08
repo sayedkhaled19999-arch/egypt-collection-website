@@ -1,6 +1,6 @@
 import '@/styles/globals.css';
-import 'slick-carousel/slick/slick.css';
-import 'slick-carousel/slick/slick-theme.css';
+import 'slick-carousel/slick/slick.css';      // لو مش بتستخدم Slick في حتة تانية ممكن تمسح السطر ده
+import 'slick-carousel/slick/slick-theme.css'; // وده كمان
 import type { Metadata } from 'next'; 
 import { Tajawal } from 'next/font/google';
 import Navbar from '@/components/Navbar';
@@ -18,7 +18,6 @@ const tajawal = Tajawal({
   variable: '--font-tajawal',
 });
 
-// Moved viewport to a separate export as per Next.js 14+ standards
 export const viewport = {
   themeColor: '#2563EB',
   width: 'device-width',
@@ -30,7 +29,6 @@ export const metadata: Metadata = {
   metadataBase: new URL('https://egyptcollections.com'), 
 
   title: {
-    // الترتيب الجديد: العربي الأول (ممتاز)
     default: 'الشركة المصرية للتحصيلات ECC',
     template: '%s | الشركة المصرية للتحصيلات ECC' 
   },
@@ -74,10 +72,7 @@ export const metadata: Metadata = {
     description:
       'عايز شركة تخلصك من وجع الدماغ وتحصل فلوسك؟ الشركة المصرية للتحصيلات (ECC) بخبرة 20 سنة وتغطية لكل محافظات مصر هي الحل.',
     url: 'https://egyptcollections.com',
-
-    // ✅ توحيد الاسم مع كل الموقع
     siteName: 'الشركة المصرية للتحصيلات ECC',
-
     images: [
       {
         url: 'https://egyptcollections.com/og-image.png',
@@ -92,11 +87,9 @@ export const metadata: Metadata = {
 
   twitter: {
     card: 'summary_large_image',
-    // دي كانت مظبوطة عندك، زي الفل
     title: 'الشركة المصرية للتحصيلات ECC',
     description: 'أقوى خدمات التحصيل الميداني والاستعلام في مصر.',
     images: ['/og-image.png'],
-    creator: '@ECC_Collections'
   },
   
   icons: {
@@ -121,6 +114,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
     <html lang="ar" dir="rtl">
       <body className={`${tajawal.className} ${tajawal.variable} flex flex-col min-h-screen bg-gray-50`}>
         
+        {/* Google Tag Manager (noscript) */}
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -130,15 +124,23 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
           />
         </noscript>
 
-        <Navbar />
+        {/* 
+          ✅ التعديل هنا: 
+          حطينا النافبار والمحتوى والفوتر كلهم جوه ClientWrapper 
+          عشان اللودر يغطي الصفحة بالكامل لحد ما تحمل
+        */}
         <ClientWrapper>
-          <main className="flex-grow">{children}</main>
+          <Navbar />
+          <main className="flex-grow">
+            {children}
+          </main>
+          <Footer />
         </ClientWrapper>
-        <Footer />
         
         <Analytics />
         <SpeedInsights />
 
+        {/* Google Analytics & Tag Manager Scripts */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NXPPCK0R5E"
           strategy="afterInteractive"
