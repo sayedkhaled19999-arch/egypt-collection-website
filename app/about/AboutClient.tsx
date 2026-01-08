@@ -42,7 +42,7 @@ export default function AboutClient() {
           transition={{ delay: 0.2, duration: 0.9 }}
           className="max-w-5xl mx-auto text-lg md:text-xl leading-relaxed text-[#4B4B4B] mb-10"
         >
-          إحنا <strong>المصرية للتحصيلات (ECC)</strong>، شركة مصرية رائدة متخصصة في إدارة المديونيات والتحصيل والاستعلام الائتماني.  
+          إحنا <strong>الشركة المصرية للتحصيلات (ECC)</strong>، شركة مصرية رائدة متخصصة في إدارة المديونيات والتحصيل والاستعلام الائتماني.  
           خبرتنا بدأت من <strong>سنة 2001</strong>، وطول السنين دي بنتعامل مع كبرى البنوك والمؤسسات المالية في مصر،  
           وبنقدم حلول دقيقة وموثوقة بتضمن حقوق شركائنا.
         </motion.p>
@@ -58,7 +58,7 @@ export default function AboutClient() {
       {/* ================= About Content ================= */}
       <section className="max-w-6xl mx-auto px-4 space-y-14 pb-28">
         <Paragraph>
-          في <strong>ECC</strong>، ومن أول يوم لينا في السوق المصري، كان عندنا قناعة إن التحصيل والاستعلام مش مجرد أرقام،  
+          في الشركة المصرية للتحصيلات <strong>ECC</strong>، ومن أول يوم لينا في السوق المصري، كان عندنا قناعة إن التحصيل والاستعلام مش مجرد أرقام،  
           لكنه منظومة متكاملة بتقوم على الاحترافية، ودراسة كل حالة بعناية، واحترام جميع الأطراف.
         </Paragraph>
 
@@ -107,7 +107,7 @@ export default function AboutClient() {
             transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl font-extrabold text-center text-[#2563EB] mb-16"
           >
-            ليه كبرى البنوك بتختار ECC؟
+            ليه كبرى البنوك بتختار الشركة المصرية للتحصيلات ECC؟
           </motion.h2>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
@@ -155,7 +155,7 @@ export default function AboutClient() {
             </h3>
 
             <p className="text-lg leading-loose text-[#4B4B4B] mb-6">
-              <strong>ECC</strong> اتبنت على مبدأ واضح: إن التنظيم والالتزام هما أساس الثقة الحقيقية.  
+              <strong>الشركة المصرية للتحصيلات (ECC)</strong> اتبنت على مبدأ واضح: إن التنظيم والالتزام هما أساس الثقة الحقيقية.  
               من سنة 2001 وإحنا شغالين على بناء كيان مهني مستقل يخدم القطاع المصرفي بأسلوب يحفظ الحقوق ويحقق نتائج ملموسة.
             </p>
 
