@@ -60,7 +60,7 @@ export default function CustomersClient() {
       <section className="py-20 text-center">
         {/* تم إضافة اسم البراند في الـ H1 لتقوية الأرشفة */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#2563EB] mb-4">
-          شركاء النجاح في ECC
+          شركاء الشركة المصرية للتحصيلات (ECC)
         </h1>
 
         <div className="text-[#4B4B4B] max-w-3xl mx-auto mb-12 space-y-3 px-4">
