@@ -73,7 +73,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
     description: job.description,
     keywords: [
       "وظائف خالية", "وظائف اليوم", "وظائف شركات",
-      "ECC Collections", "شركة تحصيل", "وظائف مصر",
+      "ECC", "شركة تحصيل", "وظائف مصر",
       ...job.keywords
     ],
     alternates: { canonical: canonicalUrl },
@@ -85,7 +85,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
       siteName: 'المصرية للتحصيلات ECC',
       locale: "ar_EG",
       type: "website",
-      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `وظيفة ${job.title} - ECC Collections` }]
+      images: [{ url: OG_IMAGE, width: 1200, height: 630, alt: `وظيفة ${job.title} - ECC` }]
     },
     twitter: {
       card: "summary_large_image",

@@ -34,7 +34,7 @@ export default function IndexingPage() {
 
   return (
     <div className="p-10" dir="rtl">
-      <h1 className="text-2xl font-bold mb-5">مسرع أرشفة جوجل (ECC Collections)</h1>
+      <h1 className="text-2xl font-bold mb-5">مسرع أرشفة جوجل (ECC)</h1>
       <button 
         onClick={startIndexing}
         className="bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700"

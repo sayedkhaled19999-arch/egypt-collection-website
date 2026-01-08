@@ -17,7 +17,7 @@ export const metadata: Metadata = {
     canonical: 'https://egyptcollections.com/contact',
   },
   openGraph: {
-    title: 'تواصل مع المصرية للتحصيلات | ECC Collections',
+    title: 'تواصل مع المصرية للتحصيلات | ECC',
     description: 'كلمنا دلوقتي لبدء شراكة ناجحة. نحن في انتظارك.',
     url: 'https://egyptcollections.com/contact',
     // الاسم الموحد

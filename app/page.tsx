@@ -11,7 +11,7 @@ export const metadata: Metadata = {
     canonical: 'https://egyptcollections.com/'
   },
   keywords: [
-    'المصرية للتحصيلات', 'ECC Collections', 'تحصيل الديون في مصر', 
+    'المصرية للتحصيلات', 'ECC', 'تحصيل الديون في مصر', 
     'Debt Collection Agency Egypt', 'Credit Reporting', 'Data Verification Egypt'
   ]
 };
@@ -30,7 +30,7 @@ export default function Home() {
         
         // حطينا هنا كل احتمالات البحث عشان تمسك السوق كله
         'alternateName': [
-          'ECC Collections', 
+          'ECC', 
           'الشركة المصرية للتحصيلات', 
           'Egyptian Collections Co.'
         ],

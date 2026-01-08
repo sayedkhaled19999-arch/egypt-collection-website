@@ -15,7 +15,7 @@ interface Slide {
 }
 
 const slides: Slide[] = [
-  { title: 'أهلاً بيك في المصرية للتحصيلات – ECC Collections', description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.', bgImage: '/hero/Slide1.avif', link: '/about', linkText: 'اعرف أكثر عننا' },
+  { title: 'أهلاً بيك في المصرية للتحصيلات – ECC', description: 'خدمات مبتكرة وسريعة في كل ما يخص التحصيل والاستعلام.', bgImage: '/hero/Slide1.avif', link: '/about', linkText: 'اعرف أكثر عننا' },
   { title: 'شركائنا', description: 'نتعاون مع شركاء موثوقين لضمان أعلى جودة في خدماتنا.', bgImage: '/hero/Slide2.avif', link: '/Customers', linkText: 'اعرف أكثر عن شركائنا' },
   { title: 'الوظائف المتاحة', description: 'لو عايز تنضم لفريقنا، شوف الفرص المتاحة وابدأ مشوارك معانا.', bgImage: '/hero/Slide3.avif', link: '/jobs', linkText: 'شوف الوظائف المتاحة' },
   { title: 'تواصل معنا', description: 'لو عندك أي استفسار أو ملاحظات، احنا دايمًا في خدمتك.', bgImage: '/hero/Slide4.avif', link: '/contact', linkText: 'تواصل معنا' },
@@ -100,7 +100,7 @@ export default function PreloaderHeroOptimized() {
         {!showCarousel && (
           <motion.div initial={{ opacity: 1 }} animate={{ opacity: fadeOut ? 0 : 1 }} exit={{ opacity: 0 }} transition={{ duration: 0.4 }} className="fixed inset-0 flex flex-col justify-center items-center bg-white z-50">
             <div className="relative w-40 h-40 md:w-56 md:h-56 mb-8 animate-pulse">
-              <Image src="/logo.webp" alt="الشركة المصرية للتحصيلات – ECC Collections" fill className="object-contain" priority />
+              <Image src="/logo.webp" alt="الشركة المصرية للتحصيلات – ECC" fill className="object-contain" priority />
             </div>
             <div className="w-16 h-16 relative">
               <svg className="w-16 h-16 transform -rotate-90" viewBox="0 0 100 100">

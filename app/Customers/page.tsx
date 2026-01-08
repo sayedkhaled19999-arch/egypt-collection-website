@@ -6,9 +6,9 @@ export const metadata: Metadata = {
   title: {
     absolute: 'شركاء النجاح | الشركة المصرية للتحصيلات ECC'
   },
-  description: 'تفتخر ECC Collections بسابقة أعمال قوية مع كبرى البنوك في مصر منذ 2001. نحن الوكيل المعتمد للبنك الأهلي، بنك مصر، وبنك القاهرة. ثقة تبنيها سنوات من الاحترافية.',
+  description: 'تفتخر ECC بسابقة أعمال قوية مع كبرى البنوك في مصر منذ 2001. نحن الوكيل المعتمد للبنك الأهلي، بنك مصر، وبنك القاهرة. ثقة تبنيها سنوات من الاحترافية.',
   keywords: [
-    'ECC Collections', 
+    'ECC', 
     'شركاء النجاح', 
     'عملاء المصرية للتحصيلات', 
     'بنوك مصر', 
@@ -24,7 +24,7 @@ export const metadata: Metadata = {
     canonical: 'https://egyptcollections.com/Customers' 
   },
   openGraph: {
-    title: 'شركاء وعملاء ECC Collections - سابقة أعمال نفخر بها',
+    title: 'شركاء وعملاء ECC - سابقة أعمال نفخر بها',
     description: 'قائمة شركاء النجاح من أكبر البنوك والمؤسسات المالية التي تثق في خدماتنا الميدانية منذ 2001.',
     url: 'https://egyptcollections.com/Customers',
     // 3. اسم الموقع الموحد

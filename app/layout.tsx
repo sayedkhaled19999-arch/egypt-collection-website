@@ -37,10 +37,10 @@ export const metadata: Metadata = {
   
   description: 'الشركة المصرية للتحصيلات (ECC) هي دراعك اليمين في التحصيل الميداني والاستعلام. بنخدم البنوك والشركات في مصر من 2001. سيب ديونك علينا وركز في شغلك.',
   
-  publisher: 'ECC Collections - Egyptian Collections Co.', 
+  publisher: 'ECC - Egyptian Collections Co.', 
   creator: 'Sayed Khaled', 
   authors: [
-    { name: 'ECC Collections', url: 'https://egyptcollections.com' },
+    { name: 'ECC', url: 'https://egyptcollections.com' },
     { name: 'Sayed Khaled' } 
   ],
 
@@ -61,12 +61,12 @@ export const metadata: Metadata = {
   },
 
   keywords: [
-    'المصرية للتحصيلات', 'ECC Collections', 'تحصيل ديون', 'شركة تحصيل', 
+    'المصرية للتحصيلات', 'ECC', 'تحصيل ديون', 'شركة تحصيل', 
     'مناديب تحصيل', 'تحصيل ميداني', 'استعلام ائتماني', 'تحصيل محافظ بنكية',
     'شركات التعهيد في مصر', 'تحديث بيانات', 'استرداد مديونيات',
     'Debt Collection Egypt', 'Field Collection Services', 'Credit Investigation Egypt',
     'Debt Recovery Agency', 'Outsourcing Collection Services', 'Bad Debt Recovery',
-    'Door to Door Collection', 'ECC Collections Egypt'
+    'Door to Door Collection', 'ECC Egypt'
   ],
   
   openGraph: {
