@@ -4,7 +4,7 @@ import PrivacyClient from './PrivacyClient';
 export const metadata: Metadata = {
   title: {
     // الترتيب الموحد: اسم الصفحة | البراند
-    absolute: 'سياسة الخصوصية | المصرية للتحصيلات - ECC Collections',
+    absolute: 'سياسة الخصوصية | الشركة المصرية للتحصيلات ECC',
   },
   description: 'تعرف على سياسة الخصوصية في الشركة المصرية للتحصيلات. نلتزم تماماً بقوانين البنك المركزي المصري ومعايير السرية المصرفية لحماية بيانات عملائنا.',
   keywords: [
@@ -23,7 +23,7 @@ export const metadata: Metadata = {
     canonical: 'https://egyptcollections.com/privacy' 
   },
   openGraph: {
-    title: 'التزامنا بحماية خصوصيتك | المصرية للتحصيلات - ECC Collections',
+    title: 'التزامنا بحماية خصوصيتك | الشركة المصرية للتحصيلات ECC',
     description: 'نطبق أعلى معايير الأمان الرقمي والسرية البنكية لضمان سلامة بياناتك.',
     url: 'https://egyptcollections.com/privacy',
     // الاسم الموحد
@@ -57,7 +57,7 @@ export default function Page() {
         '@type': 'WebPage',
         '@id': 'https://egyptcollections.com/privacy/#webpage',
         'url': 'https://egyptcollections.com/privacy',
-        'name': 'سياسة الخصوصية | المصرية للتحصيلات - ECC Collections',
+        'name': 'سياسة الخصوصية | الشركة المصرية للتحصيلات ECC',
         'description': 'سياسة حماية البيانات والخصوصية لشركة المصرية للتحصيلات',
         'datePublished': "2024-01-01",
         'dateModified': lastUpdated,

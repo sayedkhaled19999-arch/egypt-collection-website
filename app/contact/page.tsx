@@ -4,7 +4,7 @@ import ContactClient from './ContactClient';
 export const metadata: Metadata = {
   title: {
     // الترتيب الموحد: تواصل معنا | البراند
-    absolute: 'تواصل معنا | المصرية للتحصيلات - ECC Collections',
+    absolute: 'تواصل معنا | الشركة المصرية للتحصيلات ECC',
   },
   description: 'عايز تتواصل مع المصرية للتحصيلات؟ كلمنا فوراً على 01110600280 أو زور مقرنا في الدقي. فريق خدمة العملاء جاهز للرد على استفسارات البنوك والشركات.',
   keywords: [
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'تواصل معنا | المصرية للتحصيلات - ECC Collections',
+    title: 'تواصل معنا | الشركة المصرية للتحصيلات ECC',
     description: 'كلمنا فوراً أو زور مقرنا بالدقي. فريق خدمة العملاء جاهز للرد.',
     images: ['https://egyptcollections.com/og-image.png'],
   },
@@ -61,7 +61,7 @@ export default function Page() {
         '@type': 'ContactPage',
         '@id': 'https://egyptcollections.com/contact/#webpage',
         'url': 'https://egyptcollections.com/contact',
-        'name': 'تواصل معنا | المصرية للتحصيلات - ECC Collections',
+        'name': 'تواصل معنا | الشركة المصرية للتحصيلات ECC',
         'isPartOf': {
           '@id': 'https://egyptcollections.com/#website'
         },
@@ -111,7 +111,7 @@ export default function Page() {
         'email': 'info@egyptcollections.com', // صلحنا الحرف الأول خليناه small
         'hasMap': 'https://maps.app.goo.gl/CcmDDN7XqEvbE5Rj6', // ممتاز جداً وجود اللينك ده
         
-        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001.',
+        'description': 'الشركة الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001.',
         
         'address': {
           '@type': 'PostalAddress',

@@ -96,7 +96,7 @@ export default function CustomersClient() {
       {/* ===== GRID ===== */}
       <section className="max-w-7xl mx-auto px-4 py-16 -mt-16">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-2 text-center">
-          البنوك اللي بتثق في المصرية للتحصيلات (ECC)
+          البنوك اللي بتثق في الشركة المصرية للتحصيلات (ECC)
         </h2>
 
         <p className="text-center text-[#2563EB] mb-8 text-lg md:text-xl font-medium px-4">

@@ -4,7 +4,7 @@ import CustomersClient from './CustomersClient';
 export const metadata: Metadata = {
   // 1. العنوان: استخدمنا absolute وعكسنا الترتيب (عربي الأول)
   title: {
-    absolute: 'شركاء النجاح | المصرية للتحصيلات - ECC Collections'
+    absolute: 'شركاء النجاح | الشركة المصرية للتحصيلات ECC'
   },
   description: 'تفتخر ECC Collections بسابقة أعمال قوية مع كبرى البنوك في مصر منذ 2001. نحن الوكيل المعتمد للبنك الأهلي، بنك مصر، وبنك القاهرة. ثقة تبنيها سنوات من الاحترافية.',
   keywords: [
@@ -42,7 +42,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'شركاء النجاح | المصرية للتحصيلات - ECC Collections',
+    title: 'شركاء النجاح | الشركة المصرية للتحصيلات ECC',
     description: 'تعرف على البنوك والمؤسسات التي تثق في خدماتنا الميدانية في مصر.',
     images: ['https://egyptcollections.com/og-image.png'],
   },
@@ -68,7 +68,7 @@ export default function Page() {
         '@type': 'WebPage',
         '@id': 'https://egyptcollections.com/Customers/#webpage',
         'url': 'https://egyptcollections.com/Customers',
-        'name': 'شركاء النجاح | المصرية للتحصيلات - ECC Collections',
+        'name': 'شركاء النجاح | الشركة المصرية للتحصيلات ECC',
         'isPartOf': {
           '@id': 'https://egyptcollections.com/#website'
         },
@@ -115,7 +115,7 @@ export default function Page() {
         'foundingDate': '2001',
         'priceRange': '$$',
         'telephone': '+201110600280',
-        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001.',
+        'description': 'الشركة الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001.',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 شارع هارون، ميدان المساحة',

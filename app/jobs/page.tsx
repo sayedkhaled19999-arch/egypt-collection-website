@@ -4,7 +4,7 @@ import JobsClient from "./JobsClient";
 export const metadata: Metadata = {
   title: {
     // الترتيب الموحد: اسم الصفحة | البراند
-    absolute: 'وظائف خالية | المصرية للتحصيلات - ECC Collections',
+    absolute: 'وظائف خالية | الشركة المصرية للتحصيلات ECC',
   },
   description: 'عايز شغل بجد ومستقبل مضمون؟ المصرية للتحصيلات ECC تفتح باب التعيين. مطلوب محصلين (ميداني/مكتبي) ومدخلين بيانات. مرتبات مجزية + عمولات يومية + تأمينات. بدون أي رسوم للتقديم.',
   keywords: [
@@ -54,7 +54,7 @@ export default function Page() {
         '@type': 'CollectionPage',
         '@id': 'https://egyptcollections.com/jobs/#webpage',
         'url': 'https://egyptcollections.com/jobs',
-        'name': 'وظائف خالية | المصرية للتحصيلات - ECC Collections',
+        'name': 'وظائف خالية | الشركة المصرية للتحصيلات ECC',
         'description': 'فرص عمل متاحة في مجال التحصيل والاستعلام. انضم لفريق ECC.',
         'isPartOf': {
           '@id': 'https://egyptcollections.com/#website'
@@ -102,7 +102,7 @@ export default function Page() {
         'foundingDate': '2001',
         'priceRange': '$$',
         'telephone': '+201110600280',
-        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني وتوفر فرص عمل متميزة للشباب.',
+        'description': 'الشركة الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني وتوفر فرص عمل متميزة للشباب.',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 شارع هارون، ميدان المساحة',

@@ -5,7 +5,7 @@ export const metadata: Metadata = {
   title: {
     // التعديل السحري: absolute
     // ده هيمنع التكرار ويخلي العنوان يظهر نظيف ومترتب: (اسم الصفحة | اسم الشركة)
-    absolute: 'عن الشركة | المصرية للتحصيلات - ECC Collections'
+    absolute: 'عن الشركة | الشركة المصرية للتحصيلات ECC'
   },
   description: 'تعرف على ECC Collections (المصرية للتحصيلات)، الشريك الأول لكبرى البنوك في مصر منذ 2001. فريق عمل محترف بقيادة المستشار وائل سويلم وتغطية شاملة لجميع المحافظات.',
   keywords: [
@@ -18,7 +18,7 @@ export const metadata: Metadata = {
     canonical: 'https://egyptcollections.com/about',
   },
   openGraph: {
-    title: 'تاريخ من الخبرة منذ 2001 | المصرية للتحصيلات - ECC Collections',
+    title: 'تاريخ من الخبرة منذ 2001 | الشركة المصرية للتحصيلات ECC',
     description: 'أكثر من 20 عاماً من التميز في مجال التحصيل والاستعلام الميداني في السوق المصري.',
     url: 'https://egyptcollections.com/about',
     siteName: 'المصرية للتحصيلات ECC',
@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   },
   twitter: {
     card: 'summary_large_image',
-    title: 'عن الشركة | المصرية للتحصيلات - ECC Collections',
+    title: 'عن الشركة | الشركة المصرية للتحصيلات ECC',
     description: 'تعرف على تاريخ ECC Collections وخبرتها في التحصيل والاستعلام الميداني منذ 2001.',
     images: ['https://egyptcollections.com/og-image.png'],
   },
@@ -60,7 +60,7 @@ export default function Page() {
         '@type': 'AboutPage',
         '@id': 'https://egyptcollections.com/about/#webpage',
         'url': 'https://egyptcollections.com/about',
-        'name': 'عن الشركة | المصرية للتحصيلات - ECC Collections',
+        'name': 'عن الشركة | الشركة المصرية للتحصيلات ECC',
         'isPartOf': {
           '@id': 'https://egyptcollections.com/#website'
         },
@@ -106,7 +106,7 @@ export default function Page() {
         'foundingDate': '2001',
         'priceRange': '$$',
         'telephone': '+201110600280',
-        'description': 'الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة وتحديث البيانات.',
+        'description': 'الشركة الشركة المصرية للتحصيلات (ECC) هي الرائدة في خدمات التحصيل الميداني والاستعلام الائتماني في مصر منذ عام 2001. نقدم حلولاً متكاملة للبنوك والشركات لاسترداد الديون المتعثرة وتحديث البيانات.',
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 شارع هارون، ميدان المساحة',
