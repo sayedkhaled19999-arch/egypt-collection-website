@@ -89,7 +89,7 @@ export default function Footer() {
         <div className="container mx-auto flex flex-col sm:flex-row gap-2 sm:gap-0 justify-between items-center text-xs sm:text-sm text-[#B4B4B4]">
 
           <div dir="ltr">
-            © Egyptian Collection Co 2001 - {new Date().getFullYear()}. All rights reserved.
+            © Egyptian Collections Co. 2001 - {new Date().getFullYear()}. All rights reserved.
           </div>
 
           <div dir="ltr">
