@@ -81,9 +81,11 @@ export const sendFbEvent = async (customer: CustomerData, eventDetails: EventDat
     const eventRequest = (new EventRequest(access_token, pixel_id))
       .setEvents(eventsData);
 
+    // ========================================================
+
     // 5. الإرسال
     const response = await eventRequest.execute();
-    console.log(`✅ FB Event Sent: ${eventDetails.eventName}`);
+    console.log(`✅ FB Event Sent (TEST MODE): ${eventDetails.eventName}`);
     return response;
 
   } catch (error) {
