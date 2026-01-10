@@ -188,6 +188,37 @@ export default function JobClient({ id }: { id: string }) {
       const result = await response.json();
 
       if (result.success) {
+        // --- بداية كود واجهة API التحويلات (Facebook CAPI) ---
+        try {
+          // توليد ID فريد للحدث بشكل آمن داخل المتصفح
+          const eventId = crypto.randomUUID();
+          
+          // محاولة تقسيم الاسم لتحسين جودة المطابقة
+          const nameParts = formData.fullName.trim().split(' ');
+          const firstName = nameParts[0] || '';
+          const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
+          // إرسال الحدث إلى نقطة النهاية الخاصة بنا (في الخلفية)
+          fetch('/api/conversion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              eventName: "SubmitApplication", // اسم الحدث: تقديم على وظيفة
+              email: "no-email-provided@placeholder.com", // النموذج لا يحتوي على حقل بريد إلكتروني، نرسل قيمة مؤقتة لتجنب خطأ السيرفر
+              phone: formData.phone,
+              firstName: firstName,
+              lastName: lastName,
+              jobTitle: job?.title || '',
+              url: window.location.href,
+              userEventId: eventId
+            }),
+          }).catch(err => console.error('FB Event Error (Background):', err));
+          
+        } catch (capiError) {
+          console.error('CAPI Setup Error:', capiError);
+        }
+        // --- نهاية كود واجهة API التحويلات ---
+
         alert('تم إرسال بياناتك بنجاح! بالتوفيق يا بطل 🚀');
         setModalOpen(false);
         setFormData({

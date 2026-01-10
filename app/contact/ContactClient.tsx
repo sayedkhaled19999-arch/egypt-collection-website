@@ -54,6 +54,37 @@ export default function ContactClient() {
       const result = await response.json();
 
       if (result.success) {
+        
+        // --- بداية كود واجهة API التحويلات (Facebook CAPI) ---
+        try {
+          // 1. توليد ID فريد للحدث
+          const eventId = crypto.randomUUID();
+          
+          // 2. تقسيم الاسم لتحسين المطابقة
+          const nameParts = formData.name.trim().split(' ');
+          const firstName = nameParts[0] || '';
+          const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
+
+          // 3. إرسال الحدث في الخلفية
+          fetch('/api/conversion', {
+            method: 'POST',
+            headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({
+              eventName: "Contact", // نوع الحدث: تواصل
+              email: formData.email || "no-email@placeholder.com", // لو المستخدم مدخلش إيميل بنبعت قيمة افتراضية عشان الكود ميكسرش
+              phone: formData.phone,
+              firstName: firstName,
+              lastName: lastName,
+              url: window.location.href,
+              userEventId: eventId
+            }),
+          }).catch(err => console.error('FB Event Error (Background):', err));
+
+        } catch (capiError) {
+          console.error('CAPI Setup Error:', capiError);
+        }
+        // --- نهاية كود واجهة API التحويلات ---
+
         toast.success('شكرًا لتواصلك معنا! استلمنا رسالتك وهنرد عليك قريبًا.', { id: loadingToast, duration: 5000 });
         setFormData({ name: '', phone: '', email: '', address: '', message: '' }); // تصفير الفورم
       } else {

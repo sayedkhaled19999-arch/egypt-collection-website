@@ -19,6 +19,7 @@
     "clsx": "^2.1.1",
     "eslint": "8.49.0",
     "eslint-config-next": "13.5.1",
+    "facebook-nodejs-business-sdk": "^24.0.1",
     "framer-motion": "^12.23.26",
     "googleapis": "^169.0.0",
     "lucide-react": "^0.545.0",
@@ -38,10 +39,12 @@
     "slick-carousel": "^1.8.1",
     "swiper": "^11.2.10",
     "tailwindcss": "3.3.3",
-    "typescript": "5.2.2"
+    "typescript": "5.2.2",
+    "uuid": "^13.0.0"
   },
   "devDependencies": {
     "@types/aos": "^3.0.7",
+    "@types/facebook-nodejs-business-sdk": "^23.0.0",
     "@types/nodemailer": "^7.0.4",
     "@types/react-countup": "^4.3.0",
     "@types/react-slick": "^0.23.13"
