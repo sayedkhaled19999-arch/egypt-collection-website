@@ -54,8 +54,11 @@ export const metadata: Metadata = {
     },
   },
 
-  verification: {
-    google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
+    verification: {
+      google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E', // بتاع جوجل سيبه زي ما هو
+      other: {
+        'facebook-domain-verification': 'ogi44bce1rhr0o5kwfq84tcglr691a', 
+    },
   },
 
   keywords: [
