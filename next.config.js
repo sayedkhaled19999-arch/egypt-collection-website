@@ -2,11 +2,18 @@
 const nextConfig = {
   async redirects() {
     return [
+      // 1. التوجيه القديم بتاعك (بيحول من www لـ non-www)
       {
-        source: '/:path*', // كل الروابط
-        has: [{ type: 'host', value: 'www.egyptcollections.com' }], // لو فيها www
-        destination: 'https://egyptcollections.com/:path*', // حولها للنسخة بدون www
-        permanent: true, // redirect دائم 301
+        source: '/:path*',
+        has: [{ type: 'host', value: 'www.egyptcollections.com' }],
+        destination: 'https://egyptcollections.com/:path*',
+        permanent: true,
+      },
+      // 2. التوجيه الجديد (عشان تحل مشكلة Google Search Console)
+      {
+        source: '/partners',      // أي حد يدخل هنا
+        destination: '/Customers', // يتحول هنا فوراً
+        permanent: true,          // 301 Redirect (جوجل بيفهم إن الصفحة اتنقلت للأبد)
       },
     ];
   },
