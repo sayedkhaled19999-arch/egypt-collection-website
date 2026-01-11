@@ -1,9 +1,10 @@
 'use client';
 
 import Link from 'next/link';
+// 1. ضيفنا استيراد Image هنا
+import Image from 'next/image'; 
 import { motion, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-import { useEffect } from 'react';
 
 const banks = [
   { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
@@ -75,11 +76,18 @@ export default function CustomersSection() {
                   {/* shine overlay */}
                   <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl" />
                   <motion.div
-                    className="w-28 h-28 mb-2 flex items-center justify-center"
+                    className="w-28 h-28 mb-2 flex items-center justify-center relative"
                     whileHover={{ scale: 1.2 }}
                     transition={{ type: 'spring', stiffness: 200 }}
                   >
-                    <img src={src} alt={name} className="w-full h-full object-contain" />
+                    {/* 2. هنا التعديل: استبدال img بـ Image */}
+                    <Image 
+                      src={src} 
+                      alt={name} 
+                      width={112} // 112px عشان يتناسب مع w-28
+                      height={112} // 112px عشان يتناسب مع h-28
+                      className="object-contain"
+                    />
                   </motion.div>
                   <span className="text-[#353535] font-semibold text-center text-sm md:text-base">
                     {name}
@@ -92,7 +100,7 @@ export default function CustomersSection() {
             <motion.div variants={textVariants} className="mt-8 text-center">
               <Link
                 href="/Customers"
-              className="inline-block bg-[#2563EB] text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all duration-300 hover:bg-[#1e4db7] hover:scale-105 hover:shadow-blue-500/30 hover:-translate-y-1"
+                className="inline-block bg-[#2563EB] text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all duration-300 hover:bg-[#1e4db7] hover:scale-105 hover:shadow-blue-500/30 hover:-translate-y-1"
               >
                 اعرف أكثر عن شركائنا
               </Link>
