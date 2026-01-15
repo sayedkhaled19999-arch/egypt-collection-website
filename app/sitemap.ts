@@ -9,7 +9,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/about',
     '/contact',
     '/jobs',
-    '/Customers', // تأكد إن ده يطابق اسم الفولدر بالظبط
+    '/customers', // تأكد إن ده يطابق اسم الفولدر بالظبط
     '/privacy',
   ].map((route) => ({
     url: `${baseUrl}${route}`,

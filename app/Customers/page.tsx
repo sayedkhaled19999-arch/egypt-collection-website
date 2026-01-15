@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import CustomersClient from './CustomersClient';
+import customersClient from './customersClient';
 
 const SITE_URL = 'https://egyptcollections.com';
 
@@ -20,7 +20,7 @@ export const metadata: Metadata = {
     'بنك القاهرة',
     'شركات تحصيل ديون معتمدة',
     'سابقة أعمال ECC',
-    'Debt Collection Customers Egypt'
+    'Debt Collection customers Egypt'
   ],
   
   alternates: { 
@@ -154,7 +154,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <CustomersClient />
+      <customersClient />
     </>
   );
 }

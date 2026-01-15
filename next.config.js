@@ -12,7 +12,7 @@ const nextConfig = {
       // 2. التوجيه الجديد (عشان تحل مشكلة Google Search Console)
       {
         source: '/partners',      // أي حد يدخل هنا
-        destination: '/Customers', // يتحول هنا فوراً
+        destination: '/customers', // يتحول هنا فوراً
         permanent: true,          // 301 Redirect (جوجل بيفهم إن الصفحة اتنقلت للأبد)
       },
     ];

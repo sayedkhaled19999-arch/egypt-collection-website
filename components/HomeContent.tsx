@@ -8,7 +8,7 @@ import CallToAction from '@/components/home/JoinUsSection';
 
 // ✅ التعديل: شيلنا { ssr: false } عشان جوجل يقرأ أسماء البنوك والمحافظات
 // وأضفنا loading component عشان الشكل يبقى حلو وهو بيحمل
-const CustomersSection = dynamic(() => import('@/components/home/CustomersSection'), { 
+const customersSection = dynamic(() => import('@/components/home/customersSection'), { 
   loading: () => <div className="h-40 bg-gray-50 animate-pulse rounded-lg my-8" />
 });
 
@@ -31,7 +31,7 @@ export default function HomeContent() {
       <ValuesSection />
       
       {/* جوجل دلوقتي هيقدر يقرأ محتوى السكاشن دي بمجرد ما الصفحة تفتح */}
-      <CustomersSection />
+      <customersSection />
       
       <BranchesSection />
       
