@@ -1,14 +1,12 @@
 import { Metadata } from "next";
 import JobClient from "./JobClient";
 
-// ===== بيانات الوظائف المحسنة (تم دمج التفاصيل القوية هنا) =====
+// ===== بيانات الوظائف المحسنة =====
 const jobs = [
   { 
     id: "office-collector", 
     title: "محصل مكتبي", 
-    // الوصف القصير للميتا تاج
     description: "فرصة عمل محصل مكتبي (Indoor) بالدقي. راتب ثابت + عمولات. لا يشترط الخبرة، تدريب مدفوع. وظيفة إدارية مناسبة للجنسين.",
-    // الوصف الطويل لـ Google Jobs Schema
     fullDescription: `
     <p>مطلوب محصل مكتبي للعمل بمقر الشركة بالدقي.</p>
     <ul>
@@ -76,7 +74,7 @@ type Props = { params: { id: string } };
 const SITE_URL = "https://egyptcollections.com";
 const OG_IMAGE = "/og-image.png";
 
-// ===== 1. الميتا تاجز (محسنة) =====
+// ===== 1. الميتا تاجز =====
 export const generateMetadata = ({ params }: Props): Metadata => {
   const job = jobs.find((j) => j.id === params.id);
 
@@ -86,7 +84,7 @@ export const generateMetadata = ({ params }: Props): Metadata => {
     title: {
       absolute: `${job.title} | وظائف خالية في المصرية للتحصيلات`
     },
-    description: job.description, // الوصف هنا بقى مختلف ومميز لكل وظيفة
+    description: job.description,
     keywords: job.keywords,
     alternates: { 
       canonical: `/jobs/${job.id}` 
@@ -108,14 +106,14 @@ export default function Page({ params }: Props) {
   const datePosted = new Date().toISOString().split('T')[0];
   const validThrough = new Date(new Date().setFullYear(new Date().getFullYear() + 1)).toISOString().split('T')[0];
 
-  // Schema محسنة جداً عشان جوجل يفهرس الصفحة كـ وظيفة حقيقية
+  // Schema محسنة مع إضافة الرقم البريدي
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "JobPosting",
         "title": job.title,
-        "description": job.fullDescription, // هنا السر: بنبعت وصف HTML كامل
+        "description": job.fullDescription,
         "identifier": { 
           "@type": "PropertyValue", 
           "name": "ECC", 
@@ -137,6 +135,7 @@ export default function Page({ params }: Props) {
             "streetAddress": "30 شارع هارون، ميدان المساحة", 
             "addressLocality": "الدقي", 
             "addressRegion": "الجيزة", 
+            "postalCode": "12611", // <--- تم إضافة الرقم البريدي هنا
             "addressCountry": "EG" 
           } 
         },
