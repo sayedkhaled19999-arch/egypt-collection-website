@@ -90,7 +90,7 @@ export default function Home() {
           'latitude': '30.0385',
           'longitude': '31.2185'
         },
-        'sameAs': ['https://www.facebook.com/EgyptCollectionsCo'],
+        'sameAs': ['https://www.facebook.com/egyptcollectionsco'],
         'areaServed': {
           '@type': 'Country',
           'name': 'Egypt'

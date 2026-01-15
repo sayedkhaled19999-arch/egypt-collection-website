@@ -33,7 +33,7 @@ export default function Footer() {
           {/* justify-center: بتخلي الأيقونة في النص سواء موبايل أو ديسكتوب */}
           <div className="flex sm:flex-col gap-4 justify-center items-center sm:items-start">
             <a
-              href="https://www.facebook.com/EgyptCollectionsCo"
+              href="https://www.facebook.com/egyptcollectionsco"
               target="_blank"
               rel="noopener noreferrer"
               aria-label="صفحتنا على فيسبوك"

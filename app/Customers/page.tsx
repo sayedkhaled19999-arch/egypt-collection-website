@@ -145,7 +145,7 @@ export default function Page() {
           'longitude': '31.2185'
         },
         'sameAs': [
-          'https://www.facebook.com/EgyptCollectionsCo'
+          'https://www.facebook.com/egyptcollectionsco'
         ]
       }
     ]

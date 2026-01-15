@@ -144,7 +144,7 @@ export default function Page() {
         },
         
         'sameAs': [
-          'https://www.facebook.com/EgyptCollectionsCo'
+          'https://www.facebook.com/egyptcollectionsco'
         ]
       }
     ]

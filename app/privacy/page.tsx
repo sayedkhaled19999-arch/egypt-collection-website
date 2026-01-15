@@ -127,7 +127,7 @@ export default function Page() {
           'addressCountry': 'EG'
         },
         'sameAs': [
-          'https://www.facebook.com/EgyptCollectionsCo'
+          'https://www.facebook.com/egyptcollectionsco'
         ]
       }
     ]
