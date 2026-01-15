@@ -5,10 +5,11 @@ import HeroCarousel from '@/components/home/HeroCarousel';
 import AboutCard from '@/components/home/AboutCard';
 import ValuesSection from '@/components/home/ValuesSection';
 import CallToAction from '@/components/home/JoinUsSection';
+import CustomersSection from '@/components/home/CustomersSection';
 
 // ✅ التعديل: شيلنا { ssr: false } عشان جوجل يقرأ أسماء البنوك والمحافظات
 // وأضفنا loading component عشان الشكل يبقى حلو وهو بيحمل
-const customersSection = dynamic(() => import('@/components/home/customersSection'), { 
+const customersSection = dynamic(() => import('@/components/home/CustomersSection'), { 
   loading: () => <div className="h-40 bg-gray-50 animate-pulse rounded-lg my-8" />
 });
 
@@ -31,7 +32,7 @@ export default function HomeContent() {
       <ValuesSection />
       
       {/* جوجل دلوقتي هيقدر يقرأ محتوى السكاشن دي بمجرد ما الصفحة تفتح */}
-      <customersSection />
+      <CustomersSection />
       
       <BranchesSection />
       
