@@ -38,7 +38,7 @@ const cardVariants: Variants = {
   })
 };
 
-export default function customersSection() {
+export default function CustomersSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
