@@ -3,7 +3,6 @@ export interface Bank {
   name: string;
   src: string;
 }
-
 export const banks: Bank[] = [
   { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
   { name: 'بنك مصر', src: '/banks/banquemisr.svg' },
