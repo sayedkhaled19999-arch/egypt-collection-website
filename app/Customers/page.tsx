@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import customersClient from './customersClient';
+import CustomersClient from './CustomersClient';
 
 const SITE_URL = 'https://egyptcollections.com';
 
@@ -154,7 +154,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <customersClient />
+      <CustomersClient />
     </>
   );
 }
