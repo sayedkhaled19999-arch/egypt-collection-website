@@ -38,7 +38,7 @@ const cardVariants: Variants = {
   })
 };
 
-export default function partnersSection() {
+export default function PartnersSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
