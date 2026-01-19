@@ -4,7 +4,7 @@ import { useState } from 'react';
 const LINKS = [
   'https://egyptcollections.com/',
   'https://egyptcollections.com/about',
-  'https://egyptcollections.com/customers',
+  'https://egyptcollections.com/partners',
   'https://egyptcollections.com/contact',
   'https://egyptcollections.com/jobs',
   'https://egyptcollections.com/jobs/office-collector',

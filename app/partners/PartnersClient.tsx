@@ -27,7 +27,7 @@ const banks: Bank[] = [
 
 const infiniteBanks = [...banks, ...banks];
 
-export default function CustomersClient() {
+export default function PartnersClient() {
   const sliderSettings = {
     infinite: true,
     slidesToShow: 6,

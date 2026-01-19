@@ -38,11 +38,11 @@ const cardVariants: Variants = {
   })
 };
 
-export default function CustomersSection() {
+export default function partnersSection() {
   const [ref, inView] = useInView({ threshold: 0.05 });
 
   return (
-    <section ref={ref} id="customers-section" className="py-16 md:py-20 bg-[#F4F4F4]">
+    <section ref={ref} id="partners-section" className="py-16 md:py-20 bg-[#F4F4F4]">
       <div className="max-w-6xl mx-auto px-4">
 
         {/* الكارت الأبيض ثابت */}
@@ -99,7 +99,7 @@ export default function CustomersSection() {
             {/* زر الانتقال */}
             <motion.div variants={textVariants} className="mt-8 text-center">
               <Link
-                href="/customers"
+                href="/partners"
                 className="inline-block bg-[#2563EB] text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all duration-300 hover:bg-[#1e4db7] hover:scale-105 hover:shadow-blue-500/30 hover:-translate-y-1"
               >
                 اعرف أكثر عن شركائنا

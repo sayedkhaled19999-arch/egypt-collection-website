@@ -34,7 +34,7 @@ export default function Navbar() {
   const navLinks = [
     { name: 'الرئيسية', href: '/' },
     { name: 'من نحن', href: '/about' },
-    { name: 'شركاء النجاح', href: '/customers' }, // عدلنا الاسم والرابط لحروف صغيرة
+    { name: 'شركاء النجاح', href: '/partners' }, // عدلنا الاسم والرابط لحروف صغيرة
     { name: 'الوظائف المتاحة', href: '/jobs' },
     { name: 'تواصل معنا', href: '/contact' },
   ];

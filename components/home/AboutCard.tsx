@@ -17,7 +17,7 @@ export default function AboutCard() {
       icon: <UserCheck className="w-10 h-10 text-[#2563EB]" />,
       number: banks.length,
       label: 'شركاء النجاح',
-      href: '#customers-section',
+      href: '#partners-section',
     },
     {
       icon: <CheckCircle className="w-10 h-10 text-[#2563EB]" />,

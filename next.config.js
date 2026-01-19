@@ -2,19 +2,15 @@
 const nextConfig = {
   async redirects() {
     return [
-      // 1. التوجيه القديم بتاعك (بيحول من www لـ non-www)
+      // 1. التوجيه الخاص بـ www خليه زي ما هو (ده ممتاز للسيو عشان توحيد الدومين)
       {
         source: '/:path*',
         has: [{ type: 'host', value: 'www.egyptcollections.com' }],
         destination: 'https://egyptcollections.com/:path*',
         permanent: true,
       },
-      // 2. التوجيه الجديد (عشان تحل مشكلة Google Search Console)
-      {
-        source: '/partners',      // أي حد يدخل هنا
-        destination: '/customers', // يتحول هنا فوراً
-        permanent: true,          // 301 Redirect (جوجل بيفهم إن الصفحة اتنقلت للأبد)
-      },
+      // تم حذف الجزء الخاص بـ partners نهائياً
+      // الصفحة هتشتغل لوحدها طالما الملف بتاعها موجود في فولدر pages أو app
     ];
   },
 };

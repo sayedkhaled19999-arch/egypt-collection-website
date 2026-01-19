@@ -1,5 +1,5 @@
 import { Metadata } from 'next';
-import CustomersClient from './CustomersClient';
+import PartnersClient from './PartnersClient';
 
 const SITE_URL = 'https://egyptcollections.com';
 
@@ -20,18 +20,18 @@ export const metadata: Metadata = {
     'بنك القاهرة',
     'شركات تحصيل ديون معتمدة',
     'سابقة أعمال ECC',
-    'Debt Collection customers Egypt'
+    'Debt Collection partners Egypt'
   ],
   
   alternates: { 
     // يفضل الروابط تكون حروف صغيرة (lowercase)
-    canonical: '/customers' 
+    canonical: '/partners' 
   },
   
   openGraph: {
     title: 'شركاء النجاح | سابقة أعمال نفخر بها',
     description: 'قائمة شركاء النجاح من أكبر البنوك والمؤسسات المالية التي تثق في خدماتنا الميدانية منذ 2001.',
-    url: '/customers',
+    url: '/partners',
     siteName: 'المصرية للتحصيلات ECC',
     locale: 'ar_EG',
     type: 'website',
@@ -62,8 +62,8 @@ export default function Page() {
       // 1. تعريف الصفحة
       {
         '@type': 'WebPage',
-        '@id': `${SITE_URL}/customers/#webpage`,
-        'url': `${SITE_URL}/customers`,
+        '@id': `${SITE_URL}/partners/#webpage`,
+        'url': `${SITE_URL}/partners`,
         'name': 'شركاء النجاح | الشركة المصرية للتحصيلات ECC',
         'isPartOf': {
           '@id': `${SITE_URL}/#website`
@@ -72,13 +72,13 @@ export default function Page() {
           '@id': `${SITE_URL}/#organization`
         },
         'breadcrumb': {
-          '@id': `${SITE_URL}/customers/#breadcrumb`
+          '@id': `${SITE_URL}/partners/#breadcrumb`
         }
       },
       // 2. فتات الخبز
       {
         '@type': 'BreadcrumbList',
-        '@id': `${SITE_URL}/customers/#breadcrumb`,
+        '@id': `${SITE_URL}/partners/#breadcrumb`,
         'itemListElement': [
           {
             '@type': 'ListItem',
@@ -90,7 +90,7 @@ export default function Page() {
             '@type': 'ListItem',
             'position': 2,
             'name': 'شركاء النجاح',
-            'item': `${SITE_URL}/customers`
+            'item': `${SITE_URL}/partners`
           }
         ]
       },
@@ -154,7 +154,7 @@ export default function Page() {
   return (
     <>
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }} />
-      <CustomersClient />
+      <PartnersClient />
     </>
   );
 }
