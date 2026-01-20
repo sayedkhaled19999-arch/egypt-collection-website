@@ -7,24 +7,17 @@ import { Locale } from '@/i18n-config';
 
 const SITE_URL = "https://egyptcollections.com";
 
-// --- دوال مساعدة لضبط السكيما (السحر كله هنا) ---
+// --- دوال مساعدة لضبط السكيما ---
 
-// 1. دالة لاستخراج الرقم من وسط الكلام (عشان "تصل الي 8000" تبقا 8000 بس)
 function extractSalaryNumber(salaryString: string): number | null {
   if (!salaryString) return null;
-  // بناخد كل الأرقام اللي في النص
   const numbers = salaryString.match(/\d+/g);
   if (!numbers || numbers.length === 0) return null;
-  
-  // لو فيه رقمين (مثلاً 3000 - 5000) بناخد الكبير عشان الإغراء :D
-  // لو رقم واحد (8000) بناخده هو
   return parseInt(numbers[numbers.length - 1]);
 }
 
-// 2. دالة لضبط التاريخ (لو مفيش تاريخ في الملف، بنحط تاريخ النهاردة)
 function getValidDate(dateString?: string): string {
   if (dateString) return new Date(dateString).toISOString();
-  // لو مفيش، رجع تاريخ النهاردة بصيغة ISO المطلوبة
   return new Date().toISOString().split('T')[0];
 }
 
@@ -81,9 +74,8 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
   let jsonLd = null;
   
   if (job) {
-    // هنا بنستخدم الدوال اللي عملناها فوق
     const salaryNumber = extractSalaryNumber(job.salary); 
-    const postedDate = getValidDate(job.date); // بيفترض تاريخ اليوم لو مفيش date في الـ json
+    const postedDate = getValidDate(job.date);
 
     jsonLd = {
       "@context": "https://schema.org/",
@@ -97,30 +89,35 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
         "logo": `${SITE_URL}/icon.png`
       },
       "datePosted": postedDate,
-      "validThrough": "2026-12-31", // صلاحية الاعلان (سنتين قدام مثلاً)
+      "validThrough": "2026-12-31",
       "employmentType": "FULL_TIME",
+      
+      // --- التعديل هنا: إضافة تفاصيل العنوان كاملة ---
       "jobLocation": {
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
-          "addressLocality": job.location, // زي "Cairo" أو "Giza"
+          "streetAddress": isAr ? "30 شارع هارون، ميدان المساحة" : "30 Haroun St, El Mesaha Sq",
+          "addressLocality": isAr ? "الدقي" : "Dokki",
+          "addressRegion": isAr ? "الجيزة" : "Giza",
+          "postalCode": "12611",
           "addressCountry": "EG"
         }
       },
-      // الجزء الخاص بالراتب المعدل
+      // ---------------------------------------------
+
       "baseSalary": {
         "@type": "MonetaryAmount",
         "currency": "EGP",
         "value": {
           "@type": "QuantitativeValue",
-          "value": salaryNumber || 3000, // لو معرفش يطلع رقم بيحط حد أدنى 3000 عشان السكيما ما تضربش
+          "value": salaryNumber || 3000,
           "unitText": "MONTH"
         }
       }
     };
   }
   
-  // Breadcrumb Schema
   const breadcrumbLd = {
     '@context': 'https://schema.org',
     '@type': 'BreadcrumbList',
