@@ -1,6 +1,6 @@
-// --- START OF FILE i18n-config.ts ---
+// --- FILE: i18n-config.ts ---
 export const i18n = {
-  defaultLocale: 'ar',
+  defaultLocale: 'ar', // خلي دي ar بدل en
   locales: ['ar', 'en'],
 } as const;
 
