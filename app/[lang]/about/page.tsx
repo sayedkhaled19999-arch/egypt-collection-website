@@ -69,6 +69,23 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         'name': orgName,
         'url': `${SITE_URL}/${params.lang}`,
         'logo': `${SITE_URL}/icon.png`,
+        
+        // --- التعديلات: إضافة البيانات الناقصة ---
+        'telephone': '+201110600280', // حل مشكلة telephone
+        'image': `${SITE_URL}/og-image.png`, // حل مشكلة image
+        'priceRange': '$$', // حل مشكلة priceRange
+        
+        // حل المشكلة الحرجة (Critical: address)
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '30 Haroun St, El Mesaha Sq',
+          'addressLocality': 'Dokki',
+          'addressRegion': 'Giza',
+          'postalCode': '12611',
+          'addressCountry': 'EG'
+        },
+        // ----------------------------------------
+
         'foundingDate': '2001',
         'founder': {
           '@type': 'Person',
