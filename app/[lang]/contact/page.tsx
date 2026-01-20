@@ -35,7 +35,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       siteName: isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.',
       locale: isAr ? 'ar_EG' : 'en_US',
       type: 'website',
-      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'Contact ECC' }],
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'ECC Contact' }],
     },
   };
 }
@@ -70,6 +70,12 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         'telephone': '+201110600280',
         'email': 'info@egyptcollections.com',
         'logo': `${SITE_URL}/icon.png`,
+        
+        // --- التعديلات هنا لحل مشاكل التحذيرات ---
+        'image': `${SITE_URL}/og-image.png`, // جوجل بيحتاج صورة تعبيرية للمكان (استخدمنا صورة الـ OG مؤقتاً)
+        'priceRange': '$$', // بتعرف جوجل إن الأسعار متوسطة (مطلب أساسي للشركات الخدمية)
+        // ----------------------------------------
+
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 Haroun St, El Mesaha Sq',
