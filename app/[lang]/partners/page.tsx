@@ -66,7 +66,22 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         '@type': 'FinancialService',
         '@id': `${SITE_URL}/#organization`,
         'name': orgName,
-        'logo': `${SITE_URL}/icon.png`
+        'url': `${SITE_URL}/${params.lang}`,
+        'logo': `${SITE_URL}/icon.png`,
+        
+        // --- التعديلات هنا: إضافة العنوان والبيانات الناقصة ---
+        'telephone': '+201110600280',
+        'image': `${SITE_URL}/og-image.png`,
+        'priceRange': '$$',
+        'address': {
+          '@type': 'PostalAddress',
+          'streetAddress': '30 Haroun St, El Mesaha Sq',
+          'addressLocality': 'Dokki',
+          'addressRegion': 'Giza',
+          'postalCode': '12611',
+          'addressCountry': 'EG'
+        }
+        // ----------------------------------------------------
       }
     ]
   };
