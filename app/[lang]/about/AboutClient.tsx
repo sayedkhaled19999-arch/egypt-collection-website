@@ -1,3 +1,5 @@
+// --- START OF FILE components/AboutClient.tsx ---
+
 'use client';
 
 import Image from 'next/image';
@@ -19,9 +21,14 @@ const fadeUp = {
 };
 
 /* ================= Page Component ================= */
-export default function AboutClient() {
+interface AboutClientProps {
+  dict: any; // استقبال الترجمة كـ props
+}
+
+export default function AboutClient({ dict }: AboutClientProps) {
+  
   return (
-    <main className="bg-[#F4F4F4] overflow-hidden" dir="rtl">
+    <main className="bg-[#F4F4F4] overflow-hidden">
 
       {/* ================= Hero ================= */}
       <section className="py-28 px-4 text-center">
@@ -32,7 +39,7 @@ export default function AboutClient() {
           transition={{ duration: 0.9 }}
           className="text-4xl md:text-6xl font-extrabold text-[#2563EB] mb-10"
         >
-          من نحن
+          {dict.aboutPage.hero_title}
         </motion.h1>
 
         <motion.p
@@ -42,36 +49,32 @@ export default function AboutClient() {
           transition={{ delay: 0.2, duration: 0.9 }}
           className="max-w-5xl mx-auto text-lg md:text-xl leading-relaxed text-[#4B4B4B] mb-10"
         >
-          إحنا <strong>الشركة المصرية للتحصيلات (ECC)</strong>، شركة مصرية رائدة متخصصة في إدارة المديونيات والتحصيل والاستعلام الائتماني.  
-          خبرتنا بدأت من <strong>سنة 2001</strong>، وطول السنين دي بنتعامل مع كبرى البنوك والمؤسسات المالية في مصر،  
-          وبنقدم حلول دقيقة وموثوقة بتضمن حقوق شركائنا.
+          {dict.aboutPage.hero_desc}
         </motion.p>
 
         <div className="max-w-4xl mx-auto grid gap-6 sm:grid-cols-2 md:grid-cols-4">
-          <Highlight icon={<Building2 size={28} />} text="تعاون مع كبرى البنوك" />
-          <Highlight icon={<SearchCheck size={28} />} text="خبرة في الاستعلام الميداني والائتماني" />
-          <Highlight icon={<Users size={28} />} text="فرق عمل مدربة باحترافية" />
-          <Highlight icon={<ShieldCheck size={28} />} text="التزام بالحوكمة وحماية البيانات" />
+          <Highlight icon={<Building2 size={28} />} text={dict.aboutPage.highlights.banks} />
+          <Highlight icon={<SearchCheck size={28} />} text={dict.aboutPage.highlights.investigation} />
+          <Highlight icon={<Users size={28} />} text={dict.aboutPage.highlights.team} />
+          <Highlight icon={<ShieldCheck size={28} />} text={dict.aboutPage.highlights.compliance} />
         </div>
       </section>
 
       {/* ================= About Content ================= */}
       <section className="max-w-6xl mx-auto px-4 space-y-14 pb-28">
         <Paragraph>
-         <strong>في الشركة المصرية للتحصيلات ECC</strong>، ومن أول يوم لينا في السوق المصري، كان عندنا قناعة إن التحصيل والاستعلام مش مجرد أرقام،  
-          لكنه منظومة متكاملة بتقوم على الاحترافية، ودراسة كل حالة بعناية، واحترام جميع الأطراف.
+         {dict.aboutPage.story_p1}
         </Paragraph>
 
         <Paragraph>
-          <strong>خبرتنا اللي بتمتد لأكتر من 20 سنة</strong> خلتنا بنعرف إزاي نطلع أفضل نتائج للبنوك،  
-          وفي نفس الوقت بنحافظ على سمعة المؤسسة والالتزام الكامل بالقوانين والمعايير المهنية.
+          {dict.aboutPage.story_p2}
         </Paragraph>
 
         <div className="grid gap-6 sm:grid-cols-2 md:grid-cols-2">
-          <Highlight icon={<Eye size={28} />} text="تحليل دقيق لكل حالة" />
-          <Highlight icon={<Target size={28} />} text="حلول ذكية لتقليل المخاطر" />
-          <Highlight icon={<Award size={28} />} text="نتائج مستمرة وموثوقة" />
-          <Highlight icon={<Users size={28} />} text="أكبر فريق عمل ميداني" />
+          <Highlight icon={<Eye size={28} />} text={dict.aboutPage.story_features.analysis} />
+          <Highlight icon={<Target size={28} />} text={dict.aboutPage.story_features.solutions} />
+          <Highlight icon={<Award size={28} />} text={dict.aboutPage.story_features.results} />
+          <Highlight icon={<Users size={28} />} text={dict.aboutPage.story_features.field_team} />
         </div>
       </section>
 
@@ -80,18 +83,18 @@ export default function AboutClient() {
         <div className="max-w-7xl mx-auto px-4 grid gap-10 md:grid-cols-3">
           <InfoCard
             icon={<Eye size={34} />}
-            title="رؤيتنا"
-            text="نكون الشريك المهني الأول والأكثر ثقة للبنوك في مجالات التحصيل والاستعلام الائتماني داخل السوق المصري."
+            title={dict.aboutPage.vision_mission.vision_title}
+            text={dict.aboutPage.vision_mission.vision_text}
           />
           <InfoCard
             icon={<Target size={34} />}
-            title="رسالتنا"
-            text="تقديم حلول ميدانية مبتكرة تساعد المؤسسات المالية على تقليل المخاطر وتعظيم العوائد بنظم عمل احترافية."
+            title={dict.aboutPage.vision_mission.mission_title}
+            text={dict.aboutPage.vision_mission.mission_text}
           />
           <InfoCard
             icon={<ShieldCheck size={34} />}
-            title="قيمنا"
-            text="الالتزام بالقانون – السرية التامة – الشفافية – احترام العميل – حماية البيانات."
+            title={dict.aboutPage.vision_mission.values_title}
+            text={dict.aboutPage.vision_mission.values_text}
           />
         </div>
       </section>
@@ -107,14 +110,14 @@ export default function AboutClient() {
             transition={{ duration: 0.8 }}
             className="text-3xl md:text-4xl font-extrabold text-center text-[#2563EB] mb-16"
           >
-            ليه كبرى البنوك بتختار الشركة المصرية للتحصيلات ECC؟
+            {dict.aboutPage.why_us.title}
           </motion.h2>
 
           <div className="grid gap-8 sm:grid-cols-2 lg:grid-cols-4">
-            <Feature icon={<Building2 />} text="شراكات ناجحة مع كبرى البنوك" />
-            <Feature icon={<SearchCheck />} text="ريادة في الاستعلام الميداني منذ 2001" />
-            <Feature icon={<Users />} text="أكفأ فرق عمل ميدانية في مصر" />
-            <Feature icon={<Award />} text="التزام صارم بالسرية والحوكمة" />
+            <Feature icon={<Building2 />} text={dict.aboutPage.why_us.f1} />
+            <Feature icon={<SearchCheck />} text={dict.aboutPage.why_us.f2} />
+            <Feature icon={<Users />} text={dict.aboutPage.why_us.f3} />
+            <Feature icon={<Award />} text={dict.aboutPage.why_us.f4} />
           </div>
         </div>
       </section>
@@ -134,7 +137,7 @@ export default function AboutClient() {
           >
             <Image
               src="/ceo/wael-swelim.png"
-              alt="المستشار وائل سويلم - رئيس مجلس إدارة المصرية للتحصيلات ECC"
+              alt={dict.aboutPage.ceo.name}
               fill
               className="object-cover"
               priority
@@ -151,22 +154,21 @@ export default function AboutClient() {
             className="flex flex-col justify-center h-full"
             >
             <h3 className="text-2xl md:text-3xl font-extrabold text-[#2563EB] mb-6">
-              كلمة رئيس الشركة
+              {dict.aboutPage.ceo.title}
             </h3>
 
             <p className="text-lg leading-loose text-[#4B4B4B] mb-6">
-              <strong>الشركة المصرية للتحصيلات (ECC)</strong> اتبنت على مبدأ واضح: إن التنظيم والالتزام هما أساس الثقة الحقيقية.  
-              من سنة 2001 وإحنا شغالين على بناء كيان مهني مستقل يخدم القطاع المصرفي بأسلوب يحفظ الحقوق ويحقق نتائج ملموسة.
+              {dict.aboutPage.ceo.p1}
             </p>
 
             <p className="text-lg leading-loose text-[#4B4B4B] mb-10">
-              نجاحنا الحقيقي مش بس في الأرقام، لكن في استمرار ثقة شركائنا فينا على مدار أكتر من 20 سنة، وده اللي بنفتخر بيه.
+              {dict.aboutPage.ceo.p2}
             </p>
 
             {/* Signature in the middle */}
             <div className="flex flex-col items-center mt-6">
-              <p className="font-bold text-xl mb-1">المستشار / وائل سويلم</p>
-              <p className="text-sm text-[#4B4B4B] mb-2">رئيس الشركة – المؤسس</p>
+              <p className="font-bold text-xl mb-1">{dict.aboutPage.ceo.name}</p>
+              <p className="text-sm text-[#4B4B4B] mb-2">{dict.aboutPage.ceo.role}</p>
               <div className="h-[2px] w-36 bg-[#2563EB]" />
             </div>
           </motion.div>

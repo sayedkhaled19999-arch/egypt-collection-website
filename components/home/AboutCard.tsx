@@ -4,25 +4,29 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { UserCheck, CheckCircle, Info } from 'lucide-react';
 import { branches } from './BranchesSection';
-import { banks } from '../data/banks';
+import { banks } from '../data/banks'; // تأكد إن ملف banks موجود في المسار ده
 import CountUp from 'react-countup';
-// 1. استيراد Variants هنا 👇
 import { motion, useAnimation, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
-export default function AboutCard() {
+interface AboutCardProps {
+  lang: string;
+  dict: any;
+}
+
+export default function AboutCard({ lang, dict }: AboutCardProps) {
   const cards = [
     {
       icon: <UserCheck className="w-10 h-10 text-[#2563EB]" />,
       number: banks.length,
-      label: 'شركاء النجاح',
+      label: dict.partners,
       href: '#partners-section',
     },
     {
       icon: <CheckCircle className="w-10 h-10 text-[#2563EB]" />,
       number: branches.length || 0,
-      label: 'فروعنا',
+      label: dict.branches,
       href: '#branches-section',
     },
   ];
@@ -34,8 +38,6 @@ export default function AboutCard() {
     if (inView) controls.start('visible');
   }, [inView, controls]);
 
-  // 2. تحديد النوع هنا بـ : Variants 👇
-  // ده بيعرف TypeScript إن 'easeOut' قيمة مسموح بيها
   const fadeInUp: Variants = {
     hidden: { opacity: 0, y: 30 },
     visible: { 
@@ -45,7 +47,6 @@ export default function AboutCard() {
     },
   };
 
-  // وهنا كمان 👇
   const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
@@ -62,7 +63,6 @@ export default function AboutCard() {
         
         <div className="bg-white rounded-3xl shadow-xl p-6 md:p-12 max-w-6xl w-full grid md:grid-cols-2 gap-10 items-center overflow-hidden">
           
-          {/* النص والكروت */}
           <motion.div 
             initial="hidden" 
             animate={controls} 
@@ -72,16 +72,14 @@ export default function AboutCard() {
             <motion.div variants={fadeInUp} className="flex items-center gap-2 mb-3">
               <Info className="w-6 h-6 text-[#2563EB]" />
               <h2 className="text-2xl md:text-4xl font-extrabold text-[#2563EB]">
-                لمحة عن الشركة
+                {dict.title}
               </h2>
             </motion.div>
 
             <motion.p variants={fadeInUp} className="text-[#4B4B4B] text-lg leading-relaxed mb-8">
-              شركتنا بتسعى دايمًا للابتكار وتقديم خدمات التحصيل والاستعلام بأفضل طريقة ممكنة وبشكل واضح للجميع.
-              نحن نجمع بين الخبرة الطويلة والتكنولوجيا الحديثة.
+              {dict.desc}
             </motion.p>
 
-            {/* شبكة الكروت */}
             <motion.div variants={fadeInUp} className="grid grid-cols-1 sm:grid-cols-2 gap-5 w-full">
               {cards.map((c, i) => (
                 <Link 
@@ -111,9 +109,8 @@ export default function AboutCard() {
             </motion.div>
           </motion.div>
 
-          {/* صورة رئيس الشركة */}
           <motion.div 
-            initial="hidden" // عدلناها لتستخدم Variants
+            initial="hidden"
             animate={controls}
             variants={{
               hidden: { opacity: 0, scale: 0.9 },
@@ -123,16 +120,20 @@ export default function AboutCard() {
           >
             <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full border-8 border-[#F4F4F4] shadow-2xl overflow-hidden group">
               <Image 
-                src="/ceo.png" 
-                alt="المستشار وائل سويلم - رئيس مجلس الإدارة" 
+                src="ceo.png"   // <--- تأكد إن الشرطة دي موجودة
+                alt={dict.ceo_name} 
                 fill 
                 className="object-cover transition-transform duration-500 group-hover:scale-105"
                 sizes="(max-width: 768px) 280px, 320px"
               />
             </div>
             <div className="mt-6 text-center">
-              <h3 className="text-xl font-bold text-[#353535]">المستشار/ وائل سويلم</h3>
-              <p className="text-[#2563EB] font-medium mt-1">رئيس مجلس الإدارة</p>
+              <h3 className="text-xl font-bold text-[#353535]">
+                {dict.ceo_name}
+              </h3>
+              <p className="text-[#2563EB] font-medium mt-1">
+                {dict.ceo_title}
+              </p>
             </div>
           </motion.div>
 

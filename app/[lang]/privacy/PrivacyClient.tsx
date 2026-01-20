@@ -1,3 +1,5 @@
+// --- START OF FILE components/PrivacyClient.tsx ---
+
 'use client';
 
 import { motion } from 'framer-motion';
@@ -11,16 +13,19 @@ import {
   Facebook,
 } from 'lucide-react';
 
-/* ================= Animations ================= */
 const fadeUp = {
   hidden: { opacity: 0, y: 60 },
   visible: { opacity: 1, y: 0 },
 };
 
-/* ================= Client Component ================= */
-export default function PrivacyClient() {
+interface PrivacyClientProps {
+  dict: any;
+}
+
+export default function PrivacyClient({ dict }: PrivacyClientProps) {
+
   return (
-    <main className="bg-[#F4F4F4] overflow-hidden" dir="rtl">
+    <main className="bg-[#F4F4F4] overflow-hidden">
 
       {/* ================= Hero ================= */}
       <section className="py-24 px-4 text-center">
@@ -31,7 +36,7 @@ export default function PrivacyClient() {
           transition={{ duration: 0.9 }}
           className="text-4xl md:text-5xl font-extrabold text-[#2563EB] mb-8"
         >
-          سياسة الخصوصية
+          {dict.privacyPage.hero_title}
         </motion.h1>
 
         <motion.p
@@ -41,15 +46,13 @@ export default function PrivacyClient() {
           transition={{ delay: 0.2, duration: 0.9 }}
           className="max-w-4xl mx-auto text-lg md:text-xl leading-relaxed text-[#4B4B4B] mb-10"
         >
-          {/* 👇 هنا صلحنا علامات التنصيص */}
-          في <strong>ECC</strong>، إحنا فاهمين كويس يعني إيه &quot;بيانات عملاء بنوك&quot;. 
-          عشان كدا، الخصوصية وأمان المعلومات عندنا مش مجرد كلام، دي <strong>أساس شغلنا</strong> وجزء من التزامنا قدام الجهات الرقابية.
+          {dict.privacyPage.hero_desc}
         </motion.p>
 
         <div className="max-w-3xl mx-auto grid gap-6 sm:grid-cols-3">
-          <Highlight icon={<Lock size={28} />} text="سرية تامة للبيانات" />
-          <Highlight icon={<Server size={28} />} text="التزام بمعايير البنوك" />
-          <Highlight icon={<UserCheck size={28} />} text="استخدام قانوني فقط" />
+          <Highlight icon={<Lock size={28} />} text={dict.privacyPage.highlights.security} />
+          <Highlight icon={<Server size={28} />} text={dict.privacyPage.highlights.compliance} />
+          <Highlight icon={<UserCheck size={28} />} text={dict.privacyPage.highlights.legal} />
         </div>
       </section>
 
@@ -59,15 +62,14 @@ export default function PrivacyClient() {
         {/* 1. مقدمة هامة */}
         <div className="bg-white rounded-3xl p-8 md:p-12 shadow-sm">
             <h2 className="text-2xl font-bold text-[#2563EB] mb-6 flex items-center gap-2">
-                <ShieldCheck /> إحنا بنجمع بيانات إيه وليه؟
+                <ShieldCheck /> {dict.privacyPage.intro.title}
             </h2>
             <Paragraph>
-                {/* 👇 وهنا كمان صلحنا علامات التنصيص */}
-                إحنا شركة &quot;خدمات&quot;، يعني دورنا تنفيذي. البيانات اللي بنتعامل معاها بتجيلنا من مصدرين أساسيين:
+                {dict.privacyPage.intro.desc}
             </Paragraph>
             <ul className="list-disc list-inside space-y-3 mt-4 text-[#4B4B4B] text-lg leading-loose marker:text-[#2563EB]">
-                <li><strong>بيانات من البنوك الموكلة لينا:</strong> دي بيانات بتجيلنا بتفويض رسمي عشان نؤدي مهام الاستعلام أو التحصيل، وبنتعامل معاها بمنتهى السرية وبنرجعها للبنك تاني بمجرد انتهاء المأمورية.</li>
-                <li><strong>بيانات بتقدمها أنت بنفسك:</strong> زي لما تبعتلنا الـ CV بتاعك للتوظيف، أو لما تملى استمارة تواصل على صفحتنا أو موقعنا عشان تستفسر عن خدمة.</li>
+                <li><strong>{dict.privacyPage.intro.source1}</strong></li>
+                <li><strong>{dict.privacyPage.intro.source2}</strong></li>
             </ul>
         </div>
 
@@ -75,34 +77,33 @@ export default function PrivacyClient() {
         <div className="grid gap-8 md:grid-cols-2">
             <InfoCard 
                 icon={<FileText size={32} />}
-                title="التقديم للوظائف"
-                text="لو بعتلنا الـ CV بتاعك، تأكد إنه هيفضل في إدارة الـ HR بس، ومش هيتم استخدامه لأي غرض غير إننا نتواصل معاك لو ليك نصيب تشتغل معانا."
+                title={dict.privacyPage.cards.jobs_title}
+                text={dict.privacyPage.cards.jobs_text}
             />
             <InfoCard 
                 icon={<Facebook size={32} />}
-                title="إعلانات فيسبوك"
-                text="لما تملى (Form) على إعلاناتنا، إحنا بناخد الاسم ورقم التليفون عشان نكلمك نرد على استفسارك بخصوص خدماتنا للشركات والبنوك، مش عشان نبيع رقمك لحد."
+                title={dict.privacyPage.cards.ads_title}
+                text={dict.privacyPage.cards.ads_text}
             />
         </div>
 
         {/* 3. مشاركة البيانات */}
         <div className="bg-[#2563EB] text-white rounded-3xl p-8 md:p-12 shadow-lg text-center">
-             <h2 className="text-2xl font-bold mb-4">هل بنشارك بياناتك مع حد؟</h2>
+             <h2 className="text-2xl font-bold mb-4">{dict.privacyPage.sharing.title}</h2>
              <p className="text-lg leading-loose max-w-3xl mx-auto opacity-90">
-                إجابة قاطعة: <strong>لا.</strong><br/>
-                إحنا لا بنبيع بيانات، ولا بنأجرها، ولا بنطلعها لأي طرف تالت.
-                بيانات البنوك خط أحمر، وبيانات المتقدمين للوظائف أمانة عندنا.
+                <strong>{dict.privacyPage.sharing.text_bold}</strong><br/>
+                {dict.privacyPage.sharing.text_body}
              </p>
         </div>
 
         {/* 4. التواصل */}
         <div className="text-center py-8">
-            <h3 className="text-2xl font-bold text-[#4B4B4B] mb-4">عندك استفسار؟</h3>
-            <p className="text-[#4B4B4B] mb-6">لو عندك أي قلق أو سؤال بخصوص بياناتك، تقدر تكلمنا أو تزورنا في مقر الشركة.</p>
+            <h3 className="text-2xl font-bold text-[#4B4B4B] mb-4">{dict.privacyPage.contact.title}</h3>
+            <p className="text-[#4B4B4B] mb-6">{dict.privacyPage.contact.desc}</p>
             <div className="inline-flex flex-col items-center bg-white px-8 py-6 rounded-2xl shadow-md">
                 <div className="text-[#2563EB] mb-2"><Phone size={24} /></div>
-                <p className="font-bold text-lg text-[#4B4B4B]">30 شارع هارون - ميدان المساحة - الدقي</p>
-                <p className="text-[#4B4B4B] mt-1">Info@egyptcollections.com</p>
+                <p className="font-bold text-lg text-[#4B4B4B]">{dict.privacyPage.contact.address}</p>
+                <p className="text-[#4B4B4B] mt-1">{dict.privacyPage.contact.email}</p>
             </div>
         </div>
 
@@ -111,7 +112,6 @@ export default function PrivacyClient() {
   );
 }
 
-/* ================= Helper Components ================= */
 function Paragraph({ children }: { children: React.ReactNode }) {
   return (
     <motion.div

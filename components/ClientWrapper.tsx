@@ -1,20 +1,23 @@
+// --- START OF FILE components/ClientWrapper.tsx ---
+
 'use client';
 
 import { useState, useEffect } from 'react';
 import Preloader from './Preloader';
+// تم حذف DynamicTitle لأنه لم يعد مطلوباً في النظام الجديد
 
 export default function ClientWrapper({ children }: { children: React.ReactNode }) {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    // 1. منع السكرول
+    // منع السكرول أثناء التحميل
     document.body.style.overflow = 'hidden';
-
-    // 2. التايمر (تقدر تزوده لـ 1500 لو عايز اللوجو يلحق يبان)
+    
     const timer = setTimeout(() => {
       setLoading(false);
+      // إعادة السكرول
       document.body.style.overflow = 'unset';
-    }, 1500); // خليتها 1.5 ثانية عشان تلحق تشوف اللوجو
+    }, 1500);
 
     return () => {
       clearTimeout(timer);
@@ -24,6 +27,8 @@ export default function ClientWrapper({ children }: { children: React.ReactNode 
 
   return (
     <>
+      {/* شيلنا DynamicTitle من هنا خلاص */}
+
       <div 
         className={`fixed inset-0 z-[9999] bg-white flex items-center justify-center transition-opacity duration-700 ease-in-out ${
           loading ? 'opacity-100 visible' : 'opacity-0 invisible pointer-events-none'

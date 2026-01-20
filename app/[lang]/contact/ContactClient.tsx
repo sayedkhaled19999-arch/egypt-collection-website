@@ -1,3 +1,4 @@
+// --- START OF FILE components/ContactClient.tsx ---
 'use client';
 
 import { useState } from 'react';
@@ -10,11 +11,15 @@ const fadeUp = {
   visible: { opacity: 1, y: 0 },
 };
 
-export default function ContactClient() {
+interface ContactClientProps {
+  lang: string;
+  dict: any;
+}
+
+export default function ContactClient({ lang, dict }: ContactClientProps) {
   const [emailCopied, setEmailCopied] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
 
-  // حالة لتخزين بيانات الفورم
   const [formData, setFormData] = useState({
     name: '',
     phone: '',
@@ -25,7 +30,7 @@ export default function ContactClient() {
 
   const handleCopyEmail = () => {
     navigator.clipboard.writeText('Info@egyptcollections.com');
-    toast.success('تم نسخ الإيميل!');
+    toast.success(dict.contactPage.form.messages.copy);
     setEmailCopied(true);
     setTimeout(() => setEmailCopied(false), 2000);
   };
@@ -33,19 +38,17 @@ export default function ContactClient() {
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
     setIsSubmitting(true);
-    const loadingToast = toast.loading('جاري إرسال رسالتك...');
+    const loadingToast = toast.loading(dict.contactPage.form.messages.loading);
 
     try {
-      // تجهيز البيانات
       const data = new FormData();
-      data.append('type', 'contact'); // علامة مميزة عشان الـ API يعرف إن دي رسالة تواصل
+      data.append('type', 'contact');
       data.append('fullName', formData.name);
       data.append('phone', formData.phone);
-      data.append('email', formData.email); // الإيميل الشخصي للمرسل
+      data.append('email', formData.email);
       data.append('address', formData.address);
       data.append('message', formData.message);
       
-      // إرسال للـ API
       const response = await fetch('/api/send-email', {
         method: 'POST',
         body: data,
@@ -54,53 +57,34 @@ export default function ContactClient() {
       const result = await response.json();
 
       if (result.success) {
-        
-        // --- بداية كود واجهة API التحويلات (Facebook CAPI) ---
         try {
-          // 1. توليد ID فريد للحدث
-          const eventId = crypto.randomUUID();
-          
-          // 2. تقسيم الاسم لتحسين المطابقة
-          const nameParts = formData.name.trim().split(' ');
-          const firstName = nameParts[0] || '';
-          const lastName = nameParts.length > 1 ? nameParts.slice(1).join(' ') : '';
-
-          // 3. إرسال الحدث في الخلفية
           fetch('/api/conversion', {
             method: 'POST',
             headers: { 'Content-Type': 'application/json' },
             body: JSON.stringify({
-              eventName: "Contact", // نوع الحدث: تواصل
-              email: formData.email || "no-email@placeholder.com", // لو المستخدم مدخلش إيميل بنبعت قيمة افتراضية عشان الكود ميكسرش
+              eventName: "Contact",
+              email: formData.email || "no-email@placeholder.com",
               phone: formData.phone,
-              firstName: firstName,
-              lastName: lastName,
               url: window.location.href,
-              userEventId: eventId
             }),
-          }).catch(err => console.error('FB Event Error (Background):', err));
+          }).catch(err => console.error(err));
+        } catch (e) {}
 
-        } catch (capiError) {
-          console.error('CAPI Setup Error:', capiError);
-        }
-        // --- نهاية كود واجهة API التحويلات ---
-
-        toast.success('شكرًا لتواصلك معنا! استلمنا رسالتك وهنرد عليك قريبًا.', { id: loadingToast, duration: 5000 });
-        setFormData({ name: '', phone: '', email: '', address: '', message: '' }); // تصفير الفورم
+        toast.success(dict.contactPage.form.messages.success, { id: loadingToast, duration: 5000 });
+        setFormData({ name: '', phone: '', email: '', address: '', message: '' });
       } else {
-        toast.error('حصلت مشكلة في الإرسال، حاول تاني.', { id: loadingToast });
+        toast.error(dict.contactPage.form.messages.error, { id: loadingToast });
       }
 
     } catch (error) {
-      console.error(error);
-      toast.error('خطأ في الاتصال، تأكد من الإنترنت.', { id: loadingToast });
+      toast.error(dict.contactPage.form.messages.error, { id: loadingToast });
     } finally {
       setIsSubmitting(false);
     }
   };
 
   return (
-    <main className="bg-[#F4F4F4] min-h-screen pb-20" dir="rtl">
+    <main className="bg-[#F4F4F4] min-h-screen pb-20">
       <Toaster position="top-center" reverseOrder={false} />
 
       {/* ===== Hero ===== */}
@@ -112,7 +96,7 @@ export default function ContactClient() {
           transition={{ duration: 0.9 }}
           className="text-4xl md:text-6xl font-extrabold text-[#2563EB] mb-4"
         >
-          تواصل معنا
+          {dict.contactPage.hero_title}
         </motion.h1>
 
         <motion.p
@@ -122,7 +106,7 @@ export default function ContactClient() {
           transition={{ delay: 0.2, duration: 0.9 }}
           className="text-lg md:text-xl text-[#4B4B4B] max-w-3xl mx-auto"
         >
-          إحنا دايمًا موجودين للإجابة على أي استفساراتك. املأ النموذج أو استخدم طرق التواصل المباشرة أدناه.
+          {dict.contactPage.hero_desc}
         </motion.p>
       </section>
 
@@ -138,7 +122,7 @@ export default function ContactClient() {
           className="bg-white rounded-3xl p-8 shadow-lg text-center hover:scale-105 transition cursor-pointer"
         >
           <Phone className="mx-auto text-[#2563EB] mb-4" size={32} />
-          <h2 className="font-extrabold text-xl mb-2">التليفون</h2>
+          <h2 className="font-extrabold text-xl mb-2">{dict.contactPage.cards.phone_title}</h2>
           <p className="text-[#4B4B4B] font-bold">01110600280</p>
         </motion.a>
 
@@ -152,7 +136,7 @@ export default function ContactClient() {
           className="bg-white rounded-3xl p-8 shadow-lg text-center hover:scale-105 transition cursor-pointer"
         >
           <Mail className="mx-auto text-[#2563EB] mb-4" size={32} />
-          <h2 className="font-extrabold text-xl mb-2">الإيميل</h2>
+          <h2 className="font-extrabold text-xl mb-2">{dict.contactPage.cards.email_title}</h2>
           <p className="text-[#4B4B4B] font-bold">Info@egyptcollections.com</p>
         </motion.div>
 
@@ -168,8 +152,8 @@ export default function ContactClient() {
           className="bg-white rounded-3xl p-8 shadow-lg text-center hover:scale-105 transition cursor-pointer"
         >
           <MapPin className="mx-auto text-[#2563EB] mb-4" size={32} />
-          <h2 className="font-extrabold text-xl mb-2">الموقع</h2>
-          <p className="text-[#4B4B4B] font-bold">الدقي، الجيزة</p>
+          <h2 className="font-extrabold text-xl mb-2">{dict.contactPage.cards.location_title}</h2>
+          <p className="text-[#4B4B4B] font-bold">{dict.contactPage.cards.location_value}</p>
         </motion.a>
       </section>
 
@@ -184,31 +168,31 @@ export default function ContactClient() {
           className="bg-white rounded-3xl p-8 shadow-lg space-y-6"
         >
           <h2 className="text-2xl md:text-3xl font-extrabold text-[#2563EB] mb-6 text-center">
-            املأ النموذج للتواصل معنا
+            {dict.contactPage.form.title}
           </h2>
           <p className="text-center text-[#4B4B4B] mb-6">
-            إحنا هنا للرد عليك بسرعة
+            {dict.contactPage.form.subtitle}
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-4">
             <div className="grid gap-4 md:grid-cols-2">
               <div className="relative">
-                <User className="absolute top-1/2 -translate-y-1/2 left-4 text-[#2563EB]" />
+                <User className={`absolute top-1/2 -translate-y-1/2 text-[#2563EB] ${lang === 'ar' ? 'left-4' : 'right-4'}`} />
                 <input
                   type="text"
-                  placeholder="الاسم"
-                  className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                  placeholder={dict.contactPage.form.name}
+                  className={`border border-gray-300 rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${lang === 'ar' ? 'pl-12' : 'pr-12'}`}
                   required
                   value={formData.name}
                   onChange={(e) => setFormData({...formData, name: e.target.value})}
                 />
               </div>
               <div className="relative">
-                <Phone className="absolute top-1/2 -translate-y-1/2 left-4 text-[#2563EB]" />
+                <Phone className={`absolute top-1/2 -translate-y-1/2 text-[#2563EB] ${lang === 'ar' ? 'left-4' : 'right-4'}`} />
                 <input
                   type="text"
-                  placeholder="رقم الموبايل"
-                  className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                  placeholder={dict.contactPage.form.phone}
+                  className={`border border-gray-300 rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${lang === 'ar' ? 'pl-12' : 'pr-12'}`}
                   required
                   value={formData.phone}
                   onChange={(e) => setFormData({...formData, phone: e.target.value})}
@@ -217,32 +201,32 @@ export default function ContactClient() {
             </div>
 
             <div className="relative">
-              <Mail className="absolute top-1/2 -translate-y-1/2 left-4 text-[#2563EB]" />
+              <Mail className={`absolute top-1/2 -translate-y-1/2 text-[#2563EB] ${lang === 'ar' ? 'left-4' : 'right-4'}`} />
               <input
                 type="email"
-                placeholder="البريد الإلكتروني (اختياري)"
-                className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                placeholder={dict.contactPage.form.email}
+                className={`border border-gray-300 rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${lang === 'ar' ? 'pl-12' : 'pr-12'}`}
                 value={formData.email}
                 onChange={(e) => setFormData({...formData, email: e.target.value})}
               />
             </div>
 
             <div className="relative">
-              <Map className="absolute top-1/2 -translate-y-1/2 left-4 text-[#2563EB]" />
+              <Map className={`absolute top-1/2 -translate-y-1/2 text-[#2563EB] ${lang === 'ar' ? 'left-4' : 'right-4'}`} />
               <input
                 type="text"
-                placeholder="العنوان (اختياري)"
-                className="border border-gray-300 rounded-xl p-4 pl-12 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                placeholder={dict.contactPage.form.address}
+                className={`border border-gray-300 rounded-xl p-4 w-full focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${lang === 'ar' ? 'pl-12' : 'pr-12'}`}
                 value={formData.address}
                 onChange={(e) => setFormData({...formData, address: e.target.value})}
               />
             </div>
 
             <div className="relative">
-              <MessageCircle className="absolute top-2 left-4 text-[#2563EB]" />
+              <MessageCircle className={`absolute top-2 text-[#2563EB] ${lang === 'ar' ? 'left-4' : 'right-4'}`} />
               <textarea
-                placeholder="رسالتك"
-                className="border border-gray-300 rounded-xl p-4 pl-12 w-full h-40 resize-none focus:outline-none focus:ring-2 focus:ring-[#2563EB]"
+                placeholder={dict.contactPage.form.message}
+                className={`border border-gray-300 rounded-xl p-4 w-full h-40 resize-none focus:outline-none focus:ring-2 focus:ring-[#2563EB] ${lang === 'ar' ? 'pl-12' : 'pr-12'}`}
                 required
                 value={formData.message}
                 onChange={(e) => setFormData({...formData, message: e.target.value})}
@@ -254,7 +238,7 @@ export default function ContactClient() {
               disabled={isSubmitting}
               className="bg-[#2563EB] text-white font-bold py-4 px-6 rounded-xl w-full hover:bg-[#1e4bb8] transition transform hover:scale-105 disabled:bg-gray-400 disabled:cursor-not-allowed"
             >
-              {isSubmitting ? 'جاري الإرسال...' : 'إرسال الرسالة'}
+              {isSubmitting ? dict.contactPage.form.btn_sending : dict.contactPage.form.btn_send}
             </button>
           </form>
         </motion.div>

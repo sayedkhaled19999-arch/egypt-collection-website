@@ -5,35 +5,48 @@ import { MapPin } from 'lucide-react';
 import { useInView } from 'react-intersection-observer';
 import { useEffect } from 'react';
 
+// تعريف بيانات الفروع وتصديرها عشان AboutCard بيستخدمها
 export const branches = [
   {
-    name: 'المقر الرئيسي',
-    address: '30شارع هارون - ميدان المساحه - الدقى - الدور السابع',
+    nameAr: 'المقر الرئيسي',
+    nameEn: 'Headquarters',
+    addressAr: '30 شارع هارون - ميدان المساحه - الدقى - الدور السابع',
+    addressEn: '30 Haroun St, El Mesaha Sq, Dokki, 7th Floor',
     mapsUrl: 'https://maps.app.goo.gl/CcmDDN7XqEvbE5Rj6'
   },
   {
-    name: 'فرع المنوفية',
-    address: 'برج أحمد الدبور شارع الشهيد عبدالمنعم حمزة- الدور الخامس - أمام مصلحة الجوازات - شبين الكوم - المنوفية',
+    nameAr: 'فرع المنوفية',
+    nameEn: 'Monufia Branch',
+    addressAr: 'برج أحمد الدبور شارع الشهيد عبدالمنعم حمزة- الدور الخامس - أمام مصلحة الجوازات - شبين الكوم - المنوفية',
+    addressEn: 'Ahmed El Dabour Tower, Abdel Moneim Hamza St, 5th Floor, opposite Passport Office, Shebin El Kom',
     mapsUrl: 'https://maps.app.goo.gl/dqg9eb1wJUgkLkL78'
   },
   {
-    name: 'فرع البحيرة',
-    address: 'برج جراند زمزم - الدور السادس - بجوار محكمة إيتاي البارود - مركز إيتاي البارود - البحيرة',
+    nameAr: 'فرع البحيرة',
+    nameEn: 'Beheira Branch',
+    addressAr: 'برج جراند زمزم - الدور السادس - بجوار محكمة إيتاي البارود - مركز إيتاي البارود - البحيرة',
+    addressEn: 'Grand Zamzam Tower, 6th Floor, beside Itay El Baroud Court, Itay El Baroud',
     mapsUrl: 'https://maps.app.goo.gl/33a6cXxX7X8bxSZ3A'
   },
   {
-    name: 'فرع المنيا',
-    address: 'شارع أحمد ماهر تقاطع شارع الحسيني البحري الدور الثالث علوي - أمام كبابجي المحمدي - قسم المنيا - محافظة المنيا',
+    nameAr: 'فرع المنيا',
+    nameEn: 'Minya Branch',
+    addressAr: 'شارع أحمد ماهر تقاطع شارع الحسيني البحري الدور الثالث علوي - أمام كبابجي المحمدي - قسم المنيا - محافظة المنيا',
+    addressEn: 'Ahmed Maher St & El Husseini El Bahary St intersection, 3rd Floor, opposite El Mohamady Kababji, Minya',
     mapsUrl: 'https://maps.app.goo.gl/o7DP2AMWaXiR17V29'
   },
   {
-    name: 'فرع الإسماعيلية',
-    address: '2شارع بحريى تقاطع شارع رضا - عريشة مصر - امام استاد الاسماعلية واعلى سوبر ماركت بيم - الدور الثانى - برج الهادى',
+    nameAr: 'فرع الإسماعيلية',
+    nameEn: 'Ismailia Branch',
+    addressAr: '2 شارع بحريى تقاطع شارع رضا - عريشة مصر - امام استاد الاسماعلية واعلى سوبر ماركت بيم - الدور الثانى - برج الهادى',
+    addressEn: '2 Bahary St & Reda St, Arishat Misr, opposite Ismailia Stadium, above BIM Market, 2nd Floor, El Hady Tower',
     mapsUrl: 'https://maps.app.goo.gl/9gCpoCBsBEi4nE4v5'
   },
   {
-    name: 'فرع قنا',
-    address: 'ميدان الساعة - شارع مصطفي كامل - بجوار كشك اخر ساعة - عمارة رقم 4 الدور الثالث علوي',
+    nameAr: 'فرع قنا',
+    nameEn: 'Qena Branch',
+    addressAr: 'ميدان الساعة - شارع مصطفي كامل - بجوار كشك اخر ساعة - عمارة رقم 4 الدور الثالث علوي',
+    addressEn: 'El Sa\'a Sq, Mostafa Kamel St, beside Akher Sa\'a Kiosk, Building 4, 3rd Floor',
     mapsUrl: 'https://maps.app.goo.gl/4tEakTRTCuUeDNuw5'
   }
 ];
@@ -52,7 +65,12 @@ const cardVariants: Variants = {
   })
 };
 
-export default function BranchesSection() {
+interface BranchesProps {
+  lang: string;
+  dict: any;
+}
+
+export default function BranchesSection({ lang, dict }: BranchesProps) {
   const controls = useAnimation();
   const [ref, inView] = useInView({ threshold: 0.1 });
 
@@ -65,21 +83,18 @@ export default function BranchesSection() {
     <section ref={ref} id="branches-section" className="py-16 md:py-20 bg-[#F4F4F4]">
       <div className="max-w-6xl mx-auto px-4">
 
-        {/* الكارت الأبيض ثابت */}
         <div className="bg-white rounded-3xl shadow-2xl p-10 md:p-14 mb-12 text-center">
 
-          {/* العنوان والجملة */}
           <motion.div initial="hidden" animate={controls} variants={textVariants}>
             <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-4 flex items-center justify-center gap-3">
               <MapPin className="w-8 h-8 text-blue-500" />
-              فروعنا
+              {dict.title}
             </h2>
             <p className="text-[#4B4B4B] text-lg md:text-xl leading-relaxed mb-12">
-              فروعنا متوفرة في جميع أنحاء الجمهورية. اضغط على أي كارت لمعرفة الموقع على خرائط جوجل.
+              {dict.desc}
             </p>
           </motion.div>
 
-          {/* كروت الفروع */}
           <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
             {branches.map((branch, i) => (
               <motion.a
@@ -87,7 +102,6 @@ export default function BranchesSection() {
                 href={branch.mapsUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                // التعديل هنا: غيرنا bg-white لـ bg-[#F4F4F4] (الرمادي الفاتح بتاع شركائنا)
                 className="relative block p-6 rounded-2xl shadow-md bg-[#F4F4F4] cursor-pointer overflow-hidden group"
                 custom={i}
                 variants={cardVariants}
@@ -101,15 +115,13 @@ export default function BranchesSection() {
                 <div className="mt-0 text-center">
                   <h3
                     className="text-xl font-bold text-[#353535] transition-all duration-300 group-hover:bg-clip-text group-hover:text-transparent group-hover:bg-gradient-to-r group-hover:from-blue-400 group-hover:to-blue-600 inline-flex items-center justify-center gap-2"
-                    title={branch.name}
                   >
                     <MapPin className="w-5 h-5 text-blue-500" />
-                    {branch.name}
+                    {lang === 'ar' ? branch.nameAr : branch.nameEn}
                   </h3>
                   
-                  {/* التعديل هنا: شلنا truncate وضفنا text-sm leading-relaxed عشان العنوان يبان كامل ومقروء */}
-                  <p className="text-[#666] mt-2 text-sm leading-relaxed">
-                    {branch.address}
+                  <p className="text-[#666] mt-2 text-sm leading-relaxed" dir={lang === 'en' ? 'ltr' : 'rtl'}>
+                    {lang === 'ar' ? branch.addressAr : branch.addressEn}
                   </p>
                 </div>
               </motion.a>

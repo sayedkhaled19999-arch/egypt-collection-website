@@ -1,3 +1,5 @@
+// --- START OF FILE components/PartnersClient.tsx ---
+
 'use client';
 
 import Image from 'next/image';
@@ -5,29 +7,36 @@ import Slider from 'react-slick';
 import { motion } from 'framer-motion';
 
 interface Bank {
-  name: string;
+  nameAr: string;
+  nameEn: string;
   src: string;
 }
 
 const banks: Bank[] = [
-  { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
-  { name: 'بنك مصر', src: '/banks/banquemisr.svg' },
-  { name: 'بنك القاهرة', src: '/banks/cairobank.svg' },
-  { name: 'بنك التعمير والاسكان', src: '/banks/housingbank.svg' },
-  { name: 'بنك الامارات دبي الوطني', src: '/banks/NBDEmirate.svg' },
-  { name: 'مصرف ابو ظبي الاسلامي', src: '/banks/Adib.svg' },
-  { name: 'بنك الكويتي الوطني', src: '/banks/NationalBankofKuwait.svg' },
-  { name: 'بنك المصري الخليجي', src: '/banks/EGBANK.svg' },
-  { name: 'بنك العربي الأفريقي', src: '/banks/ArabAfricanBank.svg' },
-  { name: 'بنك الأهلي الكويتي', src: '/banks/AlAhliBankofKuwait.svg' },
-  { name: 'بنك قناة السويس', src: '/banks/SuezCanalBank.svg' },
-  { name: 'بنك المشرق', src: '/banks/Mashreq.svg' },
-  { name: 'بنك نكست', src: '/banks/BankNXT.svg' },
+  { nameAr: 'بنك الأهلي المصري', nameEn: 'National Bank of Egypt', src: '/banks/ahly.svg' },
+  { nameAr: 'بنك مصر', nameEn: 'Banque Misr', src: '/banks/banquemisr.svg' },
+  { nameAr: 'بنك القاهرة', nameEn: 'Banque du Caire', src: '/banks/cairobank.svg' },
+  { nameAr: 'بنك التعمير والاسكان', nameEn: 'Housing & Development Bank', src: '/banks/housingbank.svg' },
+  { nameAr: 'بنك الامارات دبي الوطني', nameEn: 'Emirates NBD', src: '/banks/NBDEmirate.svg' },
+  { nameAr: 'مصرف ابو ظبي الاسلامي', nameEn: 'Abu Dhabi Islamic Bank', src: '/banks/Adib.svg' },
+  { nameAr: 'بنك الكويتي الوطني', nameEn: 'National Bank of Kuwait', src: '/banks/NationalBankofKuwait.svg' },
+  { nameAr: 'بنك المصري الخليجي', nameEn: 'EGBANK', src: '/banks/EGBANK.svg' },
+  { nameAr: 'بنك العربي الأفريقي', nameEn: 'Arab African Int. Bank', src: '/banks/ArabAfricanBank.svg' },
+  { nameAr: 'بنك الأهلي الكويتي', nameEn: 'Al Ahli Bank of Kuwait', src: '/banks/AlAhliBankofKuwait.svg' },
+  { nameAr: 'بنك قناة السويس', nameEn: 'Suez Canal Bank', src: '/banks/SuezCanalBank.svg' },
+  { nameAr: 'بنك المشرق', nameEn: 'Mashreq Bank', src: '/banks/Mashreq.svg' },
+  { nameAr: 'بنك نكست', nameEn: 'Bank NXT', src: '/banks/BankNXT.svg' },
 ];
 
 const infiniteBanks = [...banks, ...banks];
 
-export default function PartnersClient() {
+interface PartnersClientProps {
+  lang: string;
+  dict: any;
+}
+
+export default function PartnersClient({ lang, dict }: PartnersClientProps) {
+
   const sliderSettings = {
     infinite: true,
     slidesToShow: 6,
@@ -40,7 +49,7 @@ export default function PartnersClient() {
     pauseOnHover: false,
     swipe: false,
     draggable: false,
-    rtl: true,
+    rtl: lang === 'ar', 
     responsive: [
       { breakpoint: 1280, settings: { slidesToShow: 5 } },
       { breakpoint: 1024, settings: { slidesToShow: 4 } },
@@ -55,25 +64,25 @@ export default function PartnersClient() {
   };
 
   return (
-    <div className="bg-[#F4F4F4] min-h-screen" dir="rtl">
+    <div className="bg-[#F4F4F4] min-h-screen">
+      
       {/* ===== HEADER ===== */}
       <section className="py-20 text-center">
-        {/* تم إضافة اسم البراند في الـ H1 لتقوية الأرشفة */}
         <h1 className="text-4xl md:text-5xl font-extrabold text-[#2563EB] mb-4">
-          شركاء الشركة المصرية للتحصيلات (ECC)
+          {dict.partnersPage.hero_title}
         </h1>
 
         <div className="text-[#4B4B4B] max-w-3xl mx-auto mb-12 space-y-3 px-4">
           <p className="text-lg md:text-xl">
-            شوف سابقة أعمالنا مع أهم البنوك والمؤسسات المالية في مصر.
+            {dict.partnersPage.hero_desc1}
           </p>
           <p className="text-lg md:text-xl">
-            ثقة شركائنا هي اللي بتأكد إن إحنا دايمًا عند حسن الظن في الجودة والالتزام.
+            {dict.partnersPage.hero_desc2}
           </p>
         </div>
 
         {/* ===== SEAMLESS SLIDER ===== */}
-        <div className="max-w-6xl mx-auto px-4 overflow-hidden">
+        <div className="max-w-6xl mx-auto px-4 overflow-hidden" key={lang}>
           <Slider {...sliderSettings}>
             {infiniteBanks.map((bank, i) => (
               <div key={i}>
@@ -81,7 +90,7 @@ export default function PartnersClient() {
                   <div className="relative w-[80px] h-[60px] sm:w-[110px] sm:h-[80px] md:w-[130px] md:h-[90px]">
                     <Image
                       src={bank.src || '/banks/default.svg'}
-                      alt={bank.name}
+                      alt={lang === 'ar' ? bank.nameAr : bank.nameEn}
                       fill
                       className="object-contain"
                     />
@@ -96,11 +105,11 @@ export default function PartnersClient() {
       {/* ===== GRID ===== */}
       <section className="max-w-7xl mx-auto px-4 py-16 -mt-16">
         <h2 className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-2 text-center">
-          البنوك اللي بتثق في الشركة المصرية للتحصيلات (ECC)
+          {dict.partnersPage.grid_title}
         </h2>
 
         <p className="text-center text-[#2563EB] mb-8 text-lg md:text-xl font-medium px-4">
-          فخورين بتقديم خدماتنا الميدانية لأكبر الكيانات المصرفية في مصر
+          {dict.partnersPage.grid_subtitle}
         </p>
 
         <div
@@ -121,7 +130,7 @@ export default function PartnersClient() {
               variants={cardVariants}
               transition={{ delay: i * 0.05, duration: 0.5 }}
             >
-              <BankCard bank={bank} />
+              <BankCard bank={bank} language={lang} />
             </motion.div>
           ))}
         </div>
@@ -130,18 +139,20 @@ export default function PartnersClient() {
   );
 }
 
-function BankCard({ bank }: { bank: Bank }) {
+function BankCard({ bank, language }: { bank: Bank, language: string }) {
   return (
     <div className="flex flex-col items-center justify-center bg-white rounded-2xl shadow-lg p-4 h-40 hover:scale-105 transition border border-transparent hover:border-[#2563EB]/20">
       <div className="relative w-24 h-20 mb-2">
         <Image
           src={bank.src || '/banks/default.svg'}
-          alt={bank.name}
+          alt={language === 'ar' ? bank.nameAr : bank.nameEn}
           fill
           className="object-contain"
         />
       </div>
-      <h3 className="text-sm font-bold text-center text-[#353535]">{bank.name}</h3>
+      <h3 className="text-sm font-bold text-center text-[#353535]">
+        {language === 'ar' ? bank.nameAr : bank.nameEn}
+      </h3>
     </div>
   );
 }

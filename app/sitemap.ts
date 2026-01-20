@@ -1,26 +1,24 @@
+// --- START OF FILE app/sitemap.ts ---
+
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://egyptcollections.com';
+  
+  // اللغات الموجودة في الموقع
+  const locales = ['ar', 'en'];
 
-  // 1. الصفحات الأساسية
-  const routes = [
-    '',
-    '/about',
-    '/contact',
-    '/jobs',
-    '/partners', // تأكد إن ده يطابق اسم الفولدر بالظبط
-    '/privacy',
-  ].map((route) => ({
-    url: `${baseUrl}${route}`,
-    lastModified: new Date(),
-    // الوظائف تتحدث أسبوعياً، الباقي شهرياً
-    changeFrequency: route === '/jobs' ? 'weekly' : 'monthly',
-    // الرئيسية (1)، الباقي (0.8)
-    priority: route === '' ? 1 : 0.8,
-  })) as MetadataRoute.Sitemap;
+  // 1. مسارات الصفحات الثابتة
+  const staticPaths = [
+    '',          // الرئيسية
+    '/about',    // من نحن
+    '/contact',  // تواصل معنا
+    '/jobs',     // الوظائف
+    '/partners', // الشركاء
+    '/privacy',  // الخصوصية
+  ];
 
-  // 2. صفحات الوظائف (ديناميكية)
+  // 2. معرفات الوظائف (الديناميكية)
   const jobIds = [
     'office-collector',
     'field-collector',
@@ -28,13 +26,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
     'data-entry'
   ];
 
-  const jobRoutes = jobIds.map((id) => ({
-    url: `${baseUrl}/jobs/${id}`,
-    lastModified: new Date(),
-    changeFrequency: 'weekly',
-    priority: 0.9, // الوظائف أهم من صفحات "من نحن" وغيرها
-  })) as MetadataRoute.Sitemap;
+  const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  // 3. تجميع الكل
-  return [...routes, ...jobRoutes];
+  // أولاً: تكرار الصفحات الثابتة لكل لغة
+  staticPaths.forEach((path) => {
+    locales.forEach((lang) => {
+      sitemapEntries.push({
+        url: `${baseUrl}/${lang}${path}`, // النتيجة: /ar/about و /en/about
+        lastModified: new Date(),
+        changeFrequency: path === '/jobs' ? 'weekly' : 'monthly',
+        priority: path === '' ? 1 : 0.8,
+      });
+    });
+  });
+
+  // ثانياً: تكرار صفحات الوظائف لكل لغة
+  jobIds.forEach((id) => {
+    locales.forEach((lang) => {
+      sitemapEntries.push({
+        url: `${baseUrl}/${lang}/jobs/${id}`, // النتيجة: /ar/jobs/field-collector
+        lastModified: new Date(),
+        changeFrequency: 'weekly',
+        priority: 0.9, // الوظائف مهمة جداً
+      });
+    });
+  });
+
+  return sitemapEntries;
 }

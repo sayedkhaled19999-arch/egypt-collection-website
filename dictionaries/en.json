@@ -1,0 +1,325 @@
+{
+  "navbar": {
+    "home": "Home",
+    "about": "About Us",
+    "partners": "Success Partners",
+    "jobs": "Careers",
+    "contact": "Contact Us"
+  },
+  "hero": {
+    "slide1_title": "Egyptian Collections Co. (ECC) - Collection & Investigation",
+    "slide1_desc": "The leading company in Egypt specializing in field collection and credit investigation. Our work guarantees security and punctuality.",
+    "slide1_btn": "About Us",
+    "slide2_title": "Our Partners at ECC",
+    "slide2_desc": "We cooperate with the largest banks and companies in Egypt to ensure the highest quality in executing all field services.",
+    "slide2_btn": "View Partners",
+    "slide3_title": "Join the ECC Team",
+    "slide3_desc": "Looking for a real opportunity? Check out our available jobs and start your career with us now.. We grow with you.",
+    "slide3_btn": "Available Jobs",
+    "slide4_title": "Contact ECC",
+    "slide4_desc": "If you have any questions or need consultation, we are available all the time to answer you and help with whatever you need.",
+    "slide4_btn": "Contact Us"
+  },
+  "aboutCard": {
+    "title": "Company Overview",
+    "desc": "Our company always strives for innovation and providing collection and investigation services in the best possible way. We combine long experience with modern technology.",
+    "partners": "Success Partners",
+    "branches": "Branches",
+    "ceo_name": "Counselor/ Wael Sweilem",
+    "ceo_title": "Chairman & Founder"
+  },
+  "values": {
+    "title": "Our Core Values",
+    "subtitle": "These are the principles we follow in our work and all our dealings.",
+    "appearance": "Appearance",
+    "appearance_desc": "We always ensure we look neat and professional in front of colleagues and clients.",
+    "commitment": "Commitment",
+    "commitment_desc": "Punctuality and work quality are essential to us.",
+    "integrity": "Integrity",
+    "integrity_desc": "We are honest and clear with each other; this is part of our culture."
+  },
+  "partners": {
+    "title": "Our Partners",
+    "desc": "We collaborate with top banks to ensure the highest quality of service.",
+    "btn": "More About Partners"
+  },
+  "branches": {
+    "title": "Our Branches",
+    "desc": "Our branches are available all over the Republic. Click on any card to see the location on Google Maps.",
+    "main_branch": "Headquarters",
+    "branch": "Branch"
+  },
+  "joinUs": {
+    "title": "Ready to Join Us?",
+    "desc": "Why choose us? Check out the benefits you get immediately when you join:",
+    "btn": "View Available Jobs",
+    "perks": {
+      "salary": "Fixed Salary",
+      "salary_desc": "A monthly fixed salary ensuring safety and stability.",
+      "rewards": "Performance Bonus",
+      "rewards_desc": "Real rewards for performance and good work.",
+      "commission": "High Commission",
+      "commission_desc": "Respectable commissions increasing your income monthly.",
+      "hours": "Clear Hours",
+      "hours_desc": "Commitment and organization without pressure.",
+      "insurance": "Social Insurance",
+      "insurance_desc": "Full social insurance after probation.",
+      "environment": "Respectful Environment",
+      "environment_desc": "Mutual respect and appreciation for every effort.",
+      "team": "Great Team",
+      "team_desc": "Work among a professional and experienced team.",
+      "stability": "Job Stability",
+      "stability_desc": "Not a temporary job... this is a career path.",
+      "training": "Continuous Training",
+      "training_desc": "We teach you everything from day one.",
+      "contracts": "Clear Contracts",
+      "contracts_desc": "Everything is written and clear from the start.",
+      "appreciation": "Appreciation",
+      "appreciation_desc": "Your work is not lost... every effort counts.",
+      "opportunity": "Real Opportunity",
+      "opportunity_desc": "Not just promises... real opportunities for growth."
+    }
+  },
+  "footer": {
+    "about_title": "Egyptian Collections Co. (ECC)",
+    "about_desc1": "Specialized in providing financial collection and investigation services efficiently and professionally.",
+    "about_desc2": "Founded in 2001, aiming to support clients in managing and collecting their financial dues securely.",
+    "rights": "© Egyptian Collections Co. 2001 - 2026. All rights reserved.",
+    "powered": "Powered by",
+    "address": "30 Haroun St, El Mesaha Sq, Dokki",
+    "email": "Info@egyptcollections.com"
+  },
+  "aboutPage": {
+    "hero_title": "About Us",
+    "hero_desc": "We are Egyptian Collections Co. (ECC), a leading Egyptian firm specializing in debt management, collection, and credit investigation since 2001. We provide reliable solutions for banks.",
+    "highlights": {
+      "banks": "Trusted by Major Banks",
+      "investigation": "Field Investigation Experts",
+      "team": "Professionally Trained Teams",
+      "compliance": "Compliance & Data Protection"
+    },
+    "story_p1": "At ECC, since our first day in the Egyptian market, we believed that collection and investigation are not just numbers, but an integrated system based on professionalism.",
+    "story_p2": "Our experience of over 20 years has enabled us to achieve the best results for banks while maintaining the institution's reputation and full compliance with laws.",
+    "story_features": {
+      "analysis": "Precise Case Analysis",
+      "solutions": "Smart Risk Solutions",
+      "results": "Consistent & Reliable Results",
+      "field_team": "Largest Field Team"
+    },
+    "vision_mission": {
+      "vision_title": "Our Vision",
+      "vision_text": "To be the #1 trusted professional partner for banks in collection and credit investigation within the Egyptian market.",
+      "mission_title": "Our Mission",
+      "mission_text": "Providing innovative field solutions that help financial institutions reduce risks and maximize returns through professional systems.",
+      "values_title": "Our Values",
+      "values_text": "Legal Compliance – Confidentiality – Transparency – Client Respect – Data Protection."
+    },
+    "why_us": {
+      "title": "Why Top Banks Choose ECC?",
+      "f1": "Successful Partnerships with Major Banks",
+      "f2": "Pioneers in Field Investigation since 2001",
+      "f3": "Most Efficient Field Teams in Egypt",
+      "f4": "Strict Adherence to Confidentiality"
+    },
+    "ceo": {
+      "title": "Chairman's Word",
+      "p1": "ECC was built on a clear principle: Organization and Commitment are the foundation of true trust. Since 2001, we have been building an independent professional entity.",
+      "p2": "Our real success is not just in numbers, but in the continued trust of our partners over 20 years, which is what we are proud of.",
+      "name": "Counselor / Wael Sweilem",
+      "role": "Chairman & Founder"
+    }
+  },
+  "partnersPage": {
+    "hero_title": "Our Success Partners",
+    "hero_desc1": "Explore our track record with the top banks and financial institutions in Egypt.",
+    "hero_desc2": "Our partners' trust confirms our commitment to quality and professionalism.",
+    "grid_title": "Banks That Trust Egyptian Collections Co. (ECC)",
+    "grid_subtitle": "Proud to serve the largest banking entities in Egypt"
+  },
+  "jobsPage": {
+    "hero_title": "Available jobs",
+    "hero_subtitle": "If you want to be part of our team, here is your chance to shine and grow.",
+    "available_count": "There are {{count}} jobs available now",
+    "btn_details": "View Details",
+    "filters": {
+      "location": "Location",
+      "type": "Type"
+    }
+  },
+  "jobDetails": {
+    "apply_now": "Apply Now",
+    "back_to_jobs": "Back to Jobs",
+    "salary": "Salary",
+    "work_hours": "Work Hours",
+    "vacation": "Day Off",
+    "location": "Location",
+    "form": {
+      "title": "Apply for Job",
+      "name": "Full Name",
+      "phone": "Phone Number",
+      "address": "Address",
+      "experience_label": "Previous Experience?",
+      "exp_yes": "Yes, I have",
+      "exp_no": "No, I don't",
+      "prev_companies": "Previous Companies",
+      "cv_label": "Upload CV (Optional)",
+      "submit_btn": "Submit Application",
+      "sending": "Sending...",
+      "success_msg": "Application sent successfully! Good luck 🚀",
+      "error_msg": "Something went wrong, please try again."
+    },
+    "extra_labels": {
+      "appearance": "Appearance",
+      "commitment": "Commitment",
+      "integrity": "Integrity",
+      "skills": "Skills",
+      "interview": "Interviews",
+      "insurance": "Insurance"
+    }
+  },
+  "jobsData": {
+    "office-collector": {
+      "title": "Office Collector",
+      "desc": "Following up with customers via phone and helping them settle debts smoothly.",
+      "location": "Dokki - Giza",
+      "type": "Full Time",
+      "salary": "Fixed Salary + Commission",
+      "hours": "8:30 AM to 6:30 PM",
+      "vacation": "Friday",
+      "details": [
+        "Follow up with overdue customers politely.",
+        "Provide practical solutions for customers.",
+        "Log calls and notes accurately.",
+        "Paid training provided."
+      ],
+      "requirements": [
+        "Good Appearance",
+        "Communication Skills",
+        "Work under pressure"
+      ]
+    },
+    "field-collector": {
+      "title": "Field Collector",
+      "desc": "Visiting customers to negotiate and collect overdue debts.",
+      "location": "All Egypt Governorates",
+      "type": "Full Time",
+      "salary": "Fixed Salary + Unlimited Commission",
+      "hours": "8:30 AM to 5:00 PM",
+      "vacation": "Friday",
+      "details": [
+        "Field visits to customers.",
+        "Evaluate customer status and propose solutions.",
+        "Achieve monthly targets.",
+        "Career growth opportunities."
+      ],
+      "requirements": [
+        "Good Appearance",
+        "Integrity",
+        "Negotiation Skills"
+      ]
+    },
+    "field-investigator": {
+      "title": "Field Investigator",
+      "desc": "Conducting field visits to collect accurate data about customers.",
+      "location": "Giza & Cairo",
+      "type": "Full Time",
+      "salary": "Fixed Salary + Allowance",
+      "hours": "7:30 AM to 4:00 PM",
+      "vacation": "Friday & Saturday",
+      "details": [
+        "Verify customer addresses.",
+        "Write accurate reports.",
+        "Strict confidentiality.",
+        "Speed ​​in conducting visits."
+      ],
+      "requirements": [
+        "Attention to detail",
+        "Integrity",
+        "High School or Degree"
+      ]
+    },
+    "data-entry": {
+      "title": "Data Entry",
+      "desc": "Entering customer data and transactions accurately into the system.",
+      "location": "Dokki - Giza",
+      "type": "Full Time",
+      "salary": "Determined based on speed",
+      "hours": "8:30 AM to 6:30 PM",
+      "vacation": "Friday",
+      "details": [
+        "Data entry on Excel and System.",
+        "Review data and correct errors.",
+        "Typing speed on the keyboard.",
+        "Comfortable office environment."
+      ],
+      "requirements": [
+        "Typing Speed",
+        "Office Skills",
+        "High Focus"
+      ]
+    }
+  },
+  "contactPage": {
+    "hero_title": "Contact Us",
+    "hero_desc": "We are always here to answer your inquiries. Fill out the form or use the direct contact methods below.",
+    "cards": {
+      "phone_title": "Phone",
+      "email_title": "Email",
+      "location_title": "Location",
+      "location_value": "Dokki, Giza"
+    },
+    "form": {
+      "title": "Fill the form to contact us",
+      "subtitle": "We are here to reply to you fast",
+      "name": "Name",
+      "phone": "Phone Number",
+      "email": "Email (Optional)",
+      "address": "Address (Optional)",
+      "message": "Your Message",
+      "btn_send": "Send Message",
+      "btn_sending": "Sending...",
+      "messages": {
+        "success": "Thanks for contacting us! We received your message and will reply soon.",
+        "error": "Something went wrong, please try again.",
+        "copy": "Email copied!",
+        "loading": "Sending your message..."
+      }
+    }
+  },
+  "privacyPage": {
+    "hero_title": "Privacy Policy",
+    "hero_desc": "At ECC, we deeply understand the sensitivity of \"bank client data.\" Privacy and information security are not just words to us; they are the foundation of our work and part of our regulatory compliance.",
+    "highlights": {
+      "security": "Strict Confidentiality",
+      "compliance": "Bank Standards Compliance",
+      "legal": "Legal Use Only"
+    },
+    "intro": {
+      "title": "What data do we collect & why?",
+      "desc": "We are a \"services\" company, meaning our role is executive. The data we handle comes from two main sources:",
+      "source1": "Data from assigned Banks: Received under official mandate to perform investigation or collection tasks.",
+      "source2": "Data you provide: Such as sending your CV for recruitment or filling out a contact form."
+    },
+    "cards": {
+      "jobs_title": "Job Applications",
+      "jobs_text": "If you send us your CV, rest assured it stays with the HR department only and is used solely for recruitment purposes.",
+      "ads_title": "Facebook Ads",
+      "ads_text": "Data from ad forms is used solely to respond to your inquiries regarding our services."
+    },
+    "sharing": {
+      "title": "Do we share your data?",
+      "text_bold": "Definite Answer: No.",
+      "text_body": "We do not sell or rent data. Bank data is a red line, and applicant data is a trust we keep."
+    },
+    "contact": {
+      "title": "Have an inquiry?",
+      "desc": "If you have any concerns regarding your data, feel free to call us or visit our headquarters.",
+      "email": "Info@egyptcollections.com",
+      "address": "30 Haroun St, El Mesaha Sq, Dokki"
+    }
+  },
+  "metadata": {
+    "title": "Egyptian Collections Co. ECC",
+    "description": "Egyptian Collections Company (ECC) is a leader in field collection and credit investigation services in Egypt since 2001."
+  }
+}

@@ -1,19 +1,9 @@
 'use client';
 
 import Link from 'next/link';
-// 1. ضيفنا استيراد Image هنا
 import Image from 'next/image'; 
 import { motion, Variants } from 'framer-motion';
 import { useInView } from 'react-intersection-observer';
-
-const banks = [
-  { name: 'بنك الأهلي المصري', src: '/banks/ahly.svg' },
-  { name: 'بنك مصر', src: '/banks/banquemisr.svg' },
-  { name: 'بنك القاهرة', src: '/banks/cairobank.svg' },
-  { name: 'بنك التعمير والاسكان', src: '/banks/housingbank.svg' },
-  { name: 'بنك الامارات دبي الوطني', src: '/banks/NBDEmirate.svg' },
-  { name: 'مصرف ابو ظبي الاسلامي', src: '/banks/Adib.svg' },
-];
 
 const containerVariants: Variants = {
   hidden: {},
@@ -38,14 +28,45 @@ const cardVariants: Variants = {
   })
 };
 
-export default function PartnersSection() {
+interface PartnersProps {
+  lang: string;
+  dict: any;
+}
+
+export default function PartnersSection({ lang, dict }: PartnersProps) {
   const [ref, inView] = useInView({ threshold: 0.05 });
+
+  const banks = [
+    { 
+      name: lang === 'ar' ? 'بنك الأهلي المصري' : 'National Bank of Egypt', 
+      src: '/banks/ahly.svg' 
+    },
+    { 
+      name: lang === 'ar' ? 'بنك مصر' : 'Banque Misr', 
+      src: '/banks/banquemisr.svg' 
+    },
+    { 
+      name: lang === 'ar' ? 'بنك القاهرة' : 'Banque du Caire', 
+      src: '/banks/cairobank.svg' 
+    },
+    { 
+      name: lang === 'ar' ? 'بنك التعمير والاسكان' : 'Housing & Development Bank', 
+      src: '/banks/housingbank.svg' 
+    },
+    { 
+      name: lang === 'ar' ? 'بنك الامارات دبي الوطني' : 'Emirates NBD', 
+      src: '/banks/NBDEmirate.svg' 
+    },
+    { 
+      name: lang === 'ar' ? 'مصرف ابو ظبي الاسلامي' : 'Abu Dhabi Islamic Bank', 
+      src: '/banks/Adib.svg' 
+    },
+  ];
 
   return (
     <section ref={ref} id="partners-section" className="py-16 md:py-20 bg-[#F4F4F4]">
       <div className="max-w-6xl mx-auto px-4">
 
-        {/* الكارت الأبيض ثابت */}
         <div className="bg-white rounded-3xl shadow-2xl p-8 md:p-14 mb-12 text-center">
 
           <motion.div
@@ -54,15 +75,13 @@ export default function PartnersSection() {
             initial="hidden"
             animate={inView ? 'visible' : 'hidden'}
           >
-            {/* العنوان والجملة */}
             <motion.h2 variants={textVariants} className="text-3xl md:text-4xl font-extrabold text-[#2563EB] mb-4">
-              شركائنا
+              {dict.title}
             </motion.h2>
             <motion.p variants={textVariants} className="text-[#4B4B4B] text-lg md:text-xl leading-relaxed mb-8">
-              نتعاون مع أفضل البنوك لضمان أعلى جودة في خدماتنا.
+              {dict.desc}
             </motion.p>
 
-            {/* شبكة البنوك */}
             <motion.div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-3 gap-6 md:gap-8" variants={containerVariants}>
               {banks.map(({ name, src }, i) => (
                 <motion.div
@@ -73,36 +92,36 @@ export default function PartnersSection() {
                   whileTap={{ scale: 0.97 }}
                   className="flex flex-col items-center justify-center h-48 bg-[#F4F4F4] rounded-2xl shadow-md cursor-pointer overflow-hidden relative group"
                 >
-                  {/* shine overlay */}
                   <span className="absolute inset-0 bg-white opacity-0 group-hover:opacity-10 transition-opacity duration-300 rounded-2xl" />
+                  
+                  {/* التعديل هنا: استخدام fill بدلاً من width/height */}
                   <motion.div
                     className="w-28 h-28 mb-2 flex items-center justify-center relative"
                     whileHover={{ scale: 1.2 }}
                     transition={{ type: 'spring', stiffness: 200 }}
                   >
-                    {/* 2. هنا التعديل: استبدال img بـ Image */}
                     <Image 
                       src={src} 
                       alt={name} 
-                      width={112} // 112px عشان يتناسب مع w-28
-                      height={112} // 112px عشان يتناسب مع h-28
-                      className="object-contain"
+                      fill // يملأ الحاوية (w-28 h-28)
+                      sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw" // تحسين للأداء
+                      className="object-contain p-1" // يحافظ على الأبعاد
                     />
                   </motion.div>
-                  <span className="text-[#353535] font-semibold text-center text-sm md:text-base">
+                  
+                  <span className="text-[#353535] font-semibold text-center text-sm md:text-base px-2">
                     {name}
                   </span>
                 </motion.div>
               ))}
             </motion.div>
 
-            {/* زر الانتقال */}
             <motion.div variants={textVariants} className="mt-8 text-center">
               <Link
-                href="/partners"
+                href={`/${lang}/partners`}
                 className="inline-block bg-[#2563EB] text-white font-bold px-10 py-4 rounded-full shadow-lg transition-all duration-300 hover:bg-[#1e4db7] hover:scale-105 hover:shadow-blue-500/30 hover:-translate-y-1"
               >
-                اعرف أكثر عن شركائنا
+                {dict.btn}
               </Link>
             </motion.div>
 
