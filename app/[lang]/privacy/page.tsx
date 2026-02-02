@@ -13,19 +13,25 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
   return {
     title: {
-      absolute: dict.privacyPage.hero_title + ' | ' + (isAr ? 'المصرية للتحصيلات ECC' : 'ECC'),
+      absolute: dict.privacyPage.hero_title + ' | ' + (isAr ? 'سياسة الخصوصية - ECC' : 'Privacy Policy - ECC'),
     },
-    description: dict.privacyPage.hero_desc,
+    description: isAr 
+       ? 'تعرف على سياسة الخصوصية وحماية بيانات المستخدمين في الشركة المصرية للتحصيلات ECC. نحن نلتزم بأقصى معايير السرية والأمان.'
+       : 'Read ECC Privacy Policy regarding user data protection and security standards. We are committed to full confidentiality.',
     keywords: isAr 
-       ? ['سياسة الخصوصية', 'حماية البيانات', 'حقوق المستخدم', 'ECC Privacy']
-       : ['Privacy Policy', 'Data Protection', 'GDPR', 'User Rights'],
+       ? ['سياسة الخصوصية', 'حماية البيانات', 'حقوق المستخدم', 'شروط الاستخدام', 'أمان المعلومات']
+       : ['Privacy Policy', 'Data Protection', 'GDPR Compliance', 'User Rights', 'Data Security'],
+    
+    // --- (World Class SEO) الربط العالمي ---
     alternates: {
       canonical: `${SITE_URL}/${params.lang}/privacy`,
       languages: {
-        'ar-EG': `${SITE_URL}/ar/privacy`,
-        'en-US': `${SITE_URL}/en/privacy`,
+        'ar': `${SITE_URL}/ar/privacy`,
+        'en': `${SITE_URL}/en/privacy`,
+        'x-default': `${SITE_URL}/privacy`, // الرابط الذكي
       },
     },
+
     openGraph: {
       title: dict.privacyPage.hero_title,
       description: dict.privacyPage.hero_desc,
@@ -40,7 +46,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
 export default async function Page({ params }: { params: { lang: Locale } }) {
   const dict = await getDictionary(params.lang);
-  const lastUpdated = new Date().toISOString().split('T')[0];
+  const lastUpdated = new Date().toISOString().split('T')[0]; // تاريخ اليوم كأنه آخر تحديث
   const isAr = params.lang === 'ar';
   const orgName = isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.';
 
@@ -51,12 +57,23 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         '@type': 'WebPage',
         '@id': `${SITE_URL}/${params.lang}/privacy/#webpage`,
         'url': `${SITE_URL}/${params.lang}/privacy`,
-        'name': dict.privacyPage.hero_title,
+        'name': `${dict.privacyPage.hero_title} | ${orgName}`,
         'description': dict.privacyPage.hero_desc,
         'datePublished': "2024-01-01",
-        'dateModified': lastUpdated,
+        'dateModified': lastUpdated, // بيخلي جوجل يشوف الصفحة "طازجة"
         'isPartOf': { '@id': `${SITE_URL}/#website` },
-        'inLanguage': isAr ? 'ar-EG' : 'en-US'
+        'inLanguage': isAr ? 'ar-EG' : 'en-US',
+        
+        // ربط الصفحة بالناشر (الشركة) - مهم جداً للمصداقية القانونية
+        'publisher': {
+           '@type': 'Organization',
+           '@id': `${SITE_URL}/#organization`,
+           'name': orgName,
+           'logo': {
+             '@type': 'ImageObject',
+             'url': `${SITE_URL}/icon.png`
+           }
+        }
       },
       {
         '@type': 'BreadcrumbList',

@@ -8,7 +8,6 @@ import { Locale } from '@/i18n-config';
 const SITE_URL = "https://egyptcollections.com";
 
 // --- دوال مساعدة لضبط السكيما ---
-
 function extractSalaryNumber(salaryString: string): number | null {
   if (!salaryString) return null;
   const numbers = salaryString.match(/\d+/g);
@@ -21,8 +20,6 @@ function getValidDate(dateString?: string): string {
   return new Date().toISOString().split('T')[0];
 }
 
-// ---------------------------------------------------
-
 export async function generateMetadata({ params }: { params: { id: string, lang: Locale } }): Promise<Metadata> {
   const dict = await getDictionary(params.lang);
   // @ts-ignore
@@ -32,27 +29,36 @@ export async function generateMetadata({ params }: { params: { id: string, lang:
   if (!job) {
     return {
       title: isAr ? "الوظيفة غير متاحة" : "Job Not Found",
+      robots: { index: false } // منع أرشفة الصفحات الخطأ
     };
   }
 
   return {
     title: {
-      absolute: `${job.title} | ${isAr ? 'المصرية للتحصيلات ECC' : 'ECC Careers'}`,
+      absolute: `${job.title} | ${isAr ? 'وظائف ECC' : 'ECC Careers'}`,
     },
     description: job.desc.substring(0, 160),
     keywords: isAr 
-       ? [job.title, 'وظائف', 'ECC', job.location, 'توظيف', 'راتب مجزي'] 
-       : [job.title, 'Jobs', 'ECC', job.location, 'Hiring', 'High Salary'],
+       ? [job.title, 'وظائف خالية', 'ECC', job.location, 'توظيف', 'راتب مجزي', 'الشركة المصرية للتحصيلات'] 
+       : [job.title, 'Jobs', 'ECC', job.location, 'Hiring Egypt', 'High Salary', 'Debt Collection Jobs'],
+    
+    // --- (World Class SEO) الربط الصحيح للغات ---
     alternates: { 
-      canonical: `${SITE_URL}/${params.lang}/jobs/${params.id}` 
+      canonical: `${SITE_URL}/${params.lang}/jobs/${params.id}`,
+      languages: {
+        'ar': `${SITE_URL}/ar/jobs/${params.id}`,
+        'en': `${SITE_URL}/en/jobs/${params.id}`,
+        'x-default': `${SITE_URL}/jobs/${params.id}`, // ده الرابط الذكي للزوار الجدد
+      }
     },
+
     openGraph: {
       title: job.title,
       description: job.desc,
       url: `${SITE_URL}/${params.lang}/jobs/${params.id}`,
       siteName: isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.',
       locale: isAr ? 'ar_EG' : 'en_US',
-      type: 'article',
+      type: 'article', // جوجل بيفضل ده لصفحات المحتوى المحدد
       images: [{ 
         url: '/og-image.png', 
         width: 1200, 
@@ -70,7 +76,7 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
   const isAr = params.lang === 'ar';
   const orgName = isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.';
 
-  // توليد Schema
+  // توليد Schema احترافية (Google for Jobs Compliant)
   let jsonLd = null;
   
   if (job) {
@@ -82,6 +88,11 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
       "@type": "JobPosting",
       "title": job.title,
       "description": `<p>${job.desc}</p><ul>${job.details.map((d: string) => `<li>${d}</li>`).join('')}</ul>`,
+      "identifier": {
+        "@type": "PropertyValue",
+        "name": "ECC",
+        "value": params.id
+      },
       "hiringOrganization": {
         "@type": "Organization",
         "name": orgName,
@@ -89,32 +100,34 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
         "logo": `${SITE_URL}/icon.png`
       },
       "datePosted": postedDate,
-      "validThrough": "2026-12-31",
+      "validThrough": "2026-12-31", // تاريخ انتهاء الصلاحية
       "employmentType": "FULL_TIME",
-      
-      // --- التعديل هنا: إضافة تفاصيل العنوان كاملة ---
+      "applicantLocationRequirements": {
+        "@type": "Country",
+        "name": "EG"
+      },
       "jobLocation": {
         "@type": "Place",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": isAr ? "30 شارع هارون، ميدان المساحة" : "30 Haroun St, El Mesaha Sq",
-          "addressLocality": isAr ? "الدقي" : "Dokki",
-          "addressRegion": isAr ? "الجيزة" : "Giza",
+          "streetAddress": "30 Haroun St, El Mesaha Sq",
+          "addressLocality": "Dokki",
+          "addressRegion": "Giza",
           "postalCode": "12611",
           "addressCountry": "EG"
         }
       },
-      // ---------------------------------------------
-
       "baseSalary": {
         "@type": "MonetaryAmount",
         "currency": "EGP",
         "value": {
           "@type": "QuantitativeValue",
-          "value": salaryNumber || 3000,
+          "value": salaryNumber || 4000,
           "unitText": "MONTH"
         }
-      }
+      },
+      // إضافة زر "تقديم" مباشر (Direct Apply)
+      "directApply": true
     };
   }
   

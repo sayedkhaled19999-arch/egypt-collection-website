@@ -5,7 +5,6 @@ export default function JobDetailLayout({
 }: {
   children: React.ReactNode
 }) {
-  // نفس الكلام: ممنوع html و body هنا
   return (
     <>
       {children}

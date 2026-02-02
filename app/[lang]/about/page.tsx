@@ -13,19 +13,27 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   
   return {
     title: {
-      absolute: dict.aboutPage.hero_title + ' | ' + (isAr ? 'الشركة المصرية للتحصيلات ECC' : 'ECC'),
+      absolute: isAr 
+        ? 'من نحن | الشركة المصرية للتحصيلات ECC - تاريخ من الثقة'
+        : 'About Us | ECC - Egyptian Collections Company History',
     },
-    description: dict.aboutPage.hero_desc.substring(0, 160), // SEO Best practice limit
+    description: isAr
+      ? 'تعرف على الشركة المصرية للتحصيلات (ECC). نحن رواد تحصيل الديون في مصر منذ 2001. فريقنا القانوني والميداني يخدم كبرى البنوك والشركات.'
+      : 'Learn about Egyptian Collections Co. (ECC). Leading debt collection agency in Egypt since 2001. Our legal and field teams serve major banks.',
     keywords: isAr 
-       ? ['عن ECC', 'تاريخ الشركة المصرية للتحصيلات', 'وائل سويلم', 'رؤية الشركة', 'فريق التحصيل']
-       : ['About ECC', 'ECC History', 'Wael Sweilem', 'Collection Team', 'Company Vision'],
+       ? ['عن ECC', 'تاريخ الشركة المصرية للتحصيلات', 'وائل سويلم', 'شركات تحصيل ديون', 'فريق التحصيل', 'خدمات بنكية']
+       : ['About ECC', 'ECC History', 'Wael Sweilem', 'Collection Team', 'Debt Collection Agency Egypt', 'Banking Services'],
+    
+    // --- الربط العالمي (Hreflang) ---
     alternates: {
       canonical: `${SITE_URL}/${params.lang}/about`,
       languages: {
-        'ar-EG': `${SITE_URL}/ar/about`,
-        'en-US': `${SITE_URL}/en/about`,
+        'ar': `${SITE_URL}/ar/about`,
+        'en': `${SITE_URL}/en/about`,
+        'x-default': `${SITE_URL}/about`, // الرابط المحايد للزوار الجدد
       },
     },
+
     openGraph: {
       title: dict.aboutPage.hero_title,
       description: dict.aboutPage.hero_desc,
@@ -33,7 +41,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       siteName: isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.',
       locale: isAr ? 'ar_EG' : 'en_US',
       type: 'website',
-      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About ECC' }],
+      images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'About ECC Team' }],
     },
   };
 }
@@ -53,7 +61,8 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
         'name': `${dict.navbar.about} | ${orgName}`,
         'inLanguage': isAr ? 'ar-EG' : 'en-US',
         'isPartOf': { '@id': `${SITE_URL}/#website` },
-        'about': { '@id': `${SITE_URL}/#organization` }
+        'description': isAr ? 'صفحة معلومات عن الشركة المصرية للتحصيلات وتاريخها.' : 'Information page about ECC history and profile.',
+        'about': { '@id': `${SITE_URL}/#organization` } // ربط الصفحة بالشركة
       },
       {
         '@type': 'BreadcrumbList',
@@ -62,20 +71,32 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
           { '@type': 'ListItem', 'position': 2, 'name': dict.navbar.about, 'item': `${SITE_URL}/${params.lang}/about` }
         ]
       },
-      // نربطها بالمنظمة المعرفة في الصفحة الرئيسية
+      // بيانات الشركة (كاملة مكملة)
       {
         '@type': 'FinancialService', 
-        '@id': `${SITE_URL}/#organization`,
+        '@id': `${SITE_URL}/#organization`, // نفس الـ ID المستخدم في الصفحة الرئيسية
         'name': orgName,
+        'legalName': 'Egyptian Collections Company',
         'url': `${SITE_URL}/${params.lang}`,
         'logo': `${SITE_URL}/icon.png`,
+        'image': `${SITE_URL}/og-image.png`,
+        'telephone': '+201110600280',
+        'email': 'info@egyptcollections.com',
+        'priceRange': '$$',
         
-        // --- التعديلات: إضافة البيانات الناقصة ---
-        'telephone': '+201110600280', // حل مشكلة telephone
-        'image': `${SITE_URL}/og-image.png`, // حل مشكلة image
-        'priceRange': '$$', // حل مشكلة priceRange
+        // النطاق الجغرافي للخدمة (مهم جداً للـ Local SEO)
+        'areaServed': {
+          '@type': 'Country',
+          'name': 'Egypt'
+        },
         
-        // حل المشكلة الحرجة (Critical: address)
+        // التخصصات (Semantic SEO)
+        'knowsAbout': [
+          isAr ? 'تحصيل الديون' : 'Debt Collection',
+          isAr ? 'الاستعلام الائتماني' : 'Credit Investigation',
+          isAr ? 'التحصيل القانوني' : 'Legal Collection'
+        ],
+
         'address': {
           '@type': 'PostalAddress',
           'streetAddress': '30 Haroun St, El Mesaha Sq',
@@ -84,13 +105,12 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
           'postalCode': '12611',
           'addressCountry': 'EG'
         },
-        // ----------------------------------------
-
         'foundingDate': '2001',
         'founder': {
           '@type': 'Person',
           'name': 'Wael Swellam',
-          'jobTitle': 'CEO & Founder'
+          'jobTitle': 'CEO & Founder',
+          'url': `${SITE_URL}/${params.lang}/about`
         }
       }
     ]

@@ -13,21 +13,25 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
   return {
     title: {
-      absolute: dict.partnersPage.hero_title + ' | ' + (isAr ? 'الشركة المصرية للتحصيلات ECC' : 'ECC'),
+      absolute: dict.partnersPage.hero_title + ' | ' + (isAr ? 'عملاء الشركة المصرية للتحصيلات ECC' : 'ECC Clients & Partners'),
     },
     description: isAr 
-       ? 'قائمة شركاء وعملاء الشركة المصرية للتحصيلات ECC، تضم كبرى البنوك والمؤسسات المالية في مصر والشرق الأوسط.'
-       : 'ECC Partners and Clients list, including major banks and financial institutions in Egypt and the Middle East.',
+       ? 'نفخر بخدمة كبرى البنوك والمؤسسات المالية في مصر. قائمة عملاء وشركاء الشركة المصرية للتحصيلات (ECC) تضم أسماء رائدة في القطاع المصرفي.'
+       : 'Trusted by major banks and financial institutions. ECC Partners and Clients list includes leading names in the Egyptian banking sector.',
     keywords: isAr
-       ? ['عملاء ECC', 'شركاء المصرية للتحصيلات', 'بنوك مصر', 'البنك الأهلي', 'بنك مصر', 'شركات تمويل']
-       : ['ECC Clients', 'ECC Partners', 'Banks in Egypt', 'NBE', 'Banque Misr', 'Financial Partners'],
+       ? ['عملاء ECC', 'شركاء النجاح', 'بنوك مصر', 'البنك الأهلي المصري', 'بنك مصر', 'شركات التمويل العقاري', 'تحصيل بنكي']
+       : ['ECC Clients', 'ECC Partners', 'Trusted by', 'NBE', 'Banque Misr', 'Financial Partners Egypt', 'Banking Collection'],
+    
+    // --- (World Class SEO) الربط العالمي ---
     alternates: {
       canonical: `${SITE_URL}/${params.lang}/partners`,
       languages: {
-        'ar-EG': `${SITE_URL}/ar/partners`,
-        'en-US': `${SITE_URL}/en/partners`,
+        'ar': `${SITE_URL}/ar/partners`,
+        'en': `${SITE_URL}/en/partners`,
+        'x-default': `${SITE_URL}/partners`, // الرابط الذكي
       },
     },
+
     openGraph: {
       title: dict.partnersPage.hero_title,
       description: dict.partnersPage.hero_desc1,
@@ -49,11 +53,13 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
     '@context': 'https://schema.org',
     '@graph': [
       {
-        '@type': 'WebPage',
+        '@type': 'CollectionPage', // نوع الصفحة: تجميعة (قائمة شركاء)
         '@id': `${SITE_URL}/${params.lang}/partners/#webpage`,
         'url': `${SITE_URL}/${params.lang}/partners`,
         'name': `${dict.navbar.partners} | ${orgName}`,
-        'isPartOf': { '@id': `${SITE_URL}/#website` }
+        'description': isAr ? 'قائمة شركاء وعملاء الشركة.' : 'List of ECC partners and clients.',
+        'isPartOf': { '@id': `${SITE_URL}/#website` },
+        'about': { '@id': `${SITE_URL}/#organization` } // الصفحة دي بتتكلم عن مين؟ عن الشركة
       },
       {
         '@type': 'BreadcrumbList',
@@ -64,14 +70,12 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
       },
       {
         '@type': 'FinancialService',
-        '@id': `${SITE_URL}/#organization`,
+        '@id': `${SITE_URL}/#organization`, // نفس الـ ID الموحد
         'name': orgName,
         'url': `${SITE_URL}/${params.lang}`,
         'logo': `${SITE_URL}/icon.png`,
-        
-        // --- التعديلات هنا: إضافة العنوان والبيانات الناقصة ---
-        'telephone': '+201110600280',
         'image': `${SITE_URL}/og-image.png`,
+        'telephone': '+201110600280',
         'priceRange': '$$',
         'address': {
           '@type': 'PostalAddress',
@@ -81,7 +85,6 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
           'postalCode': '12611',
           'addressCountry': 'EG'
         }
-        // ----------------------------------------------------
       }
     ]
   };

@@ -1,10 +1,9 @@
 // --- START OF FILE app/[lang]/jobs/layout.tsx ---
 import type { Metadata } from 'next';
 
-// الميتا داتا هنا اختيارية، ممكن تشيلها لو عايز تعتمد على page.tsx
 export const metadata: Metadata = {
-  title: 'ECC Jobs',
-  description: 'Join ECC Team',
+  // بنسيبها فاضية أو عامة لأن page.tsx هيعملها override
+  title: 'ECC Jobs', 
 };
 
 export default function JobsLayout({
@@ -12,8 +11,6 @@ export default function JobsLayout({
 }: {
   children: React.ReactNode
 }) {
-  // لاحظ: شيلنا html و body
-  // بنرجع المحتوى زي ما هو (Fragment)
   return (
     <>
       {children}
