@@ -48,7 +48,8 @@ export async function generateMetadata({ params }: { params: { id: string, lang:
       languages: {
         'ar': `${SITE_URL}/ar/jobs/${params.id}`,
         'en': `${SITE_URL}/en/jobs/${params.id}`,
-        'x-default': `${SITE_URL}/jobs/${params.id}`, // ده الرابط الذكي للزوار الجدد
+        // تم التعديل: الإشارة للرابط العربي الصريح لمنع مشاكل إعادة التوجيه
+        'x-default': `${SITE_URL}/ar/jobs/${params.id}`, 
       }
     },
 
@@ -82,6 +83,20 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
   if (job) {
     const salaryNumber = extractSalaryNumber(job.salary); 
     const postedDate = getValidDate(job.date);
+
+    // منطق ذكي لتحديد الراتب: لو مفيش رقم محدد، حط النطاق من 6000 لـ 10000
+    const salaryValue = salaryNumber 
+      ? { 
+          "@type": "QuantitativeValue", 
+          "value": salaryNumber, 
+          "unitText": "MONTH" 
+        } 
+      : { 
+          "@type": "QuantitativeValue", 
+          "minValue": 6000, 
+          "maxValue": 10000, 
+          "unitText": "MONTH" 
+        };
 
     jsonLd = {
       "@context": "https://schema.org/",
@@ -120,11 +135,7 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
       "baseSalary": {
         "@type": "MonetaryAmount",
         "currency": "EGP",
-        "value": {
-          "@type": "QuantitativeValue",
-          "value": salaryNumber || 4000,
-          "unitText": "MONTH"
-        }
+        "value": salaryValue // استخدام القيمة الذكية (رقم محدد أو نطاق)
       },
       // إضافة زر "تقديم" مباشر (Direct Apply)
       "directApply": true

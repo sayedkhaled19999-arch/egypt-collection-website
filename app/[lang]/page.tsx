@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       languages: {
         'ar': `${SITE_URL}/ar`,
         'en': `${SITE_URL}/en`,
-        'x-default': `${SITE_URL}`, // الرابط المحايد
+        'x-default': `${SITE_URL}/ar`, // بدل SITE_URL بس
       },
     },
     

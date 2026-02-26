@@ -30,7 +30,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       languages: {
         'ar': `${SITE_URL}/ar/contact`,
         'en': `${SITE_URL}/en/contact`,
-        'x-default': `${SITE_URL}/contact`,
+        'x-default': `${SITE_URL}/ar/contact`,
       },
     },
 

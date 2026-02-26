@@ -28,7 +28,7 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       languages: {
         'ar': `${SITE_URL}/ar/partners`,
         'en': `${SITE_URL}/en/partners`,
-        'x-default': `${SITE_URL}/partners`, // الرابط الذكي
+        'x-default': `${SITE_URL}/ar/partners`, // الرابط الذكي
       },
     },
 
