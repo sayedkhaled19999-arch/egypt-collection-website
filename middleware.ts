@@ -15,23 +15,21 @@ function getLocale(request: NextRequest): string | undefined {
   // 1. تحديد الدولة من هيدر Vercel
   const country = request.geo?.country || request.headers.get('x-vercel-ip-country');
 
-  // التعديل هنا:
   // لو الدولة عربية OR لو الدولة غير معروفة (زي Localhost) -> رجع عربي
-  // كدا بنجبر العربي كأساس، والانجليزي يظهر بس لو الزائر جاي من دولة أجنبية معروفة
   if (!country || ARAB_COUNTRIES.includes(country)) {
     return 'ar';
   }
 
-  // 2. لو الزائر من دولة أجنبية مؤكدة (زي أمريكا/أوروبا)، نشوف لغة متصفحه
+  // 2. لو الزائر من دولة أجنبية مؤكدة، نشوف لغة متصفحه
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  // @ts-ignore locales are readonly
-  const locales: string[] = i18n.locales;
+  // ✅ التعديل هنا: عملنا نسخة من الـ locales عشان تبقى قابلة للتغيير
+  const locales = [...i18n.locales];
   
   try {
     const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-    return matchLocale(languages, locales, 'en'); // هنا الافتراضي للأجانب إنجليزي
+    return matchLocale(languages, locales, 'en');
   } catch (e) {
     return 'en';
   }
@@ -48,14 +46,20 @@ export function middleware(request: NextRequest) {
   if (pathnameIsMissingLocale) {
     const locale = getLocale(request);
     
-    // توجيه المستخدم للغة المناسبة
+    // ✅ إضافة status 301 عشان التحويل يكون Permanent
     return NextResponse.redirect(
       new URL(
         `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
         request.url
-      )
+      ),
+      { status: 301 }
     );
   }
+  
+  // ✅ إضافة header عشان جوجل يفهم إن الصفحة صحيحة
+  const response = NextResponse.next();
+  response.headers.set('X-Robots-Tag', 'index, follow');
+  return response;
 }
 
 export const config = {

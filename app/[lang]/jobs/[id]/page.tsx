@@ -7,6 +7,16 @@ import { Locale } from '@/i18n-config';
 
 const SITE_URL = "https://egyptcollections.com";
 
+// ✅ إضافة generateStaticParams عشان تولد الصفحات بشكل ثابت
+export async function generateStaticParams() {
+  const jobIds = ['office-collector', 'field-collector', 'field-investigator', 'data-entry'];
+  const locales = ['ar', 'en'];
+  
+  return locales.flatMap(locale => 
+    jobIds.map(id => ({ lang: locale, id }))
+  );
+}
+
 // --- دوال مساعدة لضبط السكيما ---
 function extractSalaryNumber(salaryString: string): number | null {
   if (!salaryString) return null;
@@ -29,7 +39,7 @@ export async function generateMetadata({ params }: { params: { id: string, lang:
   if (!job) {
     return {
       title: isAr ? "الوظيفة غير متاحة" : "Job Not Found",
-      robots: { index: false } // منع أرشفة الصفحات الخطأ
+      robots: { index: false }
     };
   }
 
@@ -42,13 +52,11 @@ export async function generateMetadata({ params }: { params: { id: string, lang:
        ? [job.title, 'وظائف خالية', 'ECC', job.location, 'توظيف', 'راتب مجزي', 'الشركة المصرية للتحصيلات'] 
        : [job.title, 'Jobs', 'ECC', job.location, 'Hiring Egypt', 'High Salary', 'Debt Collection Jobs'],
     
-    // --- (World Class SEO) الربط الصحيح للغات ---
     alternates: { 
       canonical: `${SITE_URL}/${params.lang}/jobs/${params.id}`,
       languages: {
         'ar': `${SITE_URL}/ar/jobs/${params.id}`,
         'en': `${SITE_URL}/en/jobs/${params.id}`,
-        // تم التعديل: الإشارة للرابط العربي الصريح لمنع مشاكل إعادة التوجيه
         'x-default': `${SITE_URL}/ar/jobs/${params.id}`, 
       }
     },
@@ -59,7 +67,7 @@ export async function generateMetadata({ params }: { params: { id: string, lang:
       url: `${SITE_URL}/${params.lang}/jobs/${params.id}`,
       siteName: isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.',
       locale: isAr ? 'ar_EG' : 'en_US',
-      type: 'article', // جوجل بيفضل ده لصفحات المحتوى المحدد
+      type: 'article',
       images: [{ 
         url: '/og-image.png', 
         width: 1200, 
@@ -77,14 +85,12 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
   const isAr = params.lang === 'ar';
   const orgName = isAr ? 'الشركة المصرية للتحصيلات ECC' : 'Egyptian Collections CO.';
 
-  // توليد Schema احترافية (Google for Jobs Compliant)
   let jsonLd = null;
   
   if (job) {
     const salaryNumber = extractSalaryNumber(job.salary); 
     const postedDate = getValidDate(job.date);
 
-    // منطق ذكي لتحديد الراتب: لو مفيش رقم محدد، حط النطاق من 6000 لـ 10000
     const salaryValue = salaryNumber 
       ? { 
           "@type": "QuantitativeValue", 
@@ -115,7 +121,7 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
         "logo": `${SITE_URL}/icon.png`
       },
       "datePosted": postedDate,
-      "validThrough": "2026-12-31", // تاريخ انتهاء الصلاحية
+      "validThrough": "2026-12-31",
       "employmentType": "FULL_TIME",
       "applicantLocationRequirements": {
         "@type": "Country",
@@ -135,9 +141,8 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
       "baseSalary": {
         "@type": "MonetaryAmount",
         "currency": "EGP",
-        "value": salaryValue // استخدام القيمة الذكية (رقم محدد أو نطاق)
+        "value": salaryValue
       },
-      // إضافة زر "تقديم" مباشر (Direct Apply)
       "directApply": true
     };
   }

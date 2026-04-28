@@ -20,10 +20,10 @@ const tajawal = Tajawal({
   display: 'swap',
 });
 
-// السرعة القصوى (Static Generation)
-export async function generateStaticParams() {
-  return i18n.locales.map((locale) => ({ lang: locale }));
-}
+// ❌ IMPORTANT: امسح السطور دي بالكامل
+// export async function generateStaticParams() {
+//   return i18n.locales.map((locale) => ({ lang: locale }));
+// }
 
 // الميتا داتا العامة (General Metadata)
 export async function generateMetadata({ params }: { params: { lang: Locale } }) {
@@ -31,7 +31,6 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
   const SITE_URL = 'https://egyptcollections.com';
 
   return {
-    // 1. الأساس لكل الروابط النسبية (مهم جداً للـ SEO)
     metadataBase: new URL(SITE_URL),
     
     title: {
@@ -40,7 +39,6 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
     },
     description: dict.metadata.description,
     
-    // 2. إعدادات الروبوتات (مسموح للكل)
     robots: {
       index: true,
       follow: true,
@@ -53,7 +51,6 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       },
     },
 
-    // 3. التحقق من الملكية
     verification: {
       google: 'tJklZHtOnBjimH3tU5LBDLpUpivNENAaf7L2ov_6V_E',
       other: {
@@ -61,7 +58,6 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       },
     },
 
-    // 4. أيقونات الموقع
     icons: {
       icon: [
         { url: '/favicon.ico' },
@@ -71,11 +67,20 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
       apple: [{ url: '/apple-icon.png', sizes: '180x180', type: 'image/png' }],
     },
 
-    // 5. السوشيال ميديا (OpenGraph)
+    // ✅ التعديل المهم: إضافة alternates للـ SEO
+    alternates: {
+      canonical: `${SITE_URL}/${params.lang}`,
+      languages: {
+        'ar': `${SITE_URL}/ar`,
+        'en': `${SITE_URL}/en`,
+        'x-default': `${SITE_URL}/ar`,
+      },
+    },
+
     openGraph: {
       title: dict.metadata.title,
       description: dict.metadata.description,
-      url: `/${params.lang}`, // لاحظ: استخدمنا مسار نسبي عشان يشتغل لكل صفحة
+      url: `${SITE_URL}/${params.lang}`,
       siteName: params.lang === 'ar' ? 'الشركة المصرية للتحصيلات ECC' : 'ECC',
       images: [{ url: '/og-image.png', width: 1200, height: 630, alt: 'ECC' }],
       locale: params.lang === 'ar' ? 'ar_EG' : 'en_US',
@@ -98,7 +103,6 @@ export default async function RootLayout({
     <html lang={params.lang} dir={params.lang === 'ar' ? 'rtl' : 'ltr'}>
       <body className={`${tajawal.className} ${tajawal.variable} flex flex-col min-h-screen bg-gray-50`}>
         
-        {/* Google Tag Manager (NoScript) */}
         <noscript>
           <iframe
             src={`https://www.googletagmanager.com/ns.html?id=${GTM_ID}`}
@@ -116,11 +120,9 @@ export default async function RootLayout({
           <Footer lang={params.lang} dict={dict.footer} />
         </ClientWrapper>
 
-        {/* Analytics & Insights */}
         <Analytics />
         <SpeedInsights />
 
-        {/* Scripts - Loaded carefully */}
         <Script
           src="https://www.googletagmanager.com/gtag/js?id=G-NXPPCK0R5E"
           strategy="afterInteractive"
