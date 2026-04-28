@@ -11,59 +11,127 @@ const ARAB_COUNTRIES = [
   'YE', 'SY', 'PS', 'SD', 'LY', 'DZ', 'MA', 'TN', 'MR', 'KM', 'DJ', 'SO'
 ];
 
-function getLocale(request: NextRequest): string | undefined {
-  // 1. تحديد الدولة من هيدر Vercel
-  const country = request.geo?.country || request.headers.get('x-vercel-ip-country');
+// قائمة المسارات اللي مش محتاجة redirect
+const EXCLUDED_PATHS = [
+  '/api',
+  '/_next',
+  '/favicon.ico',
+  '/sitemap.xml',
+  '/robots.txt',
+  '/og-image.png',
+  '/icon.png',
+  '/apple-icon.png',
+  '/logo.webp',
+];
 
-  // لو الدولة عربية OR لو الدولة غير معروفة (زي Localhost) -> رجع عربي
-  if (!country || ARAB_COUNTRIES.includes(country)) {
-    return 'ar';
+// قائمة الامتدادات المسموح بها للملفات الثابتة
+const STATIC_FILE_EXTENSIONS = /\.(svg|png|jpg|jpeg|gif|avif|webp|ico|css|js|woff2|woff|ttf|eot)$/i;
+
+// اللغة الافتراضية
+const DEFAULT_LOCALE = 'ar';
+
+function getLocale(request: NextRequest): string {
+  // 1. فحص الكوكيز أولاً (للزائرين اللي زاروا الموقع قبل كده)
+  const cookieLocale = request.cookies.get('NEXT_LOCALE')?.value;
+  if (cookieLocale && i18n.locales.includes(cookieLocale as any)) {
+    return cookieLocale;
   }
 
-  // 2. لو الزائر من دولة أجنبية مؤكدة، نشوف لغة متصفحه
+  // 2. تحديد الدولة من هيدر Vercel
+  const country = request.geo?.country || request.headers.get('x-vercel-ip-country');
+
+  // لو الدولة عربية أو مش معروفة -> عربي
+  if (!country || ARAB_COUNTRIES.includes(country)) {
+    return DEFAULT_LOCALE;
+  }
+
+  // 3. لو الدولة أجنبية، نجيب لغة المتصفح
   const negotiatorHeaders: Record<string, string> = {};
   request.headers.forEach((value, key) => (negotiatorHeaders[key] = value));
 
-  // ✅ التعديل هنا: عملنا نسخة من الـ locales عشان تبقى قابلة للتغيير
   const locales = [...i18n.locales];
   
   try {
     const languages = new Negotiator({ headers: negotiatorHeaders }).languages();
-    return matchLocale(languages, locales, 'en');
+    const matchedLocale = matchLocale(languages, locales, 'en');
+    return matchedLocale || DEFAULT_LOCALE;
   } catch (e) {
     return 'en';
   }
 }
 
 export function middleware(request: NextRequest) {
-  const pathname = request.nextUrl.pathname;
+  const { pathname } = request.nextUrl;
 
-  // التحقق من وجود اللغة في الرابط
-  const pathnameIsMissingLocale = i18n.locales.every(
-    (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
+  // ============================================================
+  // 1. السماح للمسارات المستثناة (API، ملفات ثابتة، إلخ)
+  // ============================================================
+  
+  // نسمح للمسارات المحددة
+  if (EXCLUDED_PATHS.some(path => pathname.startsWith(path))) {
+    return NextResponse.next();
+  }
+
+  // نسمح للملفات الثابتة
+  if (STATIC_FILE_EXTENSIONS.test(pathname)) {
+    return NextResponse.next();
+  }
+
+  // ============================================================
+  // 2. السماح للمسارات اللي فيها لغة بالفعل
+  // ============================================================
+  
+  const pathnameHasLocale = i18n.locales.some(
+    (locale) => pathname.startsWith(`/${locale}/`) || pathname === `/${locale}`
   );
 
-  if (pathnameIsMissingLocale) {
-    const locale = getLocale(request);
+  if (pathnameHasLocale) {
+    const response = NextResponse.next();
     
-    // ✅ إضافة status 301 عشان التحويل يكون Permanent
-    return NextResponse.redirect(
-      new URL(
-        `/${locale}${pathname.startsWith('/') ? '' : '/'}${pathname}`,
-        request.url
-      ),
-      { status: 301 }
-    );
+    // نضيف headers للـ SEO
+    response.headers.set('X-Robots-Tag', 'index, follow');
+    response.headers.set('Cache-Control', 'public, max-age=3600');
+    
+    return response;
+  }
+
+  // ============================================================
+  // 3. لو مفيش لغة في الرابط، نحول للغة المناسبة
+  // ============================================================
+  
+  const locale = getLocale(request);
+  
+  // بناء الرابط الجديد مع اللغة
+  const newPathname = pathname === '/' ? '' : pathname;
+  const newUrl = new URL(`/${locale}${newPathname}`, request.url);
+  
+  // نعمل redirect مع حفظ اللغة في كوكيز
+  const response = NextResponse.redirect(newUrl, 308); // 308 Permanent Redirect
+  
+  // ✅ التصحيح هنا: نتأكد إن locale قيمة نصية مش undefined
+  if (locale) {
+    response.cookies.set('NEXT_LOCALE', locale, {
+      maxAge: 60 * 60 * 24 * 30, // 30 يوم
+      path: '/',
+      sameSite: 'lax' as const,
+    });
   }
   
-  // ✅ إضافة header عشان جوجل يفهم إن الصفحة صحيحة
-  const response = NextResponse.next();
-  response.headers.set('X-Robots-Tag', 'index, follow');
   return response;
 }
 
 export const config = {
   matcher: [
-    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|avif|webp)$).*)'
+    /*
+     * Match all request paths except:
+     * - api (API routes)
+     * - _next/static (static files)
+     * - _next/image (image optimization files)
+     * - favicon.ico (favicon file)
+     * - sitemap.xml (sitemap file)
+     * - robots.txt (robots file)
+     * - image files (svg, png, etc.)
+     */
+    '/((?!api|_next/static|_next/image|favicon.ico|sitemap.xml|robots.txt|.*\\.(?:svg|png|jpg|jpeg|gif|avif|webp|ico|css|js|woff2)$).*)',
   ],
 };
