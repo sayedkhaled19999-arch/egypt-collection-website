@@ -1,13 +1,14 @@
 import { Metadata } from 'next';
 import { getDictionary } from '@/lib/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { breadcrumbSchema, blogPostingSchema } from '@/lib/schemas';
 import ArticleClient from './ArticleClient';
 import { notFound } from 'next/navigation';
 
 const SITE_URL = 'https://egyptcollections.com';
 
 export async function generateStaticParams() {
-  const slugs = ['how-to-apply', 'office-vs-field', 'field-investigator-guide', 'data-entry-career'];
+  const slugs = ['how-to-apply', 'office-vs-field', 'field-investigator-guide', 'data-entry-career', 'debt-collection-tips', 'credit-investigation-guide', 'ecc-company-profile', 'career-in-collection'];
   const locales = ['ar', 'en'];
   return locales.flatMap(locale => slugs.map(slug => ({ lang: locale, slug })));
 }
@@ -39,5 +40,30 @@ export default async function Page({ params }: { params: { slug: string; lang: L
   const dict = await getDictionary(params.lang);
   const article = (dict.blogPage.articles as any)[params.slug];
   if (!article) notFound();
-  return <ArticleClient lang={params.lang} slug={params.slug} dict={dict} article={article} />;
+  const isAr = params.lang === 'ar';
+
+  const schemas = [
+    breadcrumbSchema([
+      { name: isAr ? 'الرئيسية' : 'Home', url: `${SITE_URL}/${params.lang}` },
+      { name: isAr ? 'المدونة' : 'Blog', url: `${SITE_URL}/${params.lang}/blog` },
+      { name: article.title, url: `${SITE_URL}/${params.lang}/blog/${params.slug}` },
+    ]),
+    blogPostingSchema(
+      article.title,
+      article.desc,
+      `${SITE_URL}/${params.lang}/blog/${params.slug}`,
+      '2026-01-01',
+      isAr ? 'المستشار/ وائل سويلم' : 'Counselor Wael Sweilem',
+    ),
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@graph': schemas }) }}
+      />
+      <ArticleClient lang={params.lang} slug={params.slug} dict={dict} article={article} />
+    </>
+  );
 }

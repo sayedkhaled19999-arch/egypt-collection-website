@@ -320,10 +320,34 @@
         "tags": ["Field Investigator", "Investigation", "Investigation Jobs"]
       },
       "data-entry-career": {
-        "title": "Data Entry Job: Required Skills & Growth Opportunities",
-        "desc": "Learn about the data entry job, the skills you need, and career development opportunities in the field.",
-        "content": "Data entry is one of the important office jobs in any company...",
-        "tags": ["Data Entry", "Office Jobs", "Data Entry Career"]
+        "title": "Data Entry: Required Skills & Growth Opportunities",
+        "desc": "Learn about data entry jobs, required skills, and career growth opportunities.",
+        "content": "Data entry is an important office job in any company...",
+        "tags": ["Data Entry", "Office Jobs"]
+      },
+      "debt-collection-tips": {
+        "title": "Best Debt Collection Methods: Comprehensive Guide for Banks",
+        "desc": "A professional guide to the latest debt collection methods and best practices in the Egyptian market.",
+        "content": "Debt collection is a complex process requiring specialized skills and clear strategies. Banks rely on specialized companies like ECC to achieve the highest collection rates with minimal legal risk...",
+        "tags": ["Debt Collection", "Bad Debt", "Collection Companies", "Debt Management"]
+      },
+      "credit-investigation-guide": {
+        "title": "Credit Investigation: The First Line of Defense for Banks",
+        "desc": "Everything you need to know about credit investigation and its role in reducing financial risk for banks.",
+        "content": "Credit investigation is the process of collecting and analyzing client data to assess creditworthiness before granting financing. ECC provides accurate field investigation services for Egypt's largest banks...",
+        "tags": ["Credit Investigation", "Field Investigation", "Risk Management", "Financing"]
+      },
+      "ecc-company-profile": {
+        "title": "ECC: Leader in Collection & Investigation Since 2001",
+        "desc": "Learn about ECC's history, vision, mission, and why it's the #1 choice for banks in Egypt.",
+        "content": "Egyptian Collections Company (ECC) was founded in 2001 by Counselor Wael Sweilem, and has since built a strong reputation in Egypt's collection and field investigation market. With over 20 years of experience, ECC is today one of the largest and most established companies in the field...",
+        "tags": ["ECC", "Egyptian Collections", "Company History", "Collection"]
+      },
+      "career-in-collection": {
+        "title": "How to Build a Career in Collection & Investigation",
+        "desc": "A comprehensive guide for young professionals seeking a successful career in field collection and credit investigation.",
+        "content": "The collection and investigation field offers significant job opportunities in Egypt. With increasing demand from banks for collection services, the need for field collectors and investigators is rising steadily. ECC provides real training and employment opportunities...",
+        "tags": ["Career Path", "Collection Jobs", "Youth", "Job Market"]
       }
     }
   },
@@ -483,5 +507,33 @@
   "metadata": {
     "title": "Egyptian Collections Co. ECC",
     "description": "Egyptian Collections Company (ECC) is a leader in field collection and credit investigation services in Egypt since 2001."
+  },
+  "branchPage": {
+    "hero_title": "Branch",
+    "hero_desc": "Details and information about Egyptian Collections Co. ECC branch in",
+    "services_title": "Branch Services",
+    "services_desc": "Our {{branch}} branch provides all collection and credit investigation services with the highest quality and professional standards.",
+    "jobs_title": "Available Jobs in",
+    "faq_title": "Frequently Asked Questions about",
+    "faq": {
+      "q1": "What services are available at {{branch}} branch?",
+      "a1": "{{branch}} branch offers all field collection, office collection, and credit investigation services, in addition to employment opportunities in various departments.",
+      "q2": "How do I apply for a job at {{branch}} branch?",
+      "a2": "You can apply through our careers page by selecting your preferred branch, or visit the branch directly to submit your CV.",
+      "q3": "What are the working hours at {{branch}} branch?",
+      "a3": "Working hours are Saturday to Thursday from 8:30 AM to 6:30 PM."
+    }
+  },
+  "servicesFaq": {
+    "collection": [
+      { "q": "What is the difference between office and field collection?", "a": "Office collection is done by phone from the company headquarters, while field collection involves visiting the client at their location. ECC provides both depending on each case." },
+      { "q": "What does legal collection include?", "a": "Legal collection is handled by a specialized legal team, including official notices and legal procedures as agreed with the bank." },
+      { "q": "Do you provide periodic reports to banks?", "a": "We provide detailed periodic reports on each case, including follow-up history, actions taken, and results achieved." }
+    ],
+    "investigation": [
+      { "q": "How long does field investigation take?", "a": "We aim to complete the investigation visit within 24-48 hours of receiving the request, and provide the final report within 3 business days." },
+      { "q": "What do investigations cover?", "a": "They include verification of residence and work addresses, business activity, updating contact information, and financial status assessment." },
+      { "q": "Why is client data verification important for banks?", "a": "Accurate data verification protects banks from fraud and helps correctly assess creditworthiness." }
+    ]
   }
 }

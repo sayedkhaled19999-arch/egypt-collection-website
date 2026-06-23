@@ -1,6 +1,7 @@
 import { Metadata } from 'next';
 import { getDictionary } from '@/lib/get-dictionary';
 import { Locale } from '@/i18n-config';
+import { breadcrumbSchema, serviceSchema, faqSchema } from '@/lib/schemas';
 import InvestigationClient from './InvestigationClient';
 
 const SITE_URL = 'https://egyptcollections.com';
@@ -30,5 +31,29 @@ export async function generateMetadata({ params }: { params: { lang: Locale } })
 
 export default async function Page({ params }: { params: { lang: Locale } }) {
   const dict = await getDictionary(params.lang);
-  return <InvestigationClient lang={params.lang} dict={dict} />;
+  const isAr = params.lang === 'ar';
+
+  const schemas = [
+    breadcrumbSchema([
+      { name: isAr ? 'الرئيسية' : 'Home', url: `${SITE_URL}/${params.lang}` },
+      { name: isAr ? 'خدماتنا' : 'Services', url: `${SITE_URL}/${params.lang}/services` },
+      { name: isAr ? 'خدمات الاستعلام' : 'Investigation Services', url: `${SITE_URL}/${params.lang}/services/investigation` },
+    ]),
+    serviceSchema(
+      isAr ? 'خدمات الاستعلام الائتماني' : 'Credit Investigation Services',
+      isAr ? dict.servicesPage.investigation.desc : dict.servicesPage.investigation.desc,
+      'Egyptian Collections Co. ECC',
+    ),
+    faqSchema(dict.servicesFaq.investigation.map((x: any) => ({ question: x.q, answer: x.a }))),
+  ];
+
+  return (
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify({ '@context': 'https://schema.org', '@graph': schemas }) }}
+      />
+      <InvestigationClient lang={params.lang} dict={dict} />
+    </>
+  );
 }
