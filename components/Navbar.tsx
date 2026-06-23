@@ -4,15 +4,16 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useState, useEffect } from 'react';
-import { Menu, X, Globe } from 'lucide-react';
+import { Menu, X, Globe, Search } from 'lucide-react';
 import { usePathname } from 'next/navigation';
 
 interface NavbarProps {
   lang: string;
-  dict: any; // قاموس الترجمة اللي جي من السيرفر
+  dict: any;
+  onSearchOpen?: () => void;
 }
 
-export default function Navbar({ lang, dict }: NavbarProps) {
+export default function Navbar({ lang, dict, onSearchOpen }: NavbarProps) {
   const [isOpen, setIsOpen] = useState(false);
   const [isDesktop, setIsDesktop] = useState(false);
   const [scrolled, setScrolled] = useState(false);
@@ -34,12 +35,10 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     return () => window.removeEventListener('scroll', handleScroll);
   }, []);
 
-  // دالة ذكية لحساب رابط تغيير اللغة
-  // لو أنا في /ar/about وعايز احول انجليزي، هتوديني /en/about
   const redirectedPathName = (locale: string) => {
     if (!pathname) return '/';
     const segments = pathname.split('/');
-    segments[1] = locale; // استبدال ar بـ en أو العكس
+    segments[1] = locale;
     return segments.join('/');
   };
 
@@ -49,6 +48,7 @@ export default function Navbar({ lang, dict }: NavbarProps) {
     { name: dict.services, href: `/${lang}/services/collection` },
     { name: dict.partners, href: `/${lang}/partners` },
     { name: dict.jobs, href: `/${lang}/jobs` },
+    ...(dict.faq ? [{ name: dict.faq, href: `/${lang}/faq` }] : []),
     { name: dict.contact, href: `/${lang}/contact` },
   ];
 
@@ -95,6 +95,13 @@ export default function Navbar({ lang, dict }: NavbarProps) {
             </Link>
           ))}
           
+          {/* زر البحث */}
+          <button onClick={onSearchOpen}
+            className="text-[#353535] hover:text-[#2563EB] transition-colors p-2"
+            aria-label={lang === 'ar' ? 'بحث' : 'Search'}>
+            <Search className="w-5 h-5" />
+          </button>
+
           {/* زر تغيير اللغة (بدون context) */}
           <div className="mr-2 border-r pr-2 border-gray-300">
              <Link

@@ -17,6 +17,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     '/partners', // الشركاء
     '/privacy',  // الخصوصية
     '/blog',     // المدونة
+    '/faq',      // الأسئلة الشائعة
     '/services/collection',  // خدمات التحصيل
     '/services/investigation',  // خدمات الاستعلام
   ];

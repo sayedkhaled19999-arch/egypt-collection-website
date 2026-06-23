@@ -5,6 +5,7 @@
     "services": "Services",
     "partners": "Success Partners",
     "jobs": "Careers",
+    "faq": "FAQ",
     "contact": "Contact Us"
   },
   "hero": {
@@ -340,6 +341,85 @@
     "all_locations": "All Branches",
     "why_join": "Why Work With Us?",
     "why_join_desc": "ECC offers you a professional work environment, fixed salary, high commissions, and social insurance. Plus continuous training and real promotion opportunities."
+  },
+  "faqPage": {
+    "hero_title": "Frequently Asked Questions",
+    "hero_desc": "Answers to the most common questions about collection and investigation services at Egyptian Collections Co. ECC.",
+    "collection_title": "Collection FAQs",
+    "investigation_title": "Investigation FAQs",
+    "still_contact": "Still have a question?",
+    "still_contact_desc": "If you didn't find your answer, feel free to contact us directly.",
+    "contact_btn": "Contact Us",
+    "questions": {
+      "collection": [
+        {
+          "q": "What collection services does ECC provide?",
+          "a": "We offer 3 main types: Field Collection (field visits to customers), Office Collection (phone follow-up), and Legal Collection (legal procedures). All services are executed with the highest standards of professionalism and confidentiality."
+        },
+        {
+          "q": "Is collection based on a fixed fee or percentage?",
+          "a": "We work on a fee basis as per the contract with each bank. Details require contact with the contracts department."
+        },
+        {
+          "q": "How many governorates do you operate in?",
+          "a": "Our branches are located in 6 governorates: Giza (Dokki), Monufia, Beheira, Minya, Ismailia, and Qena. We cover all governorates through our field team."
+        },
+        {
+          "q": "How long does collection take?",
+          "a": "We achieve collection rates exceeding 85% within the first 3 months of receiving cases, with periodic reports provided to banks."
+        },
+        {
+          "q": "Do you work with individuals or only institutions?",
+          "a": "ECC works exclusively with banks, financial institutions, and major corporations. We do not provide services to individuals directly."
+        }
+      ],
+      "investigation": [
+        {
+          "q": "What's the difference between field and credit investigation?",
+          "a": "Field investigation involves visiting the customer's address to verify their data and location. Credit investigation assesses creditworthiness based on available information."
+        },
+        {
+          "q": "Do you provide certified reports?",
+          "a": "We provide investigation reports certified by the company, which are accepted by the banks and entities we work with."
+        },
+        {
+          "q": "How accurate is your investigation?",
+          "a": "We pride ourselves on an accuracy rate exceeding 95% through trained teams and continuous quality monitoring."
+        },
+        {
+          "q": "Do you cover all of Egypt?",
+          "a": "We cover all Egyptian governorates with a trained field team in each area."
+        }
+      ]
+    }
+  },
+  "search": {
+    "placeholder": "Search the site...",
+    "no_results": "No results found",
+    "jobs_found": "Jobs",
+    "blog_found": "Articles",
+    "search_btn": "Search"
+  },
+  "cookie": {
+    "title": "We Use Cookies",
+    "desc": "We use cookies to ensure you get the best browsing experience on our website.",
+    "accept_btn": "Accept",
+    "decline_btn": "Decline"
+  },
+  "jobAlert": {
+    "title": "Get Job Alerts",
+    "desc": "Subscribe to receive notifications about new job openings.",
+    "email_placeholder": "Enter your email",
+    "submit_btn": "Subscribe",
+    "submitting": "Submitting...",
+    "success": "Subscribed successfully! You will receive notifications for new jobs.",
+    "error": "An error occurred, please try again"
+  },
+  "googleReviews": {
+    "title": "Client Reviews",
+    "desc": "See what our clients say about us",
+    "view_all": "View all reviews on Google",
+    "rating": "Rating"
   },
   "contactPage": {
     "hero_title": "Contact Us",

@@ -13,6 +13,7 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { i18n, type Locale } from '@/i18n-config';
 import { getDictionary } from '@/lib/get-dictionary';
 import WhatsAppButton from '@/components/WhatsAppButton';
+import LayoutClient from '@/components/LayoutClient';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -115,7 +116,9 @@ export default async function RootLayout({
         <ClientWrapper>
           <Navbar lang={params.lang} dict={dict.navbar} />
           <main className="flex-grow">
-            {children}
+            <LayoutClient lang={params.lang} dict={dict}>
+              {children}
+            </LayoutClient>
           </main>
           <Footer lang={params.lang} dict={dict.footer} />
           <WhatsAppButton dict={dict.whatsapp} />

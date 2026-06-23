@@ -56,6 +56,24 @@ export async function POST(request: Request) {
       };
     } 
     // ==========================================
+    // الحالة الثالثة: تنبيه الوظائف (Job Alert)
+    // ==========================================
+    else if (type === 'job-alert') {
+      const email = formData.get('email') as string;
+      mailOptions = {
+        from: senderIdentity,
+        to: process.env.RECEIVER_EMAIL,
+        subject: `🔔 اشتراك جديد في تنبيهات الوظائف: ${email}`,
+        html: `
+          <div style="font-family: Arial; padding: 20px; border: 1px solid #ddd; border-radius: 10px;">
+            <h2 style="color: #2563EB;">اشتراك جديد في تنبيهات الوظائف</h2>
+            <p><strong>البريد:</strong> ${email}</p>
+            <small style="color: #888;">تم الاشتراك عبر موقع Egypt Collections</small>
+          </div>
+        `,
+      };
+    }
+    // ==========================================
     // الحالة الثانية: تقديم وظيفة (Job Application)
     // ==========================================
     else {

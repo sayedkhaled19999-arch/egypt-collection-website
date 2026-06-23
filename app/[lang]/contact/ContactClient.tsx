@@ -243,6 +243,19 @@ export default function ContactClient({ lang, dict }: ContactClientProps) {
           </form>
         </motion.div>
       </section>
+
+      {/* Embedded Map */}
+      <section className="max-w-6xl mx-auto px-4 py-16">
+        <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}
+          className="rounded-3xl overflow-hidden shadow-xl h-[450px]">
+          <iframe
+            src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d27628.14757805721!2d31.2185!3d30.0385!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x1458413b5b5b5b5b%3A0x5b5b5b5b5b5b5b!2sECC!5e0!3m2!1sen!2seg!4v1"
+            width="100%" height="100%" style={{ border: 0 }} allowFullScreen loading="lazy"
+            referrerPolicy="no-referrer-when-downgrade"
+            title="ECC Location"
+          />
+        </motion.div>
+      </section>
     </main>
   );
 }
