@@ -1,56 +1,24 @@
-// --- START OF FILE app/sitemap.ts ---
-
 import { MetadataRoute } from 'next';
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = 'https://egyptcollections.com';
-  
-  // اللغات الموجودة في الموقع
   const locales = ['ar', 'en'];
 
-  // 1. مسارات الصفحات الثابتة
   const staticPaths = [
-    '',          // الرئيسية
-    '/about',    // من نحن
-    '/contact',  // تواصل معنا
-    '/jobs',     // الوظائف
-    '/partners', // الشركاء
-    '/privacy',  // الخصوصية
-    '/blog',     // المدونة
-    '/faq',      // الأسئلة الشائعة
-    '/services/collection',  // خدمات التحصيل
-    '/services/investigation',  // خدمات الاستعلام
+    '', '/about', '/contact', '/jobs', '/partners', '/privacy',
+    '/blog', '/faq', '/services/collection', '/services/investigation',
   ];
 
-  // 2. معرفات الوظائف (الديناميكية)
-  const jobIds = [
-    'office-collector',
-    'field-collector',
-    'field-investigator',
-    'data-entry'
-  ];
+  const jobIds = ['office-collector', 'field-collector', 'field-investigator', 'data-entry'];
+  const branchSlugs = ['dokki-headquarters', 'monufia', 'beheira', 'minya', 'ismailia', 'qena'];
 
-  // 3. معرفات فروع الوظائف
-  const branchSlugs = [
-    'dokki-headquarters',
-    'monufia',
-    'beheira',
-    'minya',
-    'ismailia',
-    'qena'
-  ];
-
-  // 4. معرفات المقالات
   const blogSlugs = [
-    'how-to-apply',
-    'office-vs-field',
-    'field-investigator-guide',
-    'data-entry-career'
+    'how-to-apply', 'office-vs-field', 'field-investigator-guide', 'data-entry-career',
+    'debt-collection-tips', 'credit-investigation-guide', 'ecc-company-profile', 'career-in-collection',
   ];
 
   const sitemapEntries: MetadataRoute.Sitemap = [];
 
-  // أولاً: تكرار الصفحات الثابتة لكل لغة
   staticPaths.forEach((path) => {
     locales.forEach((lang) => {
       sitemapEntries.push({
@@ -62,7 +30,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  // ثانياً: تكرار صفحات الوظائف لكل لغة
   jobIds.forEach((id) => {
     locales.forEach((lang) => {
       sitemapEntries.push({
@@ -74,7 +41,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  // ثالثاً: صفحات فروع التوظيف
   branchSlugs.forEach((slug) => {
     locales.forEach((lang) => {
       sitemapEntries.push({
@@ -86,7 +52,17 @@ export default function sitemap(): MetadataRoute.Sitemap {
     });
   });
 
-  // رابعاً: المقالات
+  branchSlugs.forEach((slug) => {
+    locales.forEach((lang) => {
+      sitemapEntries.push({
+        url: `${baseUrl}/${lang}/branches/${slug}`,
+        lastModified: new Date(),
+        changeFrequency: 'monthly',
+        priority: 0.85,
+      });
+    });
+  });
+
   blogSlugs.forEach((slug) => {
     locales.forEach((lang) => {
       sitemapEntries.push({

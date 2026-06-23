@@ -3,10 +3,10 @@ import { MetadataRoute } from 'next';
 export default function robots(): MetadataRoute.Robots {
   return {
     rules: {
-      userAgent: '*', // السماح لكل العناكب (جوجل، بينج، ياهو...)
-      allow: '/',     // السماح بدخول الموقع بالكامل
-      disallow: '/private/', // (اختياري) لو عملت مجلد خاص مستقبلاً
+      userAgent: '*',
+      allow: '/',
+      disallow: '/private/',
     },
-    sitemap: 'https://egyptcollections.com/sitemap.xml', // رابط الخريطة اللي عملناها فوق
+    sitemap: 'https://egyptcollections.com/sitemap.xml',
   };
 }
