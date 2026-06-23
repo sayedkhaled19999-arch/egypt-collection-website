@@ -157,6 +157,53 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
     ]
   };
 
+  const faqLd = job ? {
+    '@context': 'https://schema.org',
+    '@type': 'FAQPage',
+    'mainEntity': [
+      {
+        '@type': 'Question',
+        'name': isAr ? `ما هي مميزات وظيفة ${job.title} في ECC؟` : `What are the benefits of the ${job.title} job at ECC?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': isAr
+            ? `وظيفة ${job.title} في الشركة المصرية للتحصيلات توفر: ${job.salary}، ${job.hours}، إجازة ${job.vacation}. بالإضافة لتدريب مستمر وتأمين اجتماعي وفرص ترقي حقيقية.`
+            : `The ${job.title} position at ECC offers: ${job.salary}, ${job.hours}, ${job.vacation} off. Plus continuous training, social insurance, and real promotion opportunities.`
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': isAr ? `ما هي متطلبات وظيفة ${job.title}؟` : `What are the requirements for the ${job.title} job?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': isAr
+            ? `متطلبات وظيفة ${job.title}: ${job.requirements.join('، ')}. لا يشترط خبرة سابقة - تدريب متاح.`
+            : `Requirements for ${job.title}: ${job.requirements.join(', ')}. No previous experience required - training provided.`
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': isAr ? `كيف أتقدم لوظيفة ${job.title} في ECC؟` : `How do I apply for ${job.title} at ECC?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+        'text': isAr
+            ? `يمكنك التقديم على وظيفة ${job.title} من خلال موقعنا الإلكتروني: اذهب إلى صفحة الوظائف، اختر الوظيفة، واضغط على قدم الآن. يمكنك أيضاً التواصل عبر واتساب 01110600280.`
+            : `You can apply for ${job.title} through our website: go to the Jobs page, select the job, and click Apply Now. You can also contact us via WhatsApp at 01110600280.`
+        }
+      },
+      {
+        '@type': 'Question',
+        'name': isAr ? `ما هو راتب ${job.title} في الشركة المصرية للتحصيلات؟` : `What is the salary for ${job.title} at ECC?`,
+        'acceptedAnswer': {
+          '@type': 'Answer',
+          'text': isAr
+            ? `راتب ${job.title} في ECC: ${job.salary}. بالإضافة إلى حوافز ومكافآت حسب الأداء الشهري.`
+            : `The salary for ${job.title} at ECC: ${job.salary}. Plus performance-based incentives and bonuses.`
+        }
+      }
+    ]
+  } : null;
+
   return (
     <>
       {jsonLd && (
@@ -166,6 +213,9 @@ export default async function Page({ params }: { params: { id: string, lang: Loc
         />
       )}
       <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(breadcrumbLd) }} />
+      {faqLd && (
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(faqLd) }} />
+      )}
       
       <JobClient id={params.id} lang={params.lang} dict={dict} />
     </>

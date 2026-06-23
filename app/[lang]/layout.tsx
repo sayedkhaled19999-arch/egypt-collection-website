@@ -12,6 +12,7 @@ import { Analytics } from "@vercel/analytics/react";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { i18n, type Locale } from '@/i18n-config';
 import { getDictionary } from '@/lib/get-dictionary';
+import WhatsAppButton from '@/components/WhatsAppButton';
 
 const tajawal = Tajawal({
   subsets: ['arabic'],
@@ -20,10 +21,9 @@ const tajawal = Tajawal({
   display: 'swap',
 });
 
-// ❌ IMPORTANT: امسح السطور دي بالكامل
-// export async function generateStaticParams() {
-//   return i18n.locales.map((locale) => ({ lang: locale }));
-// }
+export async function generateStaticParams() {
+  return i18n.locales.map((locale) => ({ lang: locale }));
+}
 
 // الميتا داتا العامة (General Metadata)
 export async function generateMetadata({ params }: { params: { lang: Locale } }) {
@@ -118,6 +118,7 @@ export default async function RootLayout({
             {children}
           </main>
           <Footer lang={params.lang} dict={dict.footer} />
+          <WhatsAppButton dict={dict.whatsapp} />
         </ClientWrapper>
 
         <Analytics />

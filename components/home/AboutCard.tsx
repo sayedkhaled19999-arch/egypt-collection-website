@@ -120,7 +120,7 @@ export default function AboutCard({ lang, dict }: AboutCardProps) {
           >
             <div className="relative w-[280px] h-[280px] md:w-[320px] md:h-[320px] rounded-full border-8 border-[#F4F4F4] shadow-2xl overflow-hidden group">
               <Image 
-                src="ceo.png"   // <--- تأكد إن الشرطة دي موجودة
+                src="/ceo.png"
                 alt={dict.ceo_name} 
                 fill 
                 className="object-cover transition-transform duration-500 group-hover:scale-105"

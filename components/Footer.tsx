@@ -1,4 +1,3 @@
-// --- START OF FILE components/Footer.tsx ---
 'use client';
 
 import { Mail, Phone, MapPin } from 'lucide-react';
@@ -7,7 +6,7 @@ import Link from 'next/link';
 
 interface FooterProps {
   lang: string;
-  dict: any; // قاموس الترجمة
+  dict: any;
 }
 
 export default function Footer({ lang, dict }: FooterProps) {
@@ -41,6 +40,18 @@ export default function Footer({ lang, dict }: FooterProps) {
             >
               <FaFacebookF className="w-5 h-5" />
             </a>
+            <div className="hidden sm:flex flex-col gap-2 text-xs">
+              <span className="text-[#B4B4B4] font-bold">{dict.quick_links || 'Links'}</span>
+              <Link href={`/${lang}/services/collection`} className="hover:text-white transition-colors">
+                {dict.collection || 'Collection'}
+              </Link>
+              <Link href={`/${lang}/services/investigation`} className="hover:text-white transition-colors">
+                {dict.investigation || 'Investigation'}
+              </Link>
+              <Link href={`/${lang}/blog`} className="hover:text-white transition-colors">
+                {lang === 'ar' ? 'المدونة' : 'Blog'}
+              </Link>
+            </div>
           </div>
 
           <div className="flex flex-col gap-3 text-sm sm:text-base justify-center">

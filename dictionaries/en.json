@@ -2,6 +2,7 @@
   "navbar": {
     "home": "Home",
     "about": "About Us",
+    "services": "Services",
     "partners": "Success Partners",
     "jobs": "Careers",
     "contact": "Contact Us"
@@ -84,6 +85,10 @@
     "about_title": "Egyptian Collections Co. (ECC)",
     "about_desc1": "Specialized in providing financial collection and investigation services efficiently and professionally.",
     "about_desc2": "Founded in 2001, aiming to support clients in managing and collecting their financial dues securely.",
+    "services_title": "Our Services",
+    "collection": "Collection Services",
+    "investigation": "Investigation Services",
+    "quick_links": "Quick Links",
     "rights": "© Egyptian Collections Co. 2001 - 2026. All rights reserved.",
     "powered": "Powered by",
     "address": "30 Haroun St, El Mesaha Sq, Dokki",
@@ -258,6 +263,83 @@
         "High Focus"
       ]
     }
+  },
+  "servicesPage": {
+    "title": "Our Specialized Services",
+    "desc": "We provide integrated solutions in collection and credit investigation that meet the needs of the largest financial institutions in Egypt.",
+    "collection": {
+      "title": "Collection Services",
+      "subtitle": "Professional Debt Collection",
+      "desc": "We offer comprehensive collection services including field, office, and legal collection. Our trained team uses the latest methods to achieve the highest collection rates while maintaining our clients' reputation.",
+      "features": [
+        "Field Collection across all Egypt governorates",
+        "Office Collection with professional phone follow-up",
+        "Legal Collection through specialized legal team",
+        "Detailed periodic reports on each case",
+        "Amicable settlement solutions considering client circumstances"
+      ],
+      "benefits": "We achieve collection rates exceeding 85% within the first 3 months, with full compliance with laws and regulations."
+    },
+    "investigation": {
+      "title": "Investigation Services",
+      "subtitle": "Accurate & Reliable Field Investigation",
+      "desc": "We provide integrated field investigation services for banks and companies. Our trained teams conduct field visits to collect and update client data with high accuracy and complete confidentiality.",
+      "features": [
+        "Field investigation of addresses and locations",
+        "Comprehensive credit investigation",
+        "Client data verification",
+        "Certified investigation reports",
+        "Coverage across all Egypt governorates"
+      ],
+      "benefits": "We pride ourselves on conducting over 100,000 investigation visits annually with an accuracy rate exceeding 95%."
+    }
+  },
+  "blogPage": {
+    "title": "Career Blog",
+    "subtitle": "Tips and guidance for job seekers in collection and investigation",
+    "read_more": "Read More",
+    "related": "Related Topics",
+    "articles": {
+      "how-to-apply": {
+        "title": "How to Apply for a Job in a Collection Company?",
+        "desc": "A complete step-by-step guide to applying for collection and investigation jobs in Egypt - from job search to the interview.",
+        "content": "Applying for a job in the collection field isn't hard, but there are important steps you need to know to increase your chances...",
+        "tags": ["Collection Jobs", "Job Applications", "Job Market"]
+      },
+      "office-vs-field": {
+        "title": "Office Collector vs Field Collector: Which is Right for You?",
+        "desc": "A comprehensive comparison between office collector and field collector jobs - benefits, challenges, and expected salary for each.",
+        "content": "Many people wonder about the difference between office and field collectors and which one suits whom...",
+        "tags": ["Office Collector", "Field Collector", "Collection Jobs"]
+      },
+      "field-investigator-guide": {
+        "title": "Field Investigator Guide: Required Skills & Success Tips",
+        "desc": "Everything you need to know about the field investigator job, required skills, and how to succeed in the field.",
+        "content": "The field investigator plays a very important role in banks and financial institutions...",
+        "tags": ["Field Investigator", "Investigation", "Investigation Jobs"]
+      },
+      "data-entry-career": {
+        "title": "Data Entry Job: Required Skills & Growth Opportunities",
+        "desc": "Learn about the data entry job, the skills you need, and career development opportunities in the field.",
+        "content": "Data entry is one of the important office jobs in any company...",
+        "tags": ["Data Entry", "Office Jobs", "Data Entry Career"]
+      }
+    }
+  },
+  "whatsapp": {
+    "text": "WhatsApp",
+    "message": "Hello, I'm interested in inquiring about jobs at Egyptian Collections Co. ECC"
+  },
+  "careersPage": {
+    "title": "Careers in",
+    "subtitle": "All available jobs in",
+    "apply_now": "Apply for available jobs in",
+    "jobs_available": "Available Jobs",
+    "view_job": "View Details",
+    "back_to_branches": "View All Branches",
+    "all_locations": "All Branches",
+    "why_join": "Why Work With Us?",
+    "why_join_desc": "ECC offers you a professional work environment, fixed salary, high commissions, and social insurance. Plus continuous training and real promotion opportunities."
   },
   "contactPage": {
     "hero_title": "Contact Us",
