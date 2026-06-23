@@ -4,7 +4,6 @@ import { motion } from 'framer-motion';
 import { useState } from 'react';
 import { Briefcase, MapPin, Clock, ArrowRight } from 'lucide-react';
 import Link from 'next/link';
-import JobAlert from '@/components/JobAlert';
 import GoogleReviews from '@/components/GoogleReviews';
 import { branchesInfo } from '@/components/data/branches-data';
 
@@ -137,7 +136,6 @@ export default function JobsClient({ lang, dict }: JobsClientProps) {
         </motion.div>
       </section>
 
-      <JobAlert lang={lang} dict={dict} />
       <GoogleReviews lang={lang} dict={dict.googleReviews} />
     </div>
   );

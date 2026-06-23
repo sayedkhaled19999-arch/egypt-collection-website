@@ -267,32 +267,29 @@
   },
   "servicesPage": {
     "title": "Our Specialized Services",
-    "desc": "We provide integrated solutions in collection and credit investigation that meet the needs of the largest financial institutions in Egypt.",
+    "desc": "We provide integrated solutions in collection and credit investigation for companies and institutions.",
     "collection": {
       "title": "Collection Services",
       "subtitle": "Professional Debt Collection",
-      "desc": "We offer comprehensive collection services including field, office, and legal collection. Our trained team uses the latest methods to achieve the highest collection rates while maintaining our clients' reputation.",
+      "desc": "We offer comprehensive and professional collection services across Egypt. Our extensive experience ensures the best results for our clients.",
       "features": [
         "Field Collection across all Egypt governorates",
         "Office Collection with professional phone follow-up",
-        "Legal Collection through specialized legal team",
-        "Detailed periodic reports on each case",
+        "Innovative collection solutions tailored to client needs",
         "Amicable settlement solutions considering client circumstances"
       ],
-      "benefits": "We achieve collection rates exceeding 85% within the first 3 months, with full compliance with laws and regulations."
+      "benefits": "We adhere to the highest quality and professional standards in executing all collection tasks for our clients."
     },
     "investigation": {
       "title": "Investigation Services",
       "subtitle": "Accurate & Reliable Field Investigation",
-      "desc": "We provide integrated field investigation services for banks and companies. Our trained teams conduct field visits to collect and update client data with high accuracy and complete confidentiality.",
+      "desc": "We provide integrated field investigation services for our clients. We work with accuracy, professionalism, and complete confidentiality.",
       "features": [
-        "Field investigation of addresses and locations",
-        "Comprehensive credit investigation",
-        "Client data verification",
-        "Certified investigation reports",
+        "Professional investigation services",
+        "Certified reports",
         "Coverage across all Egypt governorates"
       ],
-      "benefits": "We pride ourselves on conducting over 100,000 investigation visits annually with an accuracy rate exceeding 95%."
+      "benefits": "We provide outstanding investigation services to our clients with the highest accuracy and professionalism."
     }
   },
   "blogPage": {
@@ -378,7 +375,7 @@
       "collection": [
         {
           "q": "What collection services does ECC provide?",
-          "a": "We offer 3 main types: Field Collection (field visits to customers), Office Collection (phone follow-up), and Legal Collection (legal procedures). All services are executed with the highest standards of professionalism and confidentiality."
+          "a": "We offer professional field and office collection services with the highest standards of confidentiality and professionalism."
         },
         {
           "q": "Is collection based on a fixed fee or percentage?",
@@ -390,7 +387,7 @@
         },
         {
           "q": "How long does collection take?",
-          "a": "We achieve collection rates exceeding 85% within the first 3 months of receiving cases, with periodic reports provided to banks."
+          "a": "The collection timeline varies depending on each case. We work professionally to achieve the best results."
         },
         {
           "q": "Do you work with individuals or only institutions?",
@@ -404,11 +401,11 @@
         },
         {
           "q": "Do you provide certified reports?",
-          "a": "We provide investigation reports certified by the company, which are accepted by the banks and entities we work with."
+          "a": "We provide certified investigation reports as required by our contracting entities."
         },
         {
           "q": "How accurate is your investigation?",
-          "a": "We pride ourselves on an accuracy rate exceeding 95% through trained teams and continuous quality monitoring."
+          "a": "We work with the highest accuracy and professionalism, with a fully trained team."
         },
         {
           "q": "Do you cover all of Egypt?",
@@ -517,23 +514,12 @@
     "faq_title": "Frequently Asked Questions about",
     "faq": {
       "q1": "What services are available at {{branch}} branch?",
-      "a1": "{{branch}} branch offers all field collection, office collection, and credit investigation services, in addition to employment opportunities in various departments.",
+      "a1": "{{branch}} branch offers our specialized services in addition to employment opportunities in various departments.",
       "q2": "How do I apply for a job at {{branch}} branch?",
       "a2": "You can apply through our careers page by selecting your preferred branch, or visit the branch directly to submit your CV.",
       "q3": "What are the working hours at {{branch}} branch?",
       "a3": "Working hours are Saturday to Thursday from 8:30 AM to 6:30 PM."
     }
   },
-  "servicesFaq": {
-    "collection": [
-      { "q": "What is the difference between office and field collection?", "a": "Office collection is done by phone from the company headquarters, while field collection involves visiting the client at their location. ECC provides both depending on each case." },
-      { "q": "What does legal collection include?", "a": "Legal collection is handled by a specialized legal team, including official notices and legal procedures as agreed with the bank." },
-      { "q": "Do you provide periodic reports to banks?", "a": "We provide detailed periodic reports on each case, including follow-up history, actions taken, and results achieved." }
-    ],
-    "investigation": [
-      { "q": "How long does field investigation take?", "a": "We aim to complete the investigation visit within 24-48 hours of receiving the request, and provide the final report within 3 business days." },
-      { "q": "What do investigations cover?", "a": "They include verification of residence and work addresses, business activity, updating contact information, and financial status assessment." },
-      { "q": "Why is client data verification important for banks?", "a": "Accurate data verification protects banks from fraud and helps correctly assess creditworthiness." }
-    ]
-  }
+  "servicesFaq": {}
 }

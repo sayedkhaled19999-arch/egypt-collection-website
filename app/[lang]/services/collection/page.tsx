@@ -1,7 +1,7 @@
 import { Metadata } from 'next';
 import { getDictionary } from '@/lib/get-dictionary';
 import { Locale } from '@/i18n-config';
-import { breadcrumbSchema, serviceSchema, faqSchema } from '@/lib/schemas';
+import { breadcrumbSchema, serviceSchema } from '@/lib/schemas';
 import CollectionClient from './CollectionClient';
 
 const SITE_URL = 'https://egyptcollections.com';
@@ -44,7 +44,6 @@ export default async function Page({ params }: { params: { lang: Locale } }) {
       isAr ? dict.servicesPage.collection.desc : dict.servicesPage.collection.desc,
       'Egyptian Collections Co. ECC',
     ),
-    faqSchema(dict.servicesFaq.collection.map((x: any) => ({ question: x.q, answer: x.a }))),
   ];
 
   return (

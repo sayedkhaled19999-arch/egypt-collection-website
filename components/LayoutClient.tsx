@@ -3,7 +3,6 @@
 import { useState } from 'react';
 import CookieConsent from './CookieConsent';
 import SearchModal from './SearchModal';
-import JobAlert from './JobAlert';
 
 interface Props {
   children: React.ReactNode;
@@ -24,7 +23,6 @@ export default function LayoutClient({ children, lang, dict }: Props) {
         isOpen={searchOpen}
         onClose={() => setSearchOpen(false)}
       />
-      <JobAlert lang={lang} dict={dict} />
     </>
   );
 }

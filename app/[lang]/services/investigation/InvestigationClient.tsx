@@ -98,27 +98,6 @@ export default function InvestigationClient({ lang, dict }: Props) {
           </Link>
         </motion.div>
       </section>
-
-      <section className="py-12 md:py-16 bg-white">
-        <div className="container mx-auto px-4 max-w-6xl">
-          <motion.div initial="hidden" whileInView="visible" viewport={{ once: true }} variants={fadeUp}>
-            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 text-center mb-10">
-              {lang === 'ar' ? 'أسئلة شائعة عن الاستعلام' : 'Frequently Asked Questions'}
-            </h2>
-            <div className="max-w-3xl mx-auto space-y-4">
-              {dict.servicesFaq.investigation.map((item: any, i: number) => (
-                <details key={i} className="group bg-gray-50 rounded-xl p-5 border border-gray-200 open:shadow-md transition-all cursor-pointer">
-                  <summary className="font-semibold text-gray-900 list-none flex items-center justify-between">
-                    {item.q}
-                    <span className="text-[#2563EB] group-open:rotate-180 transition-transform">▼</span>
-                  </summary>
-                  <p className="mt-3 text-gray-600 leading-relaxed">{item.a}</p>
-                </details>
-              ))}
-            </div>
-          </motion.div>
-        </div>
-      </section>
     </main>
   );
 }
