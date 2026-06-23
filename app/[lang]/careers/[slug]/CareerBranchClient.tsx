@@ -12,7 +12,7 @@ interface Props { lang: string; branch: BranchInfo; dict: any; }
 
 // HQ (Dokki) shows all 4 jobs; other branches show field jobs only
 const HQ_SLUG = 'dokki-headquarters';
-const FIELD_JOBS = ['field-collector', 'field-investigator'];
+const FIELD_JOBS = ['field-collector'];
 
 export default function CareerBranchClient({ lang, branch, dict }: Props) {
   const isAr = lang === 'ar';
